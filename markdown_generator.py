@@ -313,6 +313,14 @@ class MarkdownGenerator:
             included_schemas.add(obj_schema.name)
             included_schemas.update(obj_schema.references)
 
+        # Identify highly-used schemas (10+ references)
+        reference_counts = {}
+        for schema in self.schemas.values():
+            reference_counts[schema.name] = len(schema.referenced_by)
+
+        highly_used_threshold = 10
+        highly_used_schemas = {name for name, count in reference_counts.items() if count >= highly_used_threshold}
+
         # Generate nodes with links
         for schema_name in included_schemas:
             schema = self.schemas.get(schema_name)
@@ -326,18 +334,23 @@ class MarkdownGenerator:
             if len(display_name) > 30:
                 display_name = display_name[:27] + "..."
 
+            # Determine if schema is highly used
+            is_highly_used = schema_name in highly_used_schemas
+
             # Different styling for objects vs types
             if schema.schema_type == "object":
                 # Primary objects in bold boxes
                 relative_path = os.path.relpath(schema.output_path, 'docs')
                 mermaid_lines.append(f'    {sanitized}["{display_name}"]')
-                mermaid_lines.append(f'    class {sanitized} objectNode')
+                class_list = "objectNode,highlyUsed" if is_highly_used else "objectNode"
+                mermaid_lines.append(f'    class {sanitized} {class_list}')
                 mermaid_lines.append(f'    click {sanitized} "{relative_path}"')
             else:
                 # Types in rounded boxes
                 relative_path = os.path.relpath(schema.output_path, 'docs')
                 mermaid_lines.append(f'    {sanitized}("{display_name}")')
-                mermaid_lines.append(f'    class {sanitized} typeNode')
+                class_list = "typeNode,highlyUsed" if is_highly_used else "typeNode"
+                mermaid_lines.append(f'    class {sanitized} {class_list}')
                 mermaid_lines.append(f'    click {sanitized} "{relative_path}"')
 
         # Generate edges (only from objects to their references)
@@ -349,11 +362,12 @@ class MarkdownGenerator:
                     to_name = ref_schema.sanitized_name
                     mermaid_lines.append(f'    {from_name} --> {to_name}')
 
-        # Add styling
+        # Add styling with enhancements
         mermaid_lines.extend([
             "",
-            "    classDef objectNode fill:#e1f5ff,stroke:#01579b,stroke-width:2px",
+            "    classDef objectNode fill:#e1f5ff,stroke:#01579b,stroke-width:3px,font-size:16px,font-weight:bold",
             "    classDef typeNode fill:#f3e5f5,stroke:#4a148c,stroke-width:1px",
+            "    classDef highlyUsed fill:#fff9c4,stroke:#f57f17,stroke-width:3px,stroke-dasharray:5 5",
             "```"
         ])
 
@@ -625,16 +639,16 @@ class MarkdownGenerator:
             <div class="legend">
                 <h3>Legend</h3>
                 <div class="legend-item">
-                    <div class="legend-color" style="background: #3498db;"></div>
-                    <span>API Objects</span>
+                    <div class="legend-color" style="background: #3498db; width: 28px; height: 28px;"></div>
+                    <span>API Objects (larger)</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-color" style="background: #9b59b6;"></div>
                     <span>Supporting Types</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color" style="background: #e74c3c;"></div>
-                    <span>Highly Referenced</span>
+                    <div class="legend-color" style="background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);"></div>
+                    <span>Highly Referenced (10+ refs, glowing)</span>
                 </div>
             </div>
         </div>
@@ -653,6 +667,25 @@ class MarkdownGenerator:
             .append("svg")
             .attr("width", width)
             .attr("height", height);
+
+        // Add SVG filters for glow effect
+        const defs = svg.append("defs");
+
+        // Glow filter for highly-used schemas
+        const glowFilter = defs.append("filter")
+            .attr("id", "glow")
+            .attr("x", "-50%")
+            .attr("y", "-50%")
+            .attr("width", "200%")
+            .attr("height", "200%");
+
+        glowFilter.append("feGaussianBlur")
+            .attr("stdDeviation", "3")
+            .attr("result", "coloredBlur");
+
+        const feMerge = glowFilter.append("feMerge");
+        feMerge.append("feMergeNode").attr("in", "coloredBlur");
+        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
         // Create a group for zoom/pan
         const g = svg.append("g");
@@ -696,16 +729,28 @@ class MarkdownGenerator:
             .join("circle")
             .attr("class", "node")
             .attr("r", d => {
-                // Size based on reference count
-                const baseSize = 8;
-                const scale = Math.min(d.referenced_by_count * 2, 20);
-                return baseSize + scale;
+                // Objects are always larger than types
+                // Types: 6-12 (scale by connectivity)
+                // Objects: 16-26 (scale by connectivity, always larger)
+                if (d.type === "object") {
+                    const baseSize = 16;
+                    const scale = Math.min(d.referenced_by_count * 1.5, 10);
+                    return baseSize + scale;
+                } else {
+                    const baseSize = 6;
+                    const scale = Math.min(d.referenced_by_count * 0.5, 6);
+                    return baseSize + scale;
+                }
             })
             .attr("fill", d => {
                 // Color based on type and popularity
                 if (d.referenced_by_count > 10) return "#e74c3c"; // Highly referenced
                 if (d.type === "object") return "#3498db"; // API objects
                 return "#9b59b6"; // Types
+            })
+            .attr("filter", d => {
+                // Apply glow effect to highly-used schemas (10+ references)
+                return d.referenced_by_count > 10 ? "url(#glow)" : null;
             })
             .call(d3.drag()
                 .on("start", dragStarted)
@@ -967,8 +1012,9 @@ class MarkdownGenerator:
             schema_graph,
             "",
             "**Legend:**",
-            "- 🔵 **Blue rectangles** = Primary API objects (with endpoints)",
+            "- 🔵 **Blue rectangles (larger, bold)** = Primary API objects (with endpoints)",
             "- 🟣 **Purple rounded boxes** = Supporting types",
+            "- ⭐ **Yellow highlighted with dashed border** = Highly-used schemas (10+ references)",
             "- ➡️ **Arrows** = \"uses\" or \"references\" relationship",
             "",
             "---",
