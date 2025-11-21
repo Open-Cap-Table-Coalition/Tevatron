@@ -1,0 +1,91 @@
+{
+  "type": "object",
+  "example": {
+    "id": "4902",
+    "issuerId": "7",
+    "fullName": "Emily Wilson",
+    "email": "emily@esharesinc.com",
+    "employeeId": "1213511",
+    "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE",
+    "group": "Founders",
+    "entityType": "INDIVIDUAL",
+    "address": {
+      "country": "USA"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the stakeholder.",
+      "maxLength": 50
+    },
+    "issuerId": {
+      "type": "string",
+      "description": "An identifier for the issuer related to the stakeholder.",
+      "maxLength": 50
+    },
+    "fullName": {
+      "type": "string",
+      "description": "The stakeholder's full legal name.",
+      "maxLength": 1000
+    },
+    "email": {
+      "type": "string",
+      "description": "The stakeholder's email.",
+      "maxLength": 1000
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "An employee identifier for the stakeholder, if it exists.",
+      "title": "An employee identifier for the stakeholder, if it exists.\nMax length is according to what we accept when users are \"writing\" the data\nhttps://github.com/carta/carta-web/blob/c23a2bed261884a665295550970c4b97969eb5c9/eshares/corporations/stakeholders/models.py#L1479",
+      "maxLength": 256
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "ADVISOR",
+        "EX_ADVISOR",
+        "BOARD_MEMBER",
+        "CONSULTANT",
+        "EX_CONSULTANT",
+        "EMPLOYEE",
+        "EX_EMPLOYEE",
+        "EXECUTIVE",
+        "FOUNDER",
+        "INTERNATIONAL_EMPLOYEE",
+        "INVESTOR",
+        "OFFICER",
+        "OTHER"
+      ],
+      "description": "The relationship of the stakeholder with the draft issuer.\n\n - ADVISOR: Stakeholder is an advisor\n - EX_ADVISOR: Stakeholder is an ex-advisor\n - BOARD_MEMBER: Stakeholder is a board member\n - CONSULTANT: Stakeholder is a consultant\n - EX_CONSULTANT: Stakeholder is an ex-consultant\n - EMPLOYEE: Stakeholder is an employee\n - EX_EMPLOYEE: Stakeholder is an ex-employee\n - EXECUTIVE: Stakeholder is an executive\n - FOUNDER: Stakeholder is a founder\n - INTERNATIONAL_EMPLOYEE: Stakeholder is an international employee\n - INVESTOR: Stakeholder is an investor\n - OFFICER: Stakeholder is an officer\n - OTHER: Stakeholder has some other type of relationship"
+    },
+    "group": {
+      "type": "string",
+      "description": "The group to which the stakeholder belongs. This will not be set for all stakeholders.",
+      "maxLength": 1000
+    },
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "INDIVIDUAL",
+        "CORPORATION",
+        "LIMITED_LIABILITY_CORPORATION",
+        "ESTATE_OR_TRUST",
+        "PARTNERSHIP",
+        "DISREGARDED_ENTITY",
+        "UNKNOWN"
+      ]
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "The country of the stakeholder's address. This will not be set for all stakeholders.",
+          "maxLength": 1000
+        }
+      }
+    }
+  },
+  "description": "A stakeholder is any person or entity who holds an outstanding security."
+}

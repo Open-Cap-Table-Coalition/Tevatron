@@ -1,0 +1,807 @@
+{
+  "type": "object",
+  "example": {
+    "draftOptionGrant": {
+      "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+      "grantReason": "GRANT_REASON_NEW_HIRE",
+      "quantity": {
+        "value": "1000.0"
+      },
+      "earlyExercise": false,
+      "exercisePrice": {
+        "currency_code": "USD",
+        "amount": {
+          "value": "100.0"
+        }
+      },
+      "stakeholder": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com",
+        "employeeId": "adsfc123",
+        "type": "STAKEHOLDER_TYPE_INDIVIDUAL",
+        "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE"
+      },
+      "compliance": {
+        "countryOfResidency": {
+          "value": "USA"
+        },
+        "stateOfResidency": {
+          "value": "US-CA"
+        }
+      },
+      "notes": "Additional note about drafting",
+      "createTime": {
+        "value": "2024-02-29T18:18:00Z"
+      },
+      "updateTime": {
+        "value": "2024-02-29T18:18:00Z"
+      },
+      "vesting": {
+        "templateId": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+        "startDate": {
+          "year": 2024,
+          "month": 2,
+          "day": 29
+        }
+      }
+    }
+  },
+  "properties": {
+    "draftOptionGrant": {
+      "type": "object",
+      "example": {
+        "id": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+        "draftOptionGrantSetId": "6431d9c0-cba4-4134-8f1a-647d3d14e241",
+        "issuerId": "0791d98d-8d65-43ac-9571-749070054821",
+        "state": "DRAFT_SECURITY_STATE_DRAFTING",
+        "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+        "grantReason": "GRANT_REASON_NEW_HIRE",
+        "quantity": {
+          "value": "1000.0"
+        },
+        "earlyExercise": false,
+        "exercisePrice": {
+          "currency_code": "USD",
+          "amount": {
+            "value": "100.0"
+          }
+        },
+        "stakeholder": {
+          "name": "Jane Doe",
+          "email": "jane.doe@example.com",
+          "employeeId": "ASDF-123",
+          "type": "STAKEHOLDER_TYPE_INDIVIDUAL",
+          "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE"
+        },
+        "compliance": {
+          "countryOfResidency": {
+            "value": "USA"
+          },
+          "stateOfResidency": {
+            "value": "US-CA"
+          },
+          "federalExemption": "RULE_701"
+        },
+        "notes": "Additional note about drafting",
+        "createTime": {
+          "value": "2024-02-29T18:18:00Z"
+        },
+        "updateTime": {
+          "value": "2024-02-29T18:18:00Z"
+        },
+        "vesting": {
+          "templateId": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+          "startDate": {
+            "year": 2024,
+            "month": 2,
+            "day": 29
+          },
+          "acceleration": {
+            "name": "Acceleration name",
+            "terms": "Accel Terms"
+          }
+        },
+        "customLabel": "ABC-123",
+        "grantDate": {
+          "year": 2024,
+          "month": 2,
+          "day": 29
+        },
+        "boardApprovalDate": {
+          "year": 2024,
+          "month": 2,
+          "day": 29
+        },
+        "boardApproval": "BOARD_APPROVAL_APPROVED",
+        "expirationDate": {
+          "year": 2034,
+          "month": 2,
+          "day": 29
+        }
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Output only. The unique identifier of the draft option grant.",
+          "title": "Output only. The unique identifier of the draft option grant",
+          "readOnly": true
+        },
+        "draftOptionGrantSetId": {
+          "type": "string",
+          "description": "Output only. The unique identifier of the draft option grant set.",
+          "title": "Output only. The unique identifier of the draft option grant set",
+          "readOnly": true
+        },
+        "issuerId": {
+          "type": "string",
+          "description": "Output only. The unique identifier of the issuer.",
+          "title": "Output only. The unique identifier of the issuer",
+          "readOnly": true
+        },
+        "optionGrantId": {
+          "type": "string",
+          "description": "Output only. The unique identifier of the option grant that is originated by this draft once it is issued.",
+          "title": "Output only. The unique identifier of the option grant that is originated by this draft once it is issued",
+          "readOnly": true
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "DRAFT_SECURITY_STATE_DRAFTING",
+            "DRAFT_SECURITY_STATE_PENDING_BOARD_APPROVAL",
+            "DRAFT_SECURITY_STATE_ISSUED"
+          ],
+          "description": "The state of a draft security that describes the lifecycle stage of the draft security and determines the actions that can be performed on it.\n\n - DRAFT_SECURITY_STATE_DRAFTING: The draft security has been created and is in an editable state\n - DRAFT_SECURITY_STATE_PENDING_BOARD_APPROVAL: The draft has been submitted for board approval and is in a read-only state\n - DRAFT_SECURITY_STATE_ISSUED: The draft has been sent to signatories to be signed and issued and is in a read-only state"
+        },
+        "stockOptionType": {
+          "type": "string",
+          "enum": [
+            "STOCK_OPTION_TYPE_ISO",
+            "STOCK_OPTION_TYPE_NSO",
+            "STOCK_OPTION_TYPE_INTL",
+            "STOCK_OPTION_TYPE_EMI",
+            "STOCK_OPTION_TYPE_CSOP",
+            "STOCK_OPTION_TYPE_102_CG",
+            "STOCK_OPTION_TYPE_102_OI",
+            "STOCK_OPTION_TYPE_NON_TRUSTEE",
+            "STOCK_OPTION_TYPE_3I",
+            "STOCK_OPTION_TYPE_UNAPPROVED"
+          ],
+          "description": "- STOCK_OPTION_TYPE_ISO: Incentive Stock Option\n - STOCK_OPTION_TYPE_NSO: Non-qualified Stock Option\n - STOCK_OPTION_TYPE_INTL: International Stock Option\n - STOCK_OPTION_TYPE_EMI: Employee Management Incentive\n - STOCK_OPTION_TYPE_CSOP: Company Share Option Plan\n - STOCK_OPTION_TYPE_102_CG: 102 Capital Gains Track\n - STOCK_OPTION_TYPE_102_OI: 102 Ordinary Income Track\n - STOCK_OPTION_TYPE_NON_TRUSTEE: Non-Trustee Stock Option\n - STOCK_OPTION_TYPE_3I: 3(i) Stock Option\n - STOCK_OPTION_TYPE_UNAPPROVED: Unapproved Stock Option",
+          "title": "The type of the option grant"
+        },
+        "grantReason": {
+          "type": "string",
+          "enum": [
+            "GRANT_REASON_NEW_HIRE",
+            "GRANT_REASON_MERIT",
+            "GRANT_REASON_PROMOTION",
+            "GRANT_REASON_REFRESH",
+            "GRANT_REASON_CORPORATE_TRANSACTION",
+            "GRANT_REASON_RELATIONSHIP_CHANGE",
+            "GRANT_REASON_RETENTION",
+            "GRANT_REASON_ADVISOR",
+            "GRANT_REASON_CONSULTANT",
+            "GRANT_REASON_BOARD"
+          ],
+          "description": "- GRANT_REASON_NEW_HIRE: New hire\n - GRANT_REASON_MERIT: Merit\n - GRANT_REASON_PROMOTION: Promotion\n - GRANT_REASON_REFRESH: Refresh\n - GRANT_REASON_CORPORATE_TRANSACTION: Corporate transaction\n - GRANT_REASON_RELATIONSHIP_CHANGE: Relationship change\n - GRANT_REASON_RETENTION: Retention\n - GRANT_REASON_ADVISOR: Advisor\n - GRANT_REASON_CONSULTANT: Consultant\n - GRANT_REASON_BOARD: Board",
+          "title": "Reason for granting the option"
+        },
+        "quantity": {
+          "type": "object",
+          "example": {
+            "value": "100.57"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+              "title": "value",
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+            }
+          },
+          "description": "A string-based representation of the decimal type."
+        },
+        "earlyExercise": {
+          "type": "boolean",
+          "description": "Whether the option grant allows for early exercise."
+        },
+        "exercisePrice": {
+          "type": "object",
+          "example": {
+            "currencyCode": "USD",
+            "amount": {
+              "value": "1000.77"
+            }
+          },
+          "properties": {
+            "currencyCode": {
+              "type": "object",
+              "example": {
+                "value": "USD"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 3,
+                  "minLength": 3,
+                  "pattern": "[A-Z]{3}"
+                }
+              },
+              "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+            },
+            "amount": {
+              "type": "object",
+              "example": {
+                "value": "100.57"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                  "title": "value",
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                }
+              },
+              "description": "A string-based representation of the decimal type."
+            }
+          },
+          "description": "Represents an amount of money with its currency type."
+        },
+        "stakeholder": {
+          "type": "object",
+          "example": {
+            "name": "Jane Doe",
+            "email": "jane.doe@example.com",
+            "employeeId": "adsfc123",
+            "type": "STAKEHOLDER_TYPE_INDIVIDUAL",
+            "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE"
+          },
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the stakeholder to whom this security will be issued.",
+              "maxLength": 256,
+              "minLength": 1
+            },
+            "email": {
+              "type": "string",
+              "description": "The email of the stakeholder to whom this security will be issued.",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "employeeId": {
+              "type": "string",
+              "description": "The employee id of the stakeholder in the HR partner system.",
+              "maxLength": 100
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "STAKEHOLDER_TYPE_INDIVIDUAL",
+                "STAKEHOLDER_TYPE_NON_INDIVIDUAL"
+              ],
+              "description": "- STAKEHOLDER_TYPE_INDIVIDUAL: Individual\n - STAKEHOLDER_TYPE_NON_INDIVIDUAL: Non-Individual (e.g. organization, trust, etc.)",
+              "title": "Type of stakeholder"
+            },
+            "relationship": {
+              "type": "string",
+              "enum": [
+                "STAKEHOLDER_RELATIONSHIP_ADVISOR",
+                "STAKEHOLDER_RELATIONSHIP_EX_ADVISOR",
+                "STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER",
+                "STAKEHOLDER_RELATIONSHIP_CONSULTANT",
+                "STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT",
+                "STAKEHOLDER_RELATIONSHIP_EMPLOYEE",
+                "STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE",
+                "STAKEHOLDER_RELATIONSHIP_EXECUTIVE",
+                "STAKEHOLDER_RELATIONSHIP_FOUNDER",
+                "STAKEHOLDER_RELATIONSHIP_INVESTOR",
+                "STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE",
+                "STAKEHOLDER_RELATIONSHIP_OFFICER",
+                "STAKEHOLDER_RELATIONSHIP_OTHER"
+              ],
+              "description": "- STAKEHOLDER_RELATIONSHIP_ADVISOR: Advisor\n - STAKEHOLDER_RELATIONSHIP_EX_ADVISOR: Ex-Advisor\n - STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER: Board Member\n - STAKEHOLDER_RELATIONSHIP_CONSULTANT: Consultant\n - STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT: Ex-Consultant\n - STAKEHOLDER_RELATIONSHIP_EMPLOYEE: Employee\n - STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE: Ex-Employee\n - STAKEHOLDER_RELATIONSHIP_EXECUTIVE: Executive\n - STAKEHOLDER_RELATIONSHIP_FOUNDER: Founder\n - STAKEHOLDER_RELATIONSHIP_INVESTOR: Investor\n - STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE: International Employee\n - STAKEHOLDER_RELATIONSHIP_OFFICER: Officer\n - STAKEHOLDER_RELATIONSHIP_OTHER: Other",
+              "title": "Relationship of stakeholder to the issuer"
+            }
+          },
+          "description": "Details of a stakeholder",
+          "title": "Details of a stakeholder"
+        },
+        "compliance": {
+          "type": "object",
+          "example": {
+            "countryOfResidency": {
+              "value": "USA"
+            },
+            "stateOfResidency": {
+              "value": "US-CA"
+            },
+            "federalExemption": "RULE_701"
+          },
+          "properties": {
+            "countryOfResidency": {
+              "type": "object",
+              "example": {
+                "value": "USA"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "example": "USA",
+                  "maxLength": 3,
+                  "minLength": 3,
+                  "pattern": "[A-Z]{3}"
+                }
+              },
+              "description": "Three letter country codes as defined by the [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1-alpha-3) standard."
+            },
+            "stateOfResidency": {
+              "type": "object",
+              "example": {
+                "value": "US-CA"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "example": "US-CA",
+                  "maxLength": 6,
+                  "minLength": 4,
+                  "pattern": "[A-Z]{2}-[A-Z0-9]{1,3}"
+                }
+              },
+              "description": "Codes identifying the principal subdivisions of countries as defined by the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) standard."
+            },
+            "federalExemption": {
+              "type": "string",
+              "enum": [
+                "RULE_701",
+                "SECTION_4_A_2",
+                "SECTION_4_1_1_2",
+                "SECTION_4_A_7",
+                "RULE_144",
+                "REG_D_506_B",
+                "REG_D_506_C",
+                "REG_D_506",
+                "REG_D_505",
+                "REG_D_504",
+                "REG_S",
+                "REG_A_TIER_1",
+                "REG_A_TIER_2",
+                "REG_CF",
+                "SECTION_756",
+                "SCHEDULE_11A",
+                "NON_US",
+                "OTHER"
+              ],
+              "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other",
+              "title": "Federal Exemption types supported"
+            }
+          },
+          "description": "Compliance details of a stakeholder",
+          "title": "Compliance details of a stakeholder"
+        },
+        "vesting": {
+          "type": "object",
+          "example": {
+            "templateId": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+            "startDate": {
+              "year": 2024,
+              "month": 2,
+              "day": 29
+            },
+            "acceleration": {
+              "name": "Change in control",
+              "terms": "All unvested shares shall vest upon a change of control."
+            }
+          },
+          "properties": {
+            "templateId": {
+              "type": "string",
+              "description": "The template id of the vesting schedule.",
+              "maxLength": 100
+            },
+            "startDate": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Year of date. Use 0 if specifying a date without a year."
+                },
+                "month": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Month of year. Use 0 if specifying a year without a month and day."
+                },
+                "day": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0\nif specifying a year by itself or a year and month where the day is not\nsignificant."
+                }
+              },
+              "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e.g. an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, e.g. a credit card expiration date",
+              "title": "Represents a whole or partial calendar date, e.g. a birthday. The time of day\nand time zone are either specified elsewhere or are not significant. The date\nis relative to the Proleptic Gregorian Calendar. This can represent:"
+            },
+            "acceleration": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the acceleration vesting.",
+                  "title": "The name of the accelerated vesting condition",
+                  "maxLength": 256,
+                  "minLength": 1
+                },
+                "terms": {
+                  "type": "string",
+                  "description": "Detailed terms of accelerated vesting of the draft option grant.",
+                  "title": "Detailed terms of the accelerated vesting condition",
+                  "maxLength": 1000,
+                  "minLength": 1
+                }
+              },
+              "title": "Details of accelerated vesting",
+              "required": [
+                "name",
+                "terms"
+              ]
+            }
+          },
+          "description": "Vesting details of the option grant",
+          "title": "Vesting details of the option grant"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes about the option grant.",
+          "title": "Additional notes about the option grant",
+          "maxLength": 1000
+        },
+        "createTime": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01T18:18:00Z"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 24,
+              "minLength": 20,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z"
+            }
+          },
+          "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+        },
+        "updateTime": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01T18:18:00Z"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 24,
+              "minLength": 20,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z"
+            }
+          },
+          "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+        },
+        "customLabel": {
+          "type": "string",
+          "description": "A custom identifier for the draft option grant.",
+          "maxLength": 32
+        },
+        "boardApproval": {
+          "type": "string",
+          "enum": [
+            "BOARD_APPROVAL_NOT_APPROVED",
+            "BOARD_APPROVAL_APPROVED"
+          ],
+          "title": "- BOARD_APPROVAL_NOT_APPROVED: Not board approved, will be sent for board approval\n - BOARD_APPROVAL_APPROVED: Board approved"
+        },
+        "boardApprovalDate": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Year of date. Use 0 if specifying a date without a year."
+            },
+            "month": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Month of year. Use 0 if specifying a year without a month and day."
+            },
+            "day": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0\nif specifying a year by itself or a year and month where the day is not\nsignificant."
+            }
+          },
+          "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e.g. an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, e.g. a credit card expiration date",
+          "title": "Represents a whole or partial calendar date, e.g. a birthday. The time of day\nand time zone are either specified elsewhere or are not significant. The date\nis relative to the Proleptic Gregorian Calendar. This can represent:"
+        },
+        "grantDate": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Year of date. Use 0 if specifying a date without a year."
+            },
+            "month": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Month of year. Use 0 if specifying a year without a month and day."
+            },
+            "day": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0\nif specifying a year by itself or a year and month where the day is not\nsignificant."
+            }
+          },
+          "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e.g. an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, e.g. a credit card expiration date",
+          "title": "Represents a whole or partial calendar date, e.g. a birthday. The time of day\nand time zone are either specified elsewhere or are not significant. The date\nis relative to the Proleptic Gregorian Calendar. This can represent:"
+        },
+        "expirationDate": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Year of date. Use 0 if specifying a date without a year."
+            },
+            "month": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Month of year. Use 0 if specifying a year without a month and day."
+            },
+            "day": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0\nif specifying a year by itself or a year and month where the day is not\nsignificant."
+            }
+          },
+          "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e.g. an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, e.g. a credit card expiration date",
+          "title": "Represents a whole or partial calendar date, e.g. a birthday. The time of day\nand time zone are either specified elsewhere or are not significant. The date\nis relative to the Proleptic Gregorian Calendar. This can represent:"
+        },
+        "exercisePeriods": {
+          "type": "object",
+          "example": {
+            "voluntaryTerminationCount": "1",
+            "voluntaryTerminationPeriod": "PTEP_PERIOD_YEAR",
+            "involuntaryTerminationCauseCount": "3",
+            "involuntaryTerminationCausePeriod": "PTEP_PERIOD_MONTH",
+            "involuntaryTerminationCount": "5",
+            "involuntaryTerminationPeriod": "PTEP_PERIOD_DAY",
+            "deathExerciseCount": "7",
+            "deathExercisePeriod": "PTEP_PERIOD_YEAR",
+            "disabilityExerciseCount": "9",
+            "disabilityExercisePeriod": "PTEP_PERIOD_MONTH",
+            "retirementExerciseCount": "11",
+            "retirementExercisePeriod": "PTEP_PERIOD_DAY"
+          },
+          "properties": {
+            "voluntaryTerminationCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after voluntary termination that the stakeholder has to exercise their options."
+            },
+            "voluntaryTerminationPeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            },
+            "involuntaryTerminationCauseCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after involuntary termination that the stakeholder has to exercise their options."
+            },
+            "involuntaryTerminationCausePeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            },
+            "involuntaryTerminationCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after involuntary termination that the stakeholder has to exercise their options."
+            },
+            "involuntaryTerminationPeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            },
+            "deathExerciseCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after death that the stakeholder has to exercise their options."
+            },
+            "deathExercisePeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            },
+            "disabilityExerciseCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after disability that the stakeholder has to exercise their options."
+            },
+            "disabilityExercisePeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            },
+            "retirementExerciseCount": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The quantity of \"periods\" (days, months or years) after retirement that the stakeholder has to exercise their options."
+            },
+            "retirementExercisePeriod": {
+              "type": "string",
+              "enum": [
+                "EXERCISE_PERIOD_DAY",
+                "EXERCISE_PERIOD_MONTH",
+                "EXERCISE_PERIOD_YEAR"
+              ],
+              "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+            }
+          },
+          "description": "Exercise periods for the draft option grant. If unset, values will be inherited from the equity plan"
+        },
+        "documents": {
+          "type": "object",
+          "properties": {
+            "formOfOptionAgreement": {
+              "type": "object",
+              "example": {
+                "fileId": "cfa1313f-3607-4a52-9f9b-908dc94af6ee"
+              },
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 256,
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 1000
+                },
+                "fileId": {
+                  "type": "string",
+                  "example": "cfa1313f-3607-4a52-9f9b-908dc94af6ee",
+                  "description": "The file identifier of the document.\n\nFiles must be uploaded first through the [Upload File](https://docs.carta.com/carta/reference/v1alpha1filesuploadfile) endpoint before their file identifiers can be referenced here.",
+                  "maxLength": 50
+                }
+              },
+              "description": "Contains information about a document, including name, url, and file id."
+            },
+            "formOfExerciseAgreement": {
+              "type": "object",
+              "example": {
+                "fileId": "cfa1313f-3607-4a52-9f9b-908dc94af6ee"
+              },
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 256,
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 1000
+                },
+                "fileId": {
+                  "type": "string",
+                  "example": "cfa1313f-3607-4a52-9f9b-908dc94af6ee",
+                  "description": "The file identifier of the document.\n\nFiles must be uploaded first through the [Upload File](https://docs.carta.com/carta/reference/v1alpha1filesuploadfile) endpoint before their file identifiers can be referenced here.",
+                  "maxLength": 50
+                }
+              },
+              "description": "Contains information about a document, including name, url, and file id."
+            },
+            "equityIncentivePlan": {
+              "type": "object",
+              "example": {
+                "fileId": "cfa1313f-3607-4a52-9f9b-908dc94af6ee"
+              },
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 256,
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                  "readOnly": true,
+                  "maxLength": 1000
+                },
+                "fileId": {
+                  "type": "string",
+                  "example": "cfa1313f-3607-4a52-9f9b-908dc94af6ee",
+                  "description": "The file identifier of the document.\n\nFiles must be uploaded first through the [Upload File](https://docs.carta.com/carta/reference/v1alpha1filesuploadfile) endpoint before their file identifiers can be referenced here.",
+                  "maxLength": 50
+                }
+              },
+              "description": "Contains information about a document, including name, url, and file id."
+            },
+            "additionalDocuments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "example": {
+                  "fileId": "cfa1313f-3607-4a52-9f9b-908dc94af6ee"
+                },
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                    "readOnly": true,
+                    "maxLength": 256,
+                    "minLength": 1
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+                    "readOnly": true,
+                    "maxLength": 1000
+                  },
+                  "fileId": {
+                    "type": "string",
+                    "example": "cfa1313f-3607-4a52-9f9b-908dc94af6ee",
+                    "description": "The file identifier of the document.\n\nFiles must be uploaded first through the [Upload File](https://docs.carta.com/carta/reference/v1alpha1filesuploadfile) endpoint before their file identifiers can be referenced here.",
+                    "maxLength": 50
+                  }
+                },
+                "description": "Contains information about a document, including name, url, and file id."
+              },
+              "description": "Details about other additional documents.\n\nMax of 100 items."
+            }
+          },
+          "description": "Documents that are relevant to a draft option grant.\n\nThese documents are attached to a specific draft option grant object and will be associated with the resulting option grant once the draft is approved."
+        }
+      },
+      "description": "A draft option grant is an object that is the precursor of an option grant before it is approved, signed, and issued.\n\nThe \"draft\" prefix is used to differentiate it from the final option grant object."
+    }
+  },
+  "description": "The request for the CreateDraftOptionGrant endpoint.",
+  "required": [
+    "draftOptionGrant"
+  ]
+}

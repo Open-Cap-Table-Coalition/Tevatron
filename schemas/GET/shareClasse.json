@@ -1,0 +1,481 @@
+{
+  "type": "object",
+  "example": {
+    "id": "783",
+    "issuerId": "7",
+    "name": "SeriesB",
+    "prefix": "PSB",
+    "type": "PREFERRED",
+    "authorizedShareCount": {
+      "value": "0"
+    },
+    "parValue": {
+      "currencyCode": {
+        "value": "USD"
+      },
+      "amount": {
+        "value": "0.0001"
+      }
+    },
+    "seniority": 1,
+    "pariPassu": true,
+    "preferredShareClassDetails": {
+      "rightsAndPreferences": {
+        "originalIssuePrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.77"
+          }
+        },
+        "conversionPrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.50"
+          }
+        },
+        "conversionRatio": {
+          "value": "0.789"
+        },
+        "multiplier": {
+          "value": "1.00"
+        },
+        "participating": true,
+        "participationCap": {
+          "value": "1.00"
+        }
+      },
+      "dividendDetails": {
+        "dividendType": "CASH",
+        "dividendDetails": {
+          "dividendYield": {
+            "value": "0.02"
+          },
+          "dividendAccrualType": "CUMULATIVE",
+          "dividendAccrualPeriod": "DAILY",
+          "dividendInterestType": "INTEREST_PERIOD_DAILY"
+        }
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the share class.",
+      "maxLength": 50,
+      "minLength": 1
+    },
+    "issuerId": {
+      "type": "string",
+      "description": "The identifier of the issuer to which this share class belongs.",
+      "maxLength": 50,
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the share class.",
+      "maxLength": 100
+    },
+    "prefix": {
+      "type": "string",
+      "description": "The prefix used to identify the share class. Can only be numbers and letters. For example, CS for Common, PS for Series Seed Preferred, and PA for Series A Preferred.",
+      "title": "The prefix used to identify the share class. Can only be numbers and letters. For example, CS for Common, PS for\nSeries Seed Preferred, and PA for Series A Preferred",
+      "maxLength": 25,
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "COMMON",
+        "PREFERRED"
+      ],
+      "title": "- COMMON: Used to denote a common share with voting rights\n - PREFERRED: Used to denote a preferred share with no voting rights"
+    },
+    "authorizedShareCount": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "parValue": {
+      "type": "object",
+      "example": {
+        "currencyCode": "USD",
+        "amount": {
+          "value": "1000.77"
+        }
+      },
+      "properties": {
+        "currencyCode": {
+          "type": "object",
+          "example": {
+            "value": "USD"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 3,
+              "minLength": 3,
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+        },
+        "amount": {
+          "type": "object",
+          "example": {
+            "value": "100.57"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+              "title": "value",
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+            }
+          },
+          "description": "A string-based representation of the decimal type."
+        }
+      },
+      "description": "Represents an amount of money with its currency type."
+    },
+    "seniority": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Indicates the order in which share holders will get paid. Seniority ranks high to low, with 1 being the highest and will be paid out first.\n\nThe higher the number, the less seniority the corresponding share class has."
+    },
+    "pariPassu": {
+      "type": "boolean",
+      "description": "Indicates whether this share class has equal seniority to an existing share class."
+    },
+    "preferredShareClassDetails": {
+      "type": "object",
+      "example": {
+        "rightsAndPreferences": {
+          "originalIssuePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.77"
+            }
+          },
+          "conversionPrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.50"
+            }
+          },
+          "conversionRatio": {
+            "value": "0.789"
+          },
+          "multiplier": {
+            "value": "1.00"
+          },
+          "participating": true,
+          "participationCap": {
+            "value": "1.00"
+          }
+        },
+        "dividendDetails": {
+          "dividendType": "CASH",
+          "dividendDetails": {
+            "dividendYield": {
+              "value": "0.02"
+            },
+            "dividendAccrualType": "CUMULATIVE",
+            "dividendAccrualPeriod": "DAILY",
+            "dividendInterestType": "INTEREST_PERIOD_DAILY"
+          }
+        }
+      },
+      "properties": {
+        "rightsAndPreferences": {
+          "type": "object",
+          "example": {
+            "originalIssuePrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1.77"
+              }
+            },
+            "conversionPrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1.50"
+              }
+            },
+            "conversionRatio": {
+              "value": "0.789"
+            },
+            "multiplier": {
+              "value": "1.00"
+            },
+            "participating": true,
+            "participationCap": {
+              "value": "1.00"
+            }
+          },
+          "properties": {
+            "originalIssuePrice": {
+              "type": "object",
+              "example": {
+                "currencyCode": "USD",
+                "amount": {
+                  "value": "1000.77"
+                }
+              },
+              "properties": {
+                "currencyCode": {
+                  "type": "object",
+                  "example": {
+                    "value": "USD"
+                  },
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 3,
+                      "minLength": 3,
+                      "pattern": "[A-Z]{3}"
+                    }
+                  },
+                  "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+                },
+                "amount": {
+                  "type": "object",
+                  "example": {
+                    "value": "100.57"
+                  },
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                      "title": "value",
+                      "maxLength": 100,
+                      "minLength": 1,
+                      "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                    }
+                  },
+                  "description": "A string-based representation of the decimal type."
+                }
+              },
+              "description": "Represents an amount of money with its currency type."
+            },
+            "conversionPrice": {
+              "type": "object",
+              "example": {
+                "currencyCode": "USD",
+                "amount": {
+                  "value": "1000.77"
+                }
+              },
+              "properties": {
+                "currencyCode": {
+                  "type": "object",
+                  "example": {
+                    "value": "USD"
+                  },
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 3,
+                      "minLength": 3,
+                      "pattern": "[A-Z]{3}"
+                    }
+                  },
+                  "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+                },
+                "amount": {
+                  "type": "object",
+                  "example": {
+                    "value": "100.57"
+                  },
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                      "title": "value",
+                      "maxLength": 100,
+                      "minLength": 1,
+                      "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                    }
+                  },
+                  "description": "A string-based representation of the decimal type."
+                }
+              },
+              "description": "Represents an amount of money with its currency type."
+            },
+            "conversionRatio": {
+              "type": "object",
+              "example": {
+                "value": "100.57"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                  "title": "value",
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                }
+              },
+              "description": "A string-based representation of the decimal type."
+            },
+            "multiplier": {
+              "type": "object",
+              "example": {
+                "value": "100.57"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                  "title": "value",
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                }
+              },
+              "description": "A string-based representation of the decimal type."
+            },
+            "participating": {
+              "type": "boolean",
+              "description": "Indicates that the holders of that preferred share class are paid out at the same time that the common stockholders are paid out."
+            },
+            "participationCap": {
+              "type": "object",
+              "example": {
+                "value": "100.57"
+              },
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                  "title": "value",
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                }
+              },
+              "description": "A string-based representation of the decimal type."
+            }
+          },
+          "description": "Share class rights and preferences for a preferred share class."
+        },
+        "dividendDetails": {
+          "type": "object",
+          "example": {
+            "dividendType": "CASH",
+            "dividendDetails": {
+              "dividendYield": {
+                "value": "0.02"
+              },
+              "dividendAccrualType": "CUMULATIVE",
+              "dividendAccrualPeriod": "DAILY",
+              "dividendInterestType": "INTEREST_PERIOD_DAILY"
+            }
+          },
+          "properties": {
+            "dividendType": {
+              "type": "string",
+              "enum": [
+                "CASH",
+                "NON_CASH"
+              ],
+              "title": "- CASH: Investors will receive dividends in cash\n - NON_CASH: Investors will receive non-cash dividends, such as shares"
+            },
+            "dividendDetails": {
+              "type": "object",
+              "example": {
+                "dividendYield": {
+                  "value": "0.02"
+                },
+                "dividendAccrualType": "CUMULATIVE",
+                "dividendAccrualPeriod": "DAILY",
+                "dividendInterestType": "INTEREST_PERIOD_DAILY"
+              },
+              "properties": {
+                "dividendYield": {
+                  "type": "object",
+                  "example": {
+                    "value": "100.57"
+                  },
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                      "title": "value",
+                      "maxLength": 100,
+                      "minLength": 1,
+                      "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                    }
+                  },
+                  "description": "A string-based representation of the decimal type."
+                },
+                "dividendAccrualType": {
+                  "type": "string",
+                  "enum": [
+                    "CUMULATIVE",
+                    "NON_CUMULATIVE"
+                  ],
+                  "title": "- CUMULATIVE: Dividends that are earned and accrue over time, whether or not it is declared by the board\n - NON_CUMULATIVE: Dividends that accrue and are paid out at the discretion of the board"
+                },
+                "dividendAccrualPeriod": {
+                  "type": "string",
+                  "enum": [
+                    "DAILY",
+                    "WEEKLY",
+                    "MONTHLY",
+                    "QUARTERLY",
+                    "ANNUALLY"
+                  ],
+                  "title": "- DAILY: Dividends accrue on a daily basis\n - WEEKLY: Dividends accrue on a weekly basis\n - MONTHLY: Dividends accrue on a monthly basis\n - QUARTERLY: Dividends accrue on a quarterly basis\n - ANNUALLY: Dividends accrue on an annual basis"
+                },
+                "dividendInterestType": {
+                  "type": "string",
+                  "enum": [
+                    "SIMPLE_INTEREST",
+                    "INTEREST_PERIOD_DAILY",
+                    "INTEREST_PERIOD_WEEKLY",
+                    "INTEREST_PERIOD_MONTHLY",
+                    "INTEREST_PERIOD_QUARTERLY",
+                    "INTEREST_PERIOD_SEMI_ANNUAL",
+                    "INTEREST_PERIOD_ANNUAL"
+                  ],
+                  "title": "- SIMPLE_INTEREST: Interest is calculated using simple interest\n - INTEREST_PERIOD_DAILY: Interest compounds daily\n - INTEREST_PERIOD_WEEKLY: Interest compounds weekly\n - INTEREST_PERIOD_MONTHLY: Interest compounds monthly\n - INTEREST_PERIOD_QUARTERLY: Interest compounds quarterly\n - INTEREST_PERIOD_SEMI_ANNUAL: Interest compounds semi-annually\n - INTEREST_PERIOD_ANNUAL: Interest compounds annually"
+                }
+              },
+              "description": "Details about share class dividends."
+            }
+          },
+          "description": "Details related to the dividends of a share class."
+        }
+      },
+      "description": "Details of a preferred share class, split into rights and preferences details and dividend details."
+    }
+  },
+  "description": "A class of stock issued by an issuer."
+}

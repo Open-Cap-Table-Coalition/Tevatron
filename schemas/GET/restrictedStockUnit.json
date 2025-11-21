@@ -1,0 +1,808 @@
+{
+  "type": "object",
+  "example": {
+    "id": "8550",
+    "issuerId": "7",
+    "stakeholderId": "6113",
+    "equityIncentivePlanName": "2015 Equity Incentive Plan",
+    "issueDate": {
+      "value": "2015-06-01"
+    },
+    "vestingStartDate": {
+      "value": "2015-06-01"
+    },
+    "boardApprovalDate": {
+      "value": "2015-06-01"
+    },
+    "stakeholderAcceptanceDate": {
+      "value": "2017-02-27"
+    },
+    "quantity": {
+      "value": "1500"
+    },
+    "vestedQuantity": {
+      "value": "1500"
+    },
+    "releasedQuantity": {
+      "value": "200"
+    },
+    "releasePricePerShare": {
+      "currencyCode": {
+        "value": "USD"
+      },
+      "amount": {
+        "value": "0.78"
+      }
+    },
+    "netSettledQuantity": {
+      "value": "145"
+    },
+    "securityLabel": "ES-136",
+    "vestingEvents": [
+      {
+        "id": "1988",
+        "vestDate": {
+          "value": "2016-06-01"
+        },
+        "quantity": {
+          "value": "375"
+        },
+        "performanceCondition": false,
+        "vested": true,
+        "maxQuantity": {
+          "value": "375"
+        },
+        "targetQuantity": {
+          "value": "375"
+        },
+        "vestedQuantity": {
+          "value": "375"
+        }
+      }
+    ],
+    "settlements": [
+      {
+        "settlementDate": {
+          "value": "2016-08-19"
+        },
+        "releaseQuantity": {
+          "value": "200"
+        },
+        "saleQuantity": {
+          "value": "200"
+        },
+        "withholdingQuantity": {
+          "value": "55"
+        },
+        "netSettlementQuantity": {
+          "value": "145"
+        },
+        "settlementPrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "0.78"
+          }
+        },
+        "certificateId": "78",
+        "certificateLabel": "CS-124"
+      }
+    ],
+    "vestingSchedule": {
+      "name": "1/24 Cliff",
+      "lastModifiedDate": {
+        "value": "2022-01-31"
+      },
+      "startDate": {
+        "value": "2015-06-01"
+      },
+      "endDate": {
+        "value": "2024-01-31"
+      }
+    },
+    "lastModifiedDatetime": {
+      "value": "2024-07-30T09:31:57.000000Z"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the restricted stock unit.",
+      "maxLength": 50,
+      "minLength": 1
+    },
+    "issuerId": {
+      "type": "string",
+      "description": "The identifier of the issuer owning the restricted stock unit.",
+      "maxLength": 50,
+      "minLength": 1
+    },
+    "stakeholderId": {
+      "type": "string",
+      "description": "The identifier of the stakeholder that received the restricted stock unit.",
+      "maxLength": 50
+    },
+    "equityIncentivePlanName": {
+      "type": "string",
+      "description": "The name of the equity incentive plan (i.e., option plan) associated with the restricted stock unit.",
+      "maxLength": 100
+    },
+    "issueDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "vestingStartDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "boardApprovalDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "stakeholderAcceptanceDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "quantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "vestedQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "releasedQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "releasePricePerShare": {
+      "type": "object",
+      "example": {
+        "currencyCode": "USD",
+        "amount": {
+          "value": "1000.77"
+        }
+      },
+      "properties": {
+        "currencyCode": {
+          "type": "object",
+          "example": {
+            "value": "USD"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 3,
+              "minLength": 3,
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+        },
+        "amount": {
+          "type": "object",
+          "example": {
+            "value": "100.57"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+              "title": "value",
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+            }
+          },
+          "description": "A string-based representation of the decimal type."
+        }
+      },
+      "description": "Represents an amount of money with its currency type."
+    },
+    "netSettledQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "securityLabel": {
+      "type": "string",
+      "description": "The label representing this security (restricted stock unit).",
+      "maxLength": 50
+    },
+    "vestingEvents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "example": {
+          "id": "1988",
+          "vestDate": {
+            "value": "2016-06-01"
+          },
+          "quantity": {
+            "value": "375"
+          },
+          "performanceCondition": false,
+          "vested": true,
+          "maxQuantity": {
+            "value": "375"
+          },
+          "targetQuantity": {
+            "value": "375"
+          },
+          "vestedQuantity": {
+            "value": "375"
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of the restricted stock unit vesting event.",
+            "maxLength": 50
+          },
+          "vestDate": {
+            "type": "object",
+            "example": {
+              "value": "2021-01-01"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "maxLength": 10,
+                "minLength": 10,
+                "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+              }
+            },
+            "description": "A complete calendar date defined as per the ISO 8601 standard."
+          },
+          "quantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "performanceCondition": {
+            "type": "boolean",
+            "description": "Indicates that this vesting event has associated performance or milestone vesting conditions.\n\n`performanceCondition` will be `true` for milestone- and performance-based vesting events.\n\nFor performance-based vesting events, `performanceCondition` indicates that a performance condition exists, not that it has been met."
+          },
+          "vested": {
+            "type": "boolean",
+            "description": "Indicates that this vesting event has vested."
+          },
+          "maxQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "targetQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "vestedQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          }
+        },
+        "description": "Restricted stock unit vesting event information."
+      },
+      "description": "The list of all vesting events associated with these restricted stock units."
+    },
+    "canceledDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "terminationDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "settlements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "example": {
+          "settlementDate": {
+            "value": "2016-08-19"
+          },
+          "releaseQuantity": {
+            "value": "200"
+          },
+          "saleQuantity": {
+            "value": "200"
+          },
+          "withholdingQuantity": {
+            "value": "55"
+          },
+          "netSettlementQuantity": {
+            "value": "145"
+          },
+          "settlementPrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.78"
+            }
+          },
+          "certificateId": "78",
+          "certificateLabel": "CS-124"
+        },
+        "properties": {
+          "settlementDate": {
+            "type": "object",
+            "example": {
+              "value": "2021-01-01"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "maxLength": 10,
+                "minLength": 10,
+                "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+              }
+            },
+            "description": "A complete calendar date defined as per the ISO 8601 standard."
+          },
+          "releaseQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "saleQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "withholdingQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "netSettlementQuantity": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "settlementPrice": {
+            "type": "object",
+            "example": {
+              "currencyCode": "USD",
+              "amount": {
+                "value": "1000.77"
+              }
+            },
+            "properties": {
+              "currencyCode": {
+                "type": "object",
+                "example": {
+                  "value": "USD"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 3,
+                    "minLength": 3,
+                    "pattern": "[A-Z]{3}"
+                  }
+                },
+                "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+              },
+              "amount": {
+                "type": "object",
+                "example": {
+                  "value": "100.57"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                    "title": "value",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                  }
+                },
+                "description": "A string-based representation of the decimal type."
+              }
+            },
+            "description": "Represents an amount of money with its currency type."
+          },
+          "certificateId": {
+            "type": "string",
+            "description": "The resource identifier for the certificate that was generated as part of the transaction.",
+            "maxLength": 1000,
+            "minLength": 1
+          },
+          "certificateLabel": {
+            "type": "string",
+            "description": "The label of the certificate that was generated as part of the transaction (e.g. CS-107)."
+          }
+        },
+        "description": "Restricted stock unit settlement information."
+      },
+      "description": "The list of all settlements associated with these restricted stock units."
+    },
+    "vestingSchedule": {
+      "type": "object",
+      "example": {
+        "name": "1/24 Cliff",
+        "lastModifiedDate": {
+          "value": "2022-01-31"
+        },
+        "startDate": {
+          "value": "2022-01-31"
+        },
+        "endDate": {
+          "value": "2024-01-31"
+        }
+      },
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the vesting schedule.",
+          "maxLength": 500
+        },
+        "lastModifiedDate": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+            }
+          },
+          "description": "A complete calendar date defined as per the ISO 8601 standard."
+        },
+        "startDate": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+            }
+          },
+          "description": "A complete calendar date defined as per the ISO 8601 standard."
+        },
+        "endDate": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 10,
+              "minLength": 10,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+            }
+          },
+          "description": "A complete calendar date defined as per the ISO 8601 standard."
+        }
+      },
+      "description": "Restricted stock award vesting event information."
+    },
+    "canceledQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "forfeitedQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "expiredQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "returnedToPoolQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "returnedToTreasuryQuantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "lastModifiedDatetime": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01T18:18:00Z"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 24,
+          "minLength": 20,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z"
+        }
+      },
+      "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+    }
+  },
+  "description": "A restricted stock unit is a grant of company shares."
+}

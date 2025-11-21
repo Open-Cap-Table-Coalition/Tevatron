@@ -1,0 +1,167 @@
+{
+  "type": "object",
+  "example": {
+    "id": "string",
+    "effectiveDate": {
+      "value": "2014-03-17"
+    },
+    "expirationDate": {
+      "value": "2015-03-16"
+    },
+    "staleDate": {
+      "value": "2015-03-16"
+    },
+    "shareClassValuations": [
+      {
+        "shareClassId": "9",
+        "shareClassName": "Common",
+        "common": true,
+        "price": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "0.20"
+          }
+        }
+      }
+    ]
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "An identifier for the 409A fair market values.",
+      "maxLength": 50
+    },
+    "effectiveDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "expirationDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "staleDate": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 10,
+          "minLength": 10,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        }
+      },
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    "shareClassValuations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "example": {
+          "shareClassId": "9",
+          "shareClassName": "Common",
+          "common": true,
+          "price": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.20"
+            }
+          }
+        },
+        "properties": {
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class.",
+            "maxLength": 50,
+            "minLength": 1
+          },
+          "shareClassName": {
+            "type": "string",
+            "description": "The name of the share class.",
+            "maxLength": 60,
+            "minLength": 1
+          },
+          "common": {
+            "type": "boolean",
+            "description": "True if this is a common share class; otherwise, false if this is a preferred share class."
+          },
+          "price": {
+            "type": "object",
+            "example": {
+              "currencyCode": "USD",
+              "amount": {
+                "value": "1000.77"
+              }
+            },
+            "properties": {
+              "currencyCode": {
+                "type": "object",
+                "example": {
+                  "value": "USD"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 3,
+                    "minLength": 3,
+                    "pattern": "[A-Z]{3}"
+                  }
+                },
+                "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+              },
+              "amount": {
+                "type": "object",
+                "example": {
+                  "value": "100.57"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                    "title": "value",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                  }
+                },
+                "description": "A string-based representation of the decimal type."
+              }
+            },
+            "description": "Represents an amount of money with its currency type."
+          }
+        },
+        "description": "The fair market valuation price for a share class."
+      },
+      "description": "A list of fair market values for each share class.",
+      "maxItems": 500
+    }
+  },
+  "description": "The fair market value contains the accepted values of an issuer's stock, specified on a per-share class basis. These values come from the 409A reports that Carta has for the issuer."
+}

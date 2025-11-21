@@ -1,0 +1,274 @@
+{
+  "type": "object",
+  "example": {
+    "id": "JZgiQfmZpvuiLbhXXQXfZi",
+    "issuerId": "7",
+    "stakeholderId": "6113",
+    "optionGrantId": "9387",
+    "certificateId": "4732",
+    "quantity": {
+      "value": "100"
+    },
+    "exerciseTime": {
+      "value": "2024-01-01T09:00:00.000000Z"
+    },
+    "state": "COMPLETE",
+    "exerciseType": "CASH_EXERCISE",
+    "recordType": "ISO",
+    "taxWithholding": [
+      {
+        "name": "Federal",
+        "rate": {
+          "value": "20"
+        },
+        "taxes": {
+          "currencyCode": "USD",
+          "amount": {
+            "value": "200"
+          }
+        },
+        "jurisdiction": {
+          "city": "NewYork",
+          "countrySubdivision": "US-NY",
+          "country": "USA"
+        }
+      }
+    ],
+    "moneyMovement": {
+      "completionDate": {
+        "value": "2024-02-10T09:00:00.000000Z"
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the option exercise.\n\nNote: It is possible for this ID to not exist for legacy reasons, in which case the value of this field will be `\"NO_ID\"`",
+      "maxLength": 50
+    },
+    "issuerId": {
+      "type": "string",
+      "description": "The identifier of the issuer that issued the option grant.",
+      "maxLength": 50
+    },
+    "stakeholderId": {
+      "type": "string",
+      "description": "The identifier of the stakeholder that holds the option grant being exercised.",
+      "title": "The identifier of the stakeholder that holds the option grant being exercised",
+      "maxLength": 50
+    },
+    "optionGrantId": {
+      "type": "string",
+      "description": "The identifier of the option grant being exercised.",
+      "maxLength": 50
+    },
+    "certificateId": {
+      "type": "string",
+      "description": "The identifier of the certificate issued as a result of the option exercise event completing.",
+      "maxLength": 50
+    },
+    "quantity": {
+      "type": "object",
+      "example": {
+        "value": "100.57"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+          "title": "value",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+        }
+      },
+      "description": "A string-based representation of the decimal type."
+    },
+    "exerciseTime": {
+      "type": "object",
+      "example": {
+        "value": "2021-01-01T18:18:00Z"
+      },
+      "properties": {
+        "value": {
+          "type": "string",
+          "maxLength": 24,
+          "minLength": 20,
+          "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z"
+        }
+      },
+      "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "AWAITING_TAX_WITHHOLDING",
+        "PENDING",
+        "COMPLETE",
+        "CANCELED"
+      ],
+      "description": "Enumeration of option exercise request state types.\n\n - AWAITING_TAX_WITHHOLDING: The exercise is created but does not have tax withholding information yet.\n - PENDING: The exercise request is pending.\n - COMPLETE: The exercise request is complete.\n - CANCELED: The exercise request is canceled."
+    },
+    "exerciseType": {
+      "type": "string",
+      "enum": [
+        "CASH_EXERCISE",
+        "CASHLESS_EXERCISE",
+        "NET_EXERCISE",
+        "BLENDED"
+      ],
+      "description": "Enumeration of option exercise types.\n\n - CASH_EXERCISE: The cost of exercise was covered in cash.\n - CASHLESS_EXERCISE: The cost of exercise was covered by selling shares.\n - NET_EXERCISE: The cost of exercise was covered by withholding shares.\n - BLENDED: The cost of exercise was covered by a combination of cash and selling of shares."
+    },
+    "recordType": {
+      "type": "string",
+      "enum": [
+        "ISO",
+        "NSO",
+        "OTHER"
+      ],
+      "description": "Enumeration of stock option grant types.\n\n - ISO: The stock options are incentive stock options (ISOs).\n - NSO: The stock options are non-qualified stock options (NSOs).\n - OTHER: The stock options are neither ISOs nor NSOs."
+    },
+    "taxWithholding": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the tax withholding line item.",
+            "maxLength": 100
+          },
+          "rate": {
+            "type": "object",
+            "example": {
+              "value": "100.57"
+            },
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                "title": "value",
+                "maxLength": 100,
+                "minLength": 1,
+                "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+              }
+            },
+            "description": "A string-based representation of the decimal type."
+          },
+          "taxes": {
+            "type": "object",
+            "example": {
+              "currencyCode": "USD",
+              "amount": {
+                "value": "1000.77"
+              }
+            },
+            "properties": {
+              "currencyCode": {
+                "type": "object",
+                "example": {
+                  "value": "USD"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "maxLength": 3,
+                    "minLength": 3,
+                    "pattern": "[A-Z]{3}"
+                  }
+                },
+                "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+              },
+              "amount": {
+                "type": "object",
+                "example": {
+                  "value": "100.57"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+                    "title": "value",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+                  }
+                },
+                "description": "A string-based representation of the decimal type."
+              }
+            },
+            "description": "Represents an amount of money with its currency type."
+          },
+          "jurisdiction": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "example": "San Francisco",
+                "description": "The city used to calculate tax withholding.",
+                "maxLength": 256
+              },
+              "countrySubdivision": {
+                "type": "object",
+                "example": {
+                  "value": "US-CA"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "US-CA",
+                    "maxLength": 6,
+                    "minLength": 4,
+                    "pattern": "[A-Z]{2}-[A-Z0-9]{1,3}"
+                  }
+                },
+                "description": "Codes identifying the principal subdivisions of countries as defined by the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) standard."
+              },
+              "country": {
+                "type": "object",
+                "example": {
+                  "value": "USA"
+                },
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "example": "USA",
+                    "maxLength": 3,
+                    "minLength": 3,
+                    "pattern": "[A-Z]{3}"
+                  }
+                },
+                "description": "Three letter country codes as defined by the [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1-alpha-3) standard."
+              }
+            },
+            "description": "Jurisdiction used to calculate tax withholding is calculated.\nEither the name of the city, country subdivision, or country used to calculate tax withholding."
+          }
+        },
+        "description": "Tax withholding information for an option exercise, calculated for a specific jurisdiction for a given stakeholder."
+      },
+      "description": "The tax withholding information associated with the option exercise."
+    },
+    "moneyMovement": {
+      "type": "object",
+      "properties": {
+        "completionDate": {
+          "type": "object",
+          "example": {
+            "value": "2021-01-01T18:18:00Z"
+          },
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 24,
+              "minLength": 20,
+              "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,3})?Z"
+            }
+          },
+          "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+        }
+      },
+      "description": "Information about the the funding of an option exercise."
+    }
+  },
+  "description": "An option exercise is an event representing a stakeholder exercising their right to purchase shares of an issuer at a set price, the strike price, defined in the option grant being exercised. The result of a successfully completed exercise is the issuance of a certificate."
+}

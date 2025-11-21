@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "example": {
+    "id": "611",
+    "legalName": "MangoCart, Inc.",
+    "doingBusinessAsName": "MangoCart",
+    "website": "http://www.example.com/mangocart"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the issuer.",
+      "maxLength": 50
+    },
+    "legalName": {
+      "type": "string",
+      "description": "The legal name of the issuer.",
+      "maxLength": 1000
+    },
+    "doingBusinessAsName": {
+      "type": "string",
+      "description": "The operating, or doing business as (DBA), name of the issuer.",
+      "maxLength": 1000
+    },
+    "website": {
+      "type": "string",
+      "description": "The URL of the issuer\u2019s website.",
+      "maxLength": 1000
+    }
+  },
+  "description": "An issuer."
+}
