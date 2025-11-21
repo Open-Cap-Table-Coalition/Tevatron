@@ -1,0 +1,2515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta API Schema Dependency Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+
+        #graph {
+            flex: 1;
+            background: white;
+            position: relative;
+        }
+
+        #sidebar {
+            width: 300px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+            color: #3498db;
+        }
+
+        #sidebar .stat {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        #sidebar .stat-label {
+            font-size: 12px;
+            color: #95a5a6;
+            text-transform: uppercase;
+        }
+
+        #sidebar .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        .controls button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .controls button:hover {
+            background: #2980b9;
+        }
+
+        .legend {
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 5px;
+            pointer-events: none;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .tooltip h3 {
+            margin: 0 0 5px 0;
+            color: #3498db;
+        }
+
+        .tooltip .endpoint {
+            background: rgba(52, 152, 219, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 2px 0;
+            font-size: 11px;
+        }
+
+        .node {
+            cursor: pointer;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+
+        .node:hover {
+            stroke: #f39c12;
+            stroke-width: 3px;
+        }
+
+        .link {
+            stroke: #95a5a6;
+            stroke-opacity: 0.3;
+            stroke-width: 1.5px;
+        }
+
+        .node-label {
+            font-size: 10px;
+            pointer-events: none;
+            text-anchor: middle;
+            fill: #2c3e50;
+            font-weight: 500;
+        }
+
+        #search {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .highlighted {
+            stroke: #f39c12;
+            stroke-width: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="graph">
+            <div class="tooltip" id="tooltip"></div>
+        </div>
+        <div id="sidebar">
+            <h2>📊 Schema Graph</h2>
+
+            <input type="text" id="search" placeholder="Search schemas...">
+
+            <div class="stat">
+                <div class="stat-label">Total Schemas</div>
+                <div class="stat-value" id="total-schemas"></div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">API Objects</div>
+                <div class="stat-value" id="total-objects"></div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Supporting Types</div>
+                <div class="stat-value" id="total-types"></div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Relationships</div>
+                <div class="stat-value" id="total-relationships"></div>
+            </div>
+
+            <div class="controls">
+                <button onclick="resetZoom()">Reset View</button>
+                <button onclick="centerGraph()">Center Graph</button>
+                <button onclick="toggleLabels()">Toggle Labels</button>
+            </div>
+
+            <div class="legend">
+                <h3>Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>API Objects</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9b59b6;"></div>
+                    <span>Supporting Types</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>Highly Referenced</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Graph data
+        const graphData = {
+  "nodes": [
+    {
+      "id": "draft_securities_service_create_draft_option_grant_body",
+      "name": "Draft Securities Service Create Draft Option Grant Body",
+      "type": "object",
+      "url": "docs/objects/draft_securities_service_create_draft_option_grant_body.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The request for the CreateDraftOptionGrant endpoint.",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/v1alpha1/issuers/{issuerId}/draftOptionGrantSets/{draftOptionGrantSetId}/draftOptionGrants"
+        }
+      ]
+    },
+    {
+      "id": "exercise_service_update_money_movement_body",
+      "name": "Exercise Service Update Money Movement Body",
+      "type": "object",
+      "url": "docs/objects/exercise_service_update_money_movement_body.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The request for the UpdateMoneyMovement endpoint.",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/v1alpha1/issuers/{issuerId}/optionExercises/{exerciseId}:updateMoneyMovement"
+        }
+      ]
+    },
+    {
+      "id": "exercise_service_update_tax_withholding_body",
+      "name": "Exercise Service Update Tax Withholding Body",
+      "type": "object",
+      "url": "docs/objects/exercise_service_update_tax_withholding_body.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The request for the UpdateTaxWithholding endpoint.",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/v1alpha1/issuers/{issuerId}/optionExercises/{exerciseId}:updateTaxWithholding"
+        }
+      ]
+    },
+    {
+      "id": "stakeholder_entity_type",
+      "name": "Stakeholder Entity Type",
+      "type": "type",
+      "url": "docs/types/stakeholder_entity_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": ""
+    },
+    {
+      "id": "threshold_details_threshold_type",
+      "name": "Threshold Details Threshold Type",
+      "type": "type",
+      "url": "docs/types/threshold_details_threshold_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- THRESHOLD_TYPE_PER_UNIT: Applied on a per-unit basis.\n - THRESHOLD_TYPE_OVERALL: Applied on the ov"
+    },
+    {
+      "id": "issuerscapitalization_stakeholder",
+      "name": "Issuerscapitalization Stakeholder",
+      "type": "type",
+      "url": "docs/types/issuerscapitalization_stakeholder.md",
+      "references_count": 5,
+      "referenced_by_count": 1,
+      "description": "Capitalization information for an individual stakeholder."
+    },
+    {
+      "id": "issuersdraftsecurities_exercise_period",
+      "name": "Issuersdraftsecurities Exercise Period",
+      "type": "type",
+      "url": "docs/types/issuersdraftsecurities_exercise_period.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The e"
+    },
+    {
+      "id": "issuersdraftsecurities_exercise_periods",
+      "name": "Issuersdraftsecurities Exercise Periods",
+      "type": "type",
+      "url": "docs/types/issuersdraftsecurities_exercise_periods.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Exercise periods for the draft option grant. If unset, values will be inherited from the equity plan"
+    },
+    {
+      "id": "issuersdraftsecurities_stakeholder",
+      "name": "Issuersdraftsecurities Stakeholder",
+      "type": "type",
+      "url": "docs/types/issuersdraftsecurities_stakeholder.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Details of a stakeholder"
+    },
+    {
+      "id": "issuersdraftsecurities_stakeholder_relationship",
+      "name": "Issuersdraftsecurities Stakeholder Relationship",
+      "type": "type",
+      "url": "docs/types/issuersdraftsecurities_stakeholder_relationship.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- STAKEHOLDER_RELATIONSHIP_ADVISOR: Advisor\n - STAKEHOLDER_RELATIONSHIP_EX_ADVISOR: Ex-Advisor\n - ST"
+    },
+    {
+      "id": "issuersdraftsecurities_stock_option_type",
+      "name": "Issuersdraftsecurities Stock Option Type",
+      "type": "type",
+      "url": "docs/types/issuersdraftsecurities_stock_option_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- STOCK_OPTION_TYPE_ISO: Incentive Stock Option\n - STOCK_OPTION_TYPE_NSO: Non-qualified Stock Option"
+    },
+    {
+      "id": "issuersinterests_vesting_schedule",
+      "name": "Issuersinterests Vesting Schedule",
+      "type": "type",
+      "url": "docs/types/issuersinterests_vesting_schedule.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Vesting Schedule Details for the interest."
+    },
+    {
+      "id": "issuerssecurities_exercise_period",
+      "name": "Issuerssecurities Exercise Period",
+      "type": "type",
+      "url": "docs/types/issuerssecurities_exercise_period.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The e"
+    },
+    {
+      "id": "issuerssecurities_exercise_periods",
+      "name": "Issuerssecurities Exercise Periods",
+      "type": "type",
+      "url": "docs/types/issuerssecurities_exercise_periods.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Exercise periods for the option grant. Unset values will be inherited from the equity plan from with"
+    },
+    {
+      "id": "issuerssecurities_stock_option_type",
+      "name": "Issuerssecurities Stock Option Type",
+      "type": "type",
+      "url": "docs/types/issuerssecurities_stock_option_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of stock option grant types.\n\n - ISO: The stock options are incentive stock options (ISO"
+    },
+    {
+      "id": "issuerssecurities_vesting_schedule",
+      "name": "Issuerssecurities Vesting Schedule",
+      "type": "type",
+      "url": "docs/types/issuerssecurities_vesting_schedule.md",
+      "references_count": 1,
+      "referenced_by_count": 3,
+      "description": "Restricted stock award vesting event information."
+    },
+    {
+      "id": "protobuf_any",
+      "name": "Protobuf Any",
+      "type": "type",
+      "url": "docs/types/protobuf_any.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": ""
+    },
+    {
+      "id": "publicapiissuers_stakeholder",
+      "name": "Publicapiissuers Stakeholder",
+      "type": "object",
+      "url": "docs/objects/publicapiissuers_stakeholder.md",
+      "references_count": 3,
+      "referenced_by_count": 2,
+      "description": "A stakeholder is any person or entity who holds an outstanding security.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/stakeholders"
+        }
+      ]
+    },
+    {
+      "id": "publicapiissuers_stakeholder_relationship",
+      "name": "Publicapiissuers Stakeholder Relationship",
+      "type": "type",
+      "url": "docs/types/publicapiissuers_stakeholder_relationship.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The relationship of the stakeholder with the draft issuer.\n\n - ADVISOR: Stakeholder is an advisor\n -"
+    },
+    {
+      "id": "rpc_status",
+      "name": "Rpc Status",
+      "type": "type",
+      "url": "docs/types/rpc_status.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": ""
+    },
+    {
+      "id": "securitiesoptionexercises_stock_option_type",
+      "name": "Securitiesoptionexercises Stock Option Type",
+      "type": "type",
+      "url": "docs/types/securitiesoptionexercises_stock_option_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of stock option grant types.\n\n - ISO: The stock options are incentive stock options (ISO"
+    },
+    {
+      "id": "acceleration",
+      "name": "Acceleration",
+      "type": "type",
+      "url": "docs/types/acceleration.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Details of accelerated vesting"
+    },
+    {
+      "id": "access",
+      "name": "Access",
+      "type": "type",
+      "url": "docs/types/access.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Context about the access of a given corporation."
+    },
+    {
+      "id": "benchmark_job",
+      "name": "Benchmark Job",
+      "type": "object",
+      "url": "docs/objects/benchmark_job.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "A job area, job specialization, and the job levels that have benchmarks.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/corporations/{corporationId}/compensationBenchmarkAttributes"
+        }
+      ]
+    },
+    {
+      "id": "benchmark_value",
+      "name": "Benchmark Value",
+      "type": "type",
+      "url": "docs/types/benchmark_value.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "A compensation benchmark value."
+    },
+    {
+      "id": "benchmarks",
+      "name": "Benchmarks",
+      "type": "object",
+      "url": "docs/objects/benchmarks.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "The compensation benchmarks.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/corporations/{corporationId}/compensationBenchmarks"
+        }
+      ]
+    },
+    {
+      "id": "benchmarks_metadata",
+      "name": "Benchmarks Metadata",
+      "type": "type",
+      "url": "docs/types/benchmarks_metadata.md",
+      "references_count": 1,
+      "referenced_by_count": 2,
+      "description": "Context on the benchmark version of the benchmarks being returned. May differ by corporation."
+    },
+    {
+      "id": "board_approval",
+      "name": "Board Approval",
+      "type": "type",
+      "url": "docs/types/board_approval.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- BOARD_APPROVAL_NOT_APPROVED: Not board approved, will be sent for board approval\n - BOARD_APPROVAL"
+    },
+    {
+      "id": "capitalization_table",
+      "name": "Capitalization Table",
+      "type": "type",
+      "url": "docs/types/capitalization_table.md",
+      "references_count": 6,
+      "referenced_by_count": 1,
+      "description": "The top-level capitalization table object."
+    },
+    {
+      "id": "capitalization_table_summary",
+      "name": "Capitalization Table Summary",
+      "type": "type",
+      "url": "docs/types/capitalization_table_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Summary information about the capitalization table."
+    },
+    {
+      "id": "certificate",
+      "name": "Certificate",
+      "type": "object",
+      "url": "docs/objects/certificate.md",
+      "references_count": 4,
+      "referenced_by_count": 2,
+      "description": "A certificate is a record of ownership of a company's shares.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/certificates"
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "name": "Compliance",
+      "type": "type",
+      "url": "docs/types/compliance.md",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "Compliance details of a stakeholder"
+    },
+    {
+      "id": "convertible_note",
+      "name": "Convertible Note",
+      "type": "object",
+      "url": "docs/objects/convertible_note.md",
+      "references_count": 7,
+      "referenced_by_count": 2,
+      "description": "A convertible note.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/convertibleNotes"
+        }
+      ]
+    },
+    {
+      "id": "corporation",
+      "name": "Corporation",
+      "type": "object",
+      "url": "docs/objects/corporation.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "A corporation.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/corporations"
+        }
+      ]
+    },
+    {
+      "id": "create_draft_option_grant_response",
+      "name": "Create Draft Option Grant Response",
+      "type": "type",
+      "url": "docs/types/create_draft_option_grant_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the CreateDraftOptionGrant endpoint."
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "type": "type",
+      "url": "docs/types/date.md",
+      "references_count": 0,
+      "referenced_by_count": 2,
+      "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e"
+    },
+    {
+      "id": "day_count_basis",
+      "name": "Day Count Basis",
+      "type": "type",
+      "url": "docs/types/day_count_basis.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The standardized way of counting the number of days between two dates.\nSee more at https://support.c"
+    },
+    {
+      "id": "decimal",
+      "name": "Decimal",
+      "type": "type",
+      "url": "docs/types/decimal.md",
+      "references_count": 0,
+      "referenced_by_count": 28,
+      "description": "A string-based representation of the decimal type."
+    },
+    {
+      "id": "dividend_accrual_period",
+      "name": "Dividend Accrual Period",
+      "type": "type",
+      "url": "docs/types/dividend_accrual_period.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- DAILY: Dividends accrue on a daily basis\n - WEEKLY: Dividends accrue on a weekly basis\n - MONTHLY:"
+    },
+    {
+      "id": "dividend_accrual_type",
+      "name": "Dividend Accrual Type",
+      "type": "type",
+      "url": "docs/types/dividend_accrual_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- CUMULATIVE: Dividends that are earned and accrue over time, whether or not it is declared by the b"
+    },
+    {
+      "id": "dividend_details",
+      "name": "Dividend Details",
+      "type": "type",
+      "url": "docs/types/dividend_details.md",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "Details about share class dividends."
+    },
+    {
+      "id": "dividend_interest_type",
+      "name": "Dividend Interest Type",
+      "type": "type",
+      "url": "docs/types/dividend_interest_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- SIMPLE_INTEREST: Interest is calculated using simple interest\n - INTEREST_PERIOD_DAILY: Interest c"
+    },
+    {
+      "id": "dividend_type",
+      "name": "Dividend Type",
+      "type": "type",
+      "url": "docs/types/dividend_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- CASH: Investors will receive dividends in cash\n - NON_CASH: Investors will receive non-cash divide"
+    },
+    {
+      "id": "document",
+      "name": "Document",
+      "type": "type",
+      "url": "docs/types/document.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Contains information about a document, including name, url, and file id."
+    },
+    {
+      "id": "draft_option_grant",
+      "name": "Draft Option Grant",
+      "type": "type",
+      "url": "docs/types/draft_option_grant.md",
+      "references_count": 13,
+      "referenced_by_count": 3,
+      "description": "A draft option grant is an object that is the precursor of an option grant before it is approved, si"
+    },
+    {
+      "id": "draft_security_state",
+      "name": "Draft Security State",
+      "type": "type",
+      "url": "docs/types/draft_security_state.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The state of a draft security that describes the lifecycle stage of the draft security and determine"
+    },
+    {
+      "id": "exercise",
+      "name": "Exercise",
+      "type": "type",
+      "url": "docs/types/exercise.md",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "The list of all exercises associated with this grant."
+    },
+    {
+      "id": "exercise_status",
+      "name": "Exercise Status",
+      "type": "type",
+      "url": "docs/types/exercise_status.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of exercise status.\n\n - STATUS_PENDING: The exercise is in a pending state.\n - STATUS_CO"
+    },
+    {
+      "id": "exercise_type",
+      "name": "Exercise Type",
+      "type": "type",
+      "url": "docs/types/exercise_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of exercise types.\n\n - CASH_EXERCISE: The cost of exercise was covered in cash.\n - CASHL"
+    },
+    {
+      "id": "fair_market_value",
+      "name": "Fair Market Value",
+      "type": "object",
+      "url": "docs/objects/fair_market_value.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "The fair market value contains the accepted values of an issuer's stock, specified on a per-share cl",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/fairMarketValues"
+        }
+      ]
+    },
+    {
+      "id": "federal_exemption",
+      "name": "Federal Exemption",
+      "type": "type",
+      "url": "docs/types/federal_exemption.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)("
+    },
+    {
+      "id": "get_capitalization_table_response",
+      "name": "Get Capitalization Table Response",
+      "type": "type",
+      "url": "docs/types/get_capitalization_table_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Capitalization Table endpoint."
+    },
+    {
+      "id": "get_certificate_response",
+      "name": "Get Certificate Response",
+      "type": "type",
+      "url": "docs/types/get_certificate_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Certificate endpoint."
+    },
+    {
+      "id": "get_compensation_benchmark_attributes_response",
+      "name": "Get Compensation Benchmark Attributes Response",
+      "type": "type",
+      "url": "docs/types/get_compensation_benchmark_attributes_response.md",
+      "references_count": 2,
+      "referenced_by_count": 0,
+      "description": "The response for the `GetCompensationBenchmarkAttributes` endpoint."
+    },
+    {
+      "id": "get_compensation_benchmarks_response",
+      "name": "Get Compensation Benchmarks Response",
+      "type": "type",
+      "url": "docs/types/get_compensation_benchmarks_response.md",
+      "references_count": 3,
+      "referenced_by_count": 0,
+      "description": "The response for the GetCompensationBenchmarks endpoint."
+    },
+    {
+      "id": "get_convertible_note_response",
+      "name": "Get Convertible Note Response",
+      "type": "type",
+      "url": "docs/types/get_convertible_note_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the `GetConvertibleNote` endpoint."
+    },
+    {
+      "id": "get_draft_option_grant_response",
+      "name": "Get Draft Option Grant Response",
+      "type": "type",
+      "url": "docs/types/get_draft_option_grant_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the GetDraftOptionGrant endpoint."
+    },
+    {
+      "id": "get_issuer_response",
+      "name": "Get Issuer Response",
+      "type": "type",
+      "url": "docs/types/get_issuer_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the GetIssuer endpoint."
+    },
+    {
+      "id": "get_option_grant_response",
+      "name": "Get Option Grant Response",
+      "type": "type",
+      "url": "docs/types/get_option_grant_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Option Grant endpoint."
+    },
+    {
+      "id": "get_restricted_stock_award_response",
+      "name": "Get Restricted Stock Award Response",
+      "type": "type",
+      "url": "docs/types/get_restricted_stock_award_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Restricted Stock Award endpoint."
+    },
+    {
+      "id": "get_restricted_stock_unit_response",
+      "name": "Get Restricted Stock Unit Response",
+      "type": "type",
+      "url": "docs/types/get_restricted_stock_unit_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Restricted Stock Unit endpoint."
+    },
+    {
+      "id": "get_stakeholder_capitalization_table_response",
+      "name": "Get Stakeholder Capitalization Table Response",
+      "type": "type",
+      "url": "docs/types/get_stakeholder_capitalization_table_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the GetStakeholderCapitalizationTable endpoint."
+    },
+    {
+      "id": "get_stakeholder_response",
+      "name": "Get Stakeholder Response",
+      "type": "type",
+      "url": "docs/types/get_stakeholder_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the Get Stakeholder endpoint."
+    },
+    {
+      "id": "grant_reason",
+      "name": "Grant Reason",
+      "type": "type",
+      "url": "docs/types/grant_reason.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- GRANT_REASON_NEW_HIRE: New hire\n - GRANT_REASON_MERIT: Merit\n - GRANT_REASON_PROMOTION: Promotion\n"
+    },
+    {
+      "id": "interest",
+      "name": "Interest",
+      "type": "object",
+      "url": "docs/objects/interest.md",
+      "references_count": 6,
+      "referenced_by_count": 1,
+      "description": "Interest information.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/interests"
+        }
+      ]
+    },
+    {
+      "id": "interest_accrual_period",
+      "name": "Interest Accrual Period",
+      "type": "type",
+      "url": "docs/types/interest_accrual_period.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The length of time over which the interest due to the lender is calculated."
+    },
+    {
+      "id": "interest_compounding_period",
+      "name": "Interest Compounding Period",
+      "type": "type",
+      "url": "docs/types/interest_compounding_period.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The enumerated string defining if the interest accrual is compounding or not, and the period used in"
+    },
+    {
+      "id": "iso3166_set1_alpha3_code",
+      "name": "Iso3166 Set1 Alpha3 Code",
+      "type": "type",
+      "url": "docs/types/iso3166_set1_alpha3_code.md",
+      "references_count": 0,
+      "referenced_by_count": 2,
+      "description": "Three letter country codes as defined by the [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_"
+    },
+    {
+      "id": "iso3166_set2_code",
+      "name": "Iso3166 Set2 Code",
+      "type": "type",
+      "url": "docs/types/iso3166_set2_code.md",
+      "references_count": 0,
+      "referenced_by_count": 2,
+      "description": "Codes identifying the principal subdivisions of countries as defined by the [ISO 3166-2](https://en."
+    },
+    {
+      "id": "iso4217_currency_alpha_code",
+      "name": "Iso4217 Currency Alpha Code",
+      "type": "type",
+      "url": "docs/types/iso4217_currency_alpha_code.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+    },
+    {
+      "id": "iso8601_complete_calendar_date",
+      "name": "Iso8601 Complete Calendar Date",
+      "type": "type",
+      "url": "docs/types/iso8601_complete_calendar_date.md",
+      "references_count": 0,
+      "referenced_by_count": 16,
+      "description": "A complete calendar date defined as per the ISO 8601 standard."
+    },
+    {
+      "id": "iso8601_complete_calendar_date_time",
+      "name": "Iso8601 Complete Calendar Date Time",
+      "type": "type",
+      "url": "docs/types/iso8601_complete_calendar_date_time.md",
+      "references_count": 0,
+      "referenced_by_count": 11,
+      "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
+    },
+    {
+      "id": "issuer",
+      "name": "Issuer",
+      "type": "object",
+      "url": "docs/objects/issuer.md",
+      "references_count": 0,
+      "referenced_by_count": 2,
+      "description": "An issuer.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers"
+        }
+      ]
+    },
+    {
+      "id": "jurisdiction",
+      "name": "Jurisdiction",
+      "type": "type",
+      "url": "docs/types/jurisdiction.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Jurisdiction used to calculate tax withholding is calculated.\nEither the name of the city, country s"
+    },
+    {
+      "id": "list_certificates_response",
+      "name": "List Certificates Response",
+      "type": "type",
+      "url": "docs/types/list_certificates_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the List Certificates endpoint."
+    },
+    {
+      "id": "list_convertible_notes_response",
+      "name": "List Convertible Notes Response",
+      "type": "type",
+      "url": "docs/types/list_convertible_notes_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the `ListConvertibleNotes` endpoint."
+    },
+    {
+      "id": "list_corporations_response",
+      "name": "List Corporations Response",
+      "type": "type",
+      "url": "docs/types/list_corporations_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListCorporations endpoint."
+    },
+    {
+      "id": "list_fair_market_values_response",
+      "name": "List Fair Market Values Response",
+      "type": "type",
+      "url": "docs/types/list_fair_market_values_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the List Fair Market Values endpoint."
+    },
+    {
+      "id": "list_interests_response",
+      "name": "List Interests Response",
+      "type": "type",
+      "url": "docs/types/list_interests_response.md",
+      "references_count": 2,
+      "referenced_by_count": 0,
+      "description": "The response from the List Interests endpoint."
+    },
+    {
+      "id": "list_issuers_response",
+      "name": "List Issuers Response",
+      "type": "type",
+      "url": "docs/types/list_issuers_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListIssuers endpoint."
+    },
+    {
+      "id": "list_option_exercises_response",
+      "name": "List Option Exercises Response",
+      "type": "type",
+      "url": "docs/types/list_option_exercises_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListOptionExercises endpoint."
+    },
+    {
+      "id": "list_option_grants_response",
+      "name": "List Option Grants Response",
+      "type": "type",
+      "url": "docs/types/list_option_grants_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListOptionGrants endpoint."
+    },
+    {
+      "id": "list_points_of_contact_response",
+      "name": "List Points Of Contact Response",
+      "type": "type",
+      "url": "docs/types/list_points_of_contact_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListPointsOfContact endpoint."
+    },
+    {
+      "id": "list_restricted_stock_awards_response",
+      "name": "List Restricted Stock Awards Response",
+      "type": "type",
+      "url": "docs/types/list_restricted_stock_awards_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the List Restricted Stock Awards endpoint."
+    },
+    {
+      "id": "list_restricted_stock_units_response",
+      "name": "List Restricted Stock Units Response",
+      "type": "type",
+      "url": "docs/types/list_restricted_stock_units_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the List Restricted Stock Units endpoint."
+    },
+    {
+      "id": "list_share_classes_response",
+      "name": "List Share Classes Response",
+      "type": "type",
+      "url": "docs/types/list_share_classes_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListShareClasses endpoint."
+    },
+    {
+      "id": "list_stakeholders_response",
+      "name": "List Stakeholders Response",
+      "type": "type",
+      "url": "docs/types/list_stakeholders_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response from the List Stakeholders endpoint."
+    },
+    {
+      "id": "list_vesting_schedule_templates_response",
+      "name": "List Vesting Schedule Templates Response",
+      "type": "type",
+      "url": "docs/types/list_vesting_schedule_templates_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the ListVestingScheduleTemplates endpoint."
+    },
+    {
+      "id": "money",
+      "name": "Money",
+      "type": "type",
+      "url": "docs/types/money.md",
+      "references_count": 2,
+      "referenced_by_count": 20,
+      "description": "Represents an amount of money with its currency type."
+    },
+    {
+      "id": "note_block",
+      "name": "Note Block",
+      "type": "type",
+      "url": "docs/types/note_block.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A note block associated with a convertible note."
+    },
+    {
+      "id": "note_block_status",
+      "name": "Note Block Status",
+      "type": "type",
+      "url": "docs/types/note_block_status.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The status of the note block."
+    },
+    {
+      "id": "note_block_summary",
+      "name": "Note Block Summary",
+      "type": "type",
+      "url": "docs/types/note_block_summary.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Note block summary information."
+    },
+    {
+      "id": "note_type",
+      "name": "Note Type",
+      "type": "type",
+      "url": "docs/types/note_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The type of the note related to the note block."
+    },
+    {
+      "id": "option_exercise",
+      "name": "Option Exercise",
+      "type": "object",
+      "url": "docs/objects/option_exercise.md",
+      "references_count": 7,
+      "referenced_by_count": 1,
+      "description": "An option exercise is an event representing a stakeholder exercising their right to purchase shares ",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/optionExercises"
+        }
+      ]
+    },
+    {
+      "id": "option_exercise_money_movement",
+      "name": "Option Exercise Money Movement",
+      "type": "type",
+      "url": "docs/types/option_exercise_money_movement.md",
+      "references_count": 1,
+      "referenced_by_count": 3,
+      "description": "Information about the the funding of an option exercise."
+    },
+    {
+      "id": "option_exercise_state",
+      "name": "Option Exercise State",
+      "type": "type",
+      "url": "docs/types/option_exercise_state.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of option exercise request state types.\n\n - AWAITING_TAX_WITHHOLDING: The exercise is cr"
+    },
+    {
+      "id": "option_exercise_tax_withholding_line_item",
+      "name": "Option Exercise Tax Withholding Line Item",
+      "type": "type",
+      "url": "docs/types/option_exercise_tax_withholding_line_item.md",
+      "references_count": 3,
+      "referenced_by_count": 3,
+      "description": "Tax withholding information for an option exercise, calculated for a specific jurisdiction for a giv"
+    },
+    {
+      "id": "option_exercise_type",
+      "name": "Option Exercise Type",
+      "type": "type",
+      "url": "docs/types/option_exercise_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Enumeration of option exercise types.\n\n - CASH_EXERCISE: The cost of exercise was covered in cash.\n "
+    },
+    {
+      "id": "option_grant",
+      "name": "Option Grant",
+      "type": "object",
+      "url": "docs/objects/option_grant.md",
+      "references_count": 9,
+      "referenced_by_count": 2,
+      "description": "An option grant is a contract that gives an employee the right to purchase a company's stock at a se",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/optionGrants"
+        }
+      ]
+    },
+    {
+      "id": "option_grant_documents",
+      "name": "Option Grant Documents",
+      "type": "type",
+      "url": "docs/types/option_grant_documents.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Documents that are relevant to a draft option grant.\n\nThese documents are attached to a specific dra"
+    },
+    {
+      "id": "option_grant_vesting_event",
+      "name": "Option Grant Vesting Event",
+      "type": "type",
+      "url": "docs/types/option_grant_vesting_event.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "An option grant vesting event."
+    },
+    {
+      "id": "option_pool_summary",
+      "name": "Option Pool Summary",
+      "type": "type",
+      "url": "docs/types/option_pool_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Option pool summary."
+    },
+    {
+      "id": "point_of_contact",
+      "name": "Point Of Contact",
+      "type": "object",
+      "url": "docs/objects/point_of_contact.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "A point of contact for an issuer. Examples include a Legal Admin or an Option Signatory.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/pointsOfContact"
+        }
+      ]
+    },
+    {
+      "id": "point_of_contact_type",
+      "name": "Point Of Contact Type",
+      "type": "type",
+      "url": "docs/types/point_of_contact_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Types of points of contact.\n\n - PRIMARY_CONTACT: Primary Contact\n - OPTION_EXERCISE_APPROVER: Option"
+    },
+    {
+      "id": "preferred_share_class_details",
+      "name": "Preferred Share Class Details",
+      "type": "type",
+      "url": "docs/types/preferred_share_class_details.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Details of a preferred share class, split into rights and preferences details and dividend details."
+    },
+    {
+      "id": "restricted_stock_award",
+      "name": "Restricted Stock Award",
+      "type": "object",
+      "url": "docs/objects/restricted_stock_award.md",
+      "references_count": 6,
+      "referenced_by_count": 2,
+      "description": "A restricted stock award is a grant of company shares.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/restrictedStockAwards"
+        }
+      ]
+    },
+    {
+      "id": "restricted_stock_award_vesting_event",
+      "name": "Restricted Stock Award Vesting Event",
+      "type": "type",
+      "url": "docs/types/restricted_stock_award_vesting_event.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Restricted stock award vesting event information."
+    },
+    {
+      "id": "restricted_stock_unit",
+      "name": "Restricted Stock Unit",
+      "type": "object",
+      "url": "docs/objects/restricted_stock_unit.md",
+      "references_count": 7,
+      "referenced_by_count": 2,
+      "description": "A restricted stock unit is a grant of company shares.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/restrictedStockUnits"
+        }
+      ]
+    },
+    {
+      "id": "restricted_stock_unit_settlement",
+      "name": "Restricted Stock Unit Settlement",
+      "type": "type",
+      "url": "docs/types/restricted_stock_unit_settlement.md",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "Restricted stock unit settlement information."
+    },
+    {
+      "id": "restricted_stock_unit_vesting_event",
+      "name": "Restricted Stock Unit Vesting Event",
+      "type": "type",
+      "url": "docs/types/restricted_stock_unit_vesting_event.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Restricted stock unit vesting event information."
+    },
+    {
+      "id": "share_class",
+      "name": "Share Class",
+      "type": "object",
+      "url": "docs/objects/share_class.md",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "A class of stock issued by an issuer.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/shareClasses"
+        }
+      ]
+    },
+    {
+      "id": "share_class_dividend_details",
+      "name": "Share Class Dividend Details",
+      "type": "type",
+      "url": "docs/types/share_class_dividend_details.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Details related to the dividends of a share class."
+    },
+    {
+      "id": "share_class_rights_and_preferences",
+      "name": "Share Class Rights And Preferences",
+      "type": "type",
+      "url": "docs/types/share_class_rights_and_preferences.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Share class rights and preferences for a preferred share class."
+    },
+    {
+      "id": "share_class_summary",
+      "name": "Share Class Summary",
+      "type": "type",
+      "url": "docs/types/share_class_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Share class summary includes all certificated, non-certificated and RSAs with an issue date."
+    },
+    {
+      "id": "share_class_type",
+      "name": "Share Class Type",
+      "type": "type",
+      "url": "docs/types/share_class_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- COMMON: Used to denote a common share with voting rights\n - PREFERRED: Used to denote a preferred "
+    },
+    {
+      "id": "share_class_valuation",
+      "name": "Share Class Valuation",
+      "type": "type",
+      "url": "docs/types/share_class_valuation.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "The fair market valuation price for a share class."
+    },
+    {
+      "id": "stakeholder_address",
+      "name": "Stakeholder Address",
+      "type": "type",
+      "url": "docs/types/stakeholder_address.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": ""
+    },
+    {
+      "id": "stakeholder_capitalization_table",
+      "name": "Stakeholder Capitalization Table",
+      "type": "type",
+      "url": "docs/types/stakeholder_capitalization_table.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "The top-level object that encapsulates an issuer's stakeholder capitalization information."
+    },
+    {
+      "id": "stakeholder_capitalization_table_summary",
+      "name": "Stakeholder Capitalization Table Summary",
+      "type": "type",
+      "url": "docs/types/stakeholder_capitalization_table_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 2,
+      "description": "Summary information about the capitalization table."
+    },
+    {
+      "id": "stakeholder_group",
+      "name": "Stakeholder Group",
+      "type": "type",
+      "url": "docs/types/stakeholder_group.md",
+      "references_count": 6,
+      "referenced_by_count": 1,
+      "description": "A grouping of individual stakeholders used to compute capitalization calculations. All stakeholders "
+    },
+    {
+      "id": "stakeholder_note_block_summary",
+      "name": "Stakeholder Note Block Summary",
+      "type": "type",
+      "url": "docs/types/stakeholder_note_block_summary.md",
+      "references_count": 1,
+      "referenced_by_count": 2,
+      "description": "Note block summary information scoped to a specific stakeholder."
+    },
+    {
+      "id": "stakeholder_option_pool_summary",
+      "name": "Stakeholder Option Pool Summary",
+      "type": "type",
+      "url": "docs/types/stakeholder_option_pool_summary.md",
+      "references_count": 1,
+      "referenced_by_count": 2,
+      "description": "Option pool summary scoped to a specific stakeholder."
+    },
+    {
+      "id": "stakeholder_share_class_summary",
+      "name": "Stakeholder Share Class Summary",
+      "type": "type",
+      "url": "docs/types/stakeholder_share_class_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 2,
+      "description": "Share class summary scoped to a specific stakeholder. This includes all certificated, non-certificat"
+    },
+    {
+      "id": "stakeholder_type",
+      "name": "Stakeholder Type",
+      "type": "type",
+      "url": "docs/types/stakeholder_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- STAKEHOLDER_TYPE_INDIVIDUAL: Individual\n - STAKEHOLDER_TYPE_NON_INDIVIDUAL: Non-Individual (e.g. o"
+    },
+    {
+      "id": "stakeholder_warrant_block_summary",
+      "name": "Stakeholder Warrant Block Summary",
+      "type": "type",
+      "url": "docs/types/stakeholder_warrant_block_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 2,
+      "description": "Warrant block summary scoped to a specific stakeholder."
+    },
+    {
+      "id": "threshold_details",
+      "name": "Threshold Details",
+      "type": "type",
+      "url": "docs/types/threshold_details.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Threshold Details for the interest."
+    },
+    {
+      "id": "update_money_movement_response",
+      "name": "Update Money Movement Response",
+      "type": "type",
+      "url": "docs/types/update_money_movement_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the UpdateMoneyMovement endpoint."
+    },
+    {
+      "id": "update_tax_withholding_response",
+      "name": "Update Tax Withholding Response",
+      "type": "type",
+      "url": "docs/types/update_tax_withholding_response.md",
+      "references_count": 1,
+      "referenced_by_count": 0,
+      "description": "The response for the UpdateTaxWithholding endpoint."
+    },
+    {
+      "id": "vesting",
+      "name": "Vesting",
+      "type": "type",
+      "url": "docs/types/vesting.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Vesting details of the option grant"
+    },
+    {
+      "id": "vesting_schedule_template",
+      "name": "Vesting Schedule Template",
+      "type": "object",
+      "url": "docs/objects/vesting_schedule_template.md",
+      "references_count": 1,
+      "referenced_by_count": 1,
+      "description": "Details of a vesting schedule template.",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/vestingScheduleTemplates"
+        }
+      ]
+    },
+    {
+      "id": "vesting_schedule_type",
+      "name": "Vesting Schedule Type",
+      "type": "type",
+      "url": "docs/types/vesting_schedule_type.md",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Types of vesting schedule templates.\n\n - DATE: Vesting schedule with tranches based on calendar date"
+    },
+    {
+      "id": "warrant_block_summary",
+      "name": "Warrant Block Summary",
+      "type": "type",
+      "url": "docs/types/warrant_block_summary.md",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "Warrant block summary."
+    }
+  ],
+  "links": [
+    {
+      "source": "draft_securities_service_create_draft_option_grant_body",
+      "target": "draft_option_grant"
+    },
+    {
+      "source": "exercise_service_update_money_movement_body",
+      "target": "option_exercise_money_movement"
+    },
+    {
+      "source": "exercise_service_update_tax_withholding_body",
+      "target": "option_exercise_tax_withholding_line_item"
+    },
+    {
+      "source": "issuerscapitalization_stakeholder",
+      "target": "stakeholder_capitalization_table_summary"
+    },
+    {
+      "source": "issuerscapitalization_stakeholder",
+      "target": "stakeholder_share_class_summary"
+    },
+    {
+      "source": "issuerscapitalization_stakeholder",
+      "target": "stakeholder_option_pool_summary"
+    },
+    {
+      "source": "issuerscapitalization_stakeholder",
+      "target": "stakeholder_warrant_block_summary"
+    },
+    {
+      "source": "issuerscapitalization_stakeholder",
+      "target": "stakeholder_note_block_summary"
+    },
+    {
+      "source": "issuersdraftsecurities_exercise_periods",
+      "target": "issuersdraftsecurities_exercise_period"
+    },
+    {
+      "source": "issuersdraftsecurities_stakeholder",
+      "target": "stakeholder_type"
+    },
+    {
+      "source": "issuersdraftsecurities_stakeholder",
+      "target": "issuersdraftsecurities_stakeholder_relationship"
+    },
+    {
+      "source": "issuersinterests_vesting_schedule",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "issuerssecurities_exercise_periods",
+      "target": "issuerssecurities_exercise_period"
+    },
+    {
+      "source": "issuerssecurities_vesting_schedule",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "publicapiissuers_stakeholder",
+      "target": "publicapiissuers_stakeholder_relationship"
+    },
+    {
+      "source": "publicapiissuers_stakeholder",
+      "target": "stakeholder_entity_type"
+    },
+    {
+      "source": "publicapiissuers_stakeholder",
+      "target": "stakeholder_address"
+    },
+    {
+      "source": "rpc_status",
+      "target": "protobuf_any"
+    },
+    {
+      "source": "benchmark_value",
+      "target": "decimal"
+    },
+    {
+      "source": "benchmarks",
+      "target": "benchmark_value"
+    },
+    {
+      "source": "benchmarks_metadata",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "capitalization_table_summary"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "share_class_summary"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "option_pool_summary"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "warrant_block_summary"
+    },
+    {
+      "source": "capitalization_table",
+      "target": "note_block_summary"
+    },
+    {
+      "source": "capitalization_table_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "capitalization_table_summary",
+      "target": "money"
+    },
+    {
+      "source": "certificate",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "certificate",
+      "target": "decimal"
+    },
+    {
+      "source": "certificate",
+      "target": "money"
+    },
+    {
+      "source": "certificate",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "compliance",
+      "target": "iso3166_set1_alpha3_code"
+    },
+    {
+      "source": "compliance",
+      "target": "iso3166_set2_code"
+    },
+    {
+      "source": "compliance",
+      "target": "federal_exemption"
+    },
+    {
+      "source": "convertible_note",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "convertible_note",
+      "target": "money"
+    },
+    {
+      "source": "convertible_note",
+      "target": "note_block"
+    },
+    {
+      "source": "convertible_note",
+      "target": "interest_accrual_period"
+    },
+    {
+      "source": "convertible_note",
+      "target": "decimal"
+    },
+    {
+      "source": "convertible_note",
+      "target": "interest_compounding_period"
+    },
+    {
+      "source": "convertible_note",
+      "target": "day_count_basis"
+    },
+    {
+      "source": "create_draft_option_grant_response",
+      "target": "draft_option_grant"
+    },
+    {
+      "source": "dividend_details",
+      "target": "decimal"
+    },
+    {
+      "source": "dividend_details",
+      "target": "dividend_accrual_type"
+    },
+    {
+      "source": "dividend_details",
+      "target": "dividend_accrual_period"
+    },
+    {
+      "source": "dividend_details",
+      "target": "dividend_interest_type"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "draft_security_state"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "issuersdraftsecurities_stock_option_type"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "grant_reason"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "decimal"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "money"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "issuersdraftsecurities_stakeholder"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "compliance"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "vesting"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "board_approval"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "date"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "issuersdraftsecurities_exercise_periods"
+    },
+    {
+      "source": "draft_option_grant",
+      "target": "option_grant_documents"
+    },
+    {
+      "source": "exercise",
+      "target": "decimal"
+    },
+    {
+      "source": "exercise",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "exercise",
+      "target": "exercise_status"
+    },
+    {
+      "source": "exercise",
+      "target": "exercise_type"
+    },
+    {
+      "source": "fair_market_value",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "fair_market_value",
+      "target": "share_class_valuation"
+    },
+    {
+      "source": "get_capitalization_table_response",
+      "target": "capitalization_table"
+    },
+    {
+      "source": "get_certificate_response",
+      "target": "certificate"
+    },
+    {
+      "source": "get_compensation_benchmark_attributes_response",
+      "target": "benchmarks_metadata"
+    },
+    {
+      "source": "get_compensation_benchmark_attributes_response",
+      "target": "benchmark_job"
+    },
+    {
+      "source": "get_compensation_benchmarks_response",
+      "target": "access"
+    },
+    {
+      "source": "get_compensation_benchmarks_response",
+      "target": "benchmarks_metadata"
+    },
+    {
+      "source": "get_compensation_benchmarks_response",
+      "target": "benchmarks"
+    },
+    {
+      "source": "get_convertible_note_response",
+      "target": "convertible_note"
+    },
+    {
+      "source": "get_draft_option_grant_response",
+      "target": "draft_option_grant"
+    },
+    {
+      "source": "get_issuer_response",
+      "target": "issuer"
+    },
+    {
+      "source": "get_option_grant_response",
+      "target": "option_grant"
+    },
+    {
+      "source": "get_restricted_stock_award_response",
+      "target": "restricted_stock_award"
+    },
+    {
+      "source": "get_restricted_stock_unit_response",
+      "target": "restricted_stock_unit"
+    },
+    {
+      "source": "get_stakeholder_capitalization_table_response",
+      "target": "stakeholder_capitalization_table"
+    },
+    {
+      "source": "get_stakeholder_response",
+      "target": "publicapiissuers_stakeholder"
+    },
+    {
+      "source": "interest",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "interest",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "interest",
+      "target": "threshold_details"
+    },
+    {
+      "source": "interest",
+      "target": "money"
+    },
+    {
+      "source": "interest",
+      "target": "decimal"
+    },
+    {
+      "source": "interest",
+      "target": "issuersinterests_vesting_schedule"
+    },
+    {
+      "source": "jurisdiction",
+      "target": "iso3166_set2_code"
+    },
+    {
+      "source": "jurisdiction",
+      "target": "iso3166_set1_alpha3_code"
+    },
+    {
+      "source": "list_certificates_response",
+      "target": "certificate"
+    },
+    {
+      "source": "list_convertible_notes_response",
+      "target": "convertible_note"
+    },
+    {
+      "source": "list_corporations_response",
+      "target": "corporation"
+    },
+    {
+      "source": "list_fair_market_values_response",
+      "target": "fair_market_value"
+    },
+    {
+      "source": "list_interests_response",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "list_interests_response",
+      "target": "interest"
+    },
+    {
+      "source": "list_issuers_response",
+      "target": "issuer"
+    },
+    {
+      "source": "list_option_exercises_response",
+      "target": "option_exercise"
+    },
+    {
+      "source": "list_option_grants_response",
+      "target": "option_grant"
+    },
+    {
+      "source": "list_points_of_contact_response",
+      "target": "point_of_contact"
+    },
+    {
+      "source": "list_restricted_stock_awards_response",
+      "target": "restricted_stock_award"
+    },
+    {
+      "source": "list_restricted_stock_units_response",
+      "target": "restricted_stock_unit"
+    },
+    {
+      "source": "list_share_classes_response",
+      "target": "share_class"
+    },
+    {
+      "source": "list_stakeholders_response",
+      "target": "publicapiissuers_stakeholder"
+    },
+    {
+      "source": "list_vesting_schedule_templates_response",
+      "target": "vesting_schedule_template"
+    },
+    {
+      "source": "money",
+      "target": "iso4217_currency_alpha_code"
+    },
+    {
+      "source": "money",
+      "target": "decimal"
+    },
+    {
+      "source": "note_block",
+      "target": "note_type"
+    },
+    {
+      "source": "note_block",
+      "target": "note_block_status"
+    },
+    {
+      "source": "note_block_summary",
+      "target": "money"
+    },
+    {
+      "source": "option_exercise",
+      "target": "decimal"
+    },
+    {
+      "source": "option_exercise",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_exercise",
+      "target": "option_exercise_state"
+    },
+    {
+      "source": "option_exercise",
+      "target": "option_exercise_type"
+    },
+    {
+      "source": "option_exercise",
+      "target": "securitiesoptionexercises_stock_option_type"
+    },
+    {
+      "source": "option_exercise",
+      "target": "option_exercise_tax_withholding_line_item"
+    },
+    {
+      "source": "option_exercise",
+      "target": "option_exercise_money_movement"
+    },
+    {
+      "source": "option_exercise_money_movement",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_exercise_tax_withholding_line_item",
+      "target": "decimal"
+    },
+    {
+      "source": "option_exercise_tax_withholding_line_item",
+      "target": "money"
+    },
+    {
+      "source": "option_exercise_tax_withholding_line_item",
+      "target": "jurisdiction"
+    },
+    {
+      "source": "option_grant",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "option_grant",
+      "target": "issuerssecurities_stock_option_type"
+    },
+    {
+      "source": "option_grant",
+      "target": "decimal"
+    },
+    {
+      "source": "option_grant",
+      "target": "money"
+    },
+    {
+      "source": "option_grant",
+      "target": "option_grant_vesting_event"
+    },
+    {
+      "source": "option_grant",
+      "target": "exercise"
+    },
+    {
+      "source": "option_grant",
+      "target": "issuerssecurities_vesting_schedule"
+    },
+    {
+      "source": "option_grant",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_grant",
+      "target": "issuerssecurities_exercise_periods"
+    },
+    {
+      "source": "option_grant_documents",
+      "target": "document"
+    },
+    {
+      "source": "option_grant_vesting_event",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "option_grant_vesting_event",
+      "target": "decimal"
+    },
+    {
+      "source": "option_pool_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "option_pool_summary",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "point_of_contact",
+      "target": "point_of_contact_type"
+    },
+    {
+      "source": "preferred_share_class_details",
+      "target": "share_class_rights_and_preferences"
+    },
+    {
+      "source": "preferred_share_class_details",
+      "target": "share_class_dividend_details"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "decimal"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "money"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "restricted_stock_award_vesting_event"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "issuerssecurities_vesting_schedule"
+    },
+    {
+      "source": "restricted_stock_award",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "restricted_stock_award_vesting_event",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "restricted_stock_award_vesting_event",
+      "target": "decimal"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "decimal"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "money"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "restricted_stock_unit_vesting_event"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "restricted_stock_unit_settlement"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "issuerssecurities_vesting_schedule"
+    },
+    {
+      "source": "restricted_stock_unit",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "restricted_stock_unit_settlement",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "restricted_stock_unit_settlement",
+      "target": "decimal"
+    },
+    {
+      "source": "restricted_stock_unit_settlement",
+      "target": "money"
+    },
+    {
+      "source": "restricted_stock_unit_vesting_event",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "restricted_stock_unit_vesting_event",
+      "target": "decimal"
+    },
+    {
+      "source": "share_class",
+      "target": "share_class_type"
+    },
+    {
+      "source": "share_class",
+      "target": "decimal"
+    },
+    {
+      "source": "share_class",
+      "target": "money"
+    },
+    {
+      "source": "share_class",
+      "target": "preferred_share_class_details"
+    },
+    {
+      "source": "share_class_dividend_details",
+      "target": "dividend_type"
+    },
+    {
+      "source": "share_class_dividend_details",
+      "target": "dividend_details"
+    },
+    {
+      "source": "share_class_rights_and_preferences",
+      "target": "money"
+    },
+    {
+      "source": "share_class_rights_and_preferences",
+      "target": "decimal"
+    },
+    {
+      "source": "share_class_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "share_class_summary",
+      "target": "money"
+    },
+    {
+      "source": "share_class_valuation",
+      "target": "money"
+    },
+    {
+      "source": "stakeholder_capitalization_table",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "stakeholder_capitalization_table",
+      "target": "stakeholder_group"
+    },
+    {
+      "source": "stakeholder_capitalization_table_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "stakeholder_capitalization_table_summary",
+      "target": "money"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "issuerscapitalization_stakeholder"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "stakeholder_capitalization_table_summary"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "stakeholder_share_class_summary"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "stakeholder_option_pool_summary"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "stakeholder_warrant_block_summary"
+    },
+    {
+      "source": "stakeholder_group",
+      "target": "stakeholder_note_block_summary"
+    },
+    {
+      "source": "stakeholder_note_block_summary",
+      "target": "money"
+    },
+    {
+      "source": "stakeholder_option_pool_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "stakeholder_share_class_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "stakeholder_share_class_summary",
+      "target": "money"
+    },
+    {
+      "source": "stakeholder_warrant_block_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "stakeholder_warrant_block_summary",
+      "target": "money"
+    },
+    {
+      "source": "threshold_details",
+      "target": "decimal"
+    },
+    {
+      "source": "threshold_details",
+      "target": "threshold_details_threshold_type"
+    },
+    {
+      "source": "update_money_movement_response",
+      "target": "option_exercise_money_movement"
+    },
+    {
+      "source": "update_tax_withholding_response",
+      "target": "option_exercise_tax_withholding_line_item"
+    },
+    {
+      "source": "vesting",
+      "target": "date"
+    },
+    {
+      "source": "vesting",
+      "target": "acceleration"
+    },
+    {
+      "source": "vesting_schedule_template",
+      "target": "vesting_schedule_type"
+    },
+    {
+      "source": "warrant_block_summary",
+      "target": "decimal"
+    },
+    {
+      "source": "warrant_block_summary",
+      "target": "money"
+    }
+  ],
+  "stats": {
+    "total_schemas": 132,
+    "total_objects": 19,
+    "total_types": 113,
+    "total_relationships": 194
+  }
+};
+
+        // Set up dimensions
+        const width = window.innerWidth - 300;
+        const height = window.innerHeight;
+
+        // Create SVG
+        const svg = d3.select("#graph")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Create a group for zoom/pan
+        const g = svg.append("g");
+
+        // Set up zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Update stats
+        d3.select("#total-schemas").text(graphData.stats.total_schemas);
+        d3.select("#total-objects").text(graphData.stats.total_objects);
+        d3.select("#total-types").text(graphData.stats.total_types);
+        d3.select("#total-relationships").text(graphData.stats.total_relationships);
+
+        // Create force simulation
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force("link", d3.forceLink(graphData.links)
+                .id(d => d.id)
+                .distance(100))
+            .force("charge", d3.forceManyBody()
+                .strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(30));
+
+        // Create links
+        const link = g.append("g")
+            .selectAll("line")
+            .data(graphData.links)
+            .join("line")
+            .attr("class", "link");
+
+        // Create nodes
+        const node = g.append("g")
+            .selectAll("circle")
+            .data(graphData.nodes)
+            .join("circle")
+            .attr("class", "node")
+            .attr("r", d => {
+                // Size based on reference count
+                const baseSize = 8;
+                const scale = Math.min(d.referenced_by_count * 2, 20);
+                return baseSize + scale;
+            })
+            .attr("fill", d => {
+                // Color based on type and popularity
+                if (d.referenced_by_count > 10) return "#e74c3c"; // Highly referenced
+                if (d.type === "object") return "#3498db"; // API objects
+                return "#9b59b6"; // Types
+            })
+            .call(d3.drag()
+                .on("start", dragStarted)
+                .on("drag", dragged)
+                .on("end", dragEnded))
+            .on("click", (event, d) => {
+                window.open(d.url, "_blank");
+            })
+            .on("mouseover", showTooltip)
+            .on("mouseout", hideTooltip);
+
+        // Create labels
+        const labels = g.append("g")
+            .selectAll("text")
+            .data(graphData.nodes)
+            .join("text")
+            .attr("class", "node-label")
+            .text(d => {
+                // Truncate long names
+                const name = d.name;
+                return name.length > 20 ? name.substring(0, 17) + "..." : name;
+            })
+            .attr("dy", -15);
+
+        let labelsVisible = true;
+
+        // Update positions on simulation tick
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            labels
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
+        });
+
+        // Drag functions
+        function dragStarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragEnded(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // Tooltip functions
+        function showTooltip(event, d) {
+            const tooltip = d3.select("#tooltip");
+
+            let html = `<h3>${d.name}</h3>`;
+            html += `<div><strong>Type:</strong> ${d.type}</div>`;
+            html += `<div><strong>References:</strong> ${d.references_count}</div>`;
+            html += `<div><strong>Referenced by:</strong> ${d.referenced_by_count}</div>`;
+
+            if (d.description) {
+                html += `<div style="margin-top: 5px; color: #95a5a6;">${d.description}</div>`;
+            }
+
+            if (d.endpoints) {
+                html += `<div style="margin-top: 5px;"><strong>Endpoints:</strong></div>`;
+                d.endpoints.forEach(ep => {
+                    html += `<div class="endpoint">${ep.method} ${ep.path}</div>`;
+                });
+            }
+
+            tooltip
+                .html(html)
+                .style("display", "block")
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        }
+
+        function hideTooltip() {
+            d3.select("#tooltip").style("display", "none");
+        }
+
+        // Control functions
+        function resetZoom() {
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity
+            );
+        }
+
+        function centerGraph() {
+            const bounds = g.node().getBBox();
+            const fullWidth = bounds.width;
+            const fullHeight = bounds.height;
+            const midX = bounds.x + fullWidth / 2;
+            const midY = bounds.y + fullHeight / 2;
+
+            const scale = 0.8 / Math.max(fullWidth / width, fullHeight / height);
+            const translate = [width / 2 - scale * midX, height / 2 - scale * midY];
+
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
+            );
+        }
+
+        function toggleLabels() {
+            labelsVisible = !labelsVisible;
+            labels.style("display", labelsVisible ? "block" : "none");
+        }
+
+        // Search functionality
+        d3.select("#search").on("input", function() {
+            const searchTerm = this.value.toLowerCase();
+
+            node.classed("highlighted", d => {
+                const matches = d.name.toLowerCase().includes(searchTerm) ||
+                               d.id.toLowerCase().includes(searchTerm);
+                return matches && searchTerm.length > 0;
+            });
+
+            labels.style("font-weight", d => {
+                const matches = d.name.toLowerCase().includes(searchTerm) ||
+                               d.id.toLowerCase().includes(searchTerm);
+                return (matches && searchTerm.length > 0) ? "bold" : "normal";
+            });
+        });
+
+        // Initial center
+        setTimeout(centerGraph, 100);
+    </script>
+</body>
+</html>

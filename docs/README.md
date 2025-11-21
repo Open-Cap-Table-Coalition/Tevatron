@@ -2,6 +2,287 @@
 
 This directory contains documentation for the JSON schemas used in the Carta API. The documentation is auto-generated from the OpenAPI specification.
 
+## 🎨 Interactive Schema Dependency Graph
+
+**[Open Interactive Graph →](schema-graph.html)** - Explore the full schema dependency graph with:
+- 🔍 **Search** - Find any schema instantly
+- 🖱️ **Drag & Drop** - Reposition nodes
+- 🔎 **Zoom & Pan** - Navigate the graph
+- 📊 **Live Stats** - See reference counts
+- 💡 **Hover Tooltips** - View schema details
+- 🎯 **Click to Navigate** - Jump to documentation
+
+The interactive graph uses a force-directed layout algorithm to automatically position schemas based on their relationships, making it easy to understand the API structure at a glance.
+
+---
+
+## Schema Dependency Diagram
+
+This diagram shows how API objects (blue rectangles) reference supporting types (purple rounded boxes):
+
+```mermaid
+graph TD
+    iso8601_complete_calendar_date_time("Iso8601 Complete Calendar D...")
+    class iso8601_complete_calendar_date_time typeNode
+    click iso8601_complete_calendar_date_time "types/iso8601_complete_calendar_date_time.md"
+    option_exercise_type("Option Exercise Type")
+    class option_exercise_type typeNode
+    click option_exercise_type "types/option_exercise_type.md"
+    threshold_details("Threshold Details")
+    class threshold_details typeNode
+    click threshold_details "types/threshold_details.md"
+    restricted_stock_unit_vesting_event("Restricted Stock Unit Vesti...")
+    class restricted_stock_unit_vesting_event typeNode
+    click restricted_stock_unit_vesting_event "types/restricted_stock_unit_vesting_event.md"
+    restricted_stock_unit_settlement("Restricted Stock Unit Settl...")
+    class restricted_stock_unit_settlement typeNode
+    click restricted_stock_unit_settlement "types/restricted_stock_unit_settlement.md"
+    fair_market_value["Fair Market Value"]
+    class fair_market_value objectNode
+    click fair_market_value "objects/fair_market_value.md"
+    point_of_contact["Point Of Contact"]
+    class point_of_contact objectNode
+    click point_of_contact "objects/point_of_contact.md"
+    issuerssecurities_stock_option_type("Issuerssecurities Stock Opt...")
+    class issuerssecurities_stock_option_type typeNode
+    click issuerssecurities_stock_option_type "types/issuerssecurities_stock_option_type.md"
+    stakeholder_entity_type("Stakeholder Entity Type")
+    class stakeholder_entity_type typeNode
+    click stakeholder_entity_type "types/stakeholder_entity_type.md"
+    issuerssecurities_vesting_schedule("Issuerssecurities Vesting S...")
+    class issuerssecurities_vesting_schedule typeNode
+    click issuerssecurities_vesting_schedule "types/issuerssecurities_vesting_schedule.md"
+    money("Money")
+    class money typeNode
+    click money "types/money.md"
+    restricted_stock_award["Restricted Stock Award"]
+    class restricted_stock_award objectNode
+    click restricted_stock_award "objects/restricted_stock_award.md"
+    benchmark_job["Benchmark Job"]
+    class benchmark_job objectNode
+    click benchmark_job "objects/benchmark_job.md"
+    issuer["Issuer"]
+    class issuer objectNode
+    click issuer "objects/issuer.md"
+    option_exercise_state("Option Exercise State")
+    class option_exercise_state typeNode
+    click option_exercise_state "types/option_exercise_state.md"
+    publicapiissuers_stakeholder["Publicapiissuers Stakeholder"]
+    class publicapiissuers_stakeholder objectNode
+    click publicapiissuers_stakeholder "objects/publicapiissuers_stakeholder.md"
+    restricted_stock_unit["Restricted Stock Unit"]
+    class restricted_stock_unit objectNode
+    click restricted_stock_unit "objects/restricted_stock_unit.md"
+    securitiesoptionexercises_stock_option_type("Securitiesoptionexercises S...")
+    class securitiesoptionexercises_stock_option_type typeNode
+    click securitiesoptionexercises_stock_option_type "types/securitiesoptionexercises_stock_option_type.md"
+    share_class["Share Class"]
+    class share_class objectNode
+    click share_class "objects/share_class.md"
+    exercise_service_update_money_movement_body["Exercise Service Update Mon..."]
+    class exercise_service_update_money_movement_body objectNode
+    click exercise_service_update_money_movement_body "objects/exercise_service_update_money_movement_body.md"
+    iso8601_complete_calendar_date("Iso8601 Complete Calendar Date")
+    class iso8601_complete_calendar_date typeNode
+    click iso8601_complete_calendar_date "types/iso8601_complete_calendar_date.md"
+    interest_compounding_period("Interest Compounding Period")
+    class interest_compounding_period typeNode
+    click interest_compounding_period "types/interest_compounding_period.md"
+    option_grant["Option Grant"]
+    class option_grant objectNode
+    click option_grant "objects/option_grant.md"
+    convertible_note["Convertible Note"]
+    class convertible_note objectNode
+    click convertible_note "objects/convertible_note.md"
+    share_class_type("Share Class Type")
+    class share_class_type typeNode
+    click share_class_type "types/share_class_type.md"
+    option_exercise_tax_withholding_line_item("Option Exercise Tax Withhol...")
+    class option_exercise_tax_withholding_line_item typeNode
+    click option_exercise_tax_withholding_line_item "types/option_exercise_tax_withholding_line_item.md"
+    interest_accrual_period("Interest Accrual Period")
+    class interest_accrual_period typeNode
+    click interest_accrual_period "types/interest_accrual_period.md"
+    share_class_valuation("Share Class Valuation")
+    class share_class_valuation typeNode
+    click share_class_valuation "types/share_class_valuation.md"
+    point_of_contact_type("Point Of Contact Type")
+    class point_of_contact_type typeNode
+    click point_of_contact_type "types/point_of_contact_type.md"
+    restricted_stock_award_vesting_event("Restricted Stock Award Vest...")
+    class restricted_stock_award_vesting_event typeNode
+    click restricted_stock_award_vesting_event "types/restricted_stock_award_vesting_event.md"
+    issuersinterests_vesting_schedule("Issuersinterests Vesting Sc...")
+    class issuersinterests_vesting_schedule typeNode
+    click issuersinterests_vesting_schedule "types/issuersinterests_vesting_schedule.md"
+    day_count_basis("Day Count Basis")
+    class day_count_basis typeNode
+    click day_count_basis "types/day_count_basis.md"
+    interest["Interest"]
+    class interest objectNode
+    click interest "objects/interest.md"
+    exercise("Exercise")
+    class exercise typeNode
+    click exercise "types/exercise.md"
+    option_grant_vesting_event("Option Grant Vesting Event")
+    class option_grant_vesting_event typeNode
+    click option_grant_vesting_event "types/option_grant_vesting_event.md"
+    note_block("Note Block")
+    class note_block typeNode
+    click note_block "types/note_block.md"
+    publicapiissuers_stakeholder_relationship("Publicapiissuers Stakeholde...")
+    class publicapiissuers_stakeholder_relationship typeNode
+    click publicapiissuers_stakeholder_relationship "types/publicapiissuers_stakeholder_relationship.md"
+    option_exercise["Option Exercise"]
+    class option_exercise objectNode
+    click option_exercise "objects/option_exercise.md"
+    issuerssecurities_exercise_periods("Issuerssecurities Exercise ...")
+    class issuerssecurities_exercise_periods typeNode
+    click issuerssecurities_exercise_periods "types/issuerssecurities_exercise_periods.md"
+    vesting_schedule_template["Vesting Schedule Template"]
+    class vesting_schedule_template objectNode
+    click vesting_schedule_template "objects/vesting_schedule_template.md"
+    certificate["Certificate"]
+    class certificate objectNode
+    click certificate "objects/certificate.md"
+    stakeholder_address("Stakeholder Address")
+    class stakeholder_address typeNode
+    click stakeholder_address "types/stakeholder_address.md"
+    draft_securities_service_create_draft_option_grant_body["Draft Securities Service Cr..."]
+    class draft_securities_service_create_draft_option_grant_body objectNode
+    click draft_securities_service_create_draft_option_grant_body "objects/draft_securities_service_create_draft_option_grant_body.md"
+    vesting_schedule_type("Vesting Schedule Type")
+    class vesting_schedule_type typeNode
+    click vesting_schedule_type "types/vesting_schedule_type.md"
+    benchmarks["Benchmarks"]
+    class benchmarks objectNode
+    click benchmarks "objects/benchmarks.md"
+    preferred_share_class_details("Preferred Share Class Details")
+    class preferred_share_class_details typeNode
+    click preferred_share_class_details "types/preferred_share_class_details.md"
+    draft_option_grant("Draft Option Grant")
+    class draft_option_grant typeNode
+    click draft_option_grant "types/draft_option_grant.md"
+    decimal("Decimal")
+    class decimal typeNode
+    click decimal "types/decimal.md"
+    corporation["Corporation"]
+    class corporation objectNode
+    click corporation "objects/corporation.md"
+    option_exercise_money_movement("Option Exercise Money Movement")
+    class option_exercise_money_movement typeNode
+    click option_exercise_money_movement "types/option_exercise_money_movement.md"
+    exercise_service_update_tax_withholding_body["Exercise Service Update Tax..."]
+    class exercise_service_update_tax_withholding_body objectNode
+    click exercise_service_update_tax_withholding_body "objects/exercise_service_update_tax_withholding_body.md"
+    benchmark_value("Benchmark Value")
+    class benchmark_value typeNode
+    click benchmark_value "types/benchmark_value.md"
+    draft_securities_service_create_draft_option_grant_body --> draft_option_grant
+    exercise_service_update_money_movement_body --> option_exercise_money_movement
+    exercise_service_update_tax_withholding_body --> option_exercise_tax_withholding_line_item
+    publicapiissuers_stakeholder --> publicapiissuers_stakeholder_relationship
+    publicapiissuers_stakeholder --> stakeholder_entity_type
+    publicapiissuers_stakeholder --> stakeholder_address
+    benchmarks --> benchmark_value
+    certificate --> iso8601_complete_calendar_date
+    certificate --> decimal
+    certificate --> money
+    certificate --> iso8601_complete_calendar_date_time
+    convertible_note --> iso8601_complete_calendar_date_time
+    convertible_note --> money
+    convertible_note --> note_block
+    convertible_note --> interest_accrual_period
+    convertible_note --> decimal
+    convertible_note --> interest_compounding_period
+    convertible_note --> day_count_basis
+    fair_market_value --> iso8601_complete_calendar_date
+    fair_market_value --> share_class_valuation
+    interest --> iso8601_complete_calendar_date
+    interest --> iso8601_complete_calendar_date_time
+    interest --> threshold_details
+    interest --> money
+    interest --> decimal
+    interest --> issuersinterests_vesting_schedule
+    option_exercise --> decimal
+    option_exercise --> iso8601_complete_calendar_date_time
+    option_exercise --> option_exercise_state
+    option_exercise --> option_exercise_type
+    option_exercise --> securitiesoptionexercises_stock_option_type
+    option_exercise --> option_exercise_tax_withholding_line_item
+    option_exercise --> option_exercise_money_movement
+    option_grant --> iso8601_complete_calendar_date
+    option_grant --> issuerssecurities_stock_option_type
+    option_grant --> decimal
+    option_grant --> money
+    option_grant --> option_grant_vesting_event
+    option_grant --> exercise
+    option_grant --> issuerssecurities_vesting_schedule
+    option_grant --> iso8601_complete_calendar_date_time
+    option_grant --> issuerssecurities_exercise_periods
+    point_of_contact --> point_of_contact_type
+    restricted_stock_award --> iso8601_complete_calendar_date
+    restricted_stock_award --> decimal
+    restricted_stock_award --> money
+    restricted_stock_award --> restricted_stock_award_vesting_event
+    restricted_stock_award --> issuerssecurities_vesting_schedule
+    restricted_stock_award --> iso8601_complete_calendar_date_time
+    restricted_stock_unit --> iso8601_complete_calendar_date
+    restricted_stock_unit --> decimal
+    restricted_stock_unit --> money
+    restricted_stock_unit --> restricted_stock_unit_vesting_event
+    restricted_stock_unit --> restricted_stock_unit_settlement
+    restricted_stock_unit --> issuerssecurities_vesting_schedule
+    restricted_stock_unit --> iso8601_complete_calendar_date_time
+    share_class --> share_class_type
+    share_class --> decimal
+    share_class --> money
+    share_class --> preferred_share_class_details
+    vesting_schedule_template --> vesting_schedule_type
+
+    classDef objectNode fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef typeNode fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+```
+
+**Legend:**
+- 🔵 **Blue rectangles** = Primary API objects (with endpoints)
+- 🟣 **Purple rounded boxes** = Supporting types
+- ➡️ **Arrows** = "uses" or "references" relationship
+
+---
+
+### Most Referenced Schemas
+
+These schemas are used by many other schemas:
+
+- [Decimal](types/decimal.md) - referenced by 28 schemas
+- [Money](types/money.md) - referenced by 20 schemas
+- [Iso8601 Complete Calendar Date](types/iso8601_complete_calendar_date.md) - referenced by 16 schemas
+- [Iso8601 Complete Calendar Date Time](types/iso8601_complete_calendar_date_time.md) - referenced by 11 schemas
+- [Issuerssecurities Vesting Schedule](types/issuerssecurities_vesting_schedule.md) - referenced by 3 schemas
+- [Draft Option Grant](types/draft_option_grant.md) - referenced by 3 schemas
+- [Option Exercise Money Movement](types/option_exercise_money_movement.md) - referenced by 3 schemas
+- [Option Exercise Tax Withholding Line Item](types/option_exercise_tax_withholding_line_item.md) - referenced by 3 schemas
+- [Publicapiissuers Stakeholder](objects/publicapiissuers_stakeholder.md) - referenced by 2 schemas
+- [Benchmarks Metadata](types/benchmarks_metadata.md) - referenced by 2 schemas
+
+### Most Complex Schemas
+
+These schemas reference many other schemas:
+
+- [Draft Option Grant](types/draft_option_grant.md) - references 13 other schemas
+- [Option Grant](objects/option_grant.md) - references 9 other schemas
+- [Convertible Note](objects/convertible_note.md) - references 7 other schemas
+- [Option Exercise](objects/option_exercise.md) - references 7 other schemas
+- [Restricted Stock Unit](objects/restricted_stock_unit.md) - references 7 other schemas
+- [Capitalization Table](types/capitalization_table.md) - references 6 other schemas
+- [Interest](objects/interest.md) - references 6 other schemas
+- [Restricted Stock Award](objects/restricted_stock_award.md) - references 6 other schemas
+- [Stakeholder Group](types/stakeholder_group.md) - references 6 other schemas
+- [Issuerscapitalization Stakeholder](types/issuerscapitalization_stakeholder.md) - references 5 other schemas
+
+---
+
 ## Schema Index
 
 #### Objects
