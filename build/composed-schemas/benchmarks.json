@@ -1,0 +1,150 @@
+{
+  "name": "v1alpha1Benchmarks",
+  "sanitized_name": "benchmarks",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "postMoneyValuationBucket": "100M to 250M",
+      "industry": "All",
+      "geoadjustmentLocation": "New York-Newark-Jersey City, NY-NJ-PA",
+      "jobArea": "Engineering",
+      "jobSpecialization": "Web Engineer",
+      "jobLevel": "IC 3",
+      "benchmarkValues": [
+        {
+          "compensationType": "SALARY",
+          "percentile": "P25",
+          "value": {
+            "value": "100000"
+          }
+        },
+        {
+          "compensationType": "SALARY",
+          "percentile": "P50",
+          "value": {
+            "value": "110000"
+          }
+        },
+        {
+          "compensationType": "SALARY",
+          "percentile": "P75",
+          "value": {
+            "value": "120000"
+          }
+        },
+        {
+          "compensationType": "SALARY",
+          "percentile": "P90",
+          "value": {
+            "value": "130000"
+          }
+        }
+      ]
+    },
+    "properties": {
+      "postMoneyValuationBucket": {
+        "type": "string",
+        "example": "100M to 250M",
+        "description": "The company valuation bucket that the underlying data is segmented by.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "industry": {
+        "type": "string",
+        "example": "All",
+        "description": "The industry that the underlying data is segmented by.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "geoAdjustmentLocation": {
+        "type": "string",
+        "example": "New York-Newark-Jersey City, NY-NJ-PA",
+        "description": "The location used to geo-adjust the benchmarks.\n\nNote that a company may have location-based pay settings in their Carta Total Compensation compensation plan which may override the requested value.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "jobArea": {
+        "type": "string",
+        "example": "Engineering",
+        "description": "The job area that the underlying data is segmented by.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "jobSpecialization": {
+        "type": "string",
+        "example": "Web Engineer",
+        "description": "The job specialization that the underlying data is segmented by.\n\nAn empty job specialization denotes the benchmark for the roll-up job area.",
+        "maxLength": 100
+      },
+      "jobLevel": {
+        "type": "string",
+        "example": "IC 3",
+        "description": "The job level that the underlying data is segmented by.",
+        "maxLength": 10,
+        "minLength": 1
+      },
+      "benchmarkValues": {
+        "type": "array",
+        "example": [
+          {
+            "compensation_type": "SALARY",
+            "percentile": "P25",
+            "benchmark": {
+              "value": "100000"
+            }
+          },
+          {
+            "compensation_type": "SALARY",
+            "percentile": "P50",
+            "benchmark": {
+              "value": "110000"
+            }
+          },
+          {
+            "compensation_type": "SALARY",
+            "percentile": "P75",
+            "benchmark": {
+              "value": "120000"
+            }
+          },
+          {
+            "compensation_type": "SALARY",
+            "percentile": "P90",
+            "benchmark": {
+              "value": "130000"
+            }
+          }
+        ],
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1BenchmarkValue"
+        },
+        "description": "The benchmark values for this segment of data.",
+        "maxItems": 50
+      }
+    },
+    "description": "The compensation benchmarks.",
+    "required": [
+      "postMoneyValuationBucket",
+      "industry",
+      "geoAdjustmentLocation",
+      "jobArea",
+      "jobSpecialization",
+      "jobLevel"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/corporations/{corporationId}/compensationBenchmarks"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetCompensationBenchmarksResponse"
+  ],
+  "references": [
+    "v1alpha1BenchmarkValue"
+  ],
+  "output_path": "docs/objects/benchmarks.md"
+}

@@ -1,0 +1,75 @@
+{
+  "name": "DraftSecuritiesServiceCreateDraftOptionGrantBody",
+  "sanitized_name": "draft_securities_service_create_draft_option_grant_body",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "draftOptionGrant": {
+        "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+        "grantReason": "GRANT_REASON_NEW_HIRE",
+        "quantity": {
+          "value": "1000.0"
+        },
+        "earlyExercise": false,
+        "exercisePrice": {
+          "currency_code": "USD",
+          "amount": {
+            "value": "100.0"
+          }
+        },
+        "stakeholder": {
+          "name": "Jane Doe",
+          "email": "jane.doe@example.com",
+          "employeeId": "adsfc123",
+          "type": "STAKEHOLDER_TYPE_INDIVIDUAL",
+          "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE"
+        },
+        "compliance": {
+          "countryOfResidency": {
+            "value": "USA"
+          },
+          "stateOfResidency": {
+            "value": "US-CA"
+          }
+        },
+        "notes": "Additional note about drafting",
+        "createTime": {
+          "value": "2024-02-29T18:18:00Z"
+        },
+        "updateTime": {
+          "value": "2024-02-29T18:18:00Z"
+        },
+        "vesting": {
+          "templateId": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+          "startDate": {
+            "year": 2024,
+            "month": 2,
+            "day": 29
+          }
+        }
+      }
+    },
+    "properties": {
+      "draftOptionGrant": {
+        "$ref": "#/components/schemas/v1alpha1DraftOptionGrant",
+        "description": "The draft option grant to be created"
+      }
+    },
+    "description": "The request for the CreateDraftOptionGrant endpoint.",
+    "required": [
+      "draftOptionGrant"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/v1alpha1/issuers/{issuerId}/draftOptionGrantSets/{draftOptionGrantSetId}/draftOptionGrants"
+    }
+  ],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "output_path": "docs/objects/draft_securities_service_create_draft_option_grant_body.md"
+}

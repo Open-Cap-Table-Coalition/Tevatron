@@ -1,0 +1,89 @@
+{
+  "name": "v1alpha1StakeholderNoteBlockSummary",
+  "sanitized_name": "stakeholder_note_block_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "noteBlockId": "4",
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      },
+      "principal": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      },
+      "interest": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "382524.65"
+        }
+      },
+      "outstandingDebt": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1457524.65"
+        }
+      }
+    },
+    "properties": {
+      "noteBlockId": {
+        "type": "string",
+        "description": "The identifier of the note block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cash raised for the note block."
+      },
+      "principal": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The total outstanding principal for the note block. The outstanding debt for the note block is the `principal` plus the `interest`."
+      },
+      "interest": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "Total interest for the note block. The outstanding debt for the note block is the `principal` plus the `interest`."
+      },
+      "outstandingDebt": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "Total outstanding debt for the note block. The outstanding debt for the note block is the `principal` plus the `interest`."
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the note block.",
+        "maxLength": 1000
+      }
+    },
+    "description": "Note block summary information scoped to a specific stakeholder.",
+    "required": [
+      "noteBlockId",
+      "cashRaised",
+      "principal",
+      "interest",
+      "name"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuerscapitalizationv1alpha1Stakeholder",
+    "v1alpha1StakeholderGroup"
+  ],
+  "references": [
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/stakeholder_note_block_summary.md"
+}

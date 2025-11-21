@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1StakeholderAddress",
+  "sanitized_name": "stakeholder_address",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "country": {
+        "type": "string",
+        "description": "The country of the stakeholder's address. This will not be set for all stakeholders.",
+        "maxLength": 1000
+      }
+    }
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "publicapiissuersv1alpha1Stakeholder"
+  ],
+  "references": [],
+  "output_path": "docs/types/stakeholder_address.md"
+}

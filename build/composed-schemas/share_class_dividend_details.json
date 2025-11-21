@@ -1,0 +1,39 @@
+{
+  "name": "v1alpha1ShareClassDividendDetails",
+  "sanitized_name": "share_class_dividend_details",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "dividendType": "CASH",
+      "dividendDetails": {
+        "dividendYield": {
+          "value": "0.02"
+        },
+        "dividendAccrualType": "CUMULATIVE",
+        "dividendAccrualPeriod": "DAILY",
+        "dividendInterestType": "INTEREST_PERIOD_DAILY"
+      }
+    },
+    "properties": {
+      "dividendType": {
+        "$ref": "#/components/schemas/v1alpha1DividendType",
+        "description": "The type of dividends for the share class."
+      },
+      "dividendDetails": {
+        "$ref": "#/components/schemas/v1alpha1DividendDetails",
+        "description": "Details for the non-cash dividends for this share class if `dividendType` is `NON_CASH`."
+      }
+    },
+    "description": "Details related to the dividends of a share class."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PreferredShareClassDetails"
+  ],
+  "references": [
+    "v1alpha1DividendType",
+    "v1alpha1DividendDetails"
+  ],
+  "output_path": "docs/types/share_class_dividend_details.md"
+}

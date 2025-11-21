@@ -1,0 +1,48 @@
+{
+  "name": "v1alpha1Corporation",
+  "sanitized_name": "corporation",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "611",
+      "legalName": "MangoCart, Inc.",
+      "doingBusinessAsName": "MangoCart",
+      "website": "http://www.example.com/mangocart"
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the corporation.",
+        "maxLength": 50
+      },
+      "legalName": {
+        "type": "string",
+        "description": "The legal name of the corporation.",
+        "maxLength": 1000
+      },
+      "doingBusinessAsName": {
+        "type": "string",
+        "description": "The operating, or doing business as (DBA), name of the corporation.",
+        "maxLength": 1000
+      },
+      "website": {
+        "type": "string",
+        "description": "The URL of the corporation\u2019s website.",
+        "maxLength": 1000
+      }
+    },
+    "description": "A corporation."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/corporations"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListCorporationsResponse"
+  ],
+  "references": [],
+  "output_path": "docs/objects/corporation.md"
+}

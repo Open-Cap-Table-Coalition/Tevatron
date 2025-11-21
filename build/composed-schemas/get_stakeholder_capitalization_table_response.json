@@ -1,0 +1,29 @@
+{
+  "name": "v1alpha1GetStakeholderCapitalizationTableResponse",
+  "sanitized_name": "get_stakeholder_capitalization_table_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "stakeholderCapitalizationTable": {
+        "$ref": "#/components/schemas/v1alpha1StakeholderCapitalizationTable",
+        "description": "Stakeholder Capitalization table."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "ODMxMw==",
+        "description": "A page token, which can be provided as the value of the `pageToken` query parameter to retrieve the next page. If this field is omitted, there are no subsequent pages."
+      }
+    },
+    "description": "The response for the GetStakeholderCapitalizationTable endpoint.",
+    "required": [
+      "stakeholderCapitalizationTable"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1StakeholderCapitalizationTable"
+  ],
+  "output_path": "docs/types/get_stakeholder_capitalization_table_response.md"
+}

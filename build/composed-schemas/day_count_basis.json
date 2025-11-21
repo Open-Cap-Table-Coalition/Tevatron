@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1DayCountBasis",
+  "sanitized_name": "day_count_basis",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "COUNT_30_360",
+      "COUNT_ACTUAL_360",
+      "COUNT_ACTUAL_365"
+    ],
+    "title": "The standardized way of counting the number of days between two dates.\nSee more at https://support.carta.com/s/article/day-count-basis"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleNote"
+  ],
+  "references": [],
+  "output_path": "docs/types/day_count_basis.md"
+}

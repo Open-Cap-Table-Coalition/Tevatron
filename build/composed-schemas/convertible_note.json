@@ -1,0 +1,269 @@
+{
+  "name": "v1alpha1ConvertibleNote",
+  "sanitized_name": "convertible_note",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "1",
+      "issuerId": "7",
+      "stakeholderId": "4903",
+      "securityLabel": "CN-3",
+      "issueDatetime": {
+        "value": "2024-05-24T09:00:00.000000Z"
+      },
+      "conversionDatetime": {
+        "value": "2024-06-24T09:00:00.000000Z"
+      },
+      "canceledDatetime": {
+        "value": "2024-05-24T09:00:00.000000Z"
+      },
+      "cashPaid": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "10000.0"
+        }
+      },
+      "maturityDatetime": {
+        "value": "2024-05-24T09:00:00.000000Z"
+      },
+      "interest": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "50.0"
+        }
+      },
+      "noteBlock": {
+        "id": "4",
+        "name": "Bridge 2014",
+        "prefix": "CN",
+        "noteType": "CONVERTIBLE_DEBT",
+        "status": "EXECUTED"
+      },
+      "interestAccrualPeriod": "INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH",
+      "interestRate": {
+        "value": "3.0"
+      },
+      "interestCompoundingPeriod": "ANNUALLY",
+      "dayCountBasis": "COUNT_ACTUAL_360",
+      "priceCap": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "12000.0"
+        }
+      },
+      "discountPercentage": {
+        "value": "0.5"
+      },
+      "changeInControlPercent": {
+        "value": "0.5"
+      },
+      "conversionTrigger": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "500.0"
+        }
+      },
+      "canceledQuantity": {
+        "value": "500.0"
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "1",
+        "description": "The identifier of the convertible note.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "issuerId": {
+        "type": "string",
+        "example": "7",
+        "description": "The identifier of the issuer owning the convertible note.",
+        "title": "The identifier of the issuer owning the convertible note",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "stakeholderId": {
+        "type": "string",
+        "example": "4903",
+        "description": "The identifier of the stakeholder holding the convertible note.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "example": "CN-3",
+        "description": "The label representing this security (convertible note).",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "example": {
+          "value": "2024-05-24T09:00:00.000000Z"
+        },
+        "description": "The date and time the convertible note was issued."
+      },
+      "conversionDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "example": {
+          "value": "2024-06-24T09:00:00.000000Z"
+        },
+        "description": "The date and time the convertible note was converted to a certificate."
+      },
+      "canceledDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "example": {
+          "value": "2024-05-24T09:00:00.000000Z"
+        },
+        "description": "The date and time the convertible note was canceled."
+      },
+      "cashPaid": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "example": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "10000.0"
+          }
+        },
+        "description": "The amount of cash that the stakeholder paid for the convertible note.\n\nFor example, if the stakeholder invested $10,000, then $10,000 is the `cash_paid`. This field is also known as `principal`."
+      },
+      "maturityDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "example": {
+          "value": "2024-05-24T09:00:00.000000Z"
+        },
+        "description": "The date and time on which the convertible note matures.\n\nAt maturity, the convertible note's `cash_paid` and `interest` must be paid back if the convertible note hasn't converted into equity."
+      },
+      "interest": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "example": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "50.0"
+          }
+        },
+        "description": "The accrued interest for the convertible note."
+      },
+      "noteBlock": {
+        "$ref": "#/components/schemas/v1alpha1NoteBlock",
+        "example": {
+          "id": "0c481821-3bc8-42a5-94cd-a2c89d88429d",
+          "name": "Bridge 2014",
+          "prefix": "CN",
+          "noteType": "CONVERTIBLE_DEBT",
+          "status": "EXECUTED"
+        },
+        "description": "The note block associated with the convertible note."
+      },
+      "interestAccrualPeriod": {
+        "$ref": "#/components/schemas/v1alpha1InterestAccrualPeriod",
+        "example": "INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH",
+        "description": "The length of time over which the interest due to the lender is calculated."
+      },
+      "interestRate": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "example": {
+          "value": "3.0"
+        },
+        "description": "The annual interest rate that the note accrues."
+      },
+      "interestCompoundingPeriod": {
+        "$ref": "#/components/schemas/v1alpha1InterestCompoundingPeriod",
+        "example": "ANNUALLY",
+        "description": "The interest compounding period of the convertible note."
+      },
+      "dayCountBasis": {
+        "$ref": "#/components/schemas/v1alpha1DayCountBasis",
+        "example": "COUNT_ACTUAL_360",
+        "description": "The standardized way of counting the number of days between two dates."
+      },
+      "priceCap": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "example": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "12000.0"
+          }
+        },
+        "description": "The valuation cap sets a maximum value at which a convertible security will convert into equity in the financing round.\n\nThis valuation cap stands regardless of the valuation of the financing round."
+      },
+      "discountPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "example": {
+          "value": "0.5"
+        },
+        "description": "The discount applied to the price per share when the note holder will purchase shares in the next fundraising round. 1 represents 1%."
+      },
+      "changeInControlPercent": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "example": {
+          "value": "0.5"
+        },
+        "description": " Denotes any premium or multiplier applied to the `cash_paid` in the event of a change in control prior to the maturity date. 1 represents 1%."
+      },
+      "conversionTrigger": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "example": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "500.0"
+          }
+        },
+        "description": "For convertibles to convert into the next equity round, terms may be included that specify that the round be of a certain size for the convertible to convert."
+      },
+      "canceledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "example": {
+          "value": "500.0"
+        },
+        "description": "The quantity of shares in this convertible note that were canceled"
+      }
+    },
+    "description": "A convertible note.",
+    "required": [
+      "issueDatetime",
+      "cashPaid",
+      "interest",
+      "noteBlock",
+      "interestCompoundingPeriod",
+      "dayCountBasis"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/convertibleNotes"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetConvertibleNoteResponse",
+    "v1alpha1ListConvertibleNotesResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Money",
+    "v1alpha1NoteBlock",
+    "v1alpha1InterestAccrualPeriod",
+    "v1alpha1Decimal",
+    "v1alpha1InterestCompoundingPeriod",
+    "v1alpha1DayCountBasis"
+  ],
+  "output_path": "docs/objects/convertible_note.md"
+}

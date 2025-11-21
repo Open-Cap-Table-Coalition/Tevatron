@@ -1,0 +1,225 @@
+{
+  "name": "issuerscapitalizationv1alpha1Stakeholder",
+  "sanitized_name": "issuerscapitalization_stakeholder",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "stakeholderId": "5375",
+      "stakeholderName": "Krakatoa Ventures Fund I, L.P.",
+      "summary": {
+        "fullyDilutedShares": {
+          "value": "4422567"
+        },
+        "outstandingShares": {
+          "value": "4422567.00000000000000000000"
+        }
+      },
+      "shareClassSummaries": [
+        {
+          "shareClassID": 10,
+          "outstandingShares": {
+            "value": "566035.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "566035"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "150000.0700000000000000000000"
+            }
+          }
+        },
+        {
+          "shareClassID": 104,
+          "outstandingShares": {
+            "value": "2217191.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "2217191"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "1000000.000000000000000000000"
+            }
+          }
+        },
+        {
+          "shareClassID": 105,
+          "outstandingShares": {
+            "value": "1639341.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "1639341"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "1999999.680000000000000000000"
+            }
+          }
+        }
+      ],
+      "optionPoolSummaries": [
+        {
+          "name": "Equity Incentive Plan",
+          "optionPoolId": 3,
+          "shareClassId": 9,
+          "outstandingEquityAwardDerivatives": {
+            "value": "0"
+          },
+          "outstandingCommittedRsas": {
+            "value": "0"
+          }
+        }
+      ],
+      "warrantBlockSummaries": [
+        {
+          "warrantBlockId": 2,
+          "name": "Series Seed II Warrants",
+          "shareClassId": 11,
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "0"
+            }
+          },
+          "fullyDilutedShares": {
+            "value": "0"
+          },
+          "outstandingWarrants": {
+            "value": "0"
+          }
+        },
+        {
+          "warrantBlockId": 1,
+          "name": "Series Seed Warrants",
+          "shareClassId": 10,
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "0"
+            }
+          },
+          "fullyDilutedShares": {
+            "value": "0"
+          },
+          "outstandingWarrants": {
+            "value": "0"
+          }
+        }
+      ],
+      "noteBlockSummaries": [
+        {
+          "noteBlockId": "4",
+          "cashRaised": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "interest": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "382524.65"
+            }
+          },
+          "outstanding_debt": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1457524.65"
+            }
+          }
+        }
+      ]
+    },
+    "properties": {
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "stakeholderName": {
+        "type": "string",
+        "description": "The name of the stakeholder.",
+        "maxLength": 500,
+        "minLength": 1
+      },
+      "summary": {
+        "$ref": "#/components/schemas/v1alpha1StakeholderCapitalizationTableSummary",
+        "description": "A high-level capitalization table summary scoped to the stakeholder."
+      },
+      "shareClassSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderShareClassSummary"
+        },
+        "description": "Per share class summary information scoped to the stakeholder.",
+        "maxItems": 500
+      },
+      "optionPoolSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderOptionPoolSummary"
+        },
+        "description": "Per option pool summary information scoped to the stakeholder.",
+        "maxItems": 200
+      },
+      "warrantBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderWarrantBlockSummary"
+        },
+        "description": "Per warrant block summary information scoped to the stakeholder.",
+        "maxItems": 200
+      },
+      "noteBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderNoteBlockSummary"
+        },
+        "description": "Per note block summary scoped to the stakeholder.",
+        "maxItems": 200
+      }
+    },
+    "title": "Capitalization information for an individual stakeholder.",
+    "required": [
+      "stakeholderId",
+      "stakeholderName",
+      "summary"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1StakeholderGroup"
+  ],
+  "references": [
+    "v1alpha1StakeholderCapitalizationTableSummary",
+    "v1alpha1StakeholderShareClassSummary",
+    "v1alpha1StakeholderOptionPoolSummary",
+    "v1alpha1StakeholderWarrantBlockSummary",
+    "v1alpha1StakeholderNoteBlockSummary"
+  ],
+  "output_path": "docs/types/issuerscapitalization_stakeholder.md"
+}

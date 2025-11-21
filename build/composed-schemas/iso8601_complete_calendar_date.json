@@ -1,0 +1,41 @@
+{
+  "name": "v1alpha1Iso8601CompleteCalendarDate",
+  "sanitized_name": "iso8601_complete_calendar_date",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "value": "2021-01-01"
+    },
+    "properties": {
+      "value": {
+        "type": "string",
+        "maxLength": 10,
+        "minLength": 10,
+        "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      }
+    },
+    "description": "A complete calendar date defined as per the ISO 8601 standard."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuersinterestsv1alpha1VestingSchedule",
+    "issuerssecuritiesv1alpha1VestingSchedule",
+    "v1alpha1CapitalizationTable",
+    "v1alpha1Certificate",
+    "v1alpha1Exercise",
+    "v1alpha1FairMarketValue",
+    "v1alpha1Interest",
+    "v1alpha1ListInterestsResponse",
+    "v1alpha1OptionGrant",
+    "v1alpha1OptionGrantVestingEvent",
+    "v1alpha1RestrictedStockAward",
+    "v1alpha1RestrictedStockAwardVestingEvent",
+    "v1alpha1RestrictedStockUnit",
+    "v1alpha1RestrictedStockUnitSettlement",
+    "v1alpha1RestrictedStockUnitVestingEvent",
+    "v1alpha1StakeholderCapitalizationTable"
+  ],
+  "references": [],
+  "output_path": "docs/types/iso8601_complete_calendar_date.md"
+}

@@ -1,0 +1,191 @@
+{
+  "name": "v1alpha1CapitalizationTable",
+  "sanitized_name": "capitalization_table",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issuerId": "7",
+      "asOfDate": {
+        "value": "2021-01-01"
+      },
+      "summary": {
+        "fullyDilutedShares": {
+          "value": "61399310.00"
+        },
+        "outstandingShares": {
+          "value": "16328224.00"
+        },
+        "cashRaised": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "20261050.79"
+          }
+        }
+      },
+      "shareClassSummaries": [
+        {
+          "shareClassId": "10",
+          "optionPoolIds": [
+            "3"
+          ],
+          "fullyDilutedShares": {
+            "value": "5603645.00"
+          },
+          "outstandingShares": {
+            "value": "5603645.00"
+          },
+          "cashRaised": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1159354.84"
+            }
+          }
+        }
+      ],
+      "optionPoolSummaries": [
+        {
+          "optionPoolId": "3",
+          "shareClassId": "9",
+          "fullyDilutedShares": {
+            "value": "44871088.00"
+          },
+          "outstandingEquityAwardDerivatives": {
+            "value": "3725634.0"
+          },
+          "outstandingCommittedRestrictedStockAwards": {
+            "value": "0"
+          },
+          "name": "Equity Incentive Plan",
+          "authorizedShares": {
+            "value": "45000000"
+          }
+        }
+      ],
+      "warrantBlockSummaries": [
+        {
+          "warrantBlockId": "1",
+          "shareClassId": "10",
+          "fullyDilutedShares": {
+            "value": "3029344.00"
+          },
+          "outstandingWarrants": {
+            "value": "3029344.00"
+          },
+          "cashRaised": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          }
+        }
+      ],
+      "noteBlockSummaries": [
+        {
+          "noteBlockId": "4",
+          "cashRaised": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "interest": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "382524.65"
+            }
+          }
+        }
+      ]
+    },
+    "properties": {
+      "issuerId": {
+        "type": "string",
+        "example": "7",
+        "description": "The identifier of the issuer.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "asOfDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "Data returned in the response reflects the state of the capitalization table as of this date, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'."
+      },
+      "summary": {
+        "$ref": "#/components/schemas/v1alpha1CapitalizationTableSummary",
+        "description": "Summary information about the capitalization table."
+      },
+      "shareClassSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1ShareClassSummary"
+        },
+        "description": "Per share class summary information.",
+        "maxItems": 500
+      },
+      "optionPoolSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionPoolSummary"
+        },
+        "description": "Per option pool summary information.",
+        "maxItems": 200
+      },
+      "warrantBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1WarrantBlockSummary"
+        },
+        "description": "Per warrant block summary information.",
+        "maxItems": 200
+      },
+      "noteBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1NoteBlockSummary"
+        },
+        "description": "Per note block summary information.",
+        "maxItems": 200
+      }
+    },
+    "description": "The top-level capitalization table object.",
+    "required": [
+      "issuerId",
+      "summary"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1GetCapitalizationTableResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1CapitalizationTableSummary",
+    "v1alpha1ShareClassSummary",
+    "v1alpha1OptionPoolSummary",
+    "v1alpha1WarrantBlockSummary",
+    "v1alpha1NoteBlockSummary"
+  ],
+  "output_path": "docs/types/capitalization_table.md"
+}

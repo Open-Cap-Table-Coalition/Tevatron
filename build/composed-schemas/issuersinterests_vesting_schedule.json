@@ -1,0 +1,33 @@
+{
+  "name": "issuersinterestsv1alpha1VestingSchedule",
+  "sanitized_name": "issuersinterests_vesting_schedule",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "name": "Split 50% 1/5 yearly, 50% annual performance goal",
+      "startDate": {
+        "value": "2019-08-20"
+      }
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The vesting plan name associated with the interest."
+      },
+      "startDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The vesting start date for the interest."
+      }
+    },
+    "description": "Vesting Schedule Details for the interest."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Interest"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate"
+  ],
+  "output_path": "docs/types/issuersinterests_vesting_schedule.md"
+}

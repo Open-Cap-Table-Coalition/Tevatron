@@ -1,0 +1,85 @@
+{
+  "name": "v1alpha1OptionPoolSummary",
+  "sanitized_name": "option_pool_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "optionPoolId": "3",
+      "shareClassId": "9",
+      "fullyDilutedShares": {
+        "value": "44871088.00"
+      },
+      "outstandingEquityAwardDerivatives": {
+        "value": "3725634.0"
+      },
+      "outstandingCommittedRestrictedStockAwards": {
+        "value": "0"
+      },
+      "name": "Employee Option Pool",
+      "authorizedShares": {
+        "value": "44871088.00"
+      }
+    },
+    "properties": {
+      "optionPoolId": {
+        "type": "string",
+        "description": "The identifier of the option pool.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class used by the option pool to issue equity.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "fullyDilutedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Total common shares of an option pool if all outstanding grants and available equity in the option pool were exercised."
+      },
+      "outstandingEquityAwardDerivatives": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Outstanding equity award derivatives. This includes:\n - Option Grants\n - Restricted Stock Units (RSU)\n - Stock Appreciation Rights (SAR)\n - Cash Bonus Unit (CBU)\n - International equity awards",
+        "title": "Outstanding equity award derivatives. This includes:\nOption Grants\nRestricted Stock Units (RSU)\nStock Appreciation Rights (SAR)\nCash Bonus Unit (CBU)\nInternational equity awards"
+      },
+      "outstandingCommittedRestrictedStockAwards": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Board approved but unissued Restricted Stock Awards (RSAs)."
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the option pool.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "authorizedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The amount of shares authorized to be issued from the option pool."
+      },
+      "terminatedDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The timestamp when the option pool was terminated."
+      }
+    },
+    "description": "Option pool summary.",
+    "required": [
+      "optionPoolId",
+      "shareClassId",
+      "fullyDilutedShares",
+      "outstandingEquityAwardDerivatives",
+      "outstandingCommittedRestrictedStockAwards",
+      "name",
+      "authorizedShares"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Iso8601CompleteCalendarDateTime"
+  ],
+  "output_path": "docs/types/option_pool_summary.md"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "v1alpha1Jurisdiction",
+  "sanitized_name": "jurisdiction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "city": {
+        "type": "string",
+        "example": "San Francisco",
+        "description": "The city used to calculate tax withholding.",
+        "maxLength": 256
+      },
+      "countrySubdivision": {
+        "$ref": "#/components/schemas/v1alpha1Iso3166Set2Code",
+        "description": "The country subdivision used to calculate tax withholding."
+      },
+      "country": {
+        "$ref": "#/components/schemas/v1alpha1Iso3166Set1Alpha3Code",
+        "description": "The country used to calculate tax withholding."
+      }
+    },
+    "description": "Jurisdiction used to calculate tax withholding is calculated.\nEither the name of the city, country subdivision, or country used to calculate tax withholding."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionExerciseTaxWithholdingLineItem"
+  ],
+  "references": [
+    "v1alpha1Iso3166Set2Code",
+    "v1alpha1Iso3166Set1Alpha3Code"
+  ],
+  "output_path": "docs/types/jurisdiction.md"
+}

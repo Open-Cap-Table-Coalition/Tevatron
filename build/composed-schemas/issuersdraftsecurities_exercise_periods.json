@@ -1,0 +1,87 @@
+{
+  "name": "issuersdraftsecuritiesv1alpha1ExercisePeriods",
+  "sanitized_name": "issuersdraftsecurities_exercise_periods",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "voluntaryTerminationCount": "1",
+      "voluntaryTerminationPeriod": "PTEP_PERIOD_YEAR",
+      "involuntaryTerminationCauseCount": "3",
+      "involuntaryTerminationCausePeriod": "PTEP_PERIOD_MONTH",
+      "involuntaryTerminationCount": "5",
+      "involuntaryTerminationPeriod": "PTEP_PERIOD_DAY",
+      "deathExerciseCount": "7",
+      "deathExercisePeriod": "PTEP_PERIOD_YEAR",
+      "disabilityExerciseCount": "9",
+      "disabilityExercisePeriod": "PTEP_PERIOD_MONTH",
+      "retirementExerciseCount": "11",
+      "retirementExercisePeriod": "PTEP_PERIOD_DAY"
+    },
+    "properties": {
+      "voluntaryTerminationCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after voluntary termination that the stakeholder has to exercise their options."
+      },
+      "voluntaryTerminationPeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the voluntary termination period."
+      },
+      "involuntaryTerminationCauseCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after involuntary termination that the stakeholder has to exercise their options."
+      },
+      "involuntaryTerminationCausePeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the involuntary termination cause period."
+      },
+      "involuntaryTerminationCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after involuntary termination that the stakeholder has to exercise their options."
+      },
+      "involuntaryTerminationPeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the involuntary termination period."
+      },
+      "deathExerciseCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after death that the stakeholder has to exercise their options."
+      },
+      "deathExercisePeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the death exercise period."
+      },
+      "disabilityExerciseCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after disability that the stakeholder has to exercise their options."
+      },
+      "disabilityExercisePeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the disability exercise period."
+      },
+      "retirementExerciseCount": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The quantity of \"periods\" (days, months or years) after retirement that the stakeholder has to exercise their options."
+      },
+      "retirementExercisePeriod": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1ExercisePeriod",
+        "description": "The unit of time for the retirement exercise period."
+      }
+    },
+    "description": "Exercise periods for the draft option grant. If unset, values will be inherited from the equity plan"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [
+    "issuersdraftsecuritiesv1alpha1ExercisePeriod"
+  ],
+  "output_path": "docs/types/issuersdraftsecurities_exercise_periods.md"
+}

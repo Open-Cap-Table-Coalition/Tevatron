@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1ExerciseType",
+  "sanitized_name": "exercise_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CASH_EXERCISE",
+      "CASHLESS_EXERCISE",
+      "NET_EXERCISE",
+      "BLENDED"
+    ],
+    "description": "Enumeration of exercise types.\n\n - CASH_EXERCISE: The cost of exercise was covered in cash.\n - CASHLESS_EXERCISE: The cost of exercise was covered by selling shares.\n - NET_EXERCISE: The cost of exercise was covered by withholding shares.\n - BLENDED: The cost of exercise was covered by a combination of cash and selling of shares."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Exercise"
+  ],
+  "references": [],
+  "output_path": "docs/types/exercise_type.md"
+}

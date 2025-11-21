@@ -1,0 +1,55 @@
+{
+  "name": "v1alpha1Decimal",
+  "sanitized_name": "decimal",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "value": "100.57"
+    },
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "A decimal amount represented in string form.\n\nExamples:\n0\n0.0\n1.00\n123.45\n-456.0\n.321\n+1.23456e-3\n1e-05",
+        "title": "value",
+        "maxLength": 100,
+        "minLength": 1,
+        "pattern": "^[\\+\\-]?((0|[1-9][0-9]*)(\\.[0-9]*)?|\\.[0-9]+)([eE][\\+\\-]?[0-9]+)?$"
+      }
+    },
+    "description": "A string-based representation of the decimal type."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1BenchmarkValue",
+    "v1alpha1CapitalizationTableSummary",
+    "v1alpha1Certificate",
+    "v1alpha1ConvertibleNote",
+    "v1alpha1DividendDetails",
+    "v1alpha1DraftOptionGrant",
+    "v1alpha1Exercise",
+    "v1alpha1Interest",
+    "v1alpha1Money",
+    "v1alpha1OptionExercise",
+    "v1alpha1OptionExerciseTaxWithholdingLineItem",
+    "v1alpha1OptionGrant",
+    "v1alpha1OptionGrantVestingEvent",
+    "v1alpha1OptionPoolSummary",
+    "v1alpha1RestrictedStockAward",
+    "v1alpha1RestrictedStockAwardVestingEvent",
+    "v1alpha1RestrictedStockUnit",
+    "v1alpha1RestrictedStockUnitSettlement",
+    "v1alpha1RestrictedStockUnitVestingEvent",
+    "v1alpha1ShareClass",
+    "v1alpha1ShareClassRightsAndPreferences",
+    "v1alpha1ShareClassSummary",
+    "v1alpha1StakeholderCapitalizationTableSummary",
+    "v1alpha1StakeholderOptionPoolSummary",
+    "v1alpha1StakeholderShareClassSummary",
+    "v1alpha1StakeholderWarrantBlockSummary",
+    "v1alpha1ThresholdDetails",
+    "v1alpha1WarrantBlockSummary"
+  ],
+  "references": [],
+  "output_path": "docs/types/decimal.md"
+}

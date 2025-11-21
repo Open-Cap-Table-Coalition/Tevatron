@@ -1,0 +1,61 @@
+{
+  "name": "v1alpha1NoteBlock",
+  "sanitized_name": "note_block",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "4",
+      "name": "Bridge 2014",
+      "prefix": "CN",
+      "noteType": "CONVERTIBLE_DEBT",
+      "status": "EXECUTED"
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "4",
+        "description": "The identifier of the note block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "example": "Bridge 2014",
+        "description": "The name of the note block.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "prefix": {
+        "type": "string",
+        "example": "CN",
+        "description": "The prefix of the note block.",
+        "maxLength": 1000
+      },
+      "noteType": {
+        "$ref": "#/components/schemas/v1alpha1NoteType",
+        "example": "CONVERTIBLE_DEBT",
+        "description": "The type of the note related to the note block."
+      },
+      "status": {
+        "$ref": "#/components/schemas/v1alpha1NoteBlockStatus",
+        "example": "EXECUTED",
+        "description": "The status of the note block."
+      }
+    },
+    "description": "A note block associated with a convertible note.",
+    "required": [
+      "noteType",
+      "status"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleNote"
+  ],
+  "references": [
+    "v1alpha1NoteType",
+    "v1alpha1NoteBlockStatus"
+  ],
+  "output_path": "docs/types/note_block.md"
+}

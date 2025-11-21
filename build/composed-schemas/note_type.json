@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1NoteType",
+  "sanitized_name": "note_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "DEBT",
+      "CONVERTIBLE_DEBT",
+      "CONVERTIBLE_EQUITY",
+      "SAFE"
+    ],
+    "description": "The type of the note related to the note block."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1NoteBlock"
+  ],
+  "references": [],
+  "output_path": "docs/types/note_type.md"
+}

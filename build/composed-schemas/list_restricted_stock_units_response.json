@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListRestrictedStockUnitsResponse",
+  "sanitized_name": "list_restricted_stock_units_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "restrictedStockUnits": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RestrictedStockUnit"
+        },
+        "description": "The restricted stock units from the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "ODU3NA==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Restricted Stock Units endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1RestrictedStockUnit"
+  ],
+  "output_path": "docs/types/list_restricted_stock_units_response.md"
+}

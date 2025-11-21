@@ -1,0 +1,128 @@
+{
+  "name": "v1alpha1OptionExercise",
+  "sanitized_name": "option_exercise",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "JZgiQfmZpvuiLbhXXQXfZi",
+      "issuerId": "7",
+      "stakeholderId": "6113",
+      "optionGrantId": "9387",
+      "certificateId": "4732",
+      "quantity": {
+        "value": "100"
+      },
+      "exerciseTime": {
+        "value": "2024-01-01T09:00:00.000000Z"
+      },
+      "state": "COMPLETE",
+      "exerciseType": "CASH_EXERCISE",
+      "recordType": "ISO",
+      "taxWithholding": [
+        {
+          "name": "Federal",
+          "rate": {
+            "value": "20"
+          },
+          "taxes": {
+            "currencyCode": "USD",
+            "amount": {
+              "value": "200"
+            }
+          },
+          "jurisdiction": {
+            "city": "NewYork",
+            "countrySubdivision": "US-NY",
+            "country": "USA"
+          }
+        }
+      ],
+      "moneyMovement": {
+        "completionDate": {
+          "value": "2024-02-10T09:00:00.000000Z"
+        }
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the option exercise.\n\nNote: It is possible for this ID to not exist for legacy reasons, in which case the value of this field will be `\"NO_ID\"`",
+        "maxLength": 50
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer that issued the option grant.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder that holds the option grant being exercised.",
+        "title": "The identifier of the stakeholder that holds the option grant being exercised",
+        "maxLength": 50
+      },
+      "optionGrantId": {
+        "type": "string",
+        "description": "The identifier of the option grant being exercised.",
+        "maxLength": 50
+      },
+      "certificateId": {
+        "type": "string",
+        "description": "The identifier of the certificate issued as a result of the option exercise event completing.",
+        "maxLength": 50
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares being exercised from the related option grant."
+      },
+      "exerciseTime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time in which the option exercise request was initiated."
+      },
+      "state": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseState",
+        "description": "The current state of the exercise request."
+      },
+      "exerciseType": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseType",
+        "description": "The type of option exercise being requested."
+      },
+      "recordType": {
+        "$ref": "#/components/schemas/securitiesoptionexercisesv1alpha1StockOptionType",
+        "description": "The type of the record associated with the option exercise."
+      },
+      "taxWithholding": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionExerciseTaxWithholdingLineItem"
+        },
+        "description": "The tax withholding information associated with the option exercise."
+      },
+      "moneyMovement": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseMoneyMovement",
+        "description": "The money movement information associated with the option exercise."
+      }
+    },
+    "description": "An option exercise is an event representing a stakeholder exercising their right to purchase shares of an issuer at a set price, the strike price, defined in the option grant being exercised. The result of a successfully completed exercise is the issuance of a certificate."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/optionExercises"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListOptionExercisesResponse"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1OptionExerciseState",
+    "v1alpha1OptionExerciseType",
+    "securitiesoptionexercisesv1alpha1StockOptionType",
+    "v1alpha1OptionExerciseTaxWithholdingLineItem",
+    "v1alpha1OptionExerciseMoneyMovement"
+  ],
+  "output_path": "docs/objects/option_exercise.md"
+}

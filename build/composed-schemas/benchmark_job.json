@@ -1,0 +1,67 @@
+{
+  "name": "v1alpha1BenchmarkJob",
+  "sanitized_name": "benchmark_job",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "jobArea": "Engineering",
+      "jobSpecialization": "Web Engineer",
+      "jobLevels": [
+        "IC 2",
+        "IC 3",
+        "MGR 4",
+        "MGR 5",
+        "EX 10",
+        "EX 11"
+      ]
+    },
+    "properties": {
+      "jobArea": {
+        "type": "string",
+        "example": "Engineering",
+        "description": "The job area that the underlying data is segmented by.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "jobSpecialization": {
+        "type": "string",
+        "example": "Web Engineer",
+        "description": "The job specialization that the underlying data is segmented by.",
+        "maxLength": 100
+      },
+      "jobLevels": {
+        "type": "array",
+        "example": [
+          "IC 2",
+          "IC 3",
+          "MGR 4",
+          "MGR 5",
+          "EX 10",
+          "EX 11"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "description": "The job levels that the underlying data is segmented by.",
+        "maxItems": 40
+      }
+    },
+    "description": "A job area, job specialization, and the job levels that have benchmarks.",
+    "required": [
+      "jobArea",
+      "jobLevels"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/corporations/{corporationId}/compensationBenchmarkAttributes"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetCompensationBenchmarkAttributesResponse"
+  ],
+  "references": [],
+  "output_path": "docs/objects/benchmark_job.md"
+}

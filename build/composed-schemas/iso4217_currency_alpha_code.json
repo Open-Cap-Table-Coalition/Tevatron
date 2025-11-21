@@ -1,0 +1,26 @@
+{
+  "name": "v1alpha1Iso4217CurrencyAlphaCode",
+  "sanitized_name": "iso4217_currency_alpha_code",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "value": "USD"
+    },
+    "properties": {
+      "value": {
+        "type": "string",
+        "maxLength": 3,
+        "minLength": 3,
+        "pattern": "[A-Z]{3}"
+      }
+    },
+    "description": "A three-letter alphabetic currency code defined by the ISO 4217 standard."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Money"
+  ],
+  "references": [],
+  "output_path": "docs/types/iso4217_currency_alpha_code.md"
+}

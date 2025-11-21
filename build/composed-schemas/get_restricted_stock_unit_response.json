@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetRestrictedStockUnitResponse",
+  "sanitized_name": "get_restricted_stock_unit_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "restrictedStockUnit": {
+        "$ref": "#/components/schemas/v1alpha1RestrictedStockUnit",
+        "description": "The requested restricted stock unit from the specified issuer."
+      }
+    },
+    "description": "The response from the Get Restricted Stock Unit endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1RestrictedStockUnit"
+  ],
+  "output_path": "docs/types/get_restricted_stock_unit_response.md"
+}

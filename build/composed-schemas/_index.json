@@ -1,0 +1,799 @@
+{
+  "total_schemas": 132,
+  "objects": 19,
+  "types": 113,
+  "schemas": [
+    {
+      "name": "DraftSecuritiesServiceCreateDraftOptionGrantBody",
+      "sanitized_name": "draft_securities_service_create_draft_option_grant_body",
+      "type": "object",
+      "output_path": "docs/objects/draft_securities_service_create_draft_option_grant_body.md"
+    },
+    {
+      "name": "ExerciseServiceUpdateMoneyMovementBody",
+      "sanitized_name": "exercise_service_update_money_movement_body",
+      "type": "object",
+      "output_path": "docs/objects/exercise_service_update_money_movement_body.md"
+    },
+    {
+      "name": "ExerciseServiceUpdateTaxWithholdingBody",
+      "sanitized_name": "exercise_service_update_tax_withholding_body",
+      "type": "object",
+      "output_path": "docs/objects/exercise_service_update_tax_withholding_body.md"
+    },
+    {
+      "name": "StakeholderEntityType",
+      "sanitized_name": "stakeholder_entity_type",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_entity_type.md"
+    },
+    {
+      "name": "ThresholdDetailsThresholdType",
+      "sanitized_name": "threshold_details_threshold_type",
+      "type": "type",
+      "output_path": "docs/types/threshold_details_threshold_type.md"
+    },
+    {
+      "name": "issuerscapitalizationv1alpha1Stakeholder",
+      "sanitized_name": "issuerscapitalization_stakeholder",
+      "type": "type",
+      "output_path": "docs/types/issuerscapitalization_stakeholder.md"
+    },
+    {
+      "name": "issuersdraftsecuritiesv1alpha1ExercisePeriod",
+      "sanitized_name": "issuersdraftsecurities_exercise_period",
+      "type": "type",
+      "output_path": "docs/types/issuersdraftsecurities_exercise_period.md"
+    },
+    {
+      "name": "issuersdraftsecuritiesv1alpha1ExercisePeriods",
+      "sanitized_name": "issuersdraftsecurities_exercise_periods",
+      "type": "type",
+      "output_path": "docs/types/issuersdraftsecurities_exercise_periods.md"
+    },
+    {
+      "name": "issuersdraftsecuritiesv1alpha1Stakeholder",
+      "sanitized_name": "issuersdraftsecurities_stakeholder",
+      "type": "type",
+      "output_path": "docs/types/issuersdraftsecurities_stakeholder.md"
+    },
+    {
+      "name": "issuersdraftsecuritiesv1alpha1StakeholderRelationship",
+      "sanitized_name": "issuersdraftsecurities_stakeholder_relationship",
+      "type": "type",
+      "output_path": "docs/types/issuersdraftsecurities_stakeholder_relationship.md"
+    },
+    {
+      "name": "issuersdraftsecuritiesv1alpha1StockOptionType",
+      "sanitized_name": "issuersdraftsecurities_stock_option_type",
+      "type": "type",
+      "output_path": "docs/types/issuersdraftsecurities_stock_option_type.md"
+    },
+    {
+      "name": "issuersinterestsv1alpha1VestingSchedule",
+      "sanitized_name": "issuersinterests_vesting_schedule",
+      "type": "type",
+      "output_path": "docs/types/issuersinterests_vesting_schedule.md"
+    },
+    {
+      "name": "issuerssecuritiesv1alpha1ExercisePeriod",
+      "sanitized_name": "issuerssecurities_exercise_period",
+      "type": "type",
+      "output_path": "docs/types/issuerssecurities_exercise_period.md"
+    },
+    {
+      "name": "issuerssecuritiesv1alpha1ExercisePeriods",
+      "sanitized_name": "issuerssecurities_exercise_periods",
+      "type": "type",
+      "output_path": "docs/types/issuerssecurities_exercise_periods.md"
+    },
+    {
+      "name": "issuerssecuritiesv1alpha1StockOptionType",
+      "sanitized_name": "issuerssecurities_stock_option_type",
+      "type": "type",
+      "output_path": "docs/types/issuerssecurities_stock_option_type.md"
+    },
+    {
+      "name": "issuerssecuritiesv1alpha1VestingSchedule",
+      "sanitized_name": "issuerssecurities_vesting_schedule",
+      "type": "type",
+      "output_path": "docs/types/issuerssecurities_vesting_schedule.md"
+    },
+    {
+      "name": "protobufAny",
+      "sanitized_name": "protobuf_any",
+      "type": "type",
+      "output_path": "docs/types/protobuf_any.md"
+    },
+    {
+      "name": "publicapiissuersv1alpha1Stakeholder",
+      "sanitized_name": "publicapiissuers_stakeholder",
+      "type": "object",
+      "output_path": "docs/objects/publicapiissuers_stakeholder.md"
+    },
+    {
+      "name": "publicapiissuersv1alpha1StakeholderRelationship",
+      "sanitized_name": "publicapiissuers_stakeholder_relationship",
+      "type": "type",
+      "output_path": "docs/types/publicapiissuers_stakeholder_relationship.md"
+    },
+    {
+      "name": "rpcStatus",
+      "sanitized_name": "rpc_status",
+      "type": "type",
+      "output_path": "docs/types/rpc_status.md"
+    },
+    {
+      "name": "securitiesoptionexercisesv1alpha1StockOptionType",
+      "sanitized_name": "securitiesoptionexercises_stock_option_type",
+      "type": "type",
+      "output_path": "docs/types/securitiesoptionexercises_stock_option_type.md"
+    },
+    {
+      "name": "v1alpha1Acceleration",
+      "sanitized_name": "acceleration",
+      "type": "type",
+      "output_path": "docs/types/acceleration.md"
+    },
+    {
+      "name": "v1alpha1Access",
+      "sanitized_name": "access",
+      "type": "type",
+      "output_path": "docs/types/access.md"
+    },
+    {
+      "name": "v1alpha1BenchmarkJob",
+      "sanitized_name": "benchmark_job",
+      "type": "object",
+      "output_path": "docs/objects/benchmark_job.md"
+    },
+    {
+      "name": "v1alpha1BenchmarkValue",
+      "sanitized_name": "benchmark_value",
+      "type": "type",
+      "output_path": "docs/types/benchmark_value.md"
+    },
+    {
+      "name": "v1alpha1Benchmarks",
+      "sanitized_name": "benchmarks",
+      "type": "object",
+      "output_path": "docs/objects/benchmarks.md"
+    },
+    {
+      "name": "v1alpha1BenchmarksMetadata",
+      "sanitized_name": "benchmarks_metadata",
+      "type": "type",
+      "output_path": "docs/types/benchmarks_metadata.md"
+    },
+    {
+      "name": "v1alpha1BoardApproval",
+      "sanitized_name": "board_approval",
+      "type": "type",
+      "output_path": "docs/types/board_approval.md"
+    },
+    {
+      "name": "v1alpha1CapitalizationTable",
+      "sanitized_name": "capitalization_table",
+      "type": "type",
+      "output_path": "docs/types/capitalization_table.md"
+    },
+    {
+      "name": "v1alpha1CapitalizationTableSummary",
+      "sanitized_name": "capitalization_table_summary",
+      "type": "type",
+      "output_path": "docs/types/capitalization_table_summary.md"
+    },
+    {
+      "name": "v1alpha1Certificate",
+      "sanitized_name": "certificate",
+      "type": "object",
+      "output_path": "docs/objects/certificate.md"
+    },
+    {
+      "name": "v1alpha1Compliance",
+      "sanitized_name": "compliance",
+      "type": "type",
+      "output_path": "docs/types/compliance.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleNote",
+      "sanitized_name": "convertible_note",
+      "type": "object",
+      "output_path": "docs/objects/convertible_note.md"
+    },
+    {
+      "name": "v1alpha1Corporation",
+      "sanitized_name": "corporation",
+      "type": "object",
+      "output_path": "docs/objects/corporation.md"
+    },
+    {
+      "name": "v1alpha1CreateDraftOptionGrantResponse",
+      "sanitized_name": "create_draft_option_grant_response",
+      "type": "type",
+      "output_path": "docs/types/create_draft_option_grant_response.md"
+    },
+    {
+      "name": "v1alpha1Date",
+      "sanitized_name": "date",
+      "type": "type",
+      "output_path": "docs/types/date.md"
+    },
+    {
+      "name": "v1alpha1DayCountBasis",
+      "sanitized_name": "day_count_basis",
+      "type": "type",
+      "output_path": "docs/types/day_count_basis.md"
+    },
+    {
+      "name": "v1alpha1Decimal",
+      "sanitized_name": "decimal",
+      "type": "type",
+      "output_path": "docs/types/decimal.md"
+    },
+    {
+      "name": "v1alpha1DividendAccrualPeriod",
+      "sanitized_name": "dividend_accrual_period",
+      "type": "type",
+      "output_path": "docs/types/dividend_accrual_period.md"
+    },
+    {
+      "name": "v1alpha1DividendAccrualType",
+      "sanitized_name": "dividend_accrual_type",
+      "type": "type",
+      "output_path": "docs/types/dividend_accrual_type.md"
+    },
+    {
+      "name": "v1alpha1DividendDetails",
+      "sanitized_name": "dividend_details",
+      "type": "type",
+      "output_path": "docs/types/dividend_details.md"
+    },
+    {
+      "name": "v1alpha1DividendInterestType",
+      "sanitized_name": "dividend_interest_type",
+      "type": "type",
+      "output_path": "docs/types/dividend_interest_type.md"
+    },
+    {
+      "name": "v1alpha1DividendType",
+      "sanitized_name": "dividend_type",
+      "type": "type",
+      "output_path": "docs/types/dividend_type.md"
+    },
+    {
+      "name": "v1alpha1Document",
+      "sanitized_name": "document",
+      "type": "type",
+      "output_path": "docs/types/document.md"
+    },
+    {
+      "name": "v1alpha1DraftOptionGrant",
+      "sanitized_name": "draft_option_grant",
+      "type": "type",
+      "output_path": "docs/types/draft_option_grant.md"
+    },
+    {
+      "name": "v1alpha1DraftSecurityState",
+      "sanitized_name": "draft_security_state",
+      "type": "type",
+      "output_path": "docs/types/draft_security_state.md"
+    },
+    {
+      "name": "v1alpha1Exercise",
+      "sanitized_name": "exercise",
+      "type": "type",
+      "output_path": "docs/types/exercise.md"
+    },
+    {
+      "name": "v1alpha1ExerciseStatus",
+      "sanitized_name": "exercise_status",
+      "type": "type",
+      "output_path": "docs/types/exercise_status.md"
+    },
+    {
+      "name": "v1alpha1ExerciseType",
+      "sanitized_name": "exercise_type",
+      "type": "type",
+      "output_path": "docs/types/exercise_type.md"
+    },
+    {
+      "name": "v1alpha1FairMarketValue",
+      "sanitized_name": "fair_market_value",
+      "type": "object",
+      "output_path": "docs/objects/fair_market_value.md"
+    },
+    {
+      "name": "v1alpha1FederalExemption",
+      "sanitized_name": "federal_exemption",
+      "type": "type",
+      "output_path": "docs/types/federal_exemption.md"
+    },
+    {
+      "name": "v1alpha1GetCapitalizationTableResponse",
+      "sanitized_name": "get_capitalization_table_response",
+      "type": "type",
+      "output_path": "docs/types/get_capitalization_table_response.md"
+    },
+    {
+      "name": "v1alpha1GetCertificateResponse",
+      "sanitized_name": "get_certificate_response",
+      "type": "type",
+      "output_path": "docs/types/get_certificate_response.md"
+    },
+    {
+      "name": "v1alpha1GetCompensationBenchmarkAttributesResponse",
+      "sanitized_name": "get_compensation_benchmark_attributes_response",
+      "type": "type",
+      "output_path": "docs/types/get_compensation_benchmark_attributes_response.md"
+    },
+    {
+      "name": "v1alpha1GetCompensationBenchmarksResponse",
+      "sanitized_name": "get_compensation_benchmarks_response",
+      "type": "type",
+      "output_path": "docs/types/get_compensation_benchmarks_response.md"
+    },
+    {
+      "name": "v1alpha1GetConvertibleNoteResponse",
+      "sanitized_name": "get_convertible_note_response",
+      "type": "type",
+      "output_path": "docs/types/get_convertible_note_response.md"
+    },
+    {
+      "name": "v1alpha1GetDraftOptionGrantResponse",
+      "sanitized_name": "get_draft_option_grant_response",
+      "type": "type",
+      "output_path": "docs/types/get_draft_option_grant_response.md"
+    },
+    {
+      "name": "v1alpha1GetIssuerResponse",
+      "sanitized_name": "get_issuer_response",
+      "type": "type",
+      "output_path": "docs/types/get_issuer_response.md"
+    },
+    {
+      "name": "v1alpha1GetOptionGrantResponse",
+      "sanitized_name": "get_option_grant_response",
+      "type": "type",
+      "output_path": "docs/types/get_option_grant_response.md"
+    },
+    {
+      "name": "v1alpha1GetRestrictedStockAwardResponse",
+      "sanitized_name": "get_restricted_stock_award_response",
+      "type": "type",
+      "output_path": "docs/types/get_restricted_stock_award_response.md"
+    },
+    {
+      "name": "v1alpha1GetRestrictedStockUnitResponse",
+      "sanitized_name": "get_restricted_stock_unit_response",
+      "type": "type",
+      "output_path": "docs/types/get_restricted_stock_unit_response.md"
+    },
+    {
+      "name": "v1alpha1GetStakeholderCapitalizationTableResponse",
+      "sanitized_name": "get_stakeholder_capitalization_table_response",
+      "type": "type",
+      "output_path": "docs/types/get_stakeholder_capitalization_table_response.md"
+    },
+    {
+      "name": "v1alpha1GetStakeholderResponse",
+      "sanitized_name": "get_stakeholder_response",
+      "type": "type",
+      "output_path": "docs/types/get_stakeholder_response.md"
+    },
+    {
+      "name": "v1alpha1GrantReason",
+      "sanitized_name": "grant_reason",
+      "type": "type",
+      "output_path": "docs/types/grant_reason.md"
+    },
+    {
+      "name": "v1alpha1Interest",
+      "sanitized_name": "interest",
+      "type": "object",
+      "output_path": "docs/objects/interest.md"
+    },
+    {
+      "name": "v1alpha1InterestAccrualPeriod",
+      "sanitized_name": "interest_accrual_period",
+      "type": "type",
+      "output_path": "docs/types/interest_accrual_period.md"
+    },
+    {
+      "name": "v1alpha1InterestCompoundingPeriod",
+      "sanitized_name": "interest_compounding_period",
+      "type": "type",
+      "output_path": "docs/types/interest_compounding_period.md"
+    },
+    {
+      "name": "v1alpha1Iso3166Set1Alpha3Code",
+      "sanitized_name": "iso3166_set1_alpha3_code",
+      "type": "type",
+      "output_path": "docs/types/iso3166_set1_alpha3_code.md"
+    },
+    {
+      "name": "v1alpha1Iso3166Set2Code",
+      "sanitized_name": "iso3166_set2_code",
+      "type": "type",
+      "output_path": "docs/types/iso3166_set2_code.md"
+    },
+    {
+      "name": "v1alpha1Iso4217CurrencyAlphaCode",
+      "sanitized_name": "iso4217_currency_alpha_code",
+      "type": "type",
+      "output_path": "docs/types/iso4217_currency_alpha_code.md"
+    },
+    {
+      "name": "v1alpha1Iso8601CompleteCalendarDate",
+      "sanitized_name": "iso8601_complete_calendar_date",
+      "type": "type",
+      "output_path": "docs/types/iso8601_complete_calendar_date.md"
+    },
+    {
+      "name": "v1alpha1Iso8601CompleteCalendarDateTime",
+      "sanitized_name": "iso8601_complete_calendar_date_time",
+      "type": "type",
+      "output_path": "docs/types/iso8601_complete_calendar_date_time.md"
+    },
+    {
+      "name": "v1alpha1Issuer",
+      "sanitized_name": "issuer",
+      "type": "object",
+      "output_path": "docs/objects/issuer.md"
+    },
+    {
+      "name": "v1alpha1Jurisdiction",
+      "sanitized_name": "jurisdiction",
+      "type": "type",
+      "output_path": "docs/types/jurisdiction.md"
+    },
+    {
+      "name": "v1alpha1ListCertificatesResponse",
+      "sanitized_name": "list_certificates_response",
+      "type": "type",
+      "output_path": "docs/types/list_certificates_response.md"
+    },
+    {
+      "name": "v1alpha1ListConvertibleNotesResponse",
+      "sanitized_name": "list_convertible_notes_response",
+      "type": "type",
+      "output_path": "docs/types/list_convertible_notes_response.md"
+    },
+    {
+      "name": "v1alpha1ListCorporationsResponse",
+      "sanitized_name": "list_corporations_response",
+      "type": "type",
+      "output_path": "docs/types/list_corporations_response.md"
+    },
+    {
+      "name": "v1alpha1ListFairMarketValuesResponse",
+      "sanitized_name": "list_fair_market_values_response",
+      "type": "type",
+      "output_path": "docs/types/list_fair_market_values_response.md"
+    },
+    {
+      "name": "v1alpha1ListInterestsResponse",
+      "sanitized_name": "list_interests_response",
+      "type": "type",
+      "output_path": "docs/types/list_interests_response.md"
+    },
+    {
+      "name": "v1alpha1ListIssuersResponse",
+      "sanitized_name": "list_issuers_response",
+      "type": "type",
+      "output_path": "docs/types/list_issuers_response.md"
+    },
+    {
+      "name": "v1alpha1ListOptionExercisesResponse",
+      "sanitized_name": "list_option_exercises_response",
+      "type": "type",
+      "output_path": "docs/types/list_option_exercises_response.md"
+    },
+    {
+      "name": "v1alpha1ListOptionGrantsResponse",
+      "sanitized_name": "list_option_grants_response",
+      "type": "type",
+      "output_path": "docs/types/list_option_grants_response.md"
+    },
+    {
+      "name": "v1alpha1ListPointsOfContactResponse",
+      "sanitized_name": "list_points_of_contact_response",
+      "type": "type",
+      "output_path": "docs/types/list_points_of_contact_response.md"
+    },
+    {
+      "name": "v1alpha1ListRestrictedStockAwardsResponse",
+      "sanitized_name": "list_restricted_stock_awards_response",
+      "type": "type",
+      "output_path": "docs/types/list_restricted_stock_awards_response.md"
+    },
+    {
+      "name": "v1alpha1ListRestrictedStockUnitsResponse",
+      "sanitized_name": "list_restricted_stock_units_response",
+      "type": "type",
+      "output_path": "docs/types/list_restricted_stock_units_response.md"
+    },
+    {
+      "name": "v1alpha1ListShareClassesResponse",
+      "sanitized_name": "list_share_classes_response",
+      "type": "type",
+      "output_path": "docs/types/list_share_classes_response.md"
+    },
+    {
+      "name": "v1alpha1ListStakeholdersResponse",
+      "sanitized_name": "list_stakeholders_response",
+      "type": "type",
+      "output_path": "docs/types/list_stakeholders_response.md"
+    },
+    {
+      "name": "v1alpha1ListVestingScheduleTemplatesResponse",
+      "sanitized_name": "list_vesting_schedule_templates_response",
+      "type": "type",
+      "output_path": "docs/types/list_vesting_schedule_templates_response.md"
+    },
+    {
+      "name": "v1alpha1Money",
+      "sanitized_name": "money",
+      "type": "type",
+      "output_path": "docs/types/money.md"
+    },
+    {
+      "name": "v1alpha1NoteBlock",
+      "sanitized_name": "note_block",
+      "type": "type",
+      "output_path": "docs/types/note_block.md"
+    },
+    {
+      "name": "v1alpha1NoteBlockStatus",
+      "sanitized_name": "note_block_status",
+      "type": "type",
+      "output_path": "docs/types/note_block_status.md"
+    },
+    {
+      "name": "v1alpha1NoteBlockSummary",
+      "sanitized_name": "note_block_summary",
+      "type": "type",
+      "output_path": "docs/types/note_block_summary.md"
+    },
+    {
+      "name": "v1alpha1NoteType",
+      "sanitized_name": "note_type",
+      "type": "type",
+      "output_path": "docs/types/note_type.md"
+    },
+    {
+      "name": "v1alpha1OptionExercise",
+      "sanitized_name": "option_exercise",
+      "type": "object",
+      "output_path": "docs/objects/option_exercise.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseMoneyMovement",
+      "sanitized_name": "option_exercise_money_movement",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_money_movement.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseState",
+      "sanitized_name": "option_exercise_state",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_state.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseTaxWithholdingLineItem",
+      "sanitized_name": "option_exercise_tax_withholding_line_item",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_tax_withholding_line_item.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseType",
+      "sanitized_name": "option_exercise_type",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_type.md"
+    },
+    {
+      "name": "v1alpha1OptionGrant",
+      "sanitized_name": "option_grant",
+      "type": "object",
+      "output_path": "docs/objects/option_grant.md"
+    },
+    {
+      "name": "v1alpha1OptionGrantDocuments",
+      "sanitized_name": "option_grant_documents",
+      "type": "type",
+      "output_path": "docs/types/option_grant_documents.md"
+    },
+    {
+      "name": "v1alpha1OptionGrantVestingEvent",
+      "sanitized_name": "option_grant_vesting_event",
+      "type": "type",
+      "output_path": "docs/types/option_grant_vesting_event.md"
+    },
+    {
+      "name": "v1alpha1OptionPoolSummary",
+      "sanitized_name": "option_pool_summary",
+      "type": "type",
+      "output_path": "docs/types/option_pool_summary.md"
+    },
+    {
+      "name": "v1alpha1PointOfContact",
+      "sanitized_name": "point_of_contact",
+      "type": "object",
+      "output_path": "docs/objects/point_of_contact.md"
+    },
+    {
+      "name": "v1alpha1PointOfContactType",
+      "sanitized_name": "point_of_contact_type",
+      "type": "type",
+      "output_path": "docs/types/point_of_contact_type.md"
+    },
+    {
+      "name": "v1alpha1PreferredShareClassDetails",
+      "sanitized_name": "preferred_share_class_details",
+      "type": "type",
+      "output_path": "docs/types/preferred_share_class_details.md"
+    },
+    {
+      "name": "v1alpha1RestrictedStockAward",
+      "sanitized_name": "restricted_stock_award",
+      "type": "object",
+      "output_path": "docs/objects/restricted_stock_award.md"
+    },
+    {
+      "name": "v1alpha1RestrictedStockAwardVestingEvent",
+      "sanitized_name": "restricted_stock_award_vesting_event",
+      "type": "type",
+      "output_path": "docs/types/restricted_stock_award_vesting_event.md"
+    },
+    {
+      "name": "v1alpha1RestrictedStockUnit",
+      "sanitized_name": "restricted_stock_unit",
+      "type": "object",
+      "output_path": "docs/objects/restricted_stock_unit.md"
+    },
+    {
+      "name": "v1alpha1RestrictedStockUnitSettlement",
+      "sanitized_name": "restricted_stock_unit_settlement",
+      "type": "type",
+      "output_path": "docs/types/restricted_stock_unit_settlement.md"
+    },
+    {
+      "name": "v1alpha1RestrictedStockUnitVestingEvent",
+      "sanitized_name": "restricted_stock_unit_vesting_event",
+      "type": "type",
+      "output_path": "docs/types/restricted_stock_unit_vesting_event.md"
+    },
+    {
+      "name": "v1alpha1ShareClass",
+      "sanitized_name": "share_class",
+      "type": "object",
+      "output_path": "docs/objects/share_class.md"
+    },
+    {
+      "name": "v1alpha1ShareClassDividendDetails",
+      "sanitized_name": "share_class_dividend_details",
+      "type": "type",
+      "output_path": "docs/types/share_class_dividend_details.md"
+    },
+    {
+      "name": "v1alpha1ShareClassRightsAndPreferences",
+      "sanitized_name": "share_class_rights_and_preferences",
+      "type": "type",
+      "output_path": "docs/types/share_class_rights_and_preferences.md"
+    },
+    {
+      "name": "v1alpha1ShareClassSummary",
+      "sanitized_name": "share_class_summary",
+      "type": "type",
+      "output_path": "docs/types/share_class_summary.md"
+    },
+    {
+      "name": "v1alpha1ShareClassType",
+      "sanitized_name": "share_class_type",
+      "type": "type",
+      "output_path": "docs/types/share_class_type.md"
+    },
+    {
+      "name": "v1alpha1ShareClassValuation",
+      "sanitized_name": "share_class_valuation",
+      "type": "type",
+      "output_path": "docs/types/share_class_valuation.md"
+    },
+    {
+      "name": "v1alpha1StakeholderAddress",
+      "sanitized_name": "stakeholder_address",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_address.md"
+    },
+    {
+      "name": "v1alpha1StakeholderCapitalizationTable",
+      "sanitized_name": "stakeholder_capitalization_table",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_capitalization_table.md"
+    },
+    {
+      "name": "v1alpha1StakeholderCapitalizationTableSummary",
+      "sanitized_name": "stakeholder_capitalization_table_summary",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_capitalization_table_summary.md"
+    },
+    {
+      "name": "v1alpha1StakeholderGroup",
+      "sanitized_name": "stakeholder_group",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_group.md"
+    },
+    {
+      "name": "v1alpha1StakeholderNoteBlockSummary",
+      "sanitized_name": "stakeholder_note_block_summary",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_note_block_summary.md"
+    },
+    {
+      "name": "v1alpha1StakeholderOptionPoolSummary",
+      "sanitized_name": "stakeholder_option_pool_summary",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_option_pool_summary.md"
+    },
+    {
+      "name": "v1alpha1StakeholderShareClassSummary",
+      "sanitized_name": "stakeholder_share_class_summary",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_share_class_summary.md"
+    },
+    {
+      "name": "v1alpha1StakeholderType",
+      "sanitized_name": "stakeholder_type",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_type.md"
+    },
+    {
+      "name": "v1alpha1StakeholderWarrantBlockSummary",
+      "sanitized_name": "stakeholder_warrant_block_summary",
+      "type": "type",
+      "output_path": "docs/types/stakeholder_warrant_block_summary.md"
+    },
+    {
+      "name": "v1alpha1ThresholdDetails",
+      "sanitized_name": "threshold_details",
+      "type": "type",
+      "output_path": "docs/types/threshold_details.md"
+    },
+    {
+      "name": "v1alpha1UpdateMoneyMovementResponse",
+      "sanitized_name": "update_money_movement_response",
+      "type": "type",
+      "output_path": "docs/types/update_money_movement_response.md"
+    },
+    {
+      "name": "v1alpha1UpdateTaxWithholdingResponse",
+      "sanitized_name": "update_tax_withholding_response",
+      "type": "type",
+      "output_path": "docs/types/update_tax_withholding_response.md"
+    },
+    {
+      "name": "v1alpha1Vesting",
+      "sanitized_name": "vesting",
+      "type": "type",
+      "output_path": "docs/types/vesting.md"
+    },
+    {
+      "name": "v1alpha1VestingScheduleTemplate",
+      "sanitized_name": "vesting_schedule_template",
+      "type": "object",
+      "output_path": "docs/objects/vesting_schedule_template.md"
+    },
+    {
+      "name": "v1alpha1VestingScheduleType",
+      "sanitized_name": "vesting_schedule_type",
+      "type": "type",
+      "output_path": "docs/types/vesting_schedule_type.md"
+    },
+    {
+      "name": "v1alpha1WarrantBlockSummary",
+      "sanitized_name": "warrant_block_summary",
+      "type": "type",
+      "output_path": "docs/types/warrant_block_summary.md"
+    }
+  ]
+}

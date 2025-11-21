@@ -1,0 +1,20 @@
+{
+  "name": "protobufAny",
+  "sanitized_name": "protobuf_any",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "@type": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": {}
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "rpcStatus"
+  ],
+  "references": [],
+  "output_path": "docs/types/protobuf_any.md"
+}

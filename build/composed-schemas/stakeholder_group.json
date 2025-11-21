@@ -1,0 +1,388 @@
+{
+  "name": "v1alpha1StakeholderGroup",
+  "sanitized_name": "stakeholder_group",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "stakeholderGroupId": "1",
+      "stakeholderGroupName": "Krakatoa Ventures",
+      "stakeholders": [
+        {
+          "stakeholderId": "5375",
+          "stakeholderName": "Krakatoa Ventures Fund I, L.P.",
+          "summary": {
+            "fullyDilutedShares": {
+              "value": "4422567"
+            },
+            "outstandingShares": {
+              "value": "4422567.00000000000000000000"
+            }
+          },
+          "shareClassSummaries": [
+            {
+              "shareClassID": 10,
+              "outstandingShares": {
+                "value": "566035.00000000000000000000"
+              },
+              "fullyDilutedShares": {
+                "value": "566035"
+              },
+              "cashRaised": {
+                "currency_code": "USD",
+                "amount": {
+                  "value": "150000.0700000000000000000000"
+                }
+              }
+            },
+            {
+              "shareClassID": 104,
+              "outstandingShares": {
+                "value": "2217191.00000000000000000000"
+              },
+              "fullyDilutedShares": {
+                "value": "2217191"
+              },
+              "cashRaised": {
+                "currency_code": "USD",
+                "amount": {
+                  "value": "1000000.000000000000000000000"
+                }
+              }
+            },
+            {
+              "shareClassID": 105,
+              "outstandingShares": {
+                "value": "1639341.00000000000000000000"
+              },
+              "fullyDilutedShares": {
+                "value": "1639341"
+              },
+              "cashRaised": {
+                "currency_code": "USD",
+                "amount": {
+                  "value": "1999999.680000000000000000000"
+                }
+              }
+            }
+          ],
+          "optionPoolSummaries": [
+            {
+              "name": "Equity Incentive Plan",
+              "optionPoolId": 3,
+              "shareClassId": 9,
+              "outstandingEquityAwardDerivatives": {
+                "value": "0"
+              },
+              "outstandingCommittedRsas": {
+                "value": "0"
+              }
+            }
+          ],
+          "warrantBlockSummaries": [
+            {
+              "warrantBlockId": 2,
+              "name": "Series Seed II Warrants",
+              "shareClassId": 11,
+              "cashRaised": {
+                "currency_code": "USD",
+                "amount": {
+                  "value": "0"
+                }
+              },
+              "fullyDilutedShares": {
+                "value": "0"
+              },
+              "outstandingWarrants": {
+                "value": "0"
+              }
+            },
+            {
+              "warrantBlockId": 1,
+              "name": "Series Seed Warrants",
+              "shareClassId": 10,
+              "cashRaised": {
+                "currency_code": "USD",
+                "amount": {
+                  "value": "0"
+                }
+              },
+              "fullyDilutedShares": {
+                "value": "0"
+              },
+              "outstandingWarrants": {
+                "value": "0"
+              }
+            }
+          ],
+          "noteBlockSummaries": [
+            {
+              "noteBlockId": "4",
+              "cashRaised": {
+                "currencyCode": {
+                  "value": "USD"
+                },
+                "amount": {
+                  "value": "1075000.00"
+                }
+              },
+              "principal": {
+                "currencyCode": {
+                  "value": "USD"
+                },
+                "amount": {
+                  "value": "1075000.00"
+                }
+              },
+              "interest": {
+                "currencyCode": {
+                  "value": "USD"
+                },
+                "amount": {
+                  "value": "382524.65"
+                }
+              },
+              "outstanding_debt": {
+                "currencyCode": {
+                  "value": "USD"
+                },
+                "amount": {
+                  "value": "1457524.65"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "fullyDilutedShares": {
+          "value": "4422567"
+        },
+        "cashRaised": {
+          "currency_code": "USD",
+          "amount": {
+            "value": "3149999.750000000000000000000"
+          }
+        },
+        "outstandingShares": {
+          "value": "4422567.00000000000000000000"
+        }
+      },
+      "shareClassSummaries": [
+        {
+          "shareClassID": 10,
+          "outstandingShares": {
+            "value": "566035.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "566035"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "150000.0700000000000000000000"
+            }
+          }
+        },
+        {
+          "shareClassID": 104,
+          "outstandingShares": {
+            "value": "2217191.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "2217191"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "1000000.000000000000000000000"
+            }
+          }
+        },
+        {
+          "shareClassID": 105,
+          "outstandingShares": {
+            "value": "1639341.00000000000000000000"
+          },
+          "fullyDilutedShares": {
+            "value": "1639341"
+          },
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "1999999.680000000000000000000"
+            }
+          }
+        }
+      ],
+      "optionPoolSummaries": [
+        {
+          "name": "Equity Incentive Plan",
+          "optionPoolId": 3,
+          "shareClassId": 9,
+          "outstandingEquityAwardDerivatives": {
+            "value": "0"
+          },
+          "outstandingCommittedRsas": {
+            "value": "0"
+          }
+        }
+      ],
+      "warrantBlockSummaries": [
+        {
+          "warrantBlockId": 2,
+          "name": "Series Seed II Warrants",
+          "shareClassId": 11,
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "0"
+            }
+          },
+          "fullyDilutedShares": {
+            "value": "0"
+          },
+          "outstandingWarrants": {
+            "value": "0"
+          }
+        },
+        {
+          "warrantBlockId": 1,
+          "name": "Series Seed Warrants",
+          "shareClassId": 10,
+          "cashRaised": {
+            "currency_code": "USD",
+            "amount": {
+              "value": "0"
+            }
+          },
+          "fullyDilutedShares": {
+            "value": "0"
+          },
+          "outstandingWarrants": {
+            "value": "0"
+          }
+        }
+      ],
+      "noteBlockSummaries": [
+        {
+          "noteBlockId": "4",
+          "cashRaised": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1075000.00"
+            }
+          },
+          "interest": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "382524.65"
+            }
+          },
+          "outstanding_debt": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1457524.65"
+            }
+          }
+        }
+      ]
+    },
+    "properties": {
+      "stakeholderGroupId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder group.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "stakeholderGroupName": {
+        "type": "string",
+        "description": "The name of the stakeholder group.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "stakeholders": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/issuerscapitalizationv1alpha1Stakeholder"
+        },
+        "description": "The list of stakeholders in this stakeholder group.",
+        "maxItems": 100
+      },
+      "summary": {
+        "$ref": "#/components/schemas/v1alpha1StakeholderCapitalizationTableSummary",
+        "description": "A capitalization table summary scoped to the stakeholder group."
+      },
+      "shareClassSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderShareClassSummary"
+        },
+        "description": "Per share class summary information scoped to the stakeholder group.",
+        "maxItems": 200
+      },
+      "optionPoolSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderOptionPoolSummary"
+        },
+        "description": "Per option pool summary information scoped to the stakeholder group.",
+        "maxItems": 200
+      },
+      "warrantBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderWarrantBlockSummary"
+        },
+        "description": "Per warrant block summary information scoped to the stakeholder group.",
+        "maxItems": 200
+      },
+      "noteBlockSummaries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1StakeholderNoteBlockSummary"
+        },
+        "description": "Per note block summary scoped to the stakeholder group.",
+        "maxItems": 200
+      }
+    },
+    "description": "A grouping of individual stakeholders used to compute capitalization calculations. All stakeholders within a group are considered when computing capitalization calculations.\n\nThese groupings of individual stakeholders are disjoint sets; i.e., a stakeholder can only belong to a single stakeholder group.",
+    "title": "A grouping of individual stakeholders used to compute capitalization calculations.",
+    "required": [
+      "stakeholderGroupId",
+      "stakeholderGroupName"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1StakeholderCapitalizationTable"
+  ],
+  "references": [
+    "issuerscapitalizationv1alpha1Stakeholder",
+    "v1alpha1StakeholderCapitalizationTableSummary",
+    "v1alpha1StakeholderShareClassSummary",
+    "v1alpha1StakeholderOptionPoolSummary",
+    "v1alpha1StakeholderWarrantBlockSummary",
+    "v1alpha1StakeholderNoteBlockSummary"
+  ],
+  "output_path": "docs/types/stakeholder_group.md"
+}

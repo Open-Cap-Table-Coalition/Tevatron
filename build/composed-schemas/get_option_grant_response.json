@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetOptionGrantResponse",
+  "sanitized_name": "get_option_grant_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "optionGrant": {
+        "$ref": "#/components/schemas/v1alpha1OptionGrant",
+        "description": "The requested option grant issued by the specified issuer."
+      }
+    },
+    "description": "The response from the Get Option Grant endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionGrant"
+  ],
+  "output_path": "docs/types/get_option_grant_response.md"
+}

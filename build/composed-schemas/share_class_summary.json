@@ -1,0 +1,72 @@
+{
+  "name": "v1alpha1ShareClassSummary",
+  "sanitized_name": "share_class_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "shareClassId": "10",
+      "optionPoolIds": [
+        "3"
+      ],
+      "fullyDilutedShares": {
+        "value": "5603645.00"
+      },
+      "outstandingShares": {
+        "value": "5603645.00"
+      },
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1159354.84"
+        }
+      }
+    },
+    "properties": {
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "optionPoolIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of option pool ids that are associated with this share class.",
+        "maxItems": 1000
+      },
+      "fullyDilutedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "See [this Support article](https://support.carta.com/s/article/authorized-outstanding-issued-fully-diluted-shares) for information on fully diluted shares in a share class."
+      },
+      "outstandingShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "See [this Support article](https://support.carta.com/s/article/authorized-outstanding-issued-fully-diluted-shares) for information on outstanding shares in a share class."
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "Total currency amount raised for share class."
+      }
+    },
+    "description": "Share class summary includes all certificated, non-certificated and RSAs with an issue date.",
+    "required": [
+      "shareClassId",
+      "fullyDilutedShares",
+      "outstandingShares",
+      "cashRaised"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/share_class_summary.md"
+}

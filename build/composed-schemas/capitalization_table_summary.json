@@ -1,0 +1,53 @@
+{
+  "name": "v1alpha1CapitalizationTableSummary",
+  "sanitized_name": "capitalization_table_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "fullyDilutedShares": {
+        "value": "61399310.00"
+      },
+      "outstandingShares": {
+        "value": "16328224.00"
+      },
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "20261050.79"
+        }
+      }
+    },
+    "properties": {
+      "fullyDilutedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Total common shares of the company. This includes all outstanding and issued shares, and those that would be included if all options/warrants were exercised."
+      },
+      "outstandingShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Undiluted outstanding shares quantity. This is the sum of all `outstandingShares` across all `ShareClassSummary` objects."
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "Total currency amount raised."
+      }
+    },
+    "description": "Summary information about the capitalization table.",
+    "required": [
+      "fullyDilutedShares",
+      "outstandingShares",
+      "cashRaised"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/capitalization_table_summary.md"
+}

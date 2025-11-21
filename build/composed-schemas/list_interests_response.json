@@ -1,0 +1,42 @@
+{
+  "name": "v1alpha1ListInterestsResponse",
+  "sanitized_name": "list_interests_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "asOfDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "example": {
+          "value": "2021-01-01"
+        },
+        "description": "The date as of which the interests information was requested. This field will default to the date when the interest information was retrieved (i.e., today's date)."
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Interest"
+        },
+        "description": "The interests for the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "Nzg2Mg==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Interests endpoint.",
+    "required": [
+      "asOfDate",
+      "interests"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1Interest"
+  ],
+  "output_path": "docs/types/list_interests_response.md"
+}

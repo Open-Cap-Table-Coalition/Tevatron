@@ -1,0 +1,25 @@
+{
+  "name": "v1alpha1ListPointsOfContactResponse",
+  "sanitized_name": "list_points_of_contact_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "pointsOfContact": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1PointOfContact"
+        },
+        "description": "A list of points of contact."
+      }
+    },
+    "description": "The response for the ListPointsOfContact endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1PointOfContact"
+  ],
+  "output_path": "docs/types/list_points_of_contact_response.md"
+}

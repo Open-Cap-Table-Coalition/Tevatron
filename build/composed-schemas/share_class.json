@@ -1,0 +1,137 @@
+{
+  "name": "v1alpha1ShareClass",
+  "sanitized_name": "share_class",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "783",
+      "issuerId": "7",
+      "name": "SeriesB",
+      "prefix": "PSB",
+      "type": "PREFERRED",
+      "authorizedShareCount": {
+        "value": "0"
+      },
+      "parValue": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.0001"
+        }
+      },
+      "seniority": 1,
+      "pariPassu": true,
+      "preferredShareClassDetails": {
+        "rightsAndPreferences": {
+          "originalIssuePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.77"
+            }
+          },
+          "conversionPrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.50"
+            }
+          },
+          "conversionRatio": {
+            "value": "0.789"
+          },
+          "multiplier": {
+            "value": "1.00"
+          },
+          "participating": true,
+          "participationCap": {
+            "value": "1.00"
+          }
+        },
+        "dividendDetails": {
+          "dividendType": "CASH",
+          "dividendDetails": {
+            "dividendYield": {
+              "value": "0.02"
+            },
+            "dividendAccrualType": "CUMULATIVE",
+            "dividendAccrualPeriod": "DAILY",
+            "dividendInterestType": "INTEREST_PERIOD_DAILY"
+          }
+        }
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the share class.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer to which this share class belongs.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the share class.",
+        "maxLength": 100
+      },
+      "prefix": {
+        "type": "string",
+        "description": "The prefix used to identify the share class. Can only be numbers and letters. For example, CS for Common, PS for Series Seed Preferred, and PA for Series A Preferred.",
+        "title": "The prefix used to identify the share class. Can only be numbers and letters. For example, CS for Common, PS for\nSeries Seed Preferred, and PA for Series A Preferred",
+        "maxLength": 25,
+        "minLength": 1
+      },
+      "type": {
+        "$ref": "#/components/schemas/v1alpha1ShareClassType",
+        "description": "The type of the share class."
+      },
+      "authorizedShareCount": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The maximum number of shares allowed to be issued to investors, as laid out in the articles of incorporation."
+      },
+      "parValue": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The minimum price per share at which the shares must be issued. Is usually set at $0.001 or $0.0001 per share, as stated in the corporate charter."
+      },
+      "seniority": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Indicates the order in which share holders will get paid. Seniority ranks high to low, with 1 being the highest and will be paid out first.\n\nThe higher the number, the less seniority the corresponding share class has."
+      },
+      "pariPassu": {
+        "type": "boolean",
+        "description": "Indicates whether this share class has equal seniority to an existing share class."
+      },
+      "preferredShareClassDetails": {
+        "$ref": "#/components/schemas/v1alpha1PreferredShareClassDetails",
+        "description": "Preferred share class details when share class type is set to preferred."
+      }
+    },
+    "description": "A class of stock issued by an issuer."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/shareClasses"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListShareClassesResponse"
+  ],
+  "references": [
+    "v1alpha1ShareClassType",
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1PreferredShareClassDetails"
+  ],
+  "output_path": "docs/objects/share_class.md"
+}

@@ -89,7 +89,7 @@ The "draft" prefix is used to differentiate it from the final option grant objec
 | `documents` | [Option Grant Documents](option_grant_documents.md) | Optional documents that are relevant to a draft option grant. | - |
 | `draftOptionGrantSetId` | `STRING` | Output only. The unique identifier of the draft option grant set. | - |
 | `earlyExercise` | `BOOLEAN` | Whether the option grant allows for early exercise. | - |
-| `exercisePeriods` | [Exercise Periods](exercise_periods.md) | The exercise periods for the draft option grant. | - |
+| `exercisePeriods` | [Issuersdraftsecurities Exercise Periods](issuersdraftsecurities_exercise_periods.md) | The exercise periods for the draft option grant. | - |
 | `exercisePrice` | [Money](money.md) | The exercise price of the option grant. | - |
 | `expirationDate` | [Date](date.md) | The expiration date for the draft option grant. | - |
 | `grantDate` | [Date](date.md) | The grant date for the draft option grant. | - |
@@ -99,8 +99,8 @@ The "draft" prefix is used to differentiate it from the final option grant objec
 | `notes` | `STRING` | Additional notes about the option grant. <br/>**Constraints:** Max length: 1000 | - |
 | `optionGrantId` | `STRING` | Output only. The unique identifier of the option grant that is originated by this draft once it is issued. | - |
 | `quantity` | [Decimal](decimal.md) | The quantity of shares awarded in the option grant. | - |
-| `stakeholder` | [Stakeholder](stakeholder.md) | The stakeholder to whom this security will be issued. | - |
+| `stakeholder` | [Issuersdraftsecurities Stakeholder](issuersdraftsecurities_stakeholder.md) | The stakeholder to whom this security will be issued. | - |
 | `state` | [Draft Security State](draft_security_state.md) | Output only. The state of the draft option grant. Certain states are read-only and the draft option grant cannot be modified in those states. | - |
-| `stockOptionType` | [Stock Option Type](stock_option_type.md) | The type of the option grant. | - |
+| `stockOptionType` | [Issuersdraftsecurities Stock Option Type](issuersdraftsecurities_stock_option_type.md) | The type of the option grant. | - |
 | `updateTime` | [Iso8601 Complete Calendar Date Time](iso8601_complete_calendar_date_time.md) | Output only. The timestamp when the option grant was last updated. | - |
 | `vesting` | [Vesting](vesting.md) | The vesting details of the option grant. | - |

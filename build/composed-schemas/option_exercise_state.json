@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1OptionExerciseState",
+  "sanitized_name": "option_exercise_state",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "AWAITING_TAX_WITHHOLDING",
+      "PENDING",
+      "COMPLETE",
+      "CANCELED"
+    ],
+    "description": "Enumeration of option exercise request state types.\n\n - AWAITING_TAX_WITHHOLDING: The exercise is created but does not have tax withholding information yet.\n - PENDING: The exercise request is pending.\n - COMPLETE: The exercise request is complete.\n - CANCELED: The exercise request is canceled."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionExercise"
+  ],
+  "references": [],
+  "output_path": "docs/types/option_exercise_state.md"
+}

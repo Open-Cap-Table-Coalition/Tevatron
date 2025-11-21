@@ -1,0 +1,35 @@
+{
+  "name": "v1alpha1UpdateMoneyMovementResponse",
+  "sanitized_name": "update_money_movement_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "issuerId": {
+        "type": "string",
+        "example": "7",
+        "description": "The identifier of the issuer that issued the option exercises money movement information was updated for.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "exerciseId": {
+        "type": "string",
+        "example": "JZgiQfmZpvuiLbhXXQXfZi",
+        "description": "The identifier of the option exercise money movement information was updated for.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "moneyMovement": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseMoneyMovement",
+        "description": "The updated money movement information."
+      }
+    },
+    "description": "The response for the UpdateMoneyMovement endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionExerciseMoneyMovement"
+  ],
+  "output_path": "docs/types/update_money_movement_response.md"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListIssuersResponse",
+  "sanitized_name": "list_issuers_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "issuers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Issuer"
+        },
+        "title": "The retrieved issuers"
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "ODMxMw==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the List Issuers response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response for the ListIssuers endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Issuer"
+  ],
+  "output_path": "docs/types/list_issuers_response.md"
+}

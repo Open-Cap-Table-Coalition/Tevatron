@@ -1,0 +1,19 @@
+{
+  "name": "v1alpha1ShareClassType",
+  "sanitized_name": "share_class_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "COMMON",
+      "PREFERRED"
+    ],
+    "title": "- COMMON: Used to denote a common share with voting rights\n - PREFERRED: Used to denote a preferred share with no voting rights"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ShareClass"
+  ],
+  "references": [],
+  "output_path": "docs/types/share_class_type.md"
+}

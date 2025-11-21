@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetConvertibleNoteResponse",
+  "sanitized_name": "get_convertible_note_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "convertibleNote": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleNote",
+        "description": "The requested convertible note from the specified issuer."
+      }
+    },
+    "description": "The response from the `GetConvertibleNote` endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1ConvertibleNote"
+  ],
+  "output_path": "docs/types/get_convertible_note_response.md"
+}

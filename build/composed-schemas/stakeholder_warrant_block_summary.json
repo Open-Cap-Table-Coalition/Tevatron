@@ -1,0 +1,78 @@
+{
+  "name": "v1alpha1StakeholderWarrantBlockSummary",
+  "sanitized_name": "stakeholder_warrant_block_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "warrantBlockId": "1",
+      "name": "Series Seed Warrants",
+      "shareClassId": "10",
+      "fullyDilutedShares": {
+        "value": "3029344.00"
+      },
+      "outstandingWarrants": {
+        "value": "3029344.00"
+      },
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      }
+    },
+    "properties": {
+      "warrantBlockId": {
+        "type": "string",
+        "description": "The identifier of the warrant block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the warrant block.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class for this warrant block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "fullyDilutedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Common share equivalents if all warrants converted to shares."
+      },
+      "outstandingWarrants": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Outstanding warrants quantity."
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cash raised across all warrants."
+      }
+    },
+    "description": "Warrant block summary scoped to a specific stakeholder.",
+    "required": [
+      "warrantBlockId",
+      "name",
+      "shareClassId",
+      "fullyDilutedShares",
+      "outstandingWarrants",
+      "cashRaised"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuerscapitalizationv1alpha1Stakeholder",
+    "v1alpha1StakeholderGroup"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/stakeholder_warrant_block_summary.md"
+}

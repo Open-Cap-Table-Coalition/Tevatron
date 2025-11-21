@@ -314,6 +314,6 @@ These groupings of individual stakeholders are disjoint sets; i.e., a stakeholde
 | `shareClassSummaries` | [`Array` of [Stakeholder Share Class Summary](stakeholder_share_class_summary.md)] | Per share class summary information scoped to the stakeholder group. | - |
 | `stakeholderGroupId` | `STRING` | The identifier of the stakeholder group. <br/>**Constraints:** Min length: 1, Max length: 50 | `REQUIRED` |
 | `stakeholderGroupName` | `STRING` | The name of the stakeholder group. <br/>**Constraints:** Min length: 1, Max length: 1000 | `REQUIRED` |
-| `stakeholders` | [`Array` of [Stakeholder](stakeholder.md)] | The list of stakeholders in this stakeholder group. | - |
+| `stakeholders` | [`Array` of [Issuerscapitalization Stakeholder](issuerscapitalization_stakeholder.md)] | The list of stakeholders in this stakeholder group. | - |
 | `summary` | [Stakeholder Capitalization Table Summary](stakeholder_capitalization_table_summary.md) | A capitalization table summary scoped to the stakeholder group. | - |
 | `warrantBlockSummaries` | [`Array` of [Stakeholder Warrant Block Summary](stakeholder_warrant_block_summary.md)] | Per warrant block summary information scoped to the stakeholder group. | - |

@@ -11,65 +11,146 @@ This repository contains the Carta Issuer API specification and documentation ge
 
 ## Primary Commands
 
-### Python Documentation Generator
+### Python Documentation Generator (Two-Stage Pipeline)
 
 Generate documentation from the OpenAPI specification:
 
 ```bash
-python generate_docs.py
+python generate_docs.py              # Run both stages
+python generate_docs.py --stage1     # Run only Stage 1 (composition)
+python generate_docs.py --stage2     # Run only Stage 2 (markdown generation)
 ```
 
-This script:
-- Parses `carta-issuer-api.openapi.json`
-- Classifies schemas as either "objects" (primary resources with endpoints) or "types" (supporting types)
-- Generates markdown files in `docs/objects/` and `docs/types/`
-- Updates the index in `docs/README.md`
+**Two-Stage Process:**
 
-### TypeScript Two-Stage Documentation Generator (OCF Examples)
+1. **Stage 1 (Schema Composition)**:
+   - Parses `carta-issuer-api.openapi.json`
+   - Classifies schemas as "objects" (with endpoints) or "types" (supporting types)
+   - Builds cross-reference graph between schemas
+   - Writes enriched schemas to `build/composed-schemas/`
 
-Located in `ocf_examples/generate-docs/`, this is a more sophisticated documentation generation system:
+2. **Stage 2 (Markdown Generation)**:
+   - Reads composed schemas from `build/composed-schemas/`
+   - Generates markdown files in `docs/objects/` and `docs/types/`
+   - Updates the index in `docs/README.md`
+
+**Benefits of Two-Stage Approach:**
+- Intermediate schemas can be inspected for debugging
+- Stages can be run independently for faster iteration
+- Clear separation between data processing and presentation
+- Easier to add supplemental content between stages
+
+### TypeScript Generator (OCF Examples - Reference Implementation)
+
+Located in `ocf_examples/generate-docs/`, this is a reference implementation showing the two-stage pattern for OCF schemas:
 
 ```bash
-# Run from ocf_examples/generate-docs directory
+cd ocf_examples/generate-docs
 npx tsx index-two-stage.ts
 ```
 
-This performs a two-stage process:
-1. **Stage 1**: Schema composition - resolves `allOf` references, merges properties, tracks inheritance
-2. **Stage 2**: Markdown generation - creates documentation with examples and supplemental content
-
-Note: This TypeScript tool expects specific directory structures (`schema/`, `samples/`, `docs/supplemental/`) that may not be present in the current repository root.
+**Note:** This TypeScript tool is provided as an architectural example and is not used for the Carta API spec. It demonstrates the two-stage pattern with `allOf` resolution and property inheritance.
 
 ## Architecture
 
-### Python Documentation Generator (`generate_docs.py`)
+### Python Documentation Generator (Two-Stage Pipeline)
 
-**Key Components**:
+The documentation generator uses a two-stage architecture inspired by the OCF TypeScript generator, separating data processing from presentation.
 
-- `sanitize_name()`: Converts schema names (e.g., `v1alpha1MyThing`) to clean snake_case (e.g., `my_thing`)
-- `classify_and_map_schemas()`: Distinguishes between:
-  - **Primary objects**: Schemas returned by GET endpoints or accepted by POST endpoints (goes to `docs/objects/`)
-  - **Types**: Supporting schemas referenced by objects (goes to `docs/types/`)
-- `generate_markdown_for_schema()`: Creates markdown tables with property details, types, and required fields
-  - Handles enum schemas with complete value listings
-  - Displays schema examples in JSON format
-  - Falls back to `title` field when `description` is missing
-  - Shows validation constraints (pattern, format, min/max length, min/max value)
-- `format_type()`: Generates type representations with relative links to referenced schemas
+#### Stage 1: Schema Composition (`schema_composer.py`)
 
-**Data Flow**:
+**Purpose:** Extract and enrich schemas from the OpenAPI spec with metadata needed for documentation.
+
+**Key Classes:**
+- `SchemaComposer`: Main orchestrator for schema composition
+- `ComposedSchema`: Data class representing an enriched schema with metadata
+- `EndpointInfo`: Data class for endpoint information
+
+**Process:**
 1. Load OpenAPI spec JSON
-2. Analyze paths to identify primary objects vs supporting types
-3. Generate markdown for each schema with cross-references
-4. Update `docs/README.md` with auto-generated index
+2. Extract all schemas from `components.schemas`
+3. Classify schemas by analyzing API paths:
+   - **Objects**: Schemas used in GET responses or POST request bodies
+   - **Types**: Supporting schemas referenced by objects
+4. Build cross-reference graph (what references what)
+5. Compose each schema with:
+   - Original schema definition
+   - Endpoint information (method + path)
+   - Classification (object vs type)
+   - References and referenced_by lists
+   - Output path for markdown file
+6. Write composed schemas as JSON to `build/composed-schemas/`
 
-**Features**:
+**Key Methods:**
+- `_sanitize_name()`: Converts `v1alpha1MyThing` → `my_thing`
+- `_classify_schemas()`: Identifies primary objects vs supporting types
+- `_build_reference_graph()`: Maps schema dependencies
+- `_compose_schema()`: Creates enriched `ComposedSchema` objects
+
+#### Stage 2: Markdown Generation (`markdown_generator.py`)
+
+**Purpose:** Generate markdown documentation from composed schemas.
+
+**Key Classes:**
+- `MarkdownGenerator`: Main orchestrator for markdown generation
+- `ComposedSchemaData`: Data class for loading composed schemas
+
+**Process:**
+1. Load composed schemas from `build/composed-schemas/`
+2. For each schema, generate markdown with:
+   - Title (sanitized name)
+   - Endpoints (for objects)
+   - Description (with title fallback)
+   - Examples (JSON format)
+   - Enum values (for enum schemas)
+   - Properties table with:
+     - Type (with cross-reference links)
+     - Description
+     - Constraints (pattern, format, min/max)
+     - Required indicator
+3. Write markdown files to `docs/objects/` or `docs/types/`
+4. Generate index in `docs/README.md`
+
+**Key Methods:**
+- `_generate_schema_markdown()`: Creates markdown for a single schema
+- `_generate_properties_table()`: Builds property table with constraints
+- `_extract_constraints()`: Pulls validation rules from schema
+- `_format_type()`: Creates type strings with cross-reference links
+- `_create_schema_link()`: Generates relative markdown links
+
+#### Main Orchestrator (`generate_docs.py`)
+
+**Purpose:** Coordinate the two-stage pipeline with CLI interface.
+
+**Features:**
+- Run both stages sequentially
+- Run Stage 1 only (`--stage1`)
+- Run Stage 2 only (`--stage2`)
+- Command-line argument parsing
+- Error handling and user feedback
+
+**Data Flow:**
+```
+carta-issuer-api.openapi.json
+         ↓
+    [Stage 1: Schema Composition]
+         ↓
+build/composed-schemas/*.json
+         ↓
+    [Stage 2: Markdown Generation]
+         ↓
+docs/objects/*.md + docs/types/*.md
+```
+
+**Features:**
 - ✅ Enum value rendering (30 enum schemas)
 - ✅ Example data display (64 schemas with examples)
 - ✅ Validation constraints (145 properties with constraints)
 - ✅ Title fallback for descriptions (12 schemas)
 - ✅ Pattern, format, and length constraint display
 - ✅ Cross-referenced links between schemas
+- ✅ Intermediate schema output for debugging
+- ✅ Independent stage execution
 
 ### TypeScript OCF Documentation Generator
 
@@ -102,16 +183,30 @@ Note: This TypeScript tool expects specific directory structures (`schema/`, `sa
 ```
 /
 ├── carta-issuer-api.openapi.json   # Main OpenAPI specification
-├── generate_docs.py                # Python doc generator
-├── schemas/                        # Individual schema definitions
+├── generate_docs.py                # Main orchestrator (two-stage pipeline)
+├── schema_composer.py              # Stage 1: Schema composition
+├── markdown_generator.py           # Stage 2: Markdown generation
+├── schemas/                        # Individual schema definitions (reference)
 │   ├── GET/                       # Response schemas
 │   └── POST/                      # Request body schemas
-├── docs/                          # Generated documentation
+├── build/                         # Generated intermediate files
+│   └── composed-schemas/          # Stage 1 output
+│       ├── _index.json            # Schema index
+│       ├── corporation.json       # Composed schema with metadata
+│       ├── decimal.json           # Composed schema with metadata
+│       └── ...                    # One JSON file per schema
+├── docs/                          # Generated documentation (Stage 2 output)
 │   ├── README.md                  # Auto-generated index
-│   ├── objects/                   # Primary API objects
+│   ├── objects/                   # Primary API objects (with endpoints)
+│   │   ├── corporation.md
+│   │   ├── option_grant.md
+│   │   └── ...
 │   └── types/                     # Supporting types
-└── ocf_examples/                  # TypeScript documentation tools
-    └── generate-docs/             # Two-stage doc generator
+│       ├── date.md
+│       ├── decimal.md
+│       └── ...
+└── ocf_examples/                  # Reference implementation (not for Carta spec)
+    └── generate-docs/             # TypeScript two-stage generator example
         ├── Schema/                # Schema reading/parsing
         ├── SchemaComposer/        # Schema composition & markdown generation
         └── index-two-stage.ts     # Entry point

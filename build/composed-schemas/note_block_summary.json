@@ -1,0 +1,70 @@
+{
+  "name": "v1alpha1NoteBlockSummary",
+  "sanitized_name": "note_block_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "noteBlockId": "4",
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      },
+      "principal": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      },
+      "interest": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "382524.65"
+        }
+      }
+    },
+    "properties": {
+      "noteBlockId": {
+        "type": "string",
+        "description": "The identifier of the note block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cash raised for the note block."
+      },
+      "principal": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The total outstanding principal for the note block. The outstanding debt for the note block is the `principal` plus the `interest`."
+      },
+      "interest": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The total outstanding interest for the note block."
+      }
+    },
+    "description": "Note block summary information.",
+    "required": [
+      "noteBlockId",
+      "cashRaised",
+      "principal",
+      "interest"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "references": [
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/note_block_summary.md"
+}

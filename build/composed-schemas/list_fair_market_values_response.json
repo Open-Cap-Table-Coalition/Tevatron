@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListFairMarketValuesResponse",
+  "sanitized_name": "list_fair_market_values_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "fairMarketValues": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1FairMarketValue"
+        },
+        "description": "The fair market values from the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "NDY=",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the List Fair Market Values response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Fair Market Values endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1FairMarketValue"
+  ],
+  "output_path": "docs/types/list_fair_market_values_response.md"
+}

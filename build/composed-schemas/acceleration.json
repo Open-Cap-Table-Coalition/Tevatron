@@ -1,0 +1,35 @@
+{
+  "name": "v1alpha1Acceleration",
+  "sanitized_name": "acceleration",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the acceleration vesting.",
+        "title": "The name of the accelerated vesting condition",
+        "maxLength": 256,
+        "minLength": 1
+      },
+      "terms": {
+        "type": "string",
+        "description": "Detailed terms of accelerated vesting of the draft option grant.",
+        "title": "Detailed terms of the accelerated vesting condition",
+        "maxLength": 1000,
+        "minLength": 1
+      }
+    },
+    "title": "Details of accelerated vesting",
+    "required": [
+      "name",
+      "terms"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Vesting"
+  ],
+  "references": [],
+  "output_path": "docs/types/acceleration.md"
+}

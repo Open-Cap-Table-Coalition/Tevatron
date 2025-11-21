@@ -1,0 +1,24 @@
+{
+  "name": "v1alpha1DividendInterestType",
+  "sanitized_name": "dividend_interest_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "SIMPLE_INTEREST",
+      "INTEREST_PERIOD_DAILY",
+      "INTEREST_PERIOD_WEEKLY",
+      "INTEREST_PERIOD_MONTHLY",
+      "INTEREST_PERIOD_QUARTERLY",
+      "INTEREST_PERIOD_SEMI_ANNUAL",
+      "INTEREST_PERIOD_ANNUAL"
+    ],
+    "title": "- SIMPLE_INTEREST: Interest is calculated using simple interest\n - INTEREST_PERIOD_DAILY: Interest compounds daily\n - INTEREST_PERIOD_WEEKLY: Interest compounds weekly\n - INTEREST_PERIOD_MONTHLY: Interest compounds monthly\n - INTEREST_PERIOD_QUARTERLY: Interest compounds quarterly\n - INTEREST_PERIOD_SEMI_ANNUAL: Interest compounds semi-annually\n - INTEREST_PERIOD_ANNUAL: Interest compounds annually"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DividendDetails"
+  ],
+  "references": [],
+  "output_path": "docs/types/dividend_interest_type.md"
+}

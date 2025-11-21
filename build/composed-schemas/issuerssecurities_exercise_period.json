@@ -1,0 +1,20 @@
+{
+  "name": "issuerssecuritiesv1alpha1ExercisePeriod",
+  "sanitized_name": "issuerssecurities_exercise_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "EXERCISE_PERIOD_DAY",
+      "EXERCISE_PERIOD_MONTH",
+      "EXERCISE_PERIOD_YEAR"
+    ],
+    "title": "- EXERCISE_PERIOD_DAY: The exercise period will be expressed in days\n - EXERCISE_PERIOD_MONTH: The exercise period will be expressed in months\n - EXERCISE_PERIOD_YEAR: The exercise period will be expressed in years"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuerssecuritiesv1alpha1ExercisePeriods"
+  ],
+  "references": [],
+  "output_path": "docs/types/issuerssecurities_exercise_period.md"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "v1alpha1OptionExerciseMoneyMovement",
+  "sanitized_name": "option_exercise_money_movement",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "completionDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time at which funds for the total cost of the exercise were received."
+      }
+    },
+    "description": "Information about the the funding of an option exercise."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "ExerciseServiceUpdateMoneyMovementBody",
+    "v1alpha1OptionExercise",
+    "v1alpha1UpdateMoneyMovementResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime"
+  ],
+  "output_path": "docs/types/option_exercise_money_movement.md"
+}

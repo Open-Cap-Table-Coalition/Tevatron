@@ -1,0 +1,22 @@
+{
+  "name": "v1alpha1DividendAccrualPeriod",
+  "sanitized_name": "dividend_accrual_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "DAILY",
+      "WEEKLY",
+      "MONTHLY",
+      "QUARTERLY",
+      "ANNUALLY"
+    ],
+    "title": "- DAILY: Dividends accrue on a daily basis\n - WEEKLY: Dividends accrue on a weekly basis\n - MONTHLY: Dividends accrue on a monthly basis\n - QUARTERLY: Dividends accrue on a quarterly basis\n - ANNUALLY: Dividends accrue on an annual basis"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DividendDetails"
+  ],
+  "references": [],
+  "output_path": "docs/types/dividend_accrual_period.md"
+}

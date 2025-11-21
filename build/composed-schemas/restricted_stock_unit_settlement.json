@@ -1,0 +1,82 @@
+{
+  "name": "v1alpha1RestrictedStockUnitSettlement",
+  "sanitized_name": "restricted_stock_unit_settlement",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "settlementDate": {
+        "value": "2016-08-19"
+      },
+      "releaseQuantity": {
+        "value": "200"
+      },
+      "saleQuantity": {
+        "value": "200"
+      },
+      "withholdingQuantity": {
+        "value": "55"
+      },
+      "netSettlementQuantity": {
+        "value": "145"
+      },
+      "settlementPrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.78"
+        }
+      },
+      "certificateId": "78",
+      "certificateLabel": "CS-124"
+    },
+    "properties": {
+      "settlementDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date of the settlement."
+      },
+      "releaseQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The quantity released during the settlement."
+      },
+      "saleQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The quantity sold in a cashless transaction to cover the cost of the settlement."
+      },
+      "withholdingQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The quantity withheld during the settlement."
+      },
+      "netSettlementQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The net quantity settled after quantities are sold or withheld."
+      },
+      "settlementPrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The price to settle one unit of the RSU."
+      },
+      "certificateId": {
+        "type": "string",
+        "description": "The resource identifier for the certificate that was generated as part of the transaction.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "certificateLabel": {
+        "type": "string",
+        "description": "The label of the certificate that was generated as part of the transaction (e.g. CS-107)."
+      }
+    },
+    "description": "Restricted stock unit settlement information."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1RestrictedStockUnit"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/restricted_stock_unit_settlement.md"
+}

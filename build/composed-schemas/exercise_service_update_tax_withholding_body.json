@@ -1,0 +1,30 @@
+{
+  "name": "ExerciseServiceUpdateTaxWithholdingBody",
+  "sanitized_name": "exercise_service_update_tax_withholding_body",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "taxWithholdings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionExerciseTaxWithholdingLineItem"
+        },
+        "description": "The tax withholdings information to update."
+      }
+    },
+    "description": "The request for the UpdateTaxWithholding endpoint."
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/v1alpha1/issuers/{issuerId}/optionExercises/{exerciseId}:updateTaxWithholding"
+    }
+  ],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionExerciseTaxWithholdingLineItem"
+  ],
+  "output_path": "docs/objects/exercise_service_update_tax_withholding_body.md"
+}

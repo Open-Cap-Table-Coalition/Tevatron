@@ -1,0 +1,53 @@
+{
+  "name": "issuersdraftsecuritiesv1alpha1Stakeholder",
+  "sanitized_name": "issuersdraftsecurities_stakeholder",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "employeeId": "adsfc123",
+      "type": "STAKEHOLDER_TYPE_INDIVIDUAL",
+      "relationship": "STAKEHOLDER_RELATIONSHIP_EMPLOYEE"
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the stakeholder to whom this security will be issued.",
+        "maxLength": 256,
+        "minLength": 1
+      },
+      "email": {
+        "type": "string",
+        "description": "The email of the stakeholder to whom this security will be issued.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "employeeId": {
+        "type": "string",
+        "description": "The employee id of the stakeholder in the HR partner system.",
+        "maxLength": 100
+      },
+      "type": {
+        "$ref": "#/components/schemas/v1alpha1StakeholderType",
+        "description": "The type of the stakeholder."
+      },
+      "relationship": {
+        "$ref": "#/components/schemas/issuersdraftsecuritiesv1alpha1StakeholderRelationship",
+        "description": "The relationship of the stakeholder to the issuer."
+      }
+    },
+    "description": "Details of a stakeholder",
+    "title": "Details of a stakeholder"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [
+    "v1alpha1StakeholderType",
+    "issuersdraftsecuritiesv1alpha1StakeholderRelationship"
+  ],
+  "output_path": "docs/types/issuersdraftsecurities_stakeholder.md"
+}

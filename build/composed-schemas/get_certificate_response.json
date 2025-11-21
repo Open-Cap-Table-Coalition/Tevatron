@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetCertificateResponse",
+  "sanitized_name": "get_certificate_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "certificate": {
+        "$ref": "#/components/schemas/v1alpha1Certificate",
+        "description": "The requested certificate from the specified issuer."
+      }
+    },
+    "description": "The response from the Get Certificate endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Certificate"
+  ],
+  "output_path": "docs/types/get_certificate_response.md"
+}

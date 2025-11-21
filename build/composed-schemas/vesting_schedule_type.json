@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1VestingScheduleType",
+  "sanitized_name": "vesting_schedule_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "DATE",
+      "MILESTONE",
+      "HYBRID"
+    ],
+    "description": "Types of vesting schedule templates.\n\n - DATE: Vesting schedule with tranches based on calendar dates\n - MILESTONE: Vesting schedule with tranches based on a milestone condition being achieved\n - HYBRID: vesting schedule with a combination of date-based tranches and performance conditions"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingScheduleTemplate"
+  ],
+  "references": [],
+  "output_path": "docs/types/vesting_schedule_type.md"
+}

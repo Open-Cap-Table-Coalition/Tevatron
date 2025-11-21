@@ -1,0 +1,33 @@
+{
+  "name": "v1alpha1PointOfContactType",
+  "sanitized_name": "point_of_contact_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "PRIMARY_CONTACT",
+      "OPTION_EXERCISE_APPROVER",
+      "STAKEHOLDER_RELATIONS",
+      "LEGAL_ADMIN",
+      "FINANCE_ADMIN",
+      "VALUATIONS_CONTACT",
+      "HR_ADMIN",
+      "PAYROLL_ADMIN",
+      "INVESTOR_RELATIONS",
+      "FINANCIAL_REPORTING_ADMIN",
+      "LIQUIDITY_CONTACT",
+      "LEFT_SIGNATORY",
+      "RIGHT_SIGNATORY",
+      "OPTION_SIGNATORY",
+      "CONVERTIBLE_NOTE_SIGNATORY",
+      "WARRANT_SIGNATORY"
+    ],
+    "description": "Types of points of contact.\n\n - PRIMARY_CONTACT: Primary Contact\n - OPTION_EXERCISE_APPROVER: Option Exercise Approver\n - STAKEHOLDER_RELATIONS: Stakeholder Relations\n - LEGAL_ADMIN: Legal Admin\n - FINANCE_ADMIN: Finance Admin\n - VALUATIONS_CONTACT: Valuations Contact\n - HR_ADMIN: HR Admin\n - PAYROLL_ADMIN: Payroll Admin\n - INVESTOR_RELATIONS: Investor Relations\n - FINANCIAL_REPORTING_ADMIN: Financial Reporting Admin\n - LIQUIDITY_CONTACT: Liquidity Contact\n - LEFT_SIGNATORY: Left Signatory\n - RIGHT_SIGNATORY: Right Signatory\n - OPTION_SIGNATORY: Option Signatory\n - CONVERTIBLE_NOTE_SIGNATORY: Convertible Note Signatory\n - WARRANT_SIGNATORY: Warrant Signatory"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PointOfContact"
+  ],
+  "references": [],
+  "output_path": "docs/types/point_of_contact_type.md"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "StakeholderEntityType",
+  "sanitized_name": "stakeholder_entity_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "INDIVIDUAL",
+      "CORPORATION",
+      "LIMITED_LIABILITY_CORPORATION",
+      "ESTATE_OR_TRUST",
+      "PARTNERSHIP",
+      "DISREGARDED_ENTITY",
+      "UNKNOWN"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "publicapiissuersv1alpha1Stakeholder"
+  ],
+  "references": [],
+  "output_path": "docs/types/stakeholder_entity_type.md"
+}

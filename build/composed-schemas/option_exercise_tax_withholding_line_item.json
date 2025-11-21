@@ -1,0 +1,40 @@
+{
+  "name": "v1alpha1OptionExerciseTaxWithholdingLineItem",
+  "sanitized_name": "option_exercise_tax_withholding_line_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the tax withholding line item.",
+        "maxLength": 100
+      },
+      "rate": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The tax witholding percentage rate for the specified jurisdiction."
+      },
+      "taxes": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The tax to withhold for the specified jurisdiction."
+      },
+      "jurisdiction": {
+        "$ref": "#/components/schemas/v1alpha1Jurisdiction",
+        "description": "The jurisdiction for which the tax withholding is calculated."
+      }
+    },
+    "description": "Tax withholding information for an option exercise, calculated for a specific jurisdiction for a given stakeholder."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "ExerciseServiceUpdateTaxWithholdingBody",
+    "v1alpha1OptionExercise",
+    "v1alpha1UpdateTaxWithholdingResponse"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1Jurisdiction"
+  ],
+  "output_path": "docs/types/option_exercise_tax_withholding_line_item.md"
+}

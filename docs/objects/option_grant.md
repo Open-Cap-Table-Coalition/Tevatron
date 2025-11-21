@@ -123,7 +123,7 @@
 | `disqualificationDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date this option grant became disqualified. | - |
 | `earlyExercisable` | `BOOLEAN` | True if the option grant is eligible for early exercising; false if the option grant is not eligible for early exercising. | - |
 | `equityIncentivePlanName` | `STRING` | The name of the equity incentive plan (i.e., option plan) associated with this option grant. <br/>**Constraints:** Max length: 100 | - |
-| `exercisePeriods` | [Exercise Periods](../types/exercise_periods.md) | The exercise periods for the option grant. Unset values within this field will be inherited from the equity plan from with the option was granted. | - |
+| `exercisePeriods` | [Issuerssecurities Exercise Periods](../types/issuerssecurities_exercise_periods.md) | The exercise periods for the option grant. Unset values within this field will be inherited from the equity plan from with the option was granted. | - |
 | `exercisePrice` | [Money](../types/money.md) | The exercise price of the options in the grant. | - |
 | `exercisedQuantity` | [Decimal](../types/decimal.md) | The total quantity of stock options from this grant that have been exercised into shares. | - |
 | `exercises` | [`Array` of [Exercise](../types/exercise.md)] | The list of all exercises associated with this grant. | - |
@@ -143,9 +143,9 @@
 | `securityLabel` | `STRING` | The label representing this security (option grant). <br/>**Constraints:** Max length: 50 | - |
 | `stakeholderAcceptanceDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the option grant was accepted by the stakeholder. | - |
 | `stakeholderId` | `STRING` | The identifier of the stakeholder that holds the option grant. <br/>**Constraints:** Max length: 50 | - |
-| `stockOptionType` | [Stock Option Type](../types/stock_option_type.md) | The stock option type at time of issuance. For grants issued as ISO that subsequently failed to meet ISO qualifications, the type will remain ISO. Refer to the disqualification date for information regarding the disqualification of the grant's ISO shares. | - |
+| `stockOptionType` | [Issuerssecurities Stock Option Type](../types/issuerssecurities_stock_option_type.md) | The stock option type at time of issuance. For grants issued as ISO that subsequently failed to meet ISO qualifications, the type will remain ISO. Refer to the disqualification date for information regarding the disqualification of the grant's ISO shares. | - |
 | `terminationDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date that the option grant was terminated. This commonly matches the date the company's relationship with the stakeholder was terminated. | - |
 | `vestedQuantity` | [Decimal](../types/decimal.md) | The total quantity of stock options from this grant that have vested. | - |
 | `vestingEvents` | [`Array` of [Option Grant Vesting Event](../types/option_grant_vesting_event.md)] | The list of all vesting events associated with this grant. For time based vesting events, both past and future vesting details will be available. For performance and milestone based vesting, only achieved vesting events will be available. | - |
-| `vestingSchedule` | [Vesting Schedule](../types/vesting_schedule.md) | The vesting schedule information associated with the restricted stock award. | - |
+| `vestingSchedule` | [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md) | The vesting schedule information associated with the restricted stock award. | - |
 | `vestingStartDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the option grant began vesting. | - |

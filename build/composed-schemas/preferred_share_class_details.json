@@ -1,0 +1,69 @@
+{
+  "name": "v1alpha1PreferredShareClassDetails",
+  "sanitized_name": "preferred_share_class_details",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "rightsAndPreferences": {
+        "originalIssuePrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.77"
+          }
+        },
+        "conversionPrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.50"
+          }
+        },
+        "conversionRatio": {
+          "value": "0.789"
+        },
+        "multiplier": {
+          "value": "1.00"
+        },
+        "participating": true,
+        "participationCap": {
+          "value": "1.00"
+        }
+      },
+      "dividendDetails": {
+        "dividendType": "CASH",
+        "dividendDetails": {
+          "dividendYield": {
+            "value": "0.02"
+          },
+          "dividendAccrualType": "CUMULATIVE",
+          "dividendAccrualPeriod": "DAILY",
+          "dividendInterestType": "INTEREST_PERIOD_DAILY"
+        }
+      }
+    },
+    "properties": {
+      "rightsAndPreferences": {
+        "$ref": "#/components/schemas/v1alpha1ShareClassRightsAndPreferences",
+        "description": "The rights and preferences for the preferred share class."
+      },
+      "dividendDetails": {
+        "$ref": "#/components/schemas/v1alpha1ShareClassDividendDetails",
+        "description": "The dividend details for the preferred share class."
+      }
+    },
+    "description": "Details of a preferred share class, split into rights and preferences details and dividend details."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ShareClass"
+  ],
+  "references": [
+    "v1alpha1ShareClassRightsAndPreferences",
+    "v1alpha1ShareClassDividendDetails"
+  ],
+  "output_path": "docs/types/preferred_share_class_details.md"
+}

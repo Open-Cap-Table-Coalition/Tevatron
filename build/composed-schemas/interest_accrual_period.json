@@ -1,0 +1,26 @@
+{
+  "name": "v1alpha1InterestAccrualPeriod",
+  "sanitized_name": "interest_accrual_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "INTEREST_ACCRUAL_PERIOD_DAILY",
+      "INTEREST_ACCRUAL_PERIOD_WEEKLY",
+      "INTEREST_ACCRUAL_PERIOD_MONTHLY",
+      "INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH",
+      "INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY",
+      "INTEREST_ACCRUAL_PERIOD_ANNUALLY",
+      "INTEREST_ACCRUAL_PERIOD_QUARTERLY_CALENDAR",
+      "INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY_CALENDAR",
+      "INTEREST_ACCRUAL_PERIOD_ANNUALLY_CALENDAR"
+    ],
+    "description": "The length of time over which the interest due to the lender is calculated."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleNote"
+  ],
+  "references": [],
+  "output_path": "docs/types/interest_accrual_period.md"
+}

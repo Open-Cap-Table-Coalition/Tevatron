@@ -1,0 +1,34 @@
+{
+  "name": "v1alpha1ThresholdDetails",
+  "sanitized_name": "threshold_details",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "thresholdAmount": {
+        "value": "7.2"
+      },
+      "thresholdType": "THRESHOLD_TYPE_PER_UNIT"
+    },
+    "properties": {
+      "amount": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The value above which the holder is entitled to gains of the company\u2019s value."
+      },
+      "type": {
+        "$ref": "#/components/schemas/ThresholdDetailsThresholdType",
+        "description": "The threshold type."
+      }
+    },
+    "description": "Threshold Details for the interest."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Interest"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "ThresholdDetailsThresholdType"
+  ],
+  "output_path": "docs/types/threshold_details.md"
+}

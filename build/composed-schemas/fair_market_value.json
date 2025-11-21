@@ -1,0 +1,78 @@
+{
+  "name": "v1alpha1FairMarketValue",
+  "sanitized_name": "fair_market_value",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "string",
+      "effectiveDate": {
+        "value": "2014-03-17"
+      },
+      "expirationDate": {
+        "value": "2015-03-16"
+      },
+      "staleDate": {
+        "value": "2015-03-16"
+      },
+      "shareClassValuations": [
+        {
+          "shareClassId": "9",
+          "shareClassName": "Common",
+          "common": true,
+          "price": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.20"
+            }
+          }
+        }
+      ]
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "An identifier for the 409A fair market values.",
+        "maxLength": 50
+      },
+      "effectiveDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date that this fair market valuation takes effect."
+      },
+      "expirationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date that this fair market valuation will expire."
+      },
+      "staleDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date that this fair market valuation becomes stale."
+      },
+      "shareClassValuations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1ShareClassValuation"
+        },
+        "description": "A list of fair market values for each share class.",
+        "maxItems": 500
+      }
+    },
+    "description": "The fair market value contains the accepted values of an issuer's stock, specified on a per-share class basis. These values come from the 409A reports that Carta has for the issuer."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/fairMarketValues"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListFairMarketValuesResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1ShareClassValuation"
+  ],
+  "output_path": "docs/objects/fair_market_value.md"
+}

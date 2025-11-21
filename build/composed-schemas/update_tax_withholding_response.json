@@ -1,0 +1,38 @@
+{
+  "name": "v1alpha1UpdateTaxWithholdingResponse",
+  "sanitized_name": "update_tax_withholding_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "issuerId": {
+        "type": "string",
+        "example": "7",
+        "description": "The identifier of the issuer that issued the option exercises tax withholding information was updated for.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "exerciseId": {
+        "type": "string",
+        "description": "The identifier of the option exercise tax withholding information was updated for.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "taxWithholdings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionExerciseTaxWithholdingLineItem"
+        },
+        "description": "The updated tax withholdings."
+      }
+    },
+    "description": "The response for the UpdateTaxWithholding endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionExerciseTaxWithholdingLineItem"
+  ],
+  "output_path": "docs/types/update_tax_withholding_response.md"
+}

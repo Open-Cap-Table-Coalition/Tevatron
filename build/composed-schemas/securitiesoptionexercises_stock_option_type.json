@@ -1,0 +1,20 @@
+{
+  "name": "securitiesoptionexercisesv1alpha1StockOptionType",
+  "sanitized_name": "securitiesoptionexercises_stock_option_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "ISO",
+      "NSO",
+      "OTHER"
+    ],
+    "description": "Enumeration of stock option grant types.\n\n - ISO: The stock options are incentive stock options (ISOs).\n - NSO: The stock options are non-qualified stock options (NSOs).\n - OTHER: The stock options are neither ISOs nor NSOs."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionExercise"
+  ],
+  "references": [],
+  "output_path": "docs/types/securitiesoptionexercises_stock_option_type.md"
+}

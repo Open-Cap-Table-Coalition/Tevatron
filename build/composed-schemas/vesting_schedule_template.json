@@ -1,0 +1,55 @@
+{
+  "name": "v1alpha1VestingScheduleTemplate",
+  "sanitized_name": "vesting_schedule_template",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "1",
+      "issuerId": "7",
+      "name": "1/24, No Cliff",
+      "description": "Shares vest monthly for the next 24 months on the same day as the start date.",
+      "vestingScheduleType": "DATE"
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template.",
+        "maxLength": 50
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer to which this vesting schedule template belongs.",
+        "maxLength": 50
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the vesting schedule template.",
+        "maxLength": 500
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the vesting schedule template.",
+        "maxLength": 1000
+      },
+      "vestingScheduleType": {
+        "$ref": "#/components/schemas/v1alpha1VestingScheduleType",
+        "description": "The type of vesting schedule found within this template."
+      }
+    },
+    "description": "Details of a vesting schedule template."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/vestingScheduleTemplates"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListVestingScheduleTemplatesResponse"
+  ],
+  "references": [
+    "v1alpha1VestingScheduleType"
+  ],
+  "output_path": "docs/objects/vesting_schedule_template.md"
+}

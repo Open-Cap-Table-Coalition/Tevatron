@@ -1,0 +1,19 @@
+{
+  "name": "v1alpha1DividendType",
+  "sanitized_name": "dividend_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CASH",
+      "NON_CASH"
+    ],
+    "title": "- CASH: Investors will receive dividends in cash\n - NON_CASH: Investors will receive non-cash dividends, such as shares"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ShareClassDividendDetails"
+  ],
+  "references": [],
+  "output_path": "docs/types/dividend_type.md"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "issuerssecuritiesv1alpha1VestingSchedule",
+  "sanitized_name": "issuerssecurities_vesting_schedule",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "name": "1/24 Cliff",
+      "lastModifiedDate": {
+        "value": "2022-01-31"
+      },
+      "startDate": {
+        "value": "2022-01-31"
+      },
+      "endDate": {
+        "value": "2024-01-31"
+      }
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the vesting schedule.",
+        "maxLength": 500
+      },
+      "lastModifiedDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the vesting schedule was last modified."
+      },
+      "startDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The start date of the vesting schedule."
+      },
+      "endDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The end date of the vesting schedule."
+      }
+    },
+    "description": "Restricted stock award vesting event information."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionGrant",
+    "v1alpha1RestrictedStockAward",
+    "v1alpha1RestrictedStockUnit"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate"
+  ],
+  "output_path": "docs/types/issuerssecurities_vesting_schedule.md"
+}

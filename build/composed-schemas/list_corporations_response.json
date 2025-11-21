@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListCorporationsResponse",
+  "sanitized_name": "list_corporations_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "corporations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Corporation"
+        },
+        "title": "The retrieved corporations"
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "ODMxMw==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the List Corporations response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response for the ListCorporations endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Corporation"
+  ],
+  "output_path": "docs/types/list_corporations_response.md"
+}

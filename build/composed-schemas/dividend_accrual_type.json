@@ -1,0 +1,19 @@
+{
+  "name": "v1alpha1DividendAccrualType",
+  "sanitized_name": "dividend_accrual_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CUMULATIVE",
+      "NON_CUMULATIVE"
+    ],
+    "title": "- CUMULATIVE: Dividends that are earned and accrue over time, whether or not it is declared by the board\n - NON_CUMULATIVE: Dividends that accrue and are paid out at the discretion of the board"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DividendDetails"
+  ],
+  "references": [],
+  "output_path": "docs/types/dividend_accrual_type.md"
+}

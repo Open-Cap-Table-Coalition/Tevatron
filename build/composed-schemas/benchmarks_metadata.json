@@ -1,0 +1,35 @@
+{
+  "name": "v1alpha1BenchmarksMetadata",
+  "sanitized_name": "benchmarks_metadata",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "benchmarksVersionDatetime": {
+        "value": "2024-01-01T09:00:00.000000Z"
+      }
+    },
+    "properties": {
+      "benchmarksVersionDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "example": {
+          "value": "2024-01-01T09:00:00.000000Z"
+        },
+        "description": "The datetime that these benchmarks were first released in Carta."
+      }
+    },
+    "description": "Context on the benchmark version of the benchmarks being returned. May differ by corporation.",
+    "required": [
+      "benchmarksVersionDatetime"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1GetCompensationBenchmarkAttributesResponse",
+    "v1alpha1GetCompensationBenchmarksResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime"
+  ],
+  "output_path": "docs/types/benchmarks_metadata.md"
+}

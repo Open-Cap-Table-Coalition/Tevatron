@@ -1,0 +1,19 @@
+{
+  "name": "ThresholdDetailsThresholdType",
+  "sanitized_name": "threshold_details_threshold_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "THRESHOLD_TYPE_PER_UNIT",
+      "THRESHOLD_TYPE_OVERALL"
+    ],
+    "title": "- THRESHOLD_TYPE_PER_UNIT: Applied on a per-unit basis.\n - THRESHOLD_TYPE_OVERALL: Applied on the overall company value"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ThresholdDetails"
+  ],
+  "references": [],
+  "output_path": "docs/types/threshold_details_threshold_type.md"
+}

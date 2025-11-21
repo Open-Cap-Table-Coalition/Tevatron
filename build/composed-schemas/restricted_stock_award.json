@@ -1,0 +1,199 @@
+{
+  "name": "v1alpha1RestrictedStockAward",
+  "sanitized_name": "restricted_stock_award",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "1191",
+      "issuerId": "7",
+      "stakeholderId": "6113",
+      "equityIncentivePlanName": "2016 Equity Incentive Plan",
+      "shareClassName": "Common",
+      "issueDate": {
+        "value": "2016-08-25"
+      },
+      "vestingStartDate": {
+        "value": "2016-08-25"
+      },
+      "boardApprovalDate": {
+        "value": "2016-12-01"
+      },
+      "stakeholderAcceptanceDate": {
+        "value": "2017-02-27"
+      },
+      "canceledDate": {
+        "value": "2022-05-02"
+      },
+      "quantity": {
+        "value": "200000"
+      },
+      "vestedQuantity": {
+        "value": "200000"
+      },
+      "securityLabel": "CS-16",
+      "pricePerShare": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.01"
+        }
+      },
+      "vestingEvents": [
+        {
+          "id": "1988",
+          "vestDate": {
+            "value": "2018-02-27"
+          },
+          "quantity": {
+            "value": "200000"
+          },
+          "performanceCondition": false,
+          "vested": true,
+          "maxQuantity": {
+            "value": "200000"
+          },
+          "targetQuantity": {
+            "value": "200000"
+          },
+          "vestedQuantity": {
+            "value": "200000"
+          }
+        }
+      ],
+      "vestingSchedule": {
+        "name": "1/24 Cliff",
+        "lastModifiedDate": {
+          "value": "2022-01-31"
+        },
+        "startDate": {
+          "value": "2022-01-31"
+        },
+        "endDate": {
+          "value": "2024-01-31"
+        }
+      },
+      "lastModifiedDatetime": {
+        "value": "2024-07-30T09:31:57.000000Z"
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the restricted stock award.",
+        "maxLength": 50
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer owning the restricted stock award.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder that holds the restricted stock award.",
+        "maxLength": 50
+      },
+      "equityIncentivePlanName": {
+        "type": "string",
+        "description": "The name of the equity incentive plan (i.e., option plan) associated with this restricted stock award.",
+        "maxLength": 100
+      },
+      "shareClassName": {
+        "type": "string",
+        "description": "The name of the share class that this restricted stock award belongs to.",
+        "maxLength": 50
+      },
+      "issueDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock award was issued."
+      },
+      "vestingStartDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The start date of the vesting period for the restricted stock award."
+      },
+      "boardApprovalDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock award received board approval."
+      },
+      "stakeholderAcceptanceDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock award was accepted by the stakeholder."
+      },
+      "canceledDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock award was canceled."
+      },
+      "terminationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock award was terminated. This commonly matches the date the company's relationship with the stakeholder was terminated."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of restricted stock units in the award."
+      },
+      "vestedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of vested shares in the stock award."
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The label representing this security (restricted stock award).",
+        "maxLength": 50
+      },
+      "pricePerShare": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cost of each share in the restricted stock award."
+      },
+      "vestingEvents": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RestrictedStockAwardVestingEvent"
+        },
+        "description": "The list of all vesting events associated with the restricted stock award."
+      },
+      "vestingSchedule": {
+        "$ref": "#/components/schemas/issuerssecuritiesv1alpha1VestingSchedule",
+        "description": "The vesting schedule information associated with the restricted stock award."
+      },
+      "canceledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock award that were canceled."
+      },
+      "returnedToPoolQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock award that were returned to the pool."
+      },
+      "returnedToTreasuryQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock award that were annulled, but not returned to the pool."
+      },
+      "lastModifiedDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time when the restricted stock award was last modified."
+      }
+    },
+    "description": "A restricted stock award is a grant of company shares."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/restrictedStockAwards"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetRestrictedStockAwardResponse",
+    "v1alpha1ListRestrictedStockAwardsResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1RestrictedStockAwardVestingEvent",
+    "issuerssecuritiesv1alpha1VestingSchedule",
+    "v1alpha1Iso8601CompleteCalendarDateTime"
+  ],
+  "output_path": "docs/objects/restricted_stock_award.md"
+}

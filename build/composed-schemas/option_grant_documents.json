@@ -1,0 +1,39 @@
+{
+  "name": "v1alpha1OptionGrantDocuments",
+  "sanitized_name": "option_grant_documents",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "formOfOptionAgreement": {
+        "$ref": "#/components/schemas/v1alpha1Document",
+        "description": "Details about the form of option agreement."
+      },
+      "formOfExerciseAgreement": {
+        "$ref": "#/components/schemas/v1alpha1Document",
+        "description": "Details about the form of exercise agreement."
+      },
+      "equityIncentivePlan": {
+        "$ref": "#/components/schemas/v1alpha1Document",
+        "description": "Details about the equity incentive plan."
+      },
+      "additionalDocuments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Document"
+        },
+        "description": "Details about other additional documents.\n\nMax of 100 items."
+      }
+    },
+    "description": "Documents that are relevant to a draft option grant.\n\nThese documents are attached to a specific draft option grant object and will be associated with the resulting option grant once the draft is approved."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [
+    "v1alpha1Document"
+  ],
+  "output_path": "docs/types/option_grant_documents.md"
+}

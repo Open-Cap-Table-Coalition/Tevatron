@@ -1,0 +1,37 @@
+{
+  "name": "v1alpha1Access",
+  "sanitized_name": "access",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "accessLevel": "FULL_ACCESS",
+      "accessReason": ""
+    },
+    "properties": {
+      "accessLevel": {
+        "type": "string",
+        "example": "FULL_ACCESS",
+        "description": "The access level of a given corporation.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "accessReason": {
+        "type": "string",
+        "example": "",
+        "description": "Details about the access level of a given corporation.",
+        "maxLength": 1000
+      }
+    },
+    "description": "Context about the access of a given corporation.",
+    "required": [
+      "accessLevel"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1GetCompensationBenchmarksResponse"
+  ],
+  "references": [],
+  "output_path": "docs/types/access.md"
+}

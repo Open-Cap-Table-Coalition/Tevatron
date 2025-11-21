@@ -1,0 +1,30 @@
+{
+  "name": "rpcStatus",
+  "sanitized_name": "rpc_status",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "message": {
+        "type": "string"
+      },
+      "details": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/protobufAny"
+        }
+      }
+    }
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "protobufAny"
+  ],
+  "output_path": "docs/types/rpc_status.md"
+}

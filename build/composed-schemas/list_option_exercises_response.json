@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListOptionExercisesResponse",
+  "sanitized_name": "list_option_exercises_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "optionExercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionExercise"
+        },
+        "description": "The option exercises from the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "Nzg2Mg==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response for the ListOptionExercises endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionExercise"
+  ],
+  "output_path": "docs/types/list_option_exercises_response.md"
+}

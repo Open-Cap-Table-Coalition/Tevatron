@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetDraftOptionGrantResponse",
+  "sanitized_name": "get_draft_option_grant_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "draftOptionGrant": {
+        "$ref": "#/components/schemas/v1alpha1DraftOptionGrant",
+        "description": "The requested draft option grant"
+      }
+    },
+    "description": "The response for the GetDraftOptionGrant endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "output_path": "docs/types/get_draft_option_grant_response.md"
+}

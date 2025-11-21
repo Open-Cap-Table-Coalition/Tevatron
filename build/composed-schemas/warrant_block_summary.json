@@ -1,0 +1,69 @@
+{
+  "name": "v1alpha1WarrantBlockSummary",
+  "sanitized_name": "warrant_block_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "warrantBlockId": "1",
+      "shareClassId": "10",
+      "fullyDilutedShares": {
+        "value": "3029344.00"
+      },
+      "outstandingWarrants": {
+        "value": "3029344.00"
+      },
+      "cashRaised": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1075000.00"
+        }
+      }
+    },
+    "properties": {
+      "warrantBlockId": {
+        "type": "string",
+        "description": "The identifier of the warrant block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class for this warrant block.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "fullyDilutedShares": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Number of shares if all warrants converted to shares."
+      },
+      "outstandingWarrants": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Outstanding warrants quantity."
+      },
+      "cashRaised": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cash raised for the warrants."
+      }
+    },
+    "description": "Warrant block summary.",
+    "required": [
+      "warrantBlockId",
+      "shareClassId",
+      "fullyDilutedShares",
+      "outstandingWarrants",
+      "cashRaised"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/warrant_block_summary.md"
+}

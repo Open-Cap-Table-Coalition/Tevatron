@@ -1,0 +1,65 @@
+{
+  "name": "v1alpha1StakeholderOptionPoolSummary",
+  "sanitized_name": "stakeholder_option_pool_summary",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "optionPoolId": "3",
+      "name": "Equity Incentive Plan",
+      "shareClassId": "10",
+      "outstandingEquityAwardDerivatives": {
+        "value": "3725634.0"
+      },
+      "outstandingCommittedRestrictedStockAwards": {
+        "value": "0"
+      }
+    },
+    "properties": {
+      "optionPoolId": {
+        "type": "string",
+        "description": "The identifier of the option pool.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the option pool.",
+        "maxLength": 100,
+        "minLength": 1
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class used by the option pool to issue equity.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "outstandingEquityAwardDerivatives": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Outstanding equity award derivatives. This includes:\n - Option Grants\n - Restricted Stock Units (RSUs)\n - Stock Appreciation Rights (SARs)\n - Cash Bonus Unit (CBUs)\n - International equity awards",
+        "title": "Outstanding equity award derivatives. This includes:\n- Option Grants\n- Restricted Stock Units (RSU)\n- Stock Appreciation Rights (SAR)\n- Cash Bonus Unit (CBU)\n- International equity awards"
+      },
+      "outstandingCommittedRestrictedStockAwards": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Board approved but unissued Restricted Stock Awards (RSAs)."
+      }
+    },
+    "description": "Option pool summary scoped to a specific stakeholder.",
+    "required": [
+      "optionPoolId",
+      "name",
+      "shareClassId",
+      "outstandingEquityAwardDerivatives",
+      "outstandingCommittedRestrictedStockAwards"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuerscapitalizationv1alpha1Stakeholder",
+    "v1alpha1StakeholderGroup"
+  ],
+  "references": [
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/stakeholder_option_pool_summary.md"
+}

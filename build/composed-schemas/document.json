@@ -1,0 +1,39 @@
+{
+  "name": "v1alpha1Document",
+  "sanitized_name": "document",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "fileId": "cfa1313f-3607-4a52-9f9b-908dc94af6ee"
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+        "readOnly": true,
+        "maxLength": 256,
+        "minLength": 1
+      },
+      "url": {
+        "type": "string",
+        "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
+        "readOnly": true,
+        "maxLength": 1000
+      },
+      "fileId": {
+        "type": "string",
+        "example": "cfa1313f-3607-4a52-9f9b-908dc94af6ee",
+        "description": "The file identifier of the document.\n\nFiles must be uploaded first through the [Upload File](https://docs.carta.com/carta/reference/v1alpha1filesuploadfile) endpoint before their file identifiers can be referenced here.",
+        "maxLength": 50
+      }
+    },
+    "description": "Contains information about a document, including name, url, and file id."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionGrantDocuments"
+  ],
+  "references": [],
+  "output_path": "docs/types/document.md"
+}

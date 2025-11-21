@@ -1,0 +1,19 @@
+{
+  "name": "v1alpha1BoardApproval",
+  "sanitized_name": "board_approval",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "BOARD_APPROVAL_NOT_APPROVED",
+      "BOARD_APPROVAL_APPROVED"
+    ],
+    "title": "- BOARD_APPROVAL_NOT_APPROVED: Not board approved, will be sent for board approval\n - BOARD_APPROVAL_APPROVED: Board approved"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [],
+  "output_path": "docs/types/board_approval.md"
+}

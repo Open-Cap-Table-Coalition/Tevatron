@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetRestrictedStockAwardResponse",
+  "sanitized_name": "get_restricted_stock_award_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "restrictedStockAward": {
+        "$ref": "#/components/schemas/v1alpha1RestrictedStockAward",
+        "description": "The requested restricted stock award from the specified issuer."
+      }
+    },
+    "description": "The response from the Get Restricted Stock Award endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1RestrictedStockAward"
+  ],
+  "output_path": "docs/types/get_restricted_stock_award_response.md"
+}

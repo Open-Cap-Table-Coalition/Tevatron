@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1StakeholderType",
+  "sanitized_name": "stakeholder_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "STAKEHOLDER_TYPE_INDIVIDUAL",
+      "STAKEHOLDER_TYPE_NON_INDIVIDUAL"
+    ],
+    "description": "- STAKEHOLDER_TYPE_INDIVIDUAL: Individual\n - STAKEHOLDER_TYPE_NON_INDIVIDUAL: Non-Individual (e.g. organization, trust, etc.)",
+    "title": "Type of stakeholder"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuersdraftsecuritiesv1alpha1Stakeholder"
+  ],
+  "references": [],
+  "output_path": "docs/types/stakeholder_type.md"
+}

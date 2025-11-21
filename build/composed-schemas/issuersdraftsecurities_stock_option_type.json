@@ -1,0 +1,28 @@
+{
+  "name": "issuersdraftsecuritiesv1alpha1StockOptionType",
+  "sanitized_name": "issuersdraftsecurities_stock_option_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "STOCK_OPTION_TYPE_ISO",
+      "STOCK_OPTION_TYPE_NSO",
+      "STOCK_OPTION_TYPE_INTL",
+      "STOCK_OPTION_TYPE_EMI",
+      "STOCK_OPTION_TYPE_CSOP",
+      "STOCK_OPTION_TYPE_102_CG",
+      "STOCK_OPTION_TYPE_102_OI",
+      "STOCK_OPTION_TYPE_NON_TRUSTEE",
+      "STOCK_OPTION_TYPE_3I",
+      "STOCK_OPTION_TYPE_UNAPPROVED"
+    ],
+    "description": "- STOCK_OPTION_TYPE_ISO: Incentive Stock Option\n - STOCK_OPTION_TYPE_NSO: Non-qualified Stock Option\n - STOCK_OPTION_TYPE_INTL: International Stock Option\n - STOCK_OPTION_TYPE_EMI: Employee Management Incentive\n - STOCK_OPTION_TYPE_CSOP: Company Share Option Plan\n - STOCK_OPTION_TYPE_102_CG: 102 Capital Gains Track\n - STOCK_OPTION_TYPE_102_OI: 102 Ordinary Income Track\n - STOCK_OPTION_TYPE_NON_TRUSTEE: Non-Trustee Stock Option\n - STOCK_OPTION_TYPE_3I: 3(i) Stock Option\n - STOCK_OPTION_TYPE_UNAPPROVED: Unapproved Stock Option",
+    "title": "The type of the option grant"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [],
+  "output_path": "docs/types/issuersdraftsecurities_stock_option_type.md"
+}

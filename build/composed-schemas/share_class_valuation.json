@@ -1,0 +1,52 @@
+{
+  "name": "v1alpha1ShareClassValuation",
+  "sanitized_name": "share_class_valuation",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "shareClassId": "9",
+      "shareClassName": "Common",
+      "common": true,
+      "price": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.20"
+        }
+      }
+    },
+    "properties": {
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "shareClassName": {
+        "type": "string",
+        "description": "The name of the share class.",
+        "maxLength": 60,
+        "minLength": 1
+      },
+      "common": {
+        "type": "boolean",
+        "description": "True if this is a common share class; otherwise, false if this is a preferred share class."
+      },
+      "price": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The fair market value for the share class."
+      }
+    },
+    "description": "The fair market valuation price for a share class."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1FairMarketValue"
+  ],
+  "references": [
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/share_class_valuation.md"
+}

@@ -1,0 +1,280 @@
+{
+  "name": "v1alpha1OptionGrant",
+  "sanitized_name": "option_grant",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "2513",
+      "issuerId": "7",
+      "stakeholderId": "4923",
+      "equityIncentivePlanName": "EquityIncentivePlan",
+      "issueDate": {
+        "value": "2013-01-31"
+      },
+      "vestingStartDate": {
+        "value": "2012-10-02"
+      },
+      "boardApprovalDate": {
+        "value": "2013-01-31"
+      },
+      "stakeholderAcceptanceDate": {
+        "value": "2014-04-04"
+      },
+      "grantExpirationDate": {
+        "value": "2023-01-30"
+      },
+      "isoNsoSplit": false,
+      "stockOptionType": "ISO",
+      "quantity": {
+        "value": "45000"
+      },
+      "outstandingQuantity": {
+        "value": "42600"
+      },
+      "vestedQuantity": {
+        "value": "45000"
+      },
+      "exercisedQuantity": {
+        "value": "2400"
+      },
+      "exercisePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.17"
+        }
+      },
+      "securityLabel": "ES-12",
+      "earlyExercisable": true,
+      "vestingEvents": [
+        {
+          "id": "1988",
+          "vestDate": {
+            "value": "2013-10-02"
+          },
+          "quantity": {
+            "value": "11250"
+          },
+          "isoQuantity": {
+            "value": "0"
+          },
+          "nsoQuantity": {
+            "value": "11250"
+          },
+          "performanceCondition": false,
+          "vested": true,
+          "maxQuantity": {
+            "value": "11250"
+          },
+          "targetQuantity": {
+            "value": "11250"
+          },
+          "vestedQuantity": {
+            "value": "11250"
+          }
+        }
+      ],
+      "exercises": [
+        {
+          "quantity": {
+            "value": "2400"
+          },
+          "fairMarketValueAsOfDate": {
+            "value": "2017-10-25"
+          },
+          "exerciseDate": {
+            "value": "2017-10-25"
+          },
+          "status": "STATUS_COMPLETE",
+          "certificateId": "2951",
+          "exerciseType": "CASH_EXERCISE",
+          "qualified": true,
+          "exerciseId": "23HcT4iVfrgYUaJF9txHTaH"
+        }
+      ],
+      "vestingSchedule": {
+        "name": "1/24 Cliff",
+        "lastModifiedDate": {
+          "value": "2022-01-31"
+        },
+        "startDate": {
+          "value": "2022-01-31"
+        },
+        "endDate": {
+          "value": "2024-01-31"
+        }
+      },
+      "lastModifiedDatetime": {
+        "value": "2024-07-30T09:31:57.000000Z"
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the option grant.",
+        "maxLength": 50
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer that issued the option grant.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder that holds the option grant.",
+        "maxLength": 50
+      },
+      "equityIncentivePlanName": {
+        "type": "string",
+        "description": "The name of the equity incentive plan (i.e., option plan) associated with this option grant.",
+        "maxLength": 100
+      },
+      "issueDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the option grant was issued."
+      },
+      "vestingStartDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the option grant began vesting."
+      },
+      "boardApprovalDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the option grant received board approval."
+      },
+      "stakeholderAcceptanceDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the option grant was accepted by the stakeholder."
+      },
+      "canceledDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date when this option grant was canceled."
+      },
+      "grantExpirationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The expiration date of the option grant (commonly 10 years from the grant issuance date)."
+      },
+      "lastExercisableDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The last date the stakeholder can exercise the option grant."
+      },
+      "disqualificationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date this option grant became disqualified."
+      },
+      "isoNsoSplit": {
+        "type": "boolean",
+        "description": "True if the grant has ISO/NSO split. False otherwise.\n\nLearn more about [the ISO $100K limit and ISO/NSO splits](https://support.carta.com/s/article/100k-rule)."
+      },
+      "stockOptionType": {
+        "$ref": "#/components/schemas/issuerssecuritiesv1alpha1StockOptionType",
+        "description": "The stock option type at time of issuance. For grants issued as ISO that subsequently failed to meet ISO qualifications, the type will remain ISO. Refer to the disqualification date for information regarding the disqualification of the grant's ISO shares."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total number of options in the grant."
+      },
+      "outstandingQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of stock options from this grant that have not been exercised, expired, forfeited, or canceled"
+      },
+      "vestedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of stock options from this grant that have vested."
+      },
+      "exercisedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of stock options from this grant that have been exercised into shares."
+      },
+      "exercisePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The exercise price of the options in the grant."
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The label representing this security (option grant).",
+        "maxLength": 50
+      },
+      "earlyExercisable": {
+        "type": "boolean",
+        "description": "True if the option grant is eligible for early exercising; false if the option grant is not eligible for early exercising."
+      },
+      "vestingEvents": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionGrantVestingEvent"
+        },
+        "description": "The list of all vesting events associated with this grant. For time based vesting events, both past and future vesting details will be available. For performance and milestone based vesting, only achieved vesting events will be available."
+      },
+      "exercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Exercise"
+        },
+        "description": "The list of all exercises associated with this grant."
+      },
+      "terminationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date that the option grant was terminated. This commonly matches the date the company's relationship with the stakeholder was terminated."
+      },
+      "vestingSchedule": {
+        "$ref": "#/components/schemas/issuerssecuritiesv1alpha1VestingSchedule",
+        "description": "The vesting schedule information associated with the restricted stock award."
+      },
+      "canceledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of options in the grant that were canceled."
+      },
+      "forfeitedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of options in the grant that were forfeited."
+      },
+      "expiredQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of options in the grant that expired."
+      },
+      "returnedToPoolQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of options in the grant that were returned to the pool."
+      },
+      "returnedToTreasuryQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of options in the grant that were annulled, but not returned to the pool."
+      },
+      "lastModifiedDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time when the option grant was last modified."
+      },
+      "exercisePeriods": {
+        "$ref": "#/components/schemas/issuerssecuritiesv1alpha1ExercisePeriods",
+        "description": "The exercise periods for the option grant. Unset values within this field will be inherited from the equity plan from with the option was granted."
+      }
+    },
+    "description": "An option grant is a contract that gives an employee the right to purchase a company's stock at a set price."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/optionGrants"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetOptionGrantResponse",
+    "v1alpha1ListOptionGrantsResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "issuerssecuritiesv1alpha1StockOptionType",
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1OptionGrantVestingEvent",
+    "v1alpha1Exercise",
+    "issuerssecuritiesv1alpha1VestingSchedule",
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "issuerssecuritiesv1alpha1ExercisePeriods"
+  ],
+  "output_path": "docs/objects/option_grant.md"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "v1alpha1GetCapitalizationTableResponse",
+  "sanitized_name": "get_capitalization_table_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "capitalizationTable": {
+        "$ref": "#/components/schemas/v1alpha1CapitalizationTable",
+        "description": "The capitalization table object."
+      }
+    },
+    "description": "The response from the Get Capitalization Table endpoint.",
+    "required": [
+      "capitalizationTable"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1CapitalizationTable"
+  ],
+  "output_path": "docs/types/get_capitalization_table_response.md"
+}

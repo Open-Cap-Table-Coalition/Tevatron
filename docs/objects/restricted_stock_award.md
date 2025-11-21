@@ -104,5 +104,5 @@
 | `terminationDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the restricted stock award was terminated. This commonly matches the date the company's relationship with the stakeholder was terminated. | - |
 | `vestedQuantity` | [Decimal](../types/decimal.md) | The number of vested shares in the stock award. | - |
 | `vestingEvents` | [`Array` of [Restricted Stock Award Vesting Event](../types/restricted_stock_award_vesting_event.md)] | The list of all vesting events associated with the restricted stock award. | - |
-| `vestingSchedule` | [Vesting Schedule](../types/vesting_schedule.md) | The vesting schedule information associated with the restricted stock award. | - |
+| `vestingSchedule` | [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md) | The vesting schedule information associated with the restricted stock award. | - |
 | `vestingStartDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The start date of the vesting period for the restricted stock award. | - |

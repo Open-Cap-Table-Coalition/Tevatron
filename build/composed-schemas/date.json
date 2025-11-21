@@ -1,0 +1,34 @@
+{
+  "name": "v1alpha1Date",
+  "sanitized_name": "date",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "year": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Year of date. Use 0 if specifying a date without a year."
+      },
+      "month": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Month of year. Use 0 if specifying a year without a month and day."
+      },
+      "day": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0\nif specifying a year by itself or a year and month where the day is not\nsignificant."
+      }
+    },
+    "description": "* A full date, with non-zero year, month and day values\n* A month and day value, with a zero year, e.g. an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, e.g. a credit card expiration date",
+    "title": "Represents a whole or partial calendar date, e.g. a birthday. The time of day\nand time zone are either specified elsewhere or are not significant. The date\nis relative to the Proleptic Gregorian Calendar. This can represent:"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant",
+    "v1alpha1Vesting"
+  ],
+  "references": [],
+  "output_path": "docs/types/date.md"
+}

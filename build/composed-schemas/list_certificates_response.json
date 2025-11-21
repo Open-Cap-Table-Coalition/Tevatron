@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListCertificatesResponse",
+  "sanitized_name": "list_certificates_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "certificates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Certificate"
+        },
+        "description": "The vesting schedules from the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "NDY=",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Certificates endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Certificate"
+  ],
+  "output_path": "docs/types/list_certificates_response.md"
+}

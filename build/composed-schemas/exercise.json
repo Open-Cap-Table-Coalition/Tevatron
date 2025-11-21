@@ -1,0 +1,71 @@
+{
+  "name": "v1alpha1Exercise",
+  "sanitized_name": "exercise",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "quantity": {
+        "value": "2400"
+      },
+      "fairMarketValueAsOfDate": {
+        "value": "2017-10-25"
+      },
+      "exerciseDate": {
+        "value": "2017-10-25"
+      },
+      "status": "STATUS_COMPLETE",
+      "certificateId": "2951",
+      "exerciseType": "CASH_EXERCISE",
+      "exerciseId": "23HcT4iVfrgYUaJF9txHTaH"
+    },
+    "properties": {
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares requested to be exercised."
+      },
+      "fairMarketValueAsOfDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date of the fair market value relevant to this exercise."
+      },
+      "exerciseDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date when the exercise request was initiated."
+      },
+      "status": {
+        "$ref": "#/components/schemas/v1alpha1ExerciseStatus",
+        "description": "The status of the exercise request."
+      },
+      "certificateId": {
+        "type": "string",
+        "description": "The identifier of the certificate that was issued. This field is set if the exercise has been completed and a certificate has been issued."
+      },
+      "exerciseType": {
+        "$ref": "#/components/schemas/v1alpha1ExerciseType",
+        "description": "The type of exercise request."
+      },
+      "qualified": {
+        "type": "boolean",
+        "description": "*Deprecated*\n\nTrue if the exercise option grant type is ISO. False otherwise.",
+        "title": "*Deprecated*"
+      },
+      "exerciseId": {
+        "type": "string",
+        "description": "The identifier of the exercise.",
+        "maxLength": 50
+      }
+    },
+    "description": "The list of all exercises associated with this grant."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionGrant"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1ExerciseStatus",
+    "v1alpha1ExerciseType"
+  ],
+  "output_path": "docs/types/exercise.md"
+}

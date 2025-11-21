@@ -1,0 +1,36 @@
+{
+  "name": "v1alpha1FederalExemption",
+  "sanitized_name": "federal_exemption",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "RULE_701",
+      "SECTION_4_A_2",
+      "SECTION_4_1_1_2",
+      "SECTION_4_A_7",
+      "RULE_144",
+      "REG_D_506_B",
+      "REG_D_506_C",
+      "REG_D_506",
+      "REG_D_505",
+      "REG_D_504",
+      "REG_S",
+      "REG_A_TIER_1",
+      "REG_A_TIER_2",
+      "REG_CF",
+      "SECTION_756",
+      "SCHEDULE_11A",
+      "NON_US",
+      "OTHER"
+    ],
+    "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other",
+    "title": "Federal Exemption types supported"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Compliance"
+  ],
+  "references": [],
+  "output_path": "docs/types/federal_exemption.md"
+}

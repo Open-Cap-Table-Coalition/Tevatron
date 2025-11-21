@@ -1,0 +1,149 @@
+{
+  "name": "v1alpha1GetCompensationBenchmarksResponse",
+  "sanitized_name": "get_compensation_benchmarks_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "access": {
+        "accessLevel": "FULL_ACCESS",
+        "accessReason": ""
+      },
+      "benchmarksMetadata": {
+        "benchmarksVersionDatetime": {
+          "value": "2024-01-01T09:00:00.000000Z"
+        }
+      },
+      "benchmarks": [
+        {
+          "postMoneyValuationBucket": "100M to 250M",
+          "industry": "All",
+          "geoAdjustmentLocation": "New York-Newark-Jersey City, NY-NJ-PA",
+          "jobArea": "Engineering",
+          "jobSpecialization": "Web Engineer",
+          "jobLevel": "IC 3",
+          "benchmarkValues": [
+            {
+              "compensationType": "SALARY",
+              "percentile": "P25",
+              "benchmark": {
+                "value": "100000"
+              }
+            },
+            {
+              "compensationType": "SALARY",
+              "percentile": "P50",
+              "benchmark": {
+                "value": "110000"
+              }
+            },
+            {
+              "compensationType": "SALARY",
+              "percentile": "P75",
+              "benchmark": {
+                "value": "120000"
+              }
+            },
+            {
+              "compensationType": "SALARY",
+              "percentile": "P90",
+              "benchmark": {
+                "value": "130000"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "properties": {
+      "access": {
+        "$ref": "#/components/schemas/v1alpha1Access",
+        "example": {
+          "access": {
+            "accessLevel": "FULL_ACCESS",
+            "accessReason": ""
+          }
+        },
+        "description": "Context about the access of a given corporation."
+      },
+      "benchmarksMetadata": {
+        "$ref": "#/components/schemas/v1alpha1BenchmarksMetadata",
+        "example": {
+          "benchmarksMetadata": {
+            "benchmarksVersionDatetime": "2024-01-01T09:00:00.000000Z"
+          }
+        },
+        "description": "Context on the benchmark version of the benchmarks being returned. May differ by corporation."
+      },
+      "benchmarks": {
+        "type": "array",
+        "example": {
+          "benchmarks": [
+            {
+              "postMoneyValuationBucket": "100M to 250M",
+              "industry": "All",
+              "geoAdjustmentLocation": "New York-Newark-Jersey City, NY-NJ-PA",
+              "jobArea": "Engineering",
+              "jobSpecialization": "Web Engineer",
+              "jobLevel": "IC 3",
+              "benchmarkValues": [
+                {
+                  "compensationType": "SALARY",
+                  "percentile": "P25",
+                  "benchmark": {
+                    "value": "100000"
+                  }
+                },
+                {
+                  "compensationType": "SALARY",
+                  "percentile": "P50",
+                  "benchmark": {
+                    "value": "110000"
+                  }
+                },
+                {
+                  "compensationType": "SALARY",
+                  "percentile": "P75",
+                  "benchmark": {
+                    "value": "120000"
+                  }
+                },
+                {
+                  "compensationType": "SALARY",
+                  "percentile": "P90",
+                  "benchmark": {
+                    "value": "130000"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1Benchmarks"
+        },
+        "description": "The compensation benchmarks.",
+        "maxItems": 50
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "NDY=",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the Get Compensation Benchmarks response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response for the GetCompensationBenchmarks endpoint.",
+    "required": [
+      "access",
+      "benchmarksMetadata"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Access",
+    "v1alpha1BenchmarksMetadata",
+    "v1alpha1Benchmarks"
+  ],
+  "output_path": "docs/types/get_compensation_benchmarks_response.md"
+}

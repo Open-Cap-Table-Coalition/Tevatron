@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetStakeholderResponse",
+  "sanitized_name": "get_stakeholder_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "stakeholder": {
+        "$ref": "#/components/schemas/publicapiissuersv1alpha1Stakeholder",
+        "description": "The requested stakeholder from the specified issuer."
+      }
+    },
+    "description": "The response from the Get Stakeholder endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "publicapiissuersv1alpha1Stakeholder"
+  ],
+  "output_path": "docs/types/get_stakeholder_response.md"
+}

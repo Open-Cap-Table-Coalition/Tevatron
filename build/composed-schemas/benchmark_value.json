@@ -1,0 +1,51 @@
+{
+  "name": "v1alpha1BenchmarkValue",
+  "sanitized_name": "benchmark_value",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "compensationType": "SALARY",
+      "percentile": "P25",
+      "benchmark": {
+        "value": "100000"
+      }
+    },
+    "properties": {
+      "compensationType": {
+        "type": "string",
+        "example": "SALARY",
+        "description": "The compensation type of the benchmark.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "percentile": {
+        "type": "string",
+        "example": "P25",
+        "description": "The percentile of the benchmark.\n\nFor example: \"P25\" represents the 25th percentile.",
+        "maxLength": 10,
+        "minLength": 1
+      },
+      "benchmark": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "example": {
+          "value": "100000"
+        },
+        "description": "The ordinal value of the benchmark.\n\n\"SALARY\" and \"TOTAL_CASH\" are annual values in US dollars (USD).\n\n\"EQUITY_AS_FULLY_DILUTED_PERCENT\" is represented as a annual grant value between 0 and 100: 1 represents 1%.\n\nFor CEO Founder benchmarks, this value represents total ownership instead of an annual grant value."
+      }
+    },
+    "description": "A compensation benchmark value.",
+    "required": [
+      "compensationType",
+      "percentile"
+    ]
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Benchmarks"
+  ],
+  "references": [
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/benchmark_value.md"
+}

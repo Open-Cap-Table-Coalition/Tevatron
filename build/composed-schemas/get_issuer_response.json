@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1GetIssuerResponse",
+  "sanitized_name": "get_issuer_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "issuer": {
+        "$ref": "#/components/schemas/v1alpha1Issuer",
+        "title": "The requested issuer"
+      }
+    },
+    "description": "The response for the GetIssuer endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1Issuer"
+  ],
+  "output_path": "docs/types/get_issuer_response.md"
+}

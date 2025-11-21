@@ -1,0 +1,46 @@
+{
+  "name": "v1alpha1DividendDetails",
+  "sanitized_name": "dividend_details",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "dividendYield": {
+        "value": "0.02"
+      },
+      "dividendAccrualType": "CUMULATIVE",
+      "dividendAccrualPeriod": "DAILY",
+      "dividendInterestType": "INTEREST_PERIOD_DAILY"
+    },
+    "properties": {
+      "dividendYield": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "How much a company pays out in dividends each year relative to its stock price."
+      },
+      "dividendAccrualType": {
+        "$ref": "#/components/schemas/v1alpha1DividendAccrualType",
+        "description": "The dividend accrual type for the share class."
+      },
+      "dividendAccrualPeriod": {
+        "$ref": "#/components/schemas/v1alpha1DividendAccrualPeriod",
+        "description": "Cadence upon which dividends are accrued."
+      },
+      "dividendInterestType": {
+        "$ref": "#/components/schemas/v1alpha1DividendInterestType",
+        "description": "Type of interest used to calculated dividend."
+      }
+    },
+    "description": "Details about share class dividends."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ShareClassDividendDetails"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1DividendAccrualType",
+    "v1alpha1DividendAccrualPeriod",
+    "v1alpha1DividendInterestType"
+  ],
+  "output_path": "docs/types/dividend_details.md"
+}

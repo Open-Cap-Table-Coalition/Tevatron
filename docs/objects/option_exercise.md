@@ -59,7 +59,7 @@
 | `moneyMovement` | [Option Exercise Money Movement](../types/option_exercise_money_movement.md) | The money movement information associated with the option exercise. | - |
 | `optionGrantId` | `STRING` | The identifier of the option grant being exercised. <br/>**Constraints:** Max length: 50 | - |
 | `quantity` | [Decimal](../types/decimal.md) | The number of shares being exercised from the related option grant. | - |
-| `recordType` | [Stock Option Type](../types/stock_option_type.md) | The type of the record associated with the option exercise. | - |
+| `recordType` | [Securitiesoptionexercises Stock Option Type](../types/securitiesoptionexercises_stock_option_type.md) | The type of the record associated with the option exercise. | - |
 | `stakeholderId` | `STRING` | The identifier of the stakeholder that holds the option grant being exercised. <br/>**Constraints:** Max length: 50 | - |
 | `state` | [Option Exercise State](../types/option_exercise_state.md) | The current state of the exercise request. | - |
 | `taxWithholding` | [`Array` of [Option Exercise Tax Withholding Line Item](../types/option_exercise_tax_withholding_line_item.md)] | The tax withholding information associated with the option exercise. | - |

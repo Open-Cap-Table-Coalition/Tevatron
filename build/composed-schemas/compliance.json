@@ -1,0 +1,44 @@
+{
+  "name": "v1alpha1Compliance",
+  "sanitized_name": "compliance",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "countryOfResidency": {
+        "value": "USA"
+      },
+      "stateOfResidency": {
+        "value": "US-CA"
+      },
+      "federalExemption": "RULE_701"
+    },
+    "properties": {
+      "countryOfResidency": {
+        "$ref": "#/components/schemas/v1alpha1Iso3166Set1Alpha3Code",
+        "description": "The country of residency of the stakeholder "
+      },
+      "stateOfResidency": {
+        "$ref": "#/components/schemas/v1alpha1Iso3166Set2Code",
+        "description": "The state of residency of the stakeholder. Should only be provided if country_of_residency is USA."
+      },
+      "federalExemption": {
+        "$ref": "#/components/schemas/v1alpha1FederalExemption",
+        "description": "The federal exemption rule for the draft option grant.",
+        "maxLength": 32
+      }
+    },
+    "description": "Compliance details of a stakeholder",
+    "title": "Compliance details of a stakeholder"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [
+    "v1alpha1Iso3166Set1Alpha3Code",
+    "v1alpha1Iso3166Set2Code",
+    "v1alpha1FederalExemption"
+  ],
+  "output_path": "docs/types/compliance.md"
+}

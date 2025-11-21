@@ -1,0 +1,251 @@
+{
+  "name": "v1alpha1RestrictedStockUnit",
+  "sanitized_name": "restricted_stock_unit",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "8550",
+      "issuerId": "7",
+      "stakeholderId": "6113",
+      "equityIncentivePlanName": "2015 Equity Incentive Plan",
+      "issueDate": {
+        "value": "2015-06-01"
+      },
+      "vestingStartDate": {
+        "value": "2015-06-01"
+      },
+      "boardApprovalDate": {
+        "value": "2015-06-01"
+      },
+      "stakeholderAcceptanceDate": {
+        "value": "2017-02-27"
+      },
+      "quantity": {
+        "value": "1500"
+      },
+      "vestedQuantity": {
+        "value": "1500"
+      },
+      "releasedQuantity": {
+        "value": "200"
+      },
+      "releasePricePerShare": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.78"
+        }
+      },
+      "netSettledQuantity": {
+        "value": "145"
+      },
+      "securityLabel": "ES-136",
+      "vestingEvents": [
+        {
+          "id": "1988",
+          "vestDate": {
+            "value": "2016-06-01"
+          },
+          "quantity": {
+            "value": "375"
+          },
+          "performanceCondition": false,
+          "vested": true,
+          "maxQuantity": {
+            "value": "375"
+          },
+          "targetQuantity": {
+            "value": "375"
+          },
+          "vestedQuantity": {
+            "value": "375"
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "settlementDate": {
+            "value": "2016-08-19"
+          },
+          "releaseQuantity": {
+            "value": "200"
+          },
+          "saleQuantity": {
+            "value": "200"
+          },
+          "withholdingQuantity": {
+            "value": "55"
+          },
+          "netSettlementQuantity": {
+            "value": "145"
+          },
+          "settlementPrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.78"
+            }
+          },
+          "certificateId": "78",
+          "certificateLabel": "CS-124"
+        }
+      ],
+      "vestingSchedule": {
+        "name": "1/24 Cliff",
+        "lastModifiedDate": {
+          "value": "2022-01-31"
+        },
+        "startDate": {
+          "value": "2015-06-01"
+        },
+        "endDate": {
+          "value": "2024-01-31"
+        }
+      },
+      "lastModifiedDatetime": {
+        "value": "2024-07-30T09:31:57.000000Z"
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the restricted stock unit.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The identifier of the issuer owning the restricted stock unit.",
+        "maxLength": 50,
+        "minLength": 1
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the stakeholder that received the restricted stock unit.",
+        "maxLength": 50
+      },
+      "equityIncentivePlanName": {
+        "type": "string",
+        "description": "The name of the equity incentive plan (i.e., option plan) associated with the restricted stock unit.",
+        "maxLength": 100
+      },
+      "issueDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock unit was issued."
+      },
+      "vestingStartDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The start date of the vesting period for the restricted stock unit, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'."
+      },
+      "boardApprovalDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock unit received board approval."
+      },
+      "stakeholderAcceptanceDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock unit was accepted by the stakeholder, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of shares in the restricted stock unit grant."
+      },
+      "vestedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of restricted stock units in the grant that have been vested."
+      },
+      "releasedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of restricted stock units in the grant that has been settled."
+      },
+      "releasePricePerShare": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The price of each share that has been released from the restricted stock unit grant."
+      },
+      "netSettledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The total quantity of restricted stock units in this grant that have been released to the stakeholder."
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The label representing this security (restricted stock unit).",
+        "maxLength": 50
+      },
+      "vestingEvents": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RestrictedStockUnitVestingEvent"
+        },
+        "description": "The list of all vesting events associated with these restricted stock units."
+      },
+      "canceledDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock unit was canceled."
+      },
+      "terminationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date the restricted stock unit was terminated."
+      },
+      "settlements": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RestrictedStockUnitSettlement"
+        },
+        "description": "The list of all settlements associated with these restricted stock units."
+      },
+      "vestingSchedule": {
+        "$ref": "#/components/schemas/issuerssecuritiesv1alpha1VestingSchedule",
+        "description": "The vesting schedule information associated with the restricted stock unit."
+      },
+      "canceledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock unit that were canceled."
+      },
+      "forfeitedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock unit that were forfeited."
+      },
+      "expiredQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock unit that expired."
+      },
+      "returnedToPoolQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock unit that were returned to the pool."
+      },
+      "returnedToTreasuryQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares in the restricted stock unit that were annulled, but not returned to the pool."
+      },
+      "lastModifiedDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time when the restricted stock unit was last modified."
+      }
+    },
+    "description": "A restricted stock unit is a grant of company shares."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/restrictedStockUnits"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1GetRestrictedStockUnitResponse",
+    "v1alpha1ListRestrictedStockUnitsResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1RestrictedStockUnitVestingEvent",
+    "v1alpha1RestrictedStockUnitSettlement",
+    "issuerssecuritiesv1alpha1VestingSchedule",
+    "v1alpha1Iso8601CompleteCalendarDateTime"
+  ],
+  "output_path": "docs/objects/restricted_stock_unit.md"
+}

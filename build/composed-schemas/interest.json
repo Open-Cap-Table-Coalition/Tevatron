@@ -1,0 +1,188 @@
+{
+  "name": "v1alpha1Interest",
+  "sanitized_name": "interest",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "issuerId": "123e4567-e89b-12d3-a456-426614174001",
+      "stakeholderId": "123e4567-e89b-12d3-a456-426614174002",
+      "interestLabel": "MIU-1",
+      "interestTypeName": "Management Incentive Unit",
+      "issueDate": {
+        "value": "2024-01-01"
+      },
+      "acceptanceDate": {
+        "value": "2024-01-02T00:00:00Z"
+      },
+      "thresholdDetail": {
+        "amount": {
+          "value": "1000.0"
+        },
+        "type": "THRESHOLD_TYPE_PER_UNIT"
+      },
+      "exercisePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "50.0"
+        }
+      },
+      "originalIssuePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "45.0"
+        }
+      },
+      "investedCapital": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "100.0"
+        }
+      },
+      "accruedValue": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "200.0"
+        }
+      },
+      "issuedQuantity": {
+        "value": "100.0"
+      },
+      "outstandingQuantity": {
+        "value": "100.0"
+      },
+      "outstandingVestedQuantity": {
+        "value": "100.0"
+      },
+      "exercisedQuantity": {
+        "value": "0"
+      },
+      "repurchasedQuantity": {
+        "value": "0"
+      },
+      "cancelledQuantity": {
+        "value": "0"
+      },
+      "forfeitedQuantity": {
+        "value": "0"
+      },
+      "vestingSchedule": {
+        "name": "Standard Vesting",
+        "startDate": {
+          "value": "2024-01-01"
+        }
+      }
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The unique identifier for the interest."
+      },
+      "issuerId": {
+        "type": "string",
+        "description": "The unique identifier for the issuer of the interest."
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The unique identifier for the stakeholder that the interest is issued to."
+      },
+      "interestLabel": {
+        "type": "string",
+        "description": "The label of the interest."
+      },
+      "interestTypeName": {
+        "type": "string",
+        "description": "The name of the interest type."
+      },
+      "issueDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The effective date of the interest.",
+        "title": "The effective date of the interest"
+      },
+      "acceptanceDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date the interest was accepted by the holder."
+      },
+      "thresholdDetails": {
+        "$ref": "#/components/schemas/v1alpha1ThresholdDetails",
+        "description": "Threshold details for the interest."
+      },
+      "exercisePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The strike price at which units of this interest type can be exercised."
+      },
+      "originalIssuePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The price at which units of the interest type were issued."
+      },
+      "investedCapital": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The amount invested by an investor to secure an interest."
+      },
+      "accruedValue": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "Value accrued on principal amount as of the effective date."
+      },
+      "issuedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of units represented by this interest."
+      },
+      "outstandingQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of outstanding units, units that are 'active' for the interest."
+      },
+      "outstandingVestedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of outstanding vested units."
+      },
+      "exercisedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of exercised units."
+      },
+      "repurchasedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of repurchased units."
+      },
+      "cancelledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of cancelled units."
+      },
+      "forfeitedQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of forfeited units."
+      },
+      "vestingSchedule": {
+        "$ref": "#/components/schemas/issuersinterestsv1alpha1VestingSchedule",
+        "description": "Vesting Schedule for the interest if it has vesting behaviour enabled."
+      }
+    },
+    "description": "Interest information."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/interests"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListInterestsResponse"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1ThresholdDetails",
+    "v1alpha1Money",
+    "v1alpha1Decimal",
+    "issuersinterestsv1alpha1VestingSchedule"
+  ],
+  "output_path": "docs/objects/interest.md"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ExerciseServiceUpdateMoneyMovementBody",
+  "sanitized_name": "exercise_service_update_money_movement_body",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "moneyMovement": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseMoneyMovement",
+        "description": "The money movement information to update."
+      }
+    },
+    "description": "The request for the UpdateMoneyMovement endpoint."
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/v1alpha1/issuers/{issuerId}/optionExercises/{exerciseId}:updateMoneyMovement"
+    }
+  ],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionExerciseMoneyMovement"
+  ],
+  "output_path": "docs/objects/exercise_service_update_money_movement_body.md"
+}

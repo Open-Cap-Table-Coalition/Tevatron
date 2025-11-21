@@ -5,4 +5,4 @@
 **Properties:**
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
-| `stakeholder` | [Stakeholder](../objects/stakeholder.md) | The requested stakeholder from the specified issuer. | - |
+| `stakeholder` | [Publicapiissuers Stakeholder](../objects/publicapiissuers_stakeholder.md) | The requested stakeholder from the specified issuer. | - |

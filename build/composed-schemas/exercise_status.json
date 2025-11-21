@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1ExerciseStatus",
+  "sanitized_name": "exercise_status",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "STATUS_PENDING",
+      "STATUS_COMPLETE",
+      "STATUS_CANCELED"
+    ],
+    "description": "Enumeration of exercise status.\n\n - STATUS_PENDING: The exercise is in a pending state.\n - STATUS_COMPLETE: The exercise is complete and a certificate was issued.\n - STATUS_CANCELED: The exercise is canceled."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1Exercise"
+  ],
+  "references": [],
+  "output_path": "docs/types/exercise_status.md"
+}

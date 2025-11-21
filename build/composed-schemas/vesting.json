@@ -1,0 +1,46 @@
+{
+  "name": "v1alpha1Vesting",
+  "sanitized_name": "vesting",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "templateId": "6eeb0b6f-84c4-4071-8d94-9f0cefd59230",
+      "startDate": {
+        "year": 2024,
+        "month": 2,
+        "day": 29
+      },
+      "acceleration": {
+        "name": "Change in control",
+        "terms": "All unvested shares shall vest upon a change of control."
+      }
+    },
+    "properties": {
+      "templateId": {
+        "type": "string",
+        "description": "The template id of the vesting schedule.",
+        "maxLength": 100
+      },
+      "startDate": {
+        "$ref": "#/components/schemas/v1alpha1Date",
+        "description": "The effective start date of vesting."
+      },
+      "acceleration": {
+        "$ref": "#/components/schemas/v1alpha1Acceleration",
+        "description": "Details of accelerated vesting of the draft option grant."
+      }
+    },
+    "description": "Vesting details of the option grant",
+    "title": "Vesting details of the option grant"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [
+    "v1alpha1Date",
+    "v1alpha1Acceleration"
+  ],
+  "output_path": "docs/types/vesting.md"
+}

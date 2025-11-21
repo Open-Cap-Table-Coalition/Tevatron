@@ -1,0 +1,52 @@
+{
+  "name": "v1alpha1PointOfContact",
+  "sanitized_name": "point_of_contact",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issuerId": "7",
+      "userFullName": "MaryStuart",
+      "userEmail": "mary.stuart@example.com",
+      "type": "PRIMARY_CONTACT"
+    },
+    "properties": {
+      "issuerId": {
+        "type": "string",
+        "description": "An identifier for the issuer related to the point of contact.",
+        "maxLength": 50
+      },
+      "userFullName": {
+        "type": "string",
+        "description": "The point of contact full name.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "userEmail": {
+        "type": "string",
+        "description": "The point of contact email.",
+        "maxLength": 1000,
+        "minLength": 1
+      },
+      "type": {
+        "$ref": "#/components/schemas/v1alpha1PointOfContactType",
+        "description": "The type of point of contact.",
+        "title": "The type of point of contact"
+      }
+    },
+    "description": "A point of contact for an issuer. Examples include a Legal Admin or an Option Signatory."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/pointsOfContact"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListPointsOfContactResponse"
+  ],
+  "references": [
+    "v1alpha1PointOfContactType"
+  ],
+  "output_path": "docs/objects/point_of_contact.md"
+}

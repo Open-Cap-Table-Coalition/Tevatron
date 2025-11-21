@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1NoteBlockStatus",
+  "sanitized_name": "note_block_status",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "EXECUTED",
+      "DRAFT",
+      "INACTIVE"
+    ],
+    "description": "The status of the note block."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1NoteBlock"
+  ],
+  "references": [],
+  "output_path": "docs/types/note_block_status.md"
+}

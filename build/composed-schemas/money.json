@@ -1,0 +1,53 @@
+{
+  "name": "v1alpha1Money",
+  "sanitized_name": "money",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "currencyCode": "USD",
+      "amount": {
+        "value": "1000.77"
+      }
+    },
+    "properties": {
+      "currencyCode": {
+        "$ref": "#/components/schemas/v1alpha1Iso4217CurrencyAlphaCode",
+        "description": "The 3-letter currency code defined in ISO 4217."
+      },
+      "amount": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "Decimal amount of the specified currency.\nFor example if `currencyCode` is `\"USD\"`, then amount of 1 is one US dollar."
+      }
+    },
+    "description": "Represents an amount of money with its currency type."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CapitalizationTableSummary",
+    "v1alpha1Certificate",
+    "v1alpha1ConvertibleNote",
+    "v1alpha1DraftOptionGrant",
+    "v1alpha1Interest",
+    "v1alpha1NoteBlockSummary",
+    "v1alpha1OptionExerciseTaxWithholdingLineItem",
+    "v1alpha1OptionGrant",
+    "v1alpha1RestrictedStockAward",
+    "v1alpha1RestrictedStockUnit",
+    "v1alpha1RestrictedStockUnitSettlement",
+    "v1alpha1ShareClass",
+    "v1alpha1ShareClassRightsAndPreferences",
+    "v1alpha1ShareClassSummary",
+    "v1alpha1ShareClassValuation",
+    "v1alpha1StakeholderCapitalizationTableSummary",
+    "v1alpha1StakeholderNoteBlockSummary",
+    "v1alpha1StakeholderShareClassSummary",
+    "v1alpha1StakeholderWarrantBlockSummary",
+    "v1alpha1WarrantBlockSummary"
+  ],
+  "references": [
+    "v1alpha1Iso4217CurrencyAlphaCode",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/money.md"
+}

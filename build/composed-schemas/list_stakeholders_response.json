@@ -1,0 +1,30 @@
+{
+  "name": "v1alpha1ListStakeholdersResponse",
+  "sanitized_name": "list_stakeholders_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "properties": {
+      "stakeholders": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/publicapiissuersv1alpha1Stakeholder"
+        },
+        "description": "The stakeholders from the specified issuer."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "ODMxMw==",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the List Stakeholders response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Stakeholders endpoint."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "publicapiissuersv1alpha1Stakeholder"
+  ],
+  "output_path": "docs/types/list_stakeholders_response.md"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "issuersdraftsecuritiesv1alpha1StakeholderRelationship",
+  "sanitized_name": "issuersdraftsecurities_stakeholder_relationship",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "STAKEHOLDER_RELATIONSHIP_ADVISOR",
+      "STAKEHOLDER_RELATIONSHIP_EX_ADVISOR",
+      "STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER",
+      "STAKEHOLDER_RELATIONSHIP_CONSULTANT",
+      "STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT",
+      "STAKEHOLDER_RELATIONSHIP_EMPLOYEE",
+      "STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE",
+      "STAKEHOLDER_RELATIONSHIP_EXECUTIVE",
+      "STAKEHOLDER_RELATIONSHIP_FOUNDER",
+      "STAKEHOLDER_RELATIONSHIP_INVESTOR",
+      "STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE",
+      "STAKEHOLDER_RELATIONSHIP_OFFICER",
+      "STAKEHOLDER_RELATIONSHIP_OTHER"
+    ],
+    "description": "- STAKEHOLDER_RELATIONSHIP_ADVISOR: Advisor\n - STAKEHOLDER_RELATIONSHIP_EX_ADVISOR: Ex-Advisor\n - STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER: Board Member\n - STAKEHOLDER_RELATIONSHIP_CONSULTANT: Consultant\n - STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT: Ex-Consultant\n - STAKEHOLDER_RELATIONSHIP_EMPLOYEE: Employee\n - STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE: Ex-Employee\n - STAKEHOLDER_RELATIONSHIP_EXECUTIVE: Executive\n - STAKEHOLDER_RELATIONSHIP_FOUNDER: Founder\n - STAKEHOLDER_RELATIONSHIP_INVESTOR: Investor\n - STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE: International Employee\n - STAKEHOLDER_RELATIONSHIP_OFFICER: Officer\n - STAKEHOLDER_RELATIONSHIP_OTHER: Other",
+    "title": "Relationship of stakeholder to the issuer"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "issuersdraftsecuritiesv1alpha1Stakeholder"
+  ],
+  "references": [],
+  "output_path": "docs/types/issuersdraftsecurities_stakeholder_relationship.md"
+}

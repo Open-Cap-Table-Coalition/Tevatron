@@ -1,0 +1,28 @@
+{
+  "name": "v1alpha1GrantReason",
+  "sanitized_name": "grant_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "GRANT_REASON_NEW_HIRE",
+      "GRANT_REASON_MERIT",
+      "GRANT_REASON_PROMOTION",
+      "GRANT_REASON_REFRESH",
+      "GRANT_REASON_CORPORATE_TRANSACTION",
+      "GRANT_REASON_RELATIONSHIP_CHANGE",
+      "GRANT_REASON_RETENTION",
+      "GRANT_REASON_ADVISOR",
+      "GRANT_REASON_CONSULTANT",
+      "GRANT_REASON_BOARD"
+    ],
+    "description": "- GRANT_REASON_NEW_HIRE: New hire\n - GRANT_REASON_MERIT: Merit\n - GRANT_REASON_PROMOTION: Promotion\n - GRANT_REASON_REFRESH: Refresh\n - GRANT_REASON_CORPORATE_TRANSACTION: Corporate transaction\n - GRANT_REASON_RELATIONSHIP_CHANGE: Relationship change\n - GRANT_REASON_RETENTION: Retention\n - GRANT_REASON_ADVISOR: Advisor\n - GRANT_REASON_CONSULTANT: Consultant\n - GRANT_REASON_BOARD: Board",
+    "title": "Reason for granting the option"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1DraftOptionGrant"
+  ],
+  "references": [],
+  "output_path": "docs/types/grant_reason.md"
+}

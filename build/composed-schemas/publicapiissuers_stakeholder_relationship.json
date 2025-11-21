@@ -1,0 +1,30 @@
+{
+  "name": "publicapiissuersv1alpha1StakeholderRelationship",
+  "sanitized_name": "publicapiissuers_stakeholder_relationship",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "ADVISOR",
+      "EX_ADVISOR",
+      "BOARD_MEMBER",
+      "CONSULTANT",
+      "EX_CONSULTANT",
+      "EMPLOYEE",
+      "EX_EMPLOYEE",
+      "EXECUTIVE",
+      "FOUNDER",
+      "INTERNATIONAL_EMPLOYEE",
+      "INVESTOR",
+      "OFFICER",
+      "OTHER"
+    ],
+    "description": "The relationship of the stakeholder with the draft issuer.\n\n - ADVISOR: Stakeholder is an advisor\n - EX_ADVISOR: Stakeholder is an ex-advisor\n - BOARD_MEMBER: Stakeholder is a board member\n - CONSULTANT: Stakeholder is a consultant\n - EX_CONSULTANT: Stakeholder is an ex-consultant\n - EMPLOYEE: Stakeholder is an employee\n - EX_EMPLOYEE: Stakeholder is an ex-employee\n - EXECUTIVE: Stakeholder is an executive\n - FOUNDER: Stakeholder is a founder\n - INTERNATIONAL_EMPLOYEE: Stakeholder is an international employee\n - INVESTOR: Stakeholder is an investor\n - OFFICER: Stakeholder is an officer\n - OTHER: Stakeholder has some other type of relationship"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "publicapiissuersv1alpha1Stakeholder"
+  ],
+  "references": [],
+  "output_path": "docs/types/publicapiissuers_stakeholder_relationship.md"
+}

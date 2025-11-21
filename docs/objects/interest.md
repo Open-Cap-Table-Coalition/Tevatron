@@ -108,4 +108,4 @@
 | `repurchasedQuantity` | [Decimal](../types/decimal.md) | The number of repurchased units. | - |
 | `stakeholderId` | `STRING` | The unique identifier for the stakeholder that the interest is issued to. | - |
 | `thresholdDetails` | [Threshold Details](../types/threshold_details.md) | Threshold details for the interest. | - |
-| `vestingSchedule` | [Vesting Schedule](../types/vesting_schedule.md) | Vesting Schedule for the interest if it has vesting behaviour enabled. | - |
+| `vestingSchedule` | [Issuersinterests Vesting Schedule](../types/issuersinterests_vesting_schedule.md) | Vesting Schedule for the interest if it has vesting behaviour enabled. | - |

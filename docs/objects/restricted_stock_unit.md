@@ -139,5 +139,5 @@
 | `terminationDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the restricted stock unit was terminated. | - |
 | `vestedQuantity` | [Decimal](../types/decimal.md) | The total quantity of restricted stock units in the grant that have been vested. | - |
 | `vestingEvents` | [`Array` of [Restricted Stock Unit Vesting Event](../types/restricted_stock_unit_vesting_event.md)] | The list of all vesting events associated with these restricted stock units. | - |
-| `vestingSchedule` | [Vesting Schedule](../types/vesting_schedule.md) | The vesting schedule information associated with the restricted stock unit. | - |
+| `vestingSchedule` | [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md) | The vesting schedule information associated with the restricted stock unit. | - |
 | `vestingStartDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The start date of the vesting period for the restricted stock unit, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'. | - |
