@@ -72,9 +72,6 @@ class MarkdownGenerator:
         # Generate index
         self._generate_index(output_dir)
 
-        # Generate section indices for MkDocs
-        self._generate_section_indices(output_dir)
-
         print(f"\n✓ Generated {len(self.schemas)} markdown files")
 
     def _load_schemas(self):
@@ -343,14 +340,14 @@ class MarkdownGenerator:
             # Different styling for objects vs types
             if schema.schema_type == "object":
                 # Primary objects in bold boxes
-                relative_path = os.path.relpath(schema.output_path, 'docs')
+                relative_path = os.path.relpath(schema.output_path, 'docs').replace('.md', '/')
                 mermaid_lines.append(f'    {sanitized}["{display_name}"]')
                 class_list = "objectNode,highlyUsed" if is_highly_used else "objectNode"
                 mermaid_lines.append(f'    class {sanitized} {class_list}')
                 mermaid_lines.append(f'    click {sanitized} "{relative_path}"')
             else:
                 # Types in rounded boxes
-                relative_path = os.path.relpath(schema.output_path, 'docs')
+                relative_path = os.path.relpath(schema.output_path, 'docs').replace('.md', '/')
                 mermaid_lines.append(f'    {sanitized}("{display_name}")')
                 class_list = "typeNode,highlyUsed" if is_highly_used else "typeNode"
                 mermaid_lines.append(f'    class {sanitized} {class_list}')
@@ -388,11 +385,13 @@ class MarkdownGenerator:
 
         # Create nodes
         for schema in self.schemas.values():
+            # Convert path to MkDocs URL format (remove 'docs/' prefix and '.md' extension)
+            mkdocs_url = os.path.relpath(schema.output_path, 'docs').replace('.md', '/')
             node = {
                 "id": schema.sanitized_name,
                 "name": schema.sanitized_name.replace('_', ' ').title(),
                 "type": schema.schema_type,
-                "url": schema.output_path,
+                "url": mkdocs_url,
                 "references_count": len(schema.references),
                 "referenced_by_count": len(schema.referenced_by),
                 "description": schema.schema_def.get('description',
