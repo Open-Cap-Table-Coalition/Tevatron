@@ -1,0 +1,74 @@
+site_name: Carta Issuer API Documentation
+site_description: Auto-generated documentation for the Carta Issuer API schemas
+site_author: Carta
+repo_url: https://github.com/Open-Cap-Table-Coalition/Cartevatron
+repo_name: Open-Cap-Table-Coalition/Cartevatron
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang: en
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+
+# Navigation structure
+nav:
+  - Home: index.md
+  - Interactive Graph: schema-graph.html
+  - API Objects:
+    - objects/index.md
+  - Supporting Types:
+    - types/index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Open-Cap-Table-Coalition/Cartevatron
+
+docs_dir: docs
+site_dir: site

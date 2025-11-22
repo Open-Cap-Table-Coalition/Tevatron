@@ -2,4 +2,6 @@ Claude.md
 .claude
 __pycache__
 ocf_examples/**
+site/
+build/
 

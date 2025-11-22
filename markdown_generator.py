@@ -72,6 +72,9 @@ class MarkdownGenerator:
         # Generate index
         self._generate_index(output_dir)
 
+        # Generate section indices for MkDocs
+        self._generate_section_indices(output_dir)
+
         print(f"\n✓ Generated {len(self.schemas)} markdown files")
 
     def _load_schemas(self):
@@ -958,12 +961,12 @@ class MarkdownGenerator:
 
     def _generate_index(self, output_dir: str):
         """
-        Generate the README index file with schema graph and statistics.
+        Generate the index file with schema graph and statistics.
 
         Args:
             output_dir: Output directory for documentation
         """
-        readme_path = os.path.join(output_dir, 'README.md')
+        readme_path = os.path.join(output_dir, 'index.md')
 
         # Separate objects and types
         objects = []
