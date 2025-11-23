@@ -2,6 +2,9 @@
 
 **Description:** _The length of time over which the interest due to the lender is calculated._
 
+**Referenced By (1):**
+- [Convertible Note](../objects/convertible_note.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

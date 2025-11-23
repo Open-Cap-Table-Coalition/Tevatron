@@ -2,6 +2,13 @@
 
 **Description:** _Warrant block summary._
 
+**Referenced By (1):**
+- [Capitalization Table](capitalization_table.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -25,6 +32,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `cashRaised` | [Money](money.md) | The cash raised for the warrants. | `REQUIRED` |

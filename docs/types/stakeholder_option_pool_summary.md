@@ -2,6 +2,13 @@
 
 **Description:** _Option pool summary scoped to a specific stakeholder._
 
+**Referenced By (2):**
+- [Issuerscapitalization Stakeholder](issuerscapitalization_stakeholder.md)
+- [Stakeholder Group](stakeholder_group.md)
+
+**References (1):**
+- [Decimal](decimal.md)
+
 **Example:**
 ```json
 {
@@ -18,6 +25,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `name` | `STRING` | The name of the option pool. <br/>**Constraints:** Min length: 1, Max length: 100 | `REQUIRED` |

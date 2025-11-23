@@ -16,6 +16,9 @@
  - OFFICER: Stakeholder is an officer
  - OTHER: Stakeholder has some other type of relationship_
 
+**Referenced By (1):**
+- [Publicapiissuers Stakeholder](../objects/publicapiissuers_stakeholder.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

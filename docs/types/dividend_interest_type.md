@@ -8,6 +8,9 @@
  - INTEREST_PERIOD_SEMI_ANNUAL: Interest compounds semi-annually
  - INTEREST_PERIOD_ANNUAL: Interest compounds annually_
 
+**Referenced By (1):**
+- [Dividend Details](dividend_details.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

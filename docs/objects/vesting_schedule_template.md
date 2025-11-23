@@ -4,6 +4,12 @@
 
 **Description:** _Details of a vesting schedule template._
 
+**Referenced By (1):**
+- [List Vesting Schedule Templates Response](../types/list_vesting_schedule_templates_response.md)
+
+**References (1):**
+- [Vesting Schedule Type](../types/vesting_schedule_type.md)
+
 **Example:**
 ```json
 {
@@ -16,6 +22,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `description` | `STRING` | The description of the vesting schedule template. <br/>**Constraints:** Max length: 1000 | - |

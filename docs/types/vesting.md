@@ -2,6 +2,13 @@
 
 **Description:** _Vesting details of the option grant_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
+**References (2):**
+- [Acceleration](acceleration.md)
+- [Date](date.md)
+
 **Example:**
 ```json
 {
@@ -19,6 +26,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `acceleration` | [Acceleration](acceleration.md) | Details of accelerated vesting of the draft option grant. | - |

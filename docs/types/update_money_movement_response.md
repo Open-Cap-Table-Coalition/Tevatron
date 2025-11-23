@@ -2,7 +2,11 @@
 
 **Description:** _The response for the UpdateMoneyMovement endpoint._
 
+**References (1):**
+- [Option Exercise Money Movement](option_exercise_money_movement.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `exerciseId` | `STRING` | The identifier of the option exercise money movement information was updated for. <br/>**Constraints:** Min length: 1, Max length: 50 | - |

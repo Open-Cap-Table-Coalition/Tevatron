@@ -4,7 +4,11 @@
 
 **Description:** _The request for the UpdateTaxWithholding endpoint._
 
+**References (1):**
+- [Option Exercise Tax Withholding Line Item](../types/option_exercise_tax_withholding_line_item.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `taxWithholdings` | [`Array` of [Option Exercise Tax Withholding Line Item](../types/option_exercise_tax_withholding_line_item.md)] | The tax withholdings information to update. | - |

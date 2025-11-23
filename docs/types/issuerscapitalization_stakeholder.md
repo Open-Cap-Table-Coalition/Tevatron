@@ -2,6 +2,16 @@
 
 **Description:** _Capitalization information for an individual stakeholder._
 
+**Referenced By (1):**
+- [Stakeholder Group](stakeholder_group.md)
+
+**References (5):**
+- [Stakeholder Capitalization Table Summary](stakeholder_capitalization_table_summary.md)
+- [Stakeholder Note Block Summary](stakeholder_note_block_summary.md)
+- [Stakeholder Option Pool Summary](stakeholder_option_pool_summary.md)
+- [Stakeholder Share Class Summary](stakeholder_share_class_summary.md)
+- [Stakeholder Warrant Block Summary](stakeholder_warrant_block_summary.md)
+
 **Example:**
 ```json
 {
@@ -152,6 +162,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `noteBlockSummaries` | [`Array` of [Stakeholder Note Block Summary](stakeholder_note_block_summary.md)] | Per note block summary scoped to the stakeholder. | - |

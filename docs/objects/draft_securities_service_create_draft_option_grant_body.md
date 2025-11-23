@@ -4,6 +4,9 @@
 
 **Description:** _The request for the CreateDraftOptionGrant endpoint._
 
+**References (1):**
+- [Draft Option Grant](../types/draft_option_grant.md)
+
 **Example:**
 ```json
 {
@@ -55,6 +58,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `draftOptionGrant` | [Draft Option Grant](../types/draft_option_grant.md) | The draft option grant to be created | `REQUIRED` |

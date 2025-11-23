@@ -2,7 +2,11 @@
 
 **Description:** _The response from the List Fair Market Values endpoint._
 
+**References (1):**
+- [Fair Market Value](../objects/fair_market_value.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `fairMarketValues` | [`Array` of [Fair Market Value](../objects/fair_market_value.md)] | The fair market values from the specified issuer. | - |

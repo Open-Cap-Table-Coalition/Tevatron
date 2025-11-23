@@ -4,6 +4,18 @@
 
 **Description:** _A restricted stock award is a grant of company shares._
 
+**Referenced By (2):**
+- [Get Restricted Stock Award Response](../types/get_restricted_stock_award_response.md)
+- [List Restricted Stock Awards Response](../types/list_restricted_stock_awards_response.md)
+
+**References (6):**
+- [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md)
+- [Decimal](../types/decimal.md)
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+- [Restricted Stock Award Vesting Event](../types/restricted_stock_award_vesting_event.md)
+
 **Example:**
 ```json
 {
@@ -83,6 +95,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `boardApprovalDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the restricted stock award received board approval. | - |

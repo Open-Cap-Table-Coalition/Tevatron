@@ -4,6 +4,9 @@
 
 **Description:** _A corporation._
 
+**Referenced By (1):**
+- [List Corporations Response](../types/list_corporations_response.md)
+
 **Example:**
 ```json
 {
@@ -15,6 +18,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `doingBusinessAsName` | `STRING` | The operating, or doing business as (DBA), name of the corporation. <br/>**Constraints:** Max length: 1000 | - |

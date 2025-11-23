@@ -4,6 +4,12 @@
 
 **Description:** _The compensation benchmarks._
 
+**Referenced By (1):**
+- [Get Compensation Benchmarks Response](../types/get_compensation_benchmarks_response.md)
+
+**References (1):**
+- [Benchmark Value](../types/benchmark_value.md)
+
 **Example:**
 ```json
 {
@@ -47,6 +53,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `benchmarkValues` | [`Array` of [Benchmark Value](../types/benchmark_value.md)] | The benchmark values for this segment of data. | - |

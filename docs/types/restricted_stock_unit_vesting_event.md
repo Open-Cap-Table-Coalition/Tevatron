@@ -2,6 +2,13 @@
 
 **Description:** _Restricted stock unit vesting event information._
 
+**Referenced By (1):**
+- [Restricted Stock Unit](../objects/restricted_stock_unit.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Example:**
 ```json
 {
@@ -27,6 +34,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `id` | `STRING` | The identifier of the restricted stock unit vesting event. <br/>**Constraints:** Max length: 50 | - |

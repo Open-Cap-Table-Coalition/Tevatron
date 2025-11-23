@@ -19,6 +19,9 @@
  - CONVERTIBLE_NOTE_SIGNATORY: Convertible Note Signatory
  - WARRANT_SIGNATORY: Warrant Signatory_
 
+**Referenced By (1):**
+- [Point Of Contact](../objects/point_of_contact.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

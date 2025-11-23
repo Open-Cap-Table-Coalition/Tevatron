@@ -2,6 +2,10 @@
 
 **Description:** _The response for the `GetCompensationBenchmarkAttributes` endpoint._
 
+**References (2):**
+- [Benchmark Job](../objects/benchmark_job.md)
+- [Benchmarks Metadata](benchmarks_metadata.md)
+
 **Example:**
 ```json
 {
@@ -49,6 +53,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `benchmarksMetadata` | [Benchmarks Metadata](benchmarks_metadata.md) | Context on the benchmark version of the benchmarks being returned. May differ by corporation. | `REQUIRED` |

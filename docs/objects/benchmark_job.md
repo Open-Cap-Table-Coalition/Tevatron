@@ -4,6 +4,9 @@
 
 **Description:** _A job area, job specialization, and the job levels that have benchmarks._
 
+**Referenced By (1):**
+- [Get Compensation Benchmark Attributes Response](../types/get_compensation_benchmark_attributes_response.md)
+
 **Example:**
 ```json
 {
@@ -21,6 +24,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `jobArea` | `STRING` | The job area that the underlying data is segmented by. <br/>**Constraints:** Min length: 1, Max length: 50 | `REQUIRED` |

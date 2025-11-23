@@ -2,7 +2,11 @@
 
 **Description:** _The response for the ListCorporations endpoint._
 
+**References (1):**
+- [Corporation](../objects/corporation.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `corporations` | [`Array` of [Corporation](../objects/corporation.md)] |  | - |

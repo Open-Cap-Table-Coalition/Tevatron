@@ -2,7 +2,11 @@
 
 **Description:** _The response from the `ListConvertibleNotes` endpoint._
 
+**References (1):**
+- [Convertible Note](../objects/convertible_note.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `convertibleNotes` | [`Array` of [Convertible Note](../objects/convertible_note.md)] | The convertible notes returned in the `ListConvertibleNotes` response. | - |

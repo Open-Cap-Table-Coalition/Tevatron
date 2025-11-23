@@ -2,6 +2,13 @@
 
 **Description:** _Option pool summary._
 
+**Referenced By (1):**
+- [Capitalization Table](capitalization_table.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Iso8601 Complete Calendar Date Time](iso8601_complete_calendar_date_time.md)
+
 **Example:**
 ```json
 {
@@ -24,6 +31,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `authorizedShares` | [Decimal](decimal.md) | The amount of shares authorized to be issued from the option pool. | `REQUIRED` |

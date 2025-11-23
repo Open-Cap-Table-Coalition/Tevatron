@@ -3,6 +3,9 @@
 **Description:** _- THRESHOLD_TYPE_PER_UNIT: Applied on a per-unit basis.
  - THRESHOLD_TYPE_OVERALL: Applied on the overall company value_
 
+**Referenced By (1):**
+- [Threshold Details](threshold_details.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

@@ -2,6 +2,12 @@
 
 **Description:** _Exercise periods for the option grant. Unset values will be inherited from the equity plan from with the option was granted._
 
+**Referenced By (1):**
+- [Option Grant](../objects/option_grant.md)
+
+**References (1):**
+- [Issuerssecurities Exercise Period](issuerssecurities_exercise_period.md)
+
 **Example:**
 ```json
 {
@@ -21,6 +27,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `deathExerciseCount` | `INTEGER` | The quantity of "periods" (days, months or years) after death that the stakeholder has to exercise their options. <br/>**Constraints:** Format: `int32` | - |

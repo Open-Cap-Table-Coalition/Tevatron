@@ -3,6 +3,9 @@
 **Description:** _- STAKEHOLDER_TYPE_INDIVIDUAL: Individual
  - STAKEHOLDER_TYPE_NON_INDIVIDUAL: Non-Individual (e.g. organization, trust, etc.)_
 
+**Referenced By (1):**
+- [Issuersdraftsecurities Stakeholder](issuersdraftsecurities_stakeholder.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

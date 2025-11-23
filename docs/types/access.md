@@ -2,6 +2,9 @@
 
 **Description:** _Context about the access of a given corporation._
 
+**Referenced By (1):**
+- [Get Compensation Benchmarks Response](get_compensation_benchmarks_response.md)
+
 **Example:**
 ```json
 {
@@ -11,6 +14,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `accessLevel` | `STRING` | The access level of a given corporation. <br/>**Constraints:** Min length: 1, Max length: 100 | `REQUIRED` |

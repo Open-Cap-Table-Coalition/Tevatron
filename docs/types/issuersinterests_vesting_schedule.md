@@ -2,6 +2,12 @@
 
 **Description:** _Vesting Schedule Details for the interest._
 
+**Referenced By (1):**
+- [Interest](../objects/interest.md)
+
+**References (1):**
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Example:**
 ```json
 {
@@ -13,6 +19,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `name` | `STRING` | The vesting plan name associated with the interest. | - |

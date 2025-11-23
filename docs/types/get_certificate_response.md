@@ -2,7 +2,11 @@
 
 **Description:** _The response from the Get Certificate endpoint._
 
+**References (1):**
+- [Certificate](../objects/certificate.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `certificate` | [Certificate](../objects/certificate.md) | The requested certificate from the specified issuer. | - |

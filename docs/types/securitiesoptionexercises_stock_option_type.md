@@ -6,6 +6,9 @@
  - NSO: The stock options are non-qualified stock options (NSOs).
  - OTHER: The stock options are neither ISOs nor NSOs._
 
+**Referenced By (1):**
+- [Option Exercise](../objects/option_exercise.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

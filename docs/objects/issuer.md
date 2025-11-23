@@ -4,6 +4,10 @@
 
 **Description:** _An issuer._
 
+**Referenced By (2):**
+- [Get Issuer Response](../types/get_issuer_response.md)
+- [List Issuers Response](../types/list_issuers_response.md)
+
 **Example:**
 ```json
 {
@@ -15,6 +19,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `doingBusinessAsName` | `STRING` | The operating, or doing business as (DBA), name of the issuer. <br/>**Constraints:** Max length: 1000 | - |

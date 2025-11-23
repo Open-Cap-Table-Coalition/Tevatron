@@ -4,6 +4,19 @@
 
 **Description:** _A convertible note._
 
+**Referenced By (2):**
+- [Get Convertible Note Response](../types/get_convertible_note_response.md)
+- [List Convertible Notes Response](../types/list_convertible_notes_response.md)
+
+**References (7):**
+- [Day Count Basis](../types/day_count_basis.md)
+- [Decimal](../types/decimal.md)
+- [Interest Accrual Period](../types/interest_accrual_period.md)
+- [Interest Compounding Period](../types/interest_compounding_period.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+- [Note Block](../types/note_block.md)
+
 **Example:**
 ```json
 {
@@ -81,6 +94,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `canceledDatetime` | [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md) | The date and time the convertible note was canceled. | - |

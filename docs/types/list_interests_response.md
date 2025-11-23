@@ -2,7 +2,12 @@
 
 **Description:** _The response from the List Interests endpoint._
 
+**References (2):**
+- [Interest](../objects/interest.md)
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `asOfDate` | [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md) | The date as of which the interests information was requested. This field will default to the date when the interest information was retrieved (i.e., today's date). | `REQUIRED` |

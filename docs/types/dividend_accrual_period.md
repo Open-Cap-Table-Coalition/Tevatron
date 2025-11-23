@@ -6,6 +6,9 @@
  - QUARTERLY: Dividends accrue on a quarterly basis
  - ANNUALLY: Dividends accrue on an annual basis_
 
+**Referenced By (1):**
+- [Dividend Details](dividend_details.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

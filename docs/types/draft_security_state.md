@@ -6,6 +6,9 @@
  - DRAFT_SECURITY_STATE_PENDING_BOARD_APPROVAL: The draft has been submitted for board approval and is in a read-only state
  - DRAFT_SECURITY_STATE_ISSUED: The draft has been sent to signatories to be signed and issued and is in a read-only state_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

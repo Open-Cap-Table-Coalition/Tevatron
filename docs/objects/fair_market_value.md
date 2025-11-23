@@ -4,6 +4,13 @@
 
 **Description:** _The fair market value contains the accepted values of an issuer's stock, specified on a per-share class basis. These values come from the 409A reports that Carta has for the issuer._
 
+**Referenced By (1):**
+- [List Fair Market Values Response](../types/list_fair_market_values_response.md)
+
+**References (2):**
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Share Class Valuation](../types/share_class_valuation.md)
+
 **Example:**
 ```json
 {
@@ -36,6 +43,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `effectiveDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date that this fair market valuation takes effect. | - |

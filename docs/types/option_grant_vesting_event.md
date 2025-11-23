@@ -2,6 +2,13 @@
 
 **Description:** _An option grant vesting event._
 
+**Referenced By (1):**
+- [Option Grant](../objects/option_grant.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Example:**
 ```json
 {
@@ -33,6 +40,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `id` | `STRING` | The identifier of the option grant vesting event. <br/>**Constraints:** Max length: 50 | - |

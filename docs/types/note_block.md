@@ -2,6 +2,13 @@
 
 **Description:** _A note block associated with a convertible note._
 
+**Referenced By (1):**
+- [Convertible Note](../objects/convertible_note.md)
+
+**References (2):**
+- [Note Block Status](note_block_status.md)
+- [Note Type](note_type.md)
+
 **Example:**
 ```json
 {
@@ -14,6 +21,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `id` | `STRING` | The identifier of the note block. <br/>**Constraints:** Min length: 1, Max length: 50 | - |

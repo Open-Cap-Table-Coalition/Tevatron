@@ -4,6 +4,21 @@
 
 **Description:** _An option grant is a contract that gives an employee the right to purchase a company's stock at a set price._
 
+**Referenced By (2):**
+- [Get Option Grant Response](../types/get_option_grant_response.md)
+- [List Option Grants Response](../types/list_option_grants_response.md)
+
+**References (9):**
+- [Issuerssecurities Exercise Periods](../types/issuerssecurities_exercise_periods.md)
+- [Issuerssecurities Stock Option Type](../types/issuerssecurities_stock_option_type.md)
+- [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md)
+- [Decimal](../types/decimal.md)
+- [Exercise](../types/exercise.md)
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+- [Option Grant Vesting Event](../types/option_grant_vesting_event.md)
+
 **Example:**
 ```json
 {
@@ -115,6 +130,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `boardApprovalDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the option grant received board approval. | - |

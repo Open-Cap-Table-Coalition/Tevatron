@@ -11,6 +11,9 @@
  - GRANT_REASON_CONSULTANT: Consultant
  - GRANT_REASON_BOARD: Board_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

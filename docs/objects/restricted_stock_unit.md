@@ -4,6 +4,19 @@
 
 **Description:** _A restricted stock unit is a grant of company shares._
 
+**Referenced By (2):**
+- [Get Restricted Stock Unit Response](../types/get_restricted_stock_unit_response.md)
+- [List Restricted Stock Units Response](../types/list_restricted_stock_units_response.md)
+
+**References (7):**
+- [Issuerssecurities Vesting Schedule](../types/issuerssecurities_vesting_schedule.md)
+- [Decimal](../types/decimal.md)
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+- [Restricted Stock Unit Settlement](../types/restricted_stock_unit_settlement.md)
+- [Restricted Stock Unit Vesting Event](../types/restricted_stock_unit_vesting_event.md)
+
 **Example:**
 ```json
 {
@@ -114,6 +127,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `boardApprovalDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the restricted stock unit received board approval. | - |

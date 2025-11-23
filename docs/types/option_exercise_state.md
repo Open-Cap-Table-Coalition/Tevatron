@@ -7,6 +7,9 @@
  - COMPLETE: The exercise request is complete.
  - CANCELED: The exercise request is canceled._
 
+**Referenced By (1):**
+- [Option Exercise](../objects/option_exercise.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**

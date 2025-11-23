@@ -4,6 +4,12 @@
 
 **Description:** _A point of contact for an issuer. Examples include a Legal Admin or an Option Signatory._
 
+**Referenced By (1):**
+- [List Points Of Contact Response](../types/list_points_of_contact_response.md)
+
+**References (1):**
+- [Point Of Contact Type](../types/point_of_contact_type.md)
+
 **Example:**
 ```json
 {
@@ -15,6 +21,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `issuerId` | `STRING` | An identifier for the issuer related to the point of contact. <br/>**Constraints:** Max length: 50 | - |

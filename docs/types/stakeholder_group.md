@@ -4,6 +4,17 @@
 
 These groupings of individual stakeholders are disjoint sets; i.e., a stakeholder can only belong to a single stakeholder group._
 
+**Referenced By (1):**
+- [Stakeholder Capitalization Table](stakeholder_capitalization_table.md)
+
+**References (6):**
+- [Issuerscapitalization Stakeholder](issuerscapitalization_stakeholder.md)
+- [Stakeholder Capitalization Table Summary](stakeholder_capitalization_table_summary.md)
+- [Stakeholder Note Block Summary](stakeholder_note_block_summary.md)
+- [Stakeholder Option Pool Summary](stakeholder_option_pool_summary.md)
+- [Stakeholder Share Class Summary](stakeholder_share_class_summary.md)
+- [Stakeholder Warrant Block Summary](stakeholder_warrant_block_summary.md)
+
 **Example:**
 ```json
 {
@@ -307,6 +318,7 @@ These groupings of individual stakeholders are disjoint sets; i.e., a stakeholde
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `noteBlockSummaries` | [`Array` of [Stakeholder Note Block Summary](stakeholder_note_block_summary.md)] | Per note block summary scoped to the stakeholder group. | - |

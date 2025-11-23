@@ -4,6 +4,17 @@
 
 **Description:** _Interest information._
 
+**Referenced By (1):**
+- [List Interests Response](../types/list_interests_response.md)
+
+**References (6):**
+- [Issuersinterests Vesting Schedule](../types/issuersinterests_vesting_schedule.md)
+- [Decimal](../types/decimal.md)
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+- [Threshold Details](../types/threshold_details.md)
+
 **Example:**
 ```json
 {
@@ -87,6 +98,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `acceptanceDate` | [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md) | The date the interest was accepted by the holder. | - |

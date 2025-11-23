@@ -2,6 +2,14 @@
 
 **Description:** _Summary information about the capitalization table._
 
+**Referenced By (2):**
+- [Issuerscapitalization Stakeholder](issuerscapitalization_stakeholder.md)
+- [Stakeholder Group](stakeholder_group.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -23,6 +31,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `cashRaised` | [Money](money.md) | Total cash amount raised. | `REQUIRED` |

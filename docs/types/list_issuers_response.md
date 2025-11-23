@@ -2,7 +2,11 @@
 
 **Description:** _The response for the ListIssuers endpoint._
 
+**References (1):**
+- [Issuer](../objects/issuer.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `issuers` | [`Array` of [Issuer](../objects/issuer.md)] |  | - |

@@ -2,6 +2,12 @@
 
 **Description:** _A compensation benchmark value._
 
+**Referenced By (1):**
+- [Benchmarks](../objects/benchmarks.md)
+
+**References (1):**
+- [Decimal](decimal.md)
+
 **Example:**
 ```json
 {
@@ -14,6 +20,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `benchmark` | [Decimal](decimal.md) | The ordinal value of the benchmark.  "SALARY" and "TOTAL_CASH" are annual values in US dollars (USD).  "EQUITY_AS_FULLY_DILUTED_PERCENT" is represented as a annual grant value between 0 and 100: 1 represents 1%.  For CEO Founder benchmarks, this value represents total ownership instead of an annual grant value. | - |

@@ -2,6 +2,14 @@
 
 **Description:** _Compliance details of a stakeholder_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
+**References (3):**
+- [Federal Exemption](federal_exemption.md)
+- [Iso3166 Set1 Alpha3 Code](iso3166_set1_alpha3_code.md)
+- [Iso3166 Set2 Code](iso3166_set2_code.md)
+
 **Example:**
 ```json
 {
@@ -16,6 +24,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `countryOfResidency` | [Iso3166 Set1 Alpha3 Code](iso3166_set1_alpha3_code.md) | The country of residency of the stakeholder  | - |

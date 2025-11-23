@@ -2,7 +2,11 @@
 
 **Description:** _The response for the ListOptionGrants endpoint._
 
+**References (1):**
+- [Option Grant](../objects/option_grant.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `nextPageToken` | `STRING` | Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.  If the response omits `nextPageToken`, then there are no subsequent pages. | - |

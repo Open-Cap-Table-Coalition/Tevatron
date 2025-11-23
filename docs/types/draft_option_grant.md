@@ -4,6 +4,26 @@
 
 The "draft" prefix is used to differentiate it from the final option grant object._
 
+**Referenced By (3):**
+- [Draft Securities Service Create Draft Option Grant Body](../objects/draft_securities_service_create_draft_option_grant_body.md)
+- [Create Draft Option Grant Response](create_draft_option_grant_response.md)
+- [Get Draft Option Grant Response](get_draft_option_grant_response.md)
+
+**References (13):**
+- [Issuersdraftsecurities Exercise Periods](issuersdraftsecurities_exercise_periods.md)
+- [Issuersdraftsecurities Stakeholder](issuersdraftsecurities_stakeholder.md)
+- [Issuersdraftsecurities Stock Option Type](issuersdraftsecurities_stock_option_type.md)
+- [Board Approval](board_approval.md)
+- [Compliance](compliance.md)
+- [Date](date.md)
+- [Decimal](decimal.md)
+- [Draft Security State](draft_security_state.md)
+- [Grant Reason](grant_reason.md)
+- [Iso8601 Complete Calendar Date Time](iso8601_complete_calendar_date_time.md)
+- [Money](money.md)
+- [Option Grant Documents](option_grant_documents.md)
+- [Vesting](vesting.md)
+
 **Example:**
 ```json
 {
@@ -79,6 +99,7 @@ The "draft" prefix is used to differentiate it from the final option grant objec
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `boardApproval` | [Board Approval](board_approval.md) | The board approval status for the draft option grant. | - |

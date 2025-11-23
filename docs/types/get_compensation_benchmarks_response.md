@@ -2,6 +2,11 @@
 
 **Description:** _The response for the GetCompensationBenchmarks endpoint._
 
+**References (3):**
+- [Access](access.md)
+- [Benchmarks](../objects/benchmarks.md)
+- [Benchmarks Metadata](benchmarks_metadata.md)
+
 **Example:**
 ```json
 {
@@ -58,6 +63,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `access` | [Access](access.md) | Context about the access of a given corporation. | `REQUIRED` |

@@ -4,6 +4,15 @@
 
 **Description:** _A class of stock issued by an issuer._
 
+**Referenced By (1):**
+- [List Share Classes Response](../types/list_share_classes_response.md)
+
+**References (4):**
+- [Decimal](../types/decimal.md)
+- [Money](../types/money.md)
+- [Preferred Share Class Details](../types/preferred_share_class_details.md)
+- [Share Class Type](../types/share_class_type.md)
+
 **Example:**
 ```json
 {
@@ -70,6 +79,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `authorizedShareCount` | [Decimal](../types/decimal.md) | The maximum number of shares allowed to be issued to investors, as laid out in the articles of incorporation. | - |

@@ -2,6 +2,12 @@
 
 **Description:** _Note block summary information._
 
+**Referenced By (1):**
+- [Capitalization Table](capitalization_table.md)
+
+**References (1):**
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -34,6 +40,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `cashRaised` | [Money](money.md) | The cash raised for the note block. | `REQUIRED` |

@@ -4,6 +4,18 @@
 
 **Description:** _An option exercise is an event representing a stakeholder exercising their right to purchase shares of an issuer at a set price, the strike price, defined in the option grant being exercised. The result of a successfully completed exercise is the issuance of a certificate._
 
+**Referenced By (1):**
+- [List Option Exercises Response](../types/list_option_exercises_response.md)
+
+**References (7):**
+- [Securitiesoptionexercises Stock Option Type](../types/securitiesoptionexercises_stock_option_type.md)
+- [Decimal](../types/decimal.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Option Exercise Money Movement](../types/option_exercise_money_movement.md)
+- [Option Exercise State](../types/option_exercise_state.md)
+- [Option Exercise Tax Withholding Line Item](../types/option_exercise_tax_withholding_line_item.md)
+- [Option Exercise Type](../types/option_exercise_type.md)
+
 **Example:**
 ```json
 {
@@ -49,6 +61,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `certificateId` | `STRING` | The identifier of the certificate issued as a result of the option exercise event completing. <br/>**Constraints:** Max length: 50 | - |

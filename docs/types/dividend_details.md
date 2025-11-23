@@ -2,6 +2,15 @@
 
 **Description:** _Details about share class dividends._
 
+**Referenced By (1):**
+- [Share Class Dividend Details](share_class_dividend_details.md)
+
+**References (4):**
+- [Decimal](decimal.md)
+- [Dividend Accrual Period](dividend_accrual_period.md)
+- [Dividend Accrual Type](dividend_accrual_type.md)
+- [Dividend Interest Type](dividend_interest_type.md)
+
 **Example:**
 ```json
 {
@@ -15,6 +24,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `dividendAccrualPeriod` | [Dividend Accrual Period](dividend_accrual_period.md) | Cadence upon which dividends are accrued. | - |

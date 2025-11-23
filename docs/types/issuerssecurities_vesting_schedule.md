@@ -2,6 +2,14 @@
 
 **Description:** _Restricted stock award vesting event information._
 
+**Referenced By (3):**
+- [Option Grant](../objects/option_grant.md)
+- [Restricted Stock Award](../objects/restricted_stock_award.md)
+- [Restricted Stock Unit](../objects/restricted_stock_unit.md)
+
+**References (1):**
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Example:**
 ```json
 {
@@ -19,6 +27,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `endDate` | [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md) | The end date of the vesting schedule. | - |

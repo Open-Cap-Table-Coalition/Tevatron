@@ -2,6 +2,13 @@
 
 **Description:** _Share class rights and preferences for a preferred share class._
 
+**Referenced By (1):**
+- [Preferred Share Class Details](preferred_share_class_details.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -35,6 +42,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `conversionPrice` | [Money](money.md) | Used to calculate the conversion ratio for the preferred stock into common stock. | - |

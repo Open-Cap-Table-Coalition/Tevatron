@@ -2,6 +2,13 @@
 
 **Description:** _The top-level object that encapsulates an issuer's stakeholder capitalization information._
 
+**Referenced By (1):**
+- [Get Stakeholder Capitalization Table Response](get_stakeholder_capitalization_table_response.md)
+
+**References (2):**
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+- [Stakeholder Group](stakeholder_group.md)
+
 **Example:**
 ```json
 {
@@ -311,6 +318,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `asOfDate` | [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md) | Data returned in the response reflects the state of the capitalization table as of this date, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'. | `REQUIRED` |

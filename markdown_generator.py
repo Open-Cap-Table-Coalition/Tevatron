@@ -126,6 +126,11 @@ class MarkdownGenerator:
         description = schema_def.get('description') or schema_def.get('title', 'No description available.')
         md_parts.append(f"**Description:** _{description}_")
 
+        # Cross-references (Referenced By and References)
+        cross_refs = self._generate_cross_references(schema)
+        if cross_refs:
+            md_parts.append(cross_refs)
+
         # Example
         if 'example' in schema_def:
             example_json = json.dumps(schema_def['example'], indent=2)
@@ -199,7 +204,7 @@ class MarkdownGenerator:
             formatted_row = f"| {' | '.join(row)} |"
             markdown_rows.append(formatted_row)
 
-        return "**Properties:**\n" + "\n".join(markdown_rows)
+        return "**Properties:**\n\n" + "\n".join(markdown_rows)
 
     def _extract_constraints(self, prop_schema: Dict[str, Any]) -> List[str]:
         """
@@ -293,6 +298,44 @@ class MarkdownGenerator:
         else:
             # Fallback if schema not found
             return f"`{ref_name}`"
+
+    def _generate_cross_references(self, schema: ComposedSchemaData) -> str:
+        """
+        Generate cross-reference sections showing Referenced By and References.
+
+        Args:
+            schema: Schema data with cross-reference information
+
+        Returns:
+            Markdown formatted cross-references, or empty string if none
+        """
+        sections = []
+
+        # Referenced By (schemas that use this one)
+        if schema.referenced_by:
+            ref_by_links = []
+            for ref_name in sorted(schema.referenced_by):
+                link = self._create_schema_link(ref_name, schema.output_path)
+                ref_by_links.append(f"- {link}")
+
+            sections.append(
+                f"**Referenced By ({len(schema.referenced_by)}):**\n" +
+                "\n".join(ref_by_links)
+            )
+
+        # References (schemas this one uses)
+        if schema.references:
+            ref_links = []
+            for ref_name in sorted(schema.references):
+                link = self._create_schema_link(ref_name, schema.output_path)
+                ref_links.append(f"- {link}")
+
+            sections.append(
+                f"**References ({len(schema.references)}):**\n" +
+                "\n".join(ref_links)
+            )
+
+        return "\n\n".join(sections) if sections else ""
 
     def _generate_schema_graph(self) -> str:
         """

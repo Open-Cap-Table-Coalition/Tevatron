@@ -2,6 +2,13 @@
 
 **Description:** _Details of a stakeholder_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
+**References (2):**
+- [Issuersdraftsecurities Stakeholder Relationship](issuersdraftsecurities_stakeholder_relationship.md)
+- [Stakeholder Type](stakeholder_type.md)
+
 **Example:**
 ```json
 {
@@ -14,6 +21,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `email` | `STRING` | The email of the stakeholder to whom this security will be issued. <br/>**Constraints:** Min length: 1, Max length: 100 | - |

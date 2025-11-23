@@ -2,6 +2,17 @@
 
 **Description:** _The top-level capitalization table object._
 
+**Referenced By (1):**
+- [Get Capitalization Table Response](get_capitalization_table_response.md)
+
+**References (6):**
+- [Capitalization Table Summary](capitalization_table_summary.md)
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+- [Note Block Summary](note_block_summary.md)
+- [Option Pool Summary](option_pool_summary.md)
+- [Share Class Summary](share_class_summary.md)
+- [Warrant Block Summary](warrant_block_summary.md)
+
 **Example:**
 ```json
 {
@@ -119,6 +130,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `asOfDate` | [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md) | Data returned in the response reflects the state of the capitalization table as of this date, specified as an [ISO 8601 extended format calendar date](https://en.wikipedia.org/wiki/ISO_8601#Calendar_dates), i.e. 'YYYY-MM-DD'. | - |

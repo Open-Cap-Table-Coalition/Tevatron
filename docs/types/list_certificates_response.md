@@ -2,7 +2,11 @@
 
 **Description:** _The response from the List Certificates endpoint._
 
+**References (1):**
+- [Certificate](../objects/certificate.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `certificates` | [`Array` of [Certificate](../objects/certificate.md)] | The vesting schedules from the specified issuer. | - |

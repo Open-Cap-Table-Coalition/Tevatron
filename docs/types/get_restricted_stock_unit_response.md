@@ -2,7 +2,11 @@
 
 **Description:** _The response from the Get Restricted Stock Unit endpoint._
 
+**References (1):**
+- [Restricted Stock Unit](../objects/restricted_stock_unit.md)
+
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `restrictedStockUnit` | [Restricted Stock Unit](../objects/restricted_stock_unit.md) | The requested restricted stock unit from the specified issuer. | - |

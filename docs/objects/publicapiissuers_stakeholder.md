@@ -4,6 +4,15 @@
 
 **Description:** _A stakeholder is any person or entity who holds an outstanding security._
 
+**Referenced By (2):**
+- [Get Stakeholder Response](../types/get_stakeholder_response.md)
+- [List Stakeholders Response](../types/list_stakeholders_response.md)
+
+**References (3):**
+- [Stakeholder Entity Type](../types/stakeholder_entity_type.md)
+- [Publicapiissuers Stakeholder Relationship](../types/publicapiissuers_stakeholder_relationship.md)
+- [Stakeholder Address](../types/stakeholder_address.md)
+
 **Example:**
 ```json
 {
@@ -22,6 +31,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `address` | [Stakeholder Address](../types/stakeholder_address.md) | The address of the stakeholder. This will not be set for all stakeholders. | - |

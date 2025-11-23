@@ -2,6 +2,15 @@
 
 **Description:** _The list of all exercises associated with this grant._
 
+**Referenced By (1):**
+- [Option Grant](../objects/option_grant.md)
+
+**References (4):**
+- [Decimal](decimal.md)
+- [Exercise Status](exercise_status.md)
+- [Exercise Type](exercise_type.md)
+- [Iso8601 Complete Calendar Date](iso8601_complete_calendar_date.md)
+
 **Example:**
 ```json
 {
@@ -22,6 +31,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `certificateId` | `STRING` | The identifier of the certificate that was issued. This field is set if the exercise has been completed and a certificate has been issued. | - |

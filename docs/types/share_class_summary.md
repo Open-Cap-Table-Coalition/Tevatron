@@ -2,6 +2,13 @@
 
 **Description:** _Share class summary includes all certificated, non-certificated and RSAs with an issue date._
 
+**Referenced By (1):**
+- [Capitalization Table](capitalization_table.md)
+
+**References (2):**
+- [Decimal](decimal.md)
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -27,6 +34,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `cashRaised` | [Money](money.md) | Total currency amount raised for share class. | `REQUIRED` |

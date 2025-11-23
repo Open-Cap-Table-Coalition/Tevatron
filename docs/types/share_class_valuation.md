@@ -2,6 +2,12 @@
 
 **Description:** _The fair market valuation price for a share class._
 
+**Referenced By (1):**
+- [Fair Market Value](../objects/fair_market_value.md)
+
+**References (1):**
+- [Money](money.md)
+
 **Example:**
 ```json
 {
@@ -20,6 +26,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `common` | `BOOLEAN` | True if this is a common share class; otherwise, false if this is a preferred share class. | - |

@@ -4,6 +4,16 @@
 
 **Description:** _A certificate is a record of ownership of a company's shares._
 
+**Referenced By (2):**
+- [Get Certificate Response](../types/get_certificate_response.md)
+- [List Certificates Response](../types/list_certificates_response.md)
+
+**References (4):**
+- [Decimal](../types/decimal.md)
+- [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md)
+- [Iso8601 Complete Calendar Date Time](../types/iso8601_complete_calendar_date_time.md)
+- [Money](../types/money.md)
+
 **Example:**
 ```json
 {
@@ -33,6 +43,7 @@
 ```
 
 **Properties:**
+
 | Property | Type | Description | Required |
 | --- | --- | --- | --- |
 | `canceledDate` | [Iso8601 Complete Calendar Date](../types/iso8601_complete_calendar_date.md) | The date the certificate was canceled. | - |

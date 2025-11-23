@@ -11,6 +11,9 @@
  - STOCK_OPTION_TYPE_3I: 3(i) Stock Option
  - STOCK_OPTION_TYPE_UNAPPROVED: Unapproved Stock Option_
 
+**Referenced By (1):**
+- [Draft Option Grant](draft_option_grant.md)
+
 **Type:** `STRING`
 
 **Allowed Values:**
