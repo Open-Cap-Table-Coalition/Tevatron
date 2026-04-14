@@ -11,7 +11,10 @@ Run: python generate_domain_docs.py
 from __future__ import annotations
 
 import json
+import posixpath
 import re
+import urllib.error
+import urllib.request
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -29,7 +32,12 @@ DOMAIN_DIR = DOCS_DIR / "domain"
 OBJECTS_DIR = DOCS_DIR / "objects"
 TYPES_DIR = DOCS_DIR / "types"
 OCF_MAPPING_PATH = ROOT / "ocf_mapping.yaml"
+OCF_CACHE_DIR = ROOT / "build" / "ocf-schemas"
 OCF_DOCS_BASE = "https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF"
+OCF_RAW_BASE = (
+    "https://raw.githubusercontent.com/"
+    "Open-Cap-Table-Coalition/Open-Cap-Format-OCF/main/docs/schema_markdown/schema"
+)
 
 REF_RE = re.compile(r"^#/components/schemas/(.+)$")
 METHODS = ("get", "post", "put", "patch", "delete")
@@ -349,6 +357,173 @@ def render_ocf_section(mapping: dict[str, dict], key: str) -> str:
     return "\n".join(parts)
 
 
+# ---------------------------------------------------------------------------
+# OCF markdown fetch / parse / link-rewrite
+# ---------------------------------------------------------------------------
+
+
+def _ocf_source_rel_path(entry: dict) -> str:
+    """Return the OCF markdown file's path relative to `schema/`.
+
+    e.g. "objects/StockClass.md"
+      or "objects/transactions/issuance/StockIssuance.md"
+    """
+    name = entry.get("name", "")
+    if entry.get("kind") == "transaction":
+        category = entry.get("category", "")
+        return f"objects/transactions/{category}/{name}.md"
+    return f"objects/{name}.md"
+
+
+def fetch_ocf_markdown(entry: dict) -> str | None:
+    """Return the OCF markdown for `entry`, caching locally.
+
+    Returns None on fetch failure — caller falls back to text-only OCF section.
+    """
+    rel = _ocf_source_rel_path(entry)
+    cache_path = OCF_CACHE_DIR / rel
+    if cache_path.exists():
+        return cache_path.read_text()
+    url = f"{OCF_RAW_BASE}/{rel}"
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            text = resp.read().decode("utf-8")
+    except (urllib.error.URLError, TimeoutError) as exc:
+        print(f"  warn: failed to fetch {url}: {exc}")
+        return None
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(text)
+    return text
+
+
+_DESC_RE = re.compile(r"^\*\*Description:\*\*\s*_?([^_\n]+)_?\s*$", re.MULTILINE)
+_PROPS_HEADER_RE = re.compile(r"^\*\*Properties:\*\*\s*$", re.MULTILINE)
+
+
+def _rewrite_ocf_link(md_link: str, source_rel: str) -> str:
+    """Rewrite a relative `.md` link inside an OCF markdown file to an
+    absolute URL on the OCF doc site.
+
+    `source_rel` is the location of the source file relative to `schema/`
+    (e.g. "objects/StockClass.md") — relative links inside that file are
+    resolved against its containing directory.
+    """
+
+    def repl(m: re.Match[str]) -> str:
+        label = m.group(1)
+        href = m.group(2)
+        # Absolute URLs pass through untouched.
+        if href.startswith(("http://", "https://")):
+            return m.group(0)
+        # Compute absolute path under `schema/`.
+        base_dir = posixpath.dirname(source_rel)
+        joined = posixpath.normpath(posixpath.join(base_dir, href))
+        # Strip a trailing `.md`, append `/` to match the doc-site URL convention.
+        if joined.endswith(".md"):
+            joined = joined[:-3] + "/"
+        url = f"{OCF_DOCS_BASE}/schema_markdown/schema/{joined}"
+        return f"[{label}]({url})"
+
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, md_link)
+
+
+@dataclass
+class OcfView:
+    name: str
+    doc_url: str
+    description: str
+    properties_table: str  # multi-line markdown table (header + body rows)
+
+
+def parse_ocf_markdown(md: str, entry: dict) -> OcfView | None:
+    """Extract description and Properties table from an OCF markdown doc.
+
+    Returns None if the expected structure isn't present.
+    """
+    desc_match = _DESC_RE.search(md)
+    description = desc_match.group(1).strip().strip("_") if desc_match else ""
+
+    header_match = _PROPS_HEADER_RE.search(md)
+    if not header_match:
+        return None
+    after_header = md[header_match.end():]
+
+    # The properties section is a markdown table: header line + separator + body,
+    # followed by a blank line (which terminates the table) and then another
+    # `**Section:**` header. Collect contiguous table rows.
+    table_lines: list[str] = []
+    in_table = False
+    for line in after_header.splitlines():
+        stripped = line.strip()
+        if not in_table:
+            if stripped.startswith("|"):
+                in_table = True
+                table_lines.append(line.rstrip())
+            continue
+        if stripped.startswith("|"):
+            table_lines.append(line.rstrip())
+        else:
+            break  # end of table
+
+    if len(table_lines) < 2:
+        return None  # no header+separator+rows
+
+    source_rel = _ocf_source_rel_path(entry)
+    rewritten = "\n".join(
+        _rewrite_ocf_link(line, source_rel) for line in table_lines
+    )
+
+    return OcfView(
+        name=entry.get("name", ""),
+        doc_url=ocf_url(entry),
+        description=description,
+        properties_table=rewritten,
+    )
+
+
+def get_ocf_primary_view(mapping: dict[str, dict], key: str) -> OcfView | None:
+    """Fetch + parse the OCF markdown for the first `role: primary` entry
+    under the given mapping key, or return None if no fetch is possible."""
+    entry = mapping.get(key)
+    if not entry:
+        return None
+    primaries = [e for e in (entry.get("ocf") or []) if e.get("role", "primary") == "primary"]
+    if not primaries:
+        return None
+    first = primaries[0]
+    md = fetch_ocf_markdown(first)
+    if md is None:
+        return None
+    return parse_ocf_markdown(md, first)
+
+
+def render_side_by_side(
+    carta_title: str,
+    carta_link: str,
+    carta_table_md: str,
+    ocf_view: OcfView,
+) -> str:
+    """Emit an HTML flex container with the Carta and OCF property tables
+    rendered as two columns. Uses md_in_html so nested markdown tables parse.
+    """
+    ocf_desc = (ocf_view.description or "").replace("\n", " ")
+    parts = [
+        '<div class="domain-compare" markdown="1">\n',
+        '<div class="domain-compare__col" markdown="1">\n',
+        f"**Carta** — {carta_link}\n\n",
+        f"_{carta_title}_\n\n",
+        carta_table_md,
+        "\n</div>\n",
+        '<div class="domain-compare__col" markdown="1">\n',
+        f"**OCF** — [`{ocf_view.name}`]({ocf_view.doc_url})\n\n",
+        f"_{ocf_desc}_\n\n" if ocf_desc else "\n",
+        ocf_view.properties_table,
+        "\n</div>\n",
+        "</div>\n",
+    ]
+    return "".join(parts)
+
+
 def render_properties_table(schema: dict) -> str:
     props = schema.get("properties") or {}
     if not props:
@@ -483,13 +658,34 @@ def render_entity_page(
     parts: list[str] = [f"# {title}\n"]
     if description:
         parts.append(f"{description}\n")
+
+    # Render the text-only OCF Equivalent section (summary + primary/also links).
+    # This stays on every page so readers see the "no equivalent" rationale and
+    # any secondary/related OCF types even when we also emit the side-by-side view.
     ocf_section = render_ocf_section(ocf_mapping, entity.schema_name)
     if ocf_section:
         parts.append(ocf_section)
+
     parts.append("## Endpoints\n")
     parts.append(render_endpoints_section(entity.endpoints))
-    parts.append("\n## Properties\n")
-    parts.append(render_properties_table(schema))
+
+    # Properties: side-by-side if we have a primary OCF view, otherwise the
+    # familiar single-table layout.
+    ocf_view = get_ocf_primary_view(ocf_mapping, entity.schema_name)
+    if ocf_view is not None:
+        parts.append("\n## Properties side-by-side\n")
+        parts.append(
+            render_side_by_side(
+                carta_title=description or title,
+                carta_link=cross_link(entity.schema_name),
+                carta_table_md=render_properties_table(schema),
+                ocf_view=ocf_view,
+            )
+        )
+    else:
+        parts.append("\n## Properties\n")
+        parts.append(render_properties_table(schema))
+
     parts.append("\n## Referenced by\n")
     parts.append(render_referenced_by_section(entity.referenced_by, entity.schema_name))
     parts.append("\n---\n")

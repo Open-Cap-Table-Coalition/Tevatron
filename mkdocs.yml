@@ -38,6 +38,9 @@ plugins:
   - search:
       lang: en
 
+extra_css:
+  - stylesheets/domain.css
+
 markdown_extensions:
   - admonition
   - pymdownx.details
