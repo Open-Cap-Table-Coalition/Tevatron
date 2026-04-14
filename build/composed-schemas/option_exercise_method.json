@@ -1,0 +1,22 @@
+{
+  "name": "v1alpha1OptionExerciseMethod",
+  "sanitized_name": "option_exercise_method",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "OPTION_EXERCISE_METHOD_CASH",
+      "OPTION_EXERCISE_METHOD_CASHLESS",
+      "OPTION_EXERCISE_METHOD_PUBLIC_NET",
+      "OPTION_EXERCISE_METHOD_BLENDED",
+      "OPTION_EXERCISE_METHOD_PUBLIC_CASHLESS"
+    ],
+    "description": "The method used to exercise options.\nDescribes how the exercise cost was funded.\n\n - OPTION_EXERCISE_METHOD_CASH: Cash exercise \u2014 the holder paid the full exercise cost in cash.\n - OPTION_EXERCISE_METHOD_CASHLESS: Cashless (same-day sale) \u2014 shares were sold on the open market simultaneously to cover the exercise cost.\n - OPTION_EXERCISE_METHOD_PUBLIC_NET: Public net exercise \u2014 shares were withheld by the company to cover the exercise cost. Applicable to public companies.\n - OPTION_EXERCISE_METHOD_BLENDED: Blended exercise \u2014 a combination of cash payment and share sale was used to cover the exercise cost.\n - OPTION_EXERCISE_METHOD_PUBLIC_CASHLESS: Public cashless exercise \u2014 a broker-assisted cashless exercise through the public market."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionExerciseTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/option_exercise_method.md"
+}

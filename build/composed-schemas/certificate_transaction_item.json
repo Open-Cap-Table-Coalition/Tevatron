@@ -1,0 +1,69 @@
+{
+  "name": "v1alpha1CertificateTransactionItem",
+  "sanitized_name": "certificate_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "2951",
+      "stakeholderId": "4923",
+      "securityLabel": "CS-42",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "10000"
+        },
+        "acquisitionCost": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.50"
+          }
+        },
+        "equityPlanId": "42"
+      }
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the certificate.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the certificate.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the certificate (e.g. \"CS-42\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1CertificateIssuanceTransaction",
+        "description": "The issuance transaction for the certificate."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1CertificateCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the certificate, in chronological order."
+      }
+    },
+    "description": "A certificate with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single certificate."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1CertificateIssuanceTransaction",
+    "v1alpha1CertificateCancellationTransaction"
+  ],
+  "output_path": "docs/types/certificate_transaction_item.md"
+}

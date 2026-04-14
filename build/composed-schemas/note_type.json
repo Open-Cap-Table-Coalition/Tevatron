@@ -8,7 +8,8 @@
       "DEBT",
       "CONVERTIBLE_DEBT",
       "CONVERTIBLE_EQUITY",
-      "SAFE"
+      "SAFE",
+      "ASA"
     ],
     "description": "The type of the note related to the note block."
   },

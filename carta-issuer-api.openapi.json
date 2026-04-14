@@ -17,16 +17,16 @@
       "name": "carta.proto.publicapi.compensation.v1alpha1.CompensationBenchmarksService"
     },
     {
-      "name": "carta.proto.publicapi.issuers.securities.optionexercises.v1alpha1.ExerciseService"
-    },
-    {
-      "name": "carta.proto.publicapi.issuers.securities.v1alpha1.SecuritiesService"
-    },
-    {
-      "name": "carta.proto.publicapi.issuers.draftsecurities.v1alpha1.DraftSecuritiesService"
+      "name": "carta.proto.publicapi.issuers.transactions.v1alpha1.TransactionsService"
     },
     {
       "name": "carta.proto.publicapi.issuers.capitalization.v1alpha1.CapitalizationTableService"
+    },
+    {
+      "name": "carta.proto.publicapi.issuers.interests.v1alpha1.InterestsService"
+    },
+    {
+      "name": "carta.proto.publicapi.issuers.draftsecurities.v1alpha1.DraftSecuritiesService"
     },
     {
       "name": "carta.proto.publicapi.issuers.securitiestemplates.v1alpha1.SecuritiesTemplatesService"
@@ -35,7 +35,10 @@
       "name": "carta.proto.publicapi.issuers.v1alpha1.IssuersService"
     },
     {
-      "name": "carta.proto.publicapi.issuers.interests.v1alpha1.InterestsService"
+      "name": "carta.proto.publicapi.issuers.securities.v1alpha1.SecuritiesService"
+    },
+    {
+      "name": "carta.proto.publicapi.issuers.securities.optionexercises.v1alpha1.ExerciseService"
     }
   ],
   "paths": {
@@ -2884,6 +2887,127 @@
         ]
       }
     },
+    "/v1alpha1/issuers/{issuerId}/transactions": {
+      "get": {
+        "summary": "List Transactions",
+        "description": "Scope(s): `read_issuer_securities` OR `readwrite_issuer_securities`\n\nRetrieve transaction history for securities belonging to an issuer, filtered by security type.\n\nUse the `type` query parameter to specify the security type. Supported values: `option` (option grants), `rsu` (restricted stock unit awards), `rsa` (restricted stock awards), `certificate` (certificates), `warrant` (warrants), `convertible` (convertible notes).\n\nFor option grants, each item in the response represents a single grant with its full lifecycle: issuance, exercises, and cancellations (if applicable).\n\nFor RSU awards, each item represents a single award with its full lifecycle: issuance, settlements, and cancellations (if applicable).\n\nFor RSAs, each item represents a single award with its full lifecycle: issuance and cancellations (if applicable).\n\nFor certificates, each item represents a single certificate with its full lifecycle: issuance and cancellations (if applicable).\n\nFor warrants, each item represents a single warrant with its full lifecycle: issuance, exercises, transfers, and cancellations (if applicable).\n\nFor convertible notes, each item represents a single note with its full lifecycle: issuance and cancellations (if applicable). A conversion appears as a cancellation with `reason=CONVERTIBLE_CANCELLATION_REASON_CONVERTED`. A transferred note includes a `precededBySecurityId` on its issuance.\n\nFor PIUs (Profits Interest Units), each item represents a single PIU with its full lifecycle: issuance and cancellations (if applicable).",
+        "operationId": "v1alpha1.issuers.listTransactions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1alpha1ListTransactionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned if required fields are omitted or if provided fields fail validation.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned if a valid `Authorization` header has not been included with the request.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Returned if an unexpected internal server error is encountered.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issuerId",
+            "description": "The identifier of the issuer whose transactions to retrieve.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "description": "The maximum number of securities (with their transactions) to return. The service may return fewer than this value.\n\nIf unspecified, at most 50 securities will be returned.\n\nThe maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageToken",
+            "description": "A page token received as `nextPageToken` in a previous response. Provide this to retrieve the subsequent page.\n\nWhen paginating, all other parameters must match the call that provided the page token.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "description": "The security type to filter transactions by. Required.\n\nSupported values:\n- `option` — option grant transactions (issuance, exercises, cancellation)\n- `rsu` — restricted stock unit award transactions (issuance, settlements, cancellation)\n- `rsa` — restricted stock award transactions (issuance, cancellation)\n- `certificate` — certificate transactions (issuance, cancellation)\n- `warrant` — warrant transactions (issuance, exercises, transfers, cancellation)\n- `convertible` — convertible note transactions (issuance, cancellation)\n- `piu` — profits interest unit transactions (issuance, cancellation)\n- `sar` — stock appreciation right transactions (issuance, exercises, cancellation)",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "option",
+                "rsu",
+                "rsa",
+                "certificate",
+                "warrant",
+                "convertible",
+                "piu",
+                "sar"
+              ]
+            }
+          }
+        ],
+        "tags": [
+          "Issuers - Transactions"
+        ],
+        "security": [
+          {
+            "OAuth2": [
+              "read_issuer_securities",
+              "readwrite_issuer_securities"
+            ]
+          }
+        ]
+      }
+    },
     "/v1alpha1/issuers/{issuerId}/vestingScheduleTemplates": {
       "get": {
         "summary": "List Vesting Schedule Templates",
@@ -3493,9 +3617,11 @@
           "STAKEHOLDER_RELATIONSHIP_INVESTOR",
           "STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE",
           "STAKEHOLDER_RELATIONSHIP_OFFICER",
-          "STAKEHOLDER_RELATIONSHIP_OTHER"
+          "STAKEHOLDER_RELATIONSHIP_OTHER",
+          "STAKEHOLDER_RELATIONSHIP_EX_BOARD_MEMBER",
+          "STAKEHOLDER_RELATIONSHIP_EX_INTERNATIONAL_EMPLOYEE"
         ],
-        "description": "- STAKEHOLDER_RELATIONSHIP_ADVISOR: Advisor\n - STAKEHOLDER_RELATIONSHIP_EX_ADVISOR: Ex-Advisor\n - STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER: Board Member\n - STAKEHOLDER_RELATIONSHIP_CONSULTANT: Consultant\n - STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT: Ex-Consultant\n - STAKEHOLDER_RELATIONSHIP_EMPLOYEE: Employee\n - STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE: Ex-Employee\n - STAKEHOLDER_RELATIONSHIP_EXECUTIVE: Executive\n - STAKEHOLDER_RELATIONSHIP_FOUNDER: Founder\n - STAKEHOLDER_RELATIONSHIP_INVESTOR: Investor\n - STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE: International Employee\n - STAKEHOLDER_RELATIONSHIP_OFFICER: Officer\n - STAKEHOLDER_RELATIONSHIP_OTHER: Other",
+        "description": "- STAKEHOLDER_RELATIONSHIP_ADVISOR: Advisor\n - STAKEHOLDER_RELATIONSHIP_EX_ADVISOR: Ex-Advisor\n - STAKEHOLDER_RELATIONSHIP_BOARD_MEMBER: Board Member\n - STAKEHOLDER_RELATIONSHIP_CONSULTANT: Consultant\n - STAKEHOLDER_RELATIONSHIP_EX_CONSULTANT: Ex-Consultant\n - STAKEHOLDER_RELATIONSHIP_EMPLOYEE: Employee\n - STAKEHOLDER_RELATIONSHIP_EX_EMPLOYEE: Ex-Employee\n - STAKEHOLDER_RELATIONSHIP_EXECUTIVE: Executive\n - STAKEHOLDER_RELATIONSHIP_FOUNDER: Founder\n - STAKEHOLDER_RELATIONSHIP_INVESTOR: Investor\n - STAKEHOLDER_RELATIONSHIP_INTERNATIONAL_EMPLOYEE: International Employee\n - STAKEHOLDER_RELATIONSHIP_OFFICER: Officer\n - STAKEHOLDER_RELATIONSHIP_OTHER: Other\n - STAKEHOLDER_RELATIONSHIP_EX_BOARD_MEMBER: Ex-Board Member\n - STAKEHOLDER_RELATIONSHIP_EX_INTERNATIONAL_EMPLOYEE: Ex-International Employee",
         "title": "Relationship of stakeholder to the issuer"
       },
       "issuersdraftsecuritiesv1alpha1StockOptionType": {
@@ -3662,6 +3788,31 @@
         },
         "description": "Restricted stock award vesting event information."
       },
+      "issuerstransactionsv1alpha1StockOptionType": {
+        "type": "string",
+        "enum": [
+          "STOCK_OPTION_TYPE_ISO",
+          "STOCK_OPTION_TYPE_NSO",
+          "STOCK_OPTION_TYPE_INTL",
+          "STOCK_OPTION_TYPE_EMI",
+          "STOCK_OPTION_TYPE_CSOP",
+          "STOCK_OPTION_TYPE_SPR",
+          "STOCK_OPTION_TYPE_CAPITAL_GAINS_TRACK_102",
+          "STOCK_OPTION_TYPE_ORDINARY_INCOME_TRACK_102",
+          "STOCK_OPTION_TYPE_NON_TRUSTEE",
+          "STOCK_OPTION_TYPE_THREE_I",
+          "STOCK_OPTION_TYPE_UNAPPROVED",
+          "STOCK_OPTION_TYPE_BSPCE",
+          "STOCK_OPTION_TYPE_OSA",
+          "STOCK_OPTION_TYPE_AGA",
+          "STOCK_OPTION_TYPE_BSA",
+          "STOCK_OPTION_TYPE_STARTUP_CONCESSIONS",
+          "STOCK_OPTION_TYPE_NON_CONCESSIONAL",
+          "STOCK_OPTION_TYPE_EU_WARRANT",
+          "STOCK_OPTION_TYPE_ZEPO"
+        ],
+        "description": "The tax classification assigned to an option grant at issuance.\nDetermines the tax treatment of the grant based on the jurisdiction and plan type.\n\n - STOCK_OPTION_TYPE_ISO: US — Incentive Stock Option (IRC §422). Eligible for favorable capital gains tax treatment if holding period requirements are met.\n - STOCK_OPTION_TYPE_NSO: US — Non-Qualified Stock Option. Taxed as ordinary income at exercise.\n - STOCK_OPTION_TYPE_INTL: International — General classification for stock options in non-US jurisdictions without a more specific type.\n - STOCK_OPTION_TYPE_EMI: UK — Enterprise Management Incentive. Tax-advantaged options for employees of qualifying small companies.\n - STOCK_OPTION_TYPE_CSOP: UK — Company Share Option Plan. HMRC-approved tax-advantaged scheme with a £30,000 individual limit.\n - STOCK_OPTION_TYPE_SPR: UK — Share Purchase Rights. Rights to purchase shares under a share purchase arrangement.\n - STOCK_OPTION_TYPE_CAPITAL_GAINS_TRACK_102: Israel — Section 102 Capital Gains Track. Options held in trust with favorable capital gains tax treatment.\n - STOCK_OPTION_TYPE_ORDINARY_INCOME_TRACK_102: Israel — Section 102 Ordinary Income Track. Options held in trust taxed as ordinary income.\n - STOCK_OPTION_TYPE_NON_TRUSTEE: Israel — Section 102 Non-Trustee arrangement. Options not held in trust.\n - STOCK_OPTION_TYPE_THREE_I: Israel — Section 3(i) grant. Options granted to non-employees or under Section 3(i) of the Income Tax Ordinance.\n - STOCK_OPTION_TYPE_UNAPPROVED: UK — Unapproved option scheme. Options not under an HMRC-approved plan.\n - STOCK_OPTION_TYPE_BSPCE: France — Bons de Souscription de Parts de Créateur d'Entreprise. Tax-advantaged startup equity instrument.\n - STOCK_OPTION_TYPE_OSA: Canada — Option Stock Award. Stock options under Canadian tax rules.\n - STOCK_OPTION_TYPE_AGA: France — Attribution Gratuite d'Actions. Free share allocation under French tax-favored regime.\n - STOCK_OPTION_TYPE_BSA: France — Bon de Souscription d'Actions. Stock subscription warrants under French law.\n - STOCK_OPTION_TYPE_STARTUP_CONCESSIONS: Australia — Employee Share Scheme with startup concessions (Division 83A, Subdivision 83A-E).\n - STOCK_OPTION_TYPE_NON_CONCESSIONAL: Australia — Employee Share Scheme without concessional tax treatment.\n - STOCK_OPTION_TYPE_EU_WARRANT: EU — European Union warrant or option instrument.\n - STOCK_OPTION_TYPE_ZEPO: Zero Exercise Price Option. Options with a $0 exercise price, commonly used in some international jurisdictions."
+      },
       "protobufAny": {
         "type": "object",
         "properties": {
@@ -3749,9 +3900,11 @@
           "INTERNATIONAL_EMPLOYEE",
           "INVESTOR",
           "OFFICER",
-          "OTHER"
+          "OTHER",
+          "EX_BOARD_MEMBER",
+          "EX_INTERNATIONAL_EMPLOYEE"
         ],
-        "description": "The relationship of the stakeholder with the draft issuer.\n\n - ADVISOR: Stakeholder is an advisor\n - EX_ADVISOR: Stakeholder is an ex-advisor\n - BOARD_MEMBER: Stakeholder is a board member\n - CONSULTANT: Stakeholder is a consultant\n - EX_CONSULTANT: Stakeholder is an ex-consultant\n - EMPLOYEE: Stakeholder is an employee\n - EX_EMPLOYEE: Stakeholder is an ex-employee\n - EXECUTIVE: Stakeholder is an executive\n - FOUNDER: Stakeholder is a founder\n - INTERNATIONAL_EMPLOYEE: Stakeholder is an international employee\n - INVESTOR: Stakeholder is an investor\n - OFFICER: Stakeholder is an officer\n - OTHER: Stakeholder has some other type of relationship"
+        "description": "The relationship of the stakeholder with the draft issuer.\n\n - ADVISOR: Stakeholder is an advisor\n - EX_ADVISOR: Stakeholder is an ex-advisor\n - BOARD_MEMBER: Stakeholder is a board member\n - CONSULTANT: Stakeholder is a consultant\n - EX_CONSULTANT: Stakeholder is an ex-consultant\n - EMPLOYEE: Stakeholder is an employee\n - EX_EMPLOYEE: Stakeholder is an ex-employee\n - EXECUTIVE: Stakeholder is an executive\n - FOUNDER: Stakeholder is a founder\n - INTERNATIONAL_EMPLOYEE: Stakeholder is an international employee\n - INVESTOR: Stakeholder is an investor\n - OFFICER: Stakeholder is an officer\n - OTHER: Stakeholder has some other type of relationship\n - EX_BOARD_MEMBER: Stakeholder is an ex-board member\n - EX_INTERNATIONAL_EMPLOYEE: Stakeholder is an ex-international employee"
       },
       "rpcStatus": {
         "type": "object",
@@ -4381,6 +4534,185 @@
         },
         "description": "A certificate is a record of ownership of a company's shares."
       },
+      "v1alpha1CertificateCancellationReason": {
+        "type": "string",
+        "enum": [
+          "CERTIFICATE_CANCELLATION_REASON_CANCELED",
+          "CERTIFICATE_CANCELLATION_REASON_TERMINATED",
+          "CERTIFICATE_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "CERTIFICATE_CANCELLATION_REASON_REPURCHASED",
+          "CERTIFICATE_CANCELLATION_REASON_TRANSFERRED",
+          "CERTIFICATE_CANCELLATION_REASON_SHARE_CLASS_CONVERTED"
+        ],
+        "description": "The reason the certificate was canceled or terminated.\n\n - CERTIFICATE_CANCELLATION_REASON_CANCELED: The certificate was explicitly canceled.\n - CERTIFICATE_CANCELLATION_REASON_TERMINATED: The certificate was terminated due to the holder's relationship ending.\n - CERTIFICATE_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested shares were forfeited following termination.\n - CERTIFICATE_CANCELLATION_REASON_REPURCHASED: The certificate shares were repurchased by the issuer.\n - CERTIFICATE_CANCELLATION_REASON_TRANSFERRED: The certificate was transferred to another holder.\n - CERTIFICATE_CANCELLATION_REASON_SHARE_CLASS_CONVERTED: The certificate's share class was converted."
+      },
+      "v1alpha1CertificateCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "CERTIFICATE_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "5000"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1CertificateCancellationReason",
+            "description": "The reason for the cancellation."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated."
+          },
+          "forfeitureDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time unvested shares were forfeited."
+          }
+        },
+        "description": "A cancellation or termination transaction for a certificate."
+      },
+      "v1alpha1CertificateIssuanceReason": {
+        "type": "string",
+        "enum": [
+          "CERTIFICATE_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE",
+          "CERTIFICATE_ISSUANCE_REASON_OPTION_EXERCISED",
+          "CERTIFICATE_ISSUANCE_REASON_RSU_SETTLED",
+          "CERTIFICATE_ISSUANCE_REASON_DEBT_CONVERTED",
+          "CERTIFICATE_ISSUANCE_REASON_WARRANT_EXERCISED",
+          "CERTIFICATE_ISSUANCE_REASON_SHARE_CLASS_CONVERTED",
+          "CERTIFICATE_ISSUANCE_REASON_TRANSFERRED"
+        ],
+        "description": "The reason a certificate was created. Indicates what originated the certificate.\n\n - CERTIFICATE_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE: Certificate was issued directly from the share reserve.\n - CERTIFICATE_ISSUANCE_REASON_OPTION_EXERCISED: Certificate was created as a result of an option exercise.\n - CERTIFICATE_ISSUANCE_REASON_RSU_SETTLED: Certificate was created as a result of an RSU settlement.\n - CERTIFICATE_ISSUANCE_REASON_DEBT_CONVERTED: Certificate was created as a result of a convertible note conversion.\n - CERTIFICATE_ISSUANCE_REASON_WARRANT_EXERCISED: Certificate was created as a result of a warrant exercise.\n - CERTIFICATE_ISSUANCE_REASON_SHARE_CLASS_CONVERTED: Certificate was created as a result of a share class conversion.\n - CERTIFICATE_ISSUANCE_REASON_TRANSFERRED: Certificate was created as a result of a transfer."
+      },
+      "v1alpha1CertificateIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "10000"
+          },
+          "acquisitionCost": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.50"
+            }
+          },
+          "equityPlanId": "42",
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7"
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the certificate was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares issued."
+          },
+          "acquisitionCost": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The total acquisition cost paid by the holder for the shares."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan from which the certificate was issued.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the certificate has no vesting schedule.",
+            "maxLength": 50
+          },
+          "issuanceReason": {
+            "$ref": "#/components/schemas/v1alpha1CertificateIssuanceReason",
+            "description": "How the certificate was created. See `CertificateIssuanceReason` for all supported values."
+          },
+          "precededBySecurityId": {
+            "type": "string",
+            "description": "The identifier of the security that preceded this certificate (e.g. the option grant that was exercised). May be absent if the certificate was issued directly from the share reserve.",
+            "maxLength": 50
+          }
+        },
+        "description": "The issuance transaction for a certificate. Represents the initial issuance of stock."
+      },
+      "v1alpha1CertificateTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "2951",
+          "stakeholderId": "4923",
+          "securityLabel": "CS-42",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "10000"
+            },
+            "acquisitionCost": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1.50"
+              }
+            },
+            "equityPlanId": "42"
+          }
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the certificate.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the certificate.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the certificate (e.g. \"CS-42\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1CertificateIssuanceTransaction",
+            "description": "The issuance transaction for the certificate."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1CertificateCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the certificate, in chronological order."
+          }
+        },
+        "description": "A certificate with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single certificate."
+      },
       "v1alpha1Compliance": {
         "type": "object",
         "example": {
@@ -4409,6 +4741,181 @@
         },
         "description": "Compliance details of a stakeholder",
         "title": "Compliance details of a stakeholder"
+      },
+      "v1alpha1ConvertibleCancellationReason": {
+        "type": "string",
+        "enum": [
+          "CONVERTIBLE_CANCELLATION_REASON_CANCELED",
+          "CONVERTIBLE_CANCELLATION_REASON_CONVERTED"
+        ],
+        "description": "The reason the convertible note was canceled.\n\n - CONVERTIBLE_CANCELLATION_REASON_CANCELED: The convertible note was explicitly canceled.\n - CONVERTIBLE_CANCELLATION_REASON_CONVERTED: The convertible note was converted into equity."
+      },
+      "v1alpha1ConvertibleCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-10-02T00:00:00Z"
+          },
+          "reason": "CONVERTIBLE_CANCELLATION_REASON_CONVERTED",
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "500000"
+            }
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1ConvertibleCancellationReason",
+            "description": "The reason for the cancellation."
+          },
+          "principal": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The principal amount cancelled. May be less than the original note principal if this is a partial cancellation."
+          }
+        },
+        "description": "A cancellation transaction for a convertible note."
+      },
+      "v1alpha1ConvertibleDayCountBasis": {
+        "type": "string",
+        "enum": [
+          "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_30_360",
+          "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_360",
+          "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+        ],
+        "description": "- CONVERTIBLE_DAY_COUNT_BASIS_COUNT_30_360: 30/360 day count convention.\n - CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_360: Actual/360 day count convention.\n - CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365: Actual/365 day count convention.",
+        "title": "The standardized way of counting the number of days between two dates.\nSee more at https://support.carta.com/s/article/day-count-basis"
+      },
+      "v1alpha1ConvertibleInterestAccrualPeriod": {
+        "type": "string",
+        "enum": [
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_DAILY",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_WEEKLY",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_QUARTERLY_CALENDAR",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY_CALENDAR",
+          "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY_CALENDAR"
+        ],
+        "description": "The length of time over which the interest due to the lender is calculated.\n\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_DAILY: Interest accrues daily.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_WEEKLY: Interest accrues weekly.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY: Interest accrues monthly.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH: Interest accrues monthly on the first of each month.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY: Interest accrues semi-annually.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY: Interest accrues annually.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_QUARTERLY_CALENDAR: Interest accrues on a quarterly calendar basis.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY_CALENDAR: Interest accrues on a semi-annual calendar basis.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY_CALENDAR: Interest accrues on an annual calendar basis."
+      },
+      "v1alpha1ConvertibleInterestCompoundingPeriod": {
+        "type": "string",
+        "enum": [
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_DAILY",
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_MONTHLY",
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SEMI_ANNUALLY",
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_ANNUALLY",
+          "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_QUARTERLY_CALENDAR"
+        ],
+        "description": "The interest compounding period. Simple interest is calculated only on the principal amount,\nwhile compound interest is calculated on the principal and accumulated interest.\n\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE: Simple interest (no compounding).\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_DAILY: Interest compounds daily.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_MONTHLY: Interest compounds monthly.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SEMI_ANNUALLY: Interest compounds semi-annually.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_ANNUALLY: Interest compounds annually.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_QUARTERLY_CALENDAR: Interest compounds on a quarterly calendar basis."
+      },
+      "v1alpha1ConvertibleIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "500000"
+            }
+          },
+          "valuationCap": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "10000000"
+            }
+          },
+          "discountPercentage": {
+            "value": "20"
+          },
+          "conversionTrigger": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1000000"
+            }
+          },
+          "maturityDatetime": {
+            "value": "2026-01-15T00:00:00Z"
+          },
+          "noteBlockId": "42",
+          "interestRate": {
+            "value": "5.0"
+          },
+          "interestAccrualPeriod": "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+          "interestCompoundingPeriod": "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+          "dayCountBasis": "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the convertible note was issued."
+          },
+          "principal": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The principal amount of the convertible note."
+          },
+          "valuationCap": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The valuation cap for conversion. May be absent if no cap was set."
+          },
+          "discountPercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The discount percentage applied at conversion, expressed as a percentage (e.g., `20` for a 20% discount). May be absent if no discount was set."
+          },
+          "conversionTrigger": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The qualifying financing threshold that triggers automatic conversion. May be absent if no conversion trigger was set."
+          },
+          "maturityDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The maturity date and time of the convertible note. May be absent if no maturity date was set."
+          },
+          "noteBlockId": {
+            "type": "string",
+            "description": "The identifier of the note block from which the convertible note was issued.",
+            "maxLength": 50
+          },
+          "precededBySecurityId": {
+            "type": "string",
+            "description": "The identifier of the security that preceded this convertible note (e.g. the note that was transferred). May be absent if the note was issued directly.",
+            "maxLength": 50
+          },
+          "interestRate": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The annual interest rate that the convertible note accrues, expressed as a percentage (e.g., `5` for 5%). May be absent if no interest rate was set."
+          },
+          "interestAccrualPeriod": {
+            "$ref": "#/components/schemas/v1alpha1ConvertibleInterestAccrualPeriod",
+            "description": "The length of time over which the interest due to the lender is calculated."
+          },
+          "interestCompoundingPeriod": {
+            "$ref": "#/components/schemas/v1alpha1ConvertibleInterestCompoundingPeriod",
+            "description": "The interest compounding period of the convertible note."
+          },
+          "dayCountBasis": {
+            "$ref": "#/components/schemas/v1alpha1ConvertibleDayCountBasis",
+            "description": "The standardized way of counting the number of days between two dates."
+          }
+        },
+        "description": "The issuance transaction for a convertible note. Represents the initial issuance of the note."
       },
       "v1alpha1ConvertibleNote": {
         "type": "object",
@@ -4654,6 +5161,102 @@
           "dayCountBasis"
         ]
       },
+      "v1alpha1ConvertibleTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "4501",
+          "stakeholderId": "4923",
+          "securityLabel": "CN-3",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "principal": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "500000"
+              }
+            },
+            "valuationCap": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "10000000"
+              }
+            },
+            "discountPercentage": {
+              "value": "20"
+            },
+            "conversionTrigger": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1000000"
+              }
+            },
+            "maturityDatetime": {
+              "value": "2026-01-15T00:00:00Z"
+            },
+            "noteBlockId": "42",
+            "interestRate": {
+              "value": "5.0"
+            },
+            "interestAccrualPeriod": "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+            "interestCompoundingPeriod": "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+            "dayCountBasis": "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+          },
+          "cancellations": [
+            {
+              "effectiveDatetime": {
+                "value": "2025-10-02T00:00:00Z"
+              },
+              "reason": "CONVERTIBLE_CANCELLATION_REASON_CONVERTED",
+              "principal": {
+                "currencyCode": {
+                  "value": "USD"
+                },
+                "amount": {
+                  "value": "500000"
+                }
+              }
+            }
+          ]
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the convertible note.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the convertible note.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the convertible note (e.g. \"CN-3\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1ConvertibleIssuanceTransaction",
+            "description": "The issuance transaction for the convertible note."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1ConvertibleCancellationTransaction"
+            },
+            "description": "All cancellation transactions for the convertible note, in chronological order."
+          }
+        },
+        "description": "A convertible note with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single convertible note."
+      },
       "v1alpha1Corporation": {
         "type": "object",
         "example": {
@@ -4831,7 +5434,7 @@
             "type": "string",
             "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
             "readOnly": true,
-            "maxLength": 1000
+            "maxLength": 2048
           },
           "fileId": {
             "type": "string",
@@ -5188,9 +5791,12 @@
           "SECTION_756",
           "SCHEDULE_11A",
           "NON_US",
-          "OTHER"
+          "OTHER",
+          "SMALL_SCALE",
+          "SOPHISTICATED",
+          "SENIOR_MANAGEMENT"
         ],
-        "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other",
+        "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other\n - SMALL_SCALE: Small scale\n - SOPHISTICATED: Sophisticated\n - SENIOR_MANAGEMENT: Senior management",
         "title": "Federal Exemption types supported"
       },
       "v1alpha1GetCapitalizationTableResponse": {
@@ -6169,6 +6775,135 @@
         },
         "description": "The response from the List Stakeholders endpoint."
       },
+      "v1alpha1ListTransactionsResponse": {
+        "type": "object",
+        "example": {
+          "optionTransactions": [
+            {
+              "securityId": "2513",
+              "stakeholderId": "4923",
+              "securityLabel": "ES-12",
+              "issuance": {
+                "issueDatetime": {
+                  "value": "2024-01-15T00:00:00Z"
+                },
+                "quantity": {
+                  "value": "10000"
+                },
+                "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+                "exercisePrice": {
+                  "currencyCode": {
+                    "value": "USD"
+                  },
+                  "amount": {
+                    "value": "1.50"
+                  }
+                },
+                "equityPlanId": "42",
+                "expirationDatetime": {
+                  "value": "2034-01-15T00:00:00Z"
+                }
+              },
+              "exercises": [
+                {
+                  "id": "23HcT4iVfrgYUaJF9txHTaH",
+                  "sharesAcquiredDatetime": {
+                    "value": "2025-01-15T00:00:00Z"
+                  },
+                  "quantity": {
+                    "value": "200"
+                  },
+                  "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+                  "recordType": "STOCK_OPTION_TYPE_ISO",
+                  "resultingSecurityId": "2951",
+                  "resultingSecurityType": "certificate",
+                  "resultingSecurityLabel": "CS-42"
+                }
+              ]
+            }
+          ],
+          "rsuTransactions": [],
+          "rsaTransactions": [],
+          "certificateTransactions": [],
+          "warrantTransactions": [],
+          "convertibleTransactions": [],
+          "piuTransactions": [],
+          "sarTransactions": [],
+          "nextPageToken": "NTA6NTA6YTFiMmMzZDQtZTVmNi00..."
+        },
+        "properties": {
+          "optionTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1OptionTransactionItem"
+            },
+            "description": "The option grants with their transaction history. Each item contains all transactions (issuance, exercises, cancellation) for a single option grant. Populated when `type=option`."
+          },
+          "rsuTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1RsuTransactionItem"
+            },
+            "description": "The RSU awards with their transaction history. Each item contains all transactions (issuance, settlements, cancellation) for a single RSU award. Populated when `type=rsu`."
+          },
+          "rsaTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1RsaTransactionItem"
+            },
+            "description": "The RSA grants with their transaction history. Each item contains all transactions (issuance, cancellation) for a single RSA. Populated when `type=rsa`."
+          },
+          "certificateTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1CertificateTransactionItem"
+            },
+            "description": "The certificates with their transaction history. Each item contains all transactions (issuance, cancellation) for a single certificate. Populated when `type=certificate`."
+          },
+          "warrantTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1WarrantTransactionItem"
+            },
+            "description": "The warrants with their transaction history. Each item contains all transactions (issuance, exercises, transfers, cancellation) for a single warrant. Populated when `type=warrant`."
+          },
+          "convertibleTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1ConvertibleTransactionItem"
+            },
+            "description": "The convertible notes with their transaction history. Each item contains the issuance and cancellations (if applicable) for a single convertible note. A conversion appears as a cancellation with `reason=CONVERTIBLE_CANCELLATION_REASON_CONVERTED`. A transferred note includes a `precededBySecurityId` on its issuance. Populated when `type=convertible`."
+          },
+          "piuTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1PiuTransactionItem"
+            },
+            "description": "The PIUs (Profits Interest Units) with their transaction history. Each item contains all transactions (issuance, cancellation) for a single PIU. Populated when `type=piu`."
+          },
+          "sarTransactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1SarTransactionItem"
+            },
+            "description": "The SARs (Stock Appreciation Rights) with their transaction history. Each item contains all transactions (issuance, exercises, cancellation) for a single SAR. Exercises may be stock-settled or cash-settled. Populated when `type=sar`."
+          },
+          "nextPageToken": {
+            "type": "string",
+            "example": "NTA6NTA6YTFiMmMzZDQtZTVmNi00...",
+            "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+          }
+        },
+        "description": "The response from the List Transactions endpoint.\n\nExactly one transaction array is populated per request, determined by the `type` query parameter. For example, `type=option` populates `optionTransactions` only; the other arrays will be empty."
+      },
       "v1alpha1ListVestingScheduleTemplatesResponse": {
         "type": "object",
         "properties": {
@@ -6327,9 +7062,62 @@
           "DEBT",
           "CONVERTIBLE_DEBT",
           "CONVERTIBLE_EQUITY",
-          "SAFE"
+          "SAFE",
+          "ASA"
         ],
         "description": "The type of the note related to the note block."
+      },
+      "v1alpha1OptionCancellationReason": {
+        "type": "string",
+        "enum": [
+          "OPTION_CANCELLATION_REASON_TERMINATED",
+          "OPTION_CANCELLATION_REASON_CANCELED",
+          "OPTION_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "OPTION_CANCELLATION_REASON_LIFETIME_ENDED",
+          "OPTION_CANCELLATION_REASON_PTEP_ENDED"
+        ],
+        "description": "The reason the option grant was canceled or terminated.\n\n - OPTION_CANCELLATION_REASON_TERMINATED: The option grant was terminated due to the holder's relationship ending.\n - OPTION_CANCELLATION_REASON_CANCELED: The option grant was explicitly canceled.\n - OPTION_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested shares were forfeited following termination.\n - OPTION_CANCELLATION_REASON_LIFETIME_ENDED: The option grant expired at the end of its lifetime.\n - OPTION_CANCELLATION_REASON_PTEP_ENDED: The option grant expired at the end of the post-termination exercise period."
+      },
+      "v1alpha1OptionCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "OPTION_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "800"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          },
+          "forfeitureDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1OptionCancellationReason",
+            "description": "The reason for the cancellation."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated."
+          },
+          "forfeitureDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time unvested shares were forfeited."
+          }
+        },
+        "description": "A cancellation or termination transaction for an option grant."
       },
       "v1alpha1OptionExercise": {
         "type": "object",
@@ -6435,6 +7223,17 @@
         },
         "description": "An option exercise is an event representing a stakeholder exercising their right to purchase shares of an issuer at a set price, the strike price, defined in the option grant being exercised. The result of a successfully completed exercise is the issuance of a certificate."
       },
+      "v1alpha1OptionExerciseMethod": {
+        "type": "string",
+        "enum": [
+          "OPTION_EXERCISE_METHOD_CASH",
+          "OPTION_EXERCISE_METHOD_CASHLESS",
+          "OPTION_EXERCISE_METHOD_PUBLIC_NET",
+          "OPTION_EXERCISE_METHOD_BLENDED",
+          "OPTION_EXERCISE_METHOD_PUBLIC_CASHLESS"
+        ],
+        "description": "The method used to exercise options.\nDescribes how the exercise cost was funded.\n\n - OPTION_EXERCISE_METHOD_CASH: Cash exercise — the holder paid the full exercise cost in cash.\n - OPTION_EXERCISE_METHOD_CASHLESS: Cashless (same-day sale) — shares were sold on the open market simultaneously to cover the exercise cost.\n - OPTION_EXERCISE_METHOD_PUBLIC_NET: Public net exercise — shares were withheld by the company to cover the exercise cost. Applicable to public companies.\n - OPTION_EXERCISE_METHOD_BLENDED: Blended exercise — a combination of cash payment and share sale was used to cover the exercise cost.\n - OPTION_EXERCISE_METHOD_PUBLIC_CASHLESS: Public cashless exercise — a broker-assisted cashless exercise through the public market."
+      },
       "v1alpha1OptionExerciseMoneyMovement": {
         "type": "object",
         "properties": {
@@ -6477,6 +7276,62 @@
           }
         },
         "description": "Tax withholding information for an option exercise, calculated for a specific jurisdiction for a given stakeholder."
+      },
+      "v1alpha1OptionExerciseTransaction": {
+        "type": "object",
+        "example": {
+          "id": "23HcT4iVfrgYUaJF9txHTaH",
+          "sharesAcquiredDatetime": {
+            "value": "2025-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "200"
+          },
+          "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+          "recordType": "STOCK_OPTION_TYPE_ISO",
+          "resultingSecurityId": "2951",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-42"
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of the exercise request that initiated the exercise.",
+            "maxLength": 50
+          },
+          "sharesAcquiredDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the shares were acquired by the beneficial owner."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares converted as part of exercising the option."
+          },
+          "exerciseMethod": {
+            "$ref": "#/components/schemas/v1alpha1OptionExerciseMethod",
+            "description": "How the exercise cost was funded. May be absent if the exercise method could not be determined. See `OptionExerciseMethod` for all supported values."
+          },
+          "recordType": {
+            "$ref": "#/components/schemas/issuerstransactionsv1alpha1StockOptionType",
+            "description": "The tax classification of the exercise. May differ from the grant's stock option type (e.g., an ISO grant may have an NSO exercise due to a disqualifying disposition). See `StockOptionType` for all supported values."
+          },
+          "resultingSecurityId": {
+            "type": "string",
+            "description": "The identifier of the security produced as a result of the exercise.",
+            "maxLength": 50
+          },
+          "resultingSecurityType": {
+            "type": "string",
+            "description": "The type of the security produced as a result of the exercise (e.g. \"certificate\").",
+            "maxLength": 50
+          },
+          "resultingSecurityLabel": {
+            "type": "string",
+            "description": "The human-readable label of the security produced as a result of the exercise (e.g. \"CS-42\").",
+            "maxLength": 50
+          }
+        },
+        "description": "An exercise transaction for an option grant. Represents the conversion of options into shares."
       },
       "v1alpha1OptionExerciseType": {
         "type": "string",
@@ -6844,6 +7699,68 @@
         },
         "description": "An option grant vesting event."
       },
+      "v1alpha1OptionIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "10000"
+          },
+          "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+          "exercisePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "1.50"
+            }
+          },
+          "equityPlanId": "42",
+          "expirationDatetime": {
+            "value": "2034-01-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the option grant was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares reserved from the equity plan share reserve."
+          },
+          "stockOptionType": {
+            "$ref": "#/components/schemas/issuerstransactionsv1alpha1StockOptionType",
+            "description": "The tax classification of the option grant. Determines the tax treatment based on the jurisdiction and plan type. See `StockOptionType` for all supported values."
+          },
+          "exercisePrice": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The per-share price at which the holder can purchase the underlying shares."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan from which the option grant was issued.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+            "maxLength": 50
+          },
+          "expirationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the option grant expires."
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the grant has no vesting schedule.",
+            "maxLength": 50
+          }
+        },
+        "description": "The issuance transaction for an option grant. Represents the initial grant of options."
+      },
       "v1alpha1OptionPoolSummary": {
         "type": "object",
         "example": {
@@ -6914,6 +7831,342 @@
           "name",
           "authorizedShares"
         ]
+      },
+      "v1alpha1OptionTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "2513",
+          "stakeholderId": "4923",
+          "securityLabel": "ES-12",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "10000"
+            },
+            "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+            "exercisePrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1.50"
+              }
+            },
+            "equityPlanId": "42",
+            "expirationDatetime": {
+              "value": "2034-01-15T00:00:00Z"
+            }
+          },
+          "exercises": [
+            {
+              "id": "23HcT4iVfrgYUaJF9txHTaH",
+              "sharesAcquiredDatetime": {
+                "value": "2025-01-15T00:00:00Z"
+              },
+              "quantity": {
+                "value": "200"
+              },
+              "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+              "recordType": "STOCK_OPTION_TYPE_ISO",
+              "resultingSecurityId": "2951",
+              "resultingSecurityType": "certificate",
+              "resultingSecurityLabel": "CS-42"
+            }
+          ]
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the option grant.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the option grant.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the option grant (e.g. \"ES-12\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1OptionIssuanceTransaction",
+            "description": "The issuance transaction for the option grant."
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1OptionExerciseTransaction"
+            },
+            "description": "All exercise transactions for the option grant."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1OptionCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the option grant, in chronological order. An option can accrue multiple cancellation events (e.g. TERMINATED followed by PTEP_ENDED)."
+          }
+        },
+        "description": "An option grant with its full transaction history. Groups all lifecycle events (issuance, exercises, cancellation) for a single option grant."
+      },
+      "v1alpha1PerformanceCondition": {
+        "type": "object",
+        "example": {
+          "name": "IPO Condition",
+          "type": "PERFORMANCE_CONDITION_TYPE_EVENT_NON_MARKET",
+          "minPayoutPercentage": "0",
+          "maxPayoutPercentage": "100",
+          "vestsPostTermination": true,
+          "status": "PERFORMANCE_CONDITION_STATUS_NOT_EVALUATED"
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the performance condition.",
+            "maxLength": 500
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the performance condition.",
+            "maxLength": 2000
+          },
+          "type": {
+            "$ref": "#/components/schemas/v1alpha1PerformanceConditionType",
+            "description": "The type of performance condition."
+          },
+          "minPayoutPercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The minimum payout percentage."
+          },
+          "maxPayoutPercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The maximum payout percentage."
+          },
+          "vestsPostTermination": {
+            "type": "boolean",
+            "description": "Whether shares vest after termination if the condition is met."
+          },
+          "evaluationDate": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+            "description": "The date when the condition was evaluated (ISO 8601 format)."
+          },
+          "payoutPercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The actual payout percentage after evaluation."
+          },
+          "status": {
+            "$ref": "#/components/schemas/v1alpha1PerformanceConditionStatus",
+            "description": "The evaluation status of the performance condition."
+          }
+        },
+        "description": "Details of a performance condition."
+      },
+      "v1alpha1PerformanceConditionStatus": {
+        "type": "string",
+        "enum": [
+          "PERFORMANCE_CONDITION_STATUS_ACHIEVED",
+          "PERFORMANCE_CONDITION_STATUS_NOT_ACHIEVED",
+          "PERFORMANCE_CONDITION_STATUS_NOT_EVALUATED"
+        ],
+        "description": "Status of a performance condition evaluation."
+      },
+      "v1alpha1PerformanceConditionType": {
+        "type": "string",
+        "enum": [
+          "PERFORMANCE_CONDITION_TYPE_PERFORMANCE_NON_MARKET",
+          "PERFORMANCE_CONDITION_TYPE_MARKET",
+          "PERFORMANCE_CONDITION_TYPE_EVENT_NON_MARKET"
+        ],
+        "description": "Type of performance condition."
+      },
+      "v1alpha1PeriodUnit": {
+        "type": "string",
+        "enum": [
+          "DAY",
+          "MONTH",
+          "YEAR"
+        ],
+        "description": "Period unit for duration calculations."
+      },
+      "v1alpha1PiuCancellationReason": {
+        "type": "string",
+        "enum": [
+          "PIU_CANCELLATION_REASON_CANCELED",
+          "PIU_CANCELLATION_REASON_TERMINATED",
+          "PIU_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "PIU_CANCELLATION_REASON_REPURCHASED",
+          "PIU_CANCELLATION_REASON_TRANSFERRED",
+          "PIU_CANCELLATION_REASON_SHARE_CLASS_CONVERTED"
+        ],
+        "description": "The reason the PIU was canceled or terminated.\n\n - PIU_CANCELLATION_REASON_CANCELED: The PIU was explicitly canceled.\n - PIU_CANCELLATION_REASON_TERMINATED: The PIU was terminated due to the holder's relationship ending.\n - PIU_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - PIU_CANCELLATION_REASON_REPURCHASED: The PIU shares were repurchased by the issuer.\n - PIU_CANCELLATION_REASON_TRANSFERRED: The PIU was transferred to another holder.\n - PIU_CANCELLATION_REASON_SHARE_CLASS_CONVERTED: The PIU's share class was converted."
+      },
+      "v1alpha1PiuCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "PIU_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "5000"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1PiuCancellationReason",
+            "description": "The reason for the cancellation. See `PiuCancellationReason` for all supported values."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of units affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated. Only present for TERMINATED cancellation events."
+          }
+        },
+        "description": "A cancellation or termination transaction for a PIU."
+      },
+      "v1alpha1PiuIssuanceReason": {
+        "type": "string",
+        "enum": [
+          "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE",
+          "PIU_ISSUANCE_REASON_SHARE_CLASS_CONVERTED",
+          "PIU_ISSUANCE_REASON_TRANSFERRED"
+        ],
+        "description": "The reason a PIU was created. Indicates what originated the PIU.\n\n - PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE: PIU was issued directly from the share reserve.\n - PIU_ISSUANCE_REASON_SHARE_CLASS_CONVERTED: PIU was created as a result of a share class conversion.\n - PIU_ISSUANCE_REASON_TRANSFERRED: PIU was created as a result of a transfer."
+      },
+      "v1alpha1PiuIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "10000"
+          },
+          "acquisitionCost": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.001"
+            }
+          },
+          "equityPlanId": "42",
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7",
+          "issuanceReason": "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE"
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the PIU was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of units issued."
+          },
+          "acquisitionCost": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The acquisition cost of the PIU. May be absent if no cost was paid."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan under which the PIU was issued. May be absent if not plan-associated.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class associated with the PIU.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the PIU has no vesting schedule.",
+            "maxLength": 50
+          },
+          "issuanceReason": {
+            "$ref": "#/components/schemas/v1alpha1PiuIssuanceReason",
+            "description": "The reason the PIU was created. See `PiuIssuanceReason` for all supported values."
+          },
+          "precededBySecurityId": {
+            "type": "string",
+            "description": "The identifier of the security that preceded this PIU (e.g. the certificate that was transferred). May be absent if the PIU was issued directly from the share reserve.",
+            "maxLength": 50
+          }
+        },
+        "description": "The issuance transaction for a PIU. Represents the initial issuance of the profits interest unit."
+      },
+      "v1alpha1PiuTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "6001",
+          "stakeholderId": "4923",
+          "securityLabel": "PIU-3",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "10000"
+            },
+            "acquisitionCost": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "0.001"
+              }
+            },
+            "equityPlanId": "42",
+            "issuanceReason": "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE"
+          },
+          "cancellations": []
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the PIU.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the PIU.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the PIU (e.g. \"PIU-3\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1PiuIssuanceTransaction",
+            "description": "The issuance transaction for the PIU."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1PiuCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the PIU, in chronological order."
+          }
+        },
+        "description": "A PIU (Profits Interest Unit) with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single PIU."
       },
       "v1alpha1PointOfContact": {
         "type": "object",
@@ -7619,6 +8872,607 @@
           }
         },
         "description": "Restricted stock unit vesting event information."
+      },
+      "v1alpha1RsaCancellationReason": {
+        "type": "string",
+        "enum": [
+          "RSA_CANCELLATION_REASON_CANCELED",
+          "RSA_CANCELLATION_REASON_TERMINATED",
+          "RSA_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "RSA_CANCELLATION_REASON_REPURCHASED"
+        ],
+        "description": "The reason the RSA was canceled or terminated.\n\n - RSA_CANCELLATION_REASON_CANCELED: The RSA was explicitly canceled.\n - RSA_CANCELLATION_REASON_TERMINATED: The RSA was terminated due to the holder's relationship ending.\n - RSA_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested shares were forfeited following termination.\n - RSA_CANCELLATION_REASON_REPURCHASED: The RSA shares were repurchased by the issuer."
+      },
+      "v1alpha1RsaCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "RSA_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "3000"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1RsaCancellationReason",
+            "description": "The reason for the cancellation."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated."
+          },
+          "forfeitureDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time unvested shares were forfeited."
+          }
+        },
+        "description": "A cancellation or termination transaction for an RSA."
+      },
+      "v1alpha1RsaIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "5000"
+          },
+          "acquisitionCost": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.001"
+            }
+          },
+          "equityPlanId": "42",
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7"
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the RSA was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of restricted shares granted."
+          },
+          "acquisitionCost": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The total acquisition cost paid by the holder for the restricted shares."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan from which the RSA was issued.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the RSA has no vesting schedule.",
+            "maxLength": 50
+          }
+        },
+        "description": "The issuance transaction for an RSA. Represents the initial grant of restricted stock."
+      },
+      "v1alpha1RsaTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "4101",
+          "stakeholderId": "4923",
+          "securityLabel": "RSA-3",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "5000"
+            },
+            "acquisitionCost": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "0.001"
+              }
+            },
+            "equityPlanId": "42"
+          }
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the RSA.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the RSA.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the RSA (e.g. \"RSA-3\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1RsaIssuanceTransaction",
+            "description": "The issuance transaction for the RSA."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1RsaCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the RSA, in chronological order."
+          }
+        },
+        "description": "An RSA with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single RSA."
+      },
+      "v1alpha1RsuCancellationReason": {
+        "type": "string",
+        "enum": [
+          "RSU_CANCELLATION_REASON_TERMINATED",
+          "RSU_CANCELLATION_REASON_CANCELED",
+          "RSU_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "RSU_CANCELLATION_REASON_LIFETIME_ENDED",
+          "RSU_CANCELLATION_REASON_SETTLEMENT_WINDOW_ENDED"
+        ],
+        "description": "The reason the RSU award was canceled or terminated.\n\n - RSU_CANCELLATION_REASON_TERMINATED: The RSU award was terminated due to the holder's relationship ending.\n - RSU_CANCELLATION_REASON_CANCELED: The RSU award was explicitly canceled.\n - RSU_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - RSU_CANCELLATION_REASON_LIFETIME_ENDED: The RSU award expired at the end of its lifetime.\n - RSU_CANCELLATION_REASON_SETTLEMENT_WINDOW_ENDED: The RSU award expired at the end of the post-termination settlement window."
+      },
+      "v1alpha1RsuCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "RSU_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "2000"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1RsuCancellationReason",
+            "description": "The reason for the cancellation."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of units affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated."
+          },
+          "forfeitureDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time unvested units were forfeited."
+          }
+        },
+        "description": "A cancellation or termination transaction for an RSU award."
+      },
+      "v1alpha1RsuIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "5000"
+          },
+          "equityPlanId": "42",
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7"
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the RSU award was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of restricted stock units granted."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan from which the RSU award was issued.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the award has no vesting schedule.",
+            "maxLength": 50
+          }
+        },
+        "description": "The issuance transaction for an RSU award. Represents the initial grant of restricted stock units."
+      },
+      "v1alpha1RsuSettlementTransaction": {
+        "type": "object",
+        "example": {
+          "id": "34JdU5jWgsrhZbKG0uyIUbI",
+          "settlementDatetime": {
+            "value": "2025-01-15T00:00:00Z"
+          },
+          "settledQuantity": {
+            "value": "700"
+          },
+          "withheldQuantity": {
+            "value": "300"
+          },
+          "resultingSecurityId": "3051",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-55"
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of the settlement transaction.",
+            "maxLength": 50
+          },
+          "settlementDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the units were settled and shares were delivered."
+          },
+          "settledQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares actually delivered to the holder, net of shares withheld for tax obligations."
+          },
+          "withheldQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares withheld by the issuer to cover tax obligations."
+          },
+          "resultingSecurityId": {
+            "type": "string",
+            "description": "The identifier of the security produced as a result of the settlement.",
+            "maxLength": 50
+          },
+          "resultingSecurityType": {
+            "type": "string",
+            "description": "The type of the security produced as a result of the settlement (e.g. \"certificate\").",
+            "maxLength": 50
+          },
+          "resultingSecurityLabel": {
+            "type": "string",
+            "description": "The human-readable label of the security produced as a result of the settlement (e.g. \"CS-55\").",
+            "maxLength": 50
+          }
+        },
+        "description": "A settlement transaction for an RSU award. Represents the conversion of vested units into shares."
+      },
+      "v1alpha1RsuTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "3201",
+          "stakeholderId": "4923",
+          "securityLabel": "RSU-7",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "5000"
+            },
+            "equityPlanId": "42"
+          },
+          "settlements": [
+            {
+              "id": "34JdU5jWgsrhZbKG0uyIUbI",
+              "settlementDatetime": {
+                "value": "2025-01-15T00:00:00Z"
+              },
+              "settledQuantity": {
+                "value": "700"
+              },
+              "withheldQuantity": {
+                "value": "300"
+              },
+              "resultingSecurityId": "3051",
+              "resultingSecurityType": "certificate",
+              "resultingSecurityLabel": "CS-55"
+            }
+          ]
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the RSU award.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the RSU award.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the RSU award (e.g. \"RSU-7\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1RsuIssuanceTransaction",
+            "description": "The issuance transaction for the RSU award."
+          },
+          "settlements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1RsuSettlementTransaction"
+            },
+            "description": "All settlement transactions for the RSU award."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1RsuCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the RSU award, in chronological order. An award can accrue multiple cancellation events (e.g. TERMINATED followed by SETTLEMENT_WINDOW_ENDED)."
+          }
+        },
+        "description": "An RSU award with its full transaction history. Groups all lifecycle events (issuance, settlements, cancellation) for a single RSU award."
+      },
+      "v1alpha1SarCancellationReason": {
+        "type": "string",
+        "enum": [
+          "SAR_CANCELLATION_REASON_CANCELED",
+          "SAR_CANCELLATION_REASON_TERMINATED",
+          "SAR_CANCELLATION_REASON_TERMINATION_FORFEITED",
+          "SAR_CANCELLATION_REASON_LIFETIME_ENDED",
+          "SAR_CANCELLATION_REASON_PTEP_ENDED"
+        ],
+        "description": "The reason the SAR was canceled or terminated.\n\n - SAR_CANCELLATION_REASON_CANCELED: The SAR was explicitly canceled.\n - SAR_CANCELLATION_REASON_TERMINATED: The SAR was terminated due to the holder's relationship ending.\n - SAR_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - SAR_CANCELLATION_REASON_LIFETIME_ENDED: The SAR expired at the end of its lifetime.\n - SAR_CANCELLATION_REASON_PTEP_ENDED: The SAR expired at the end of the post-termination exercise period."
+      },
+      "v1alpha1SarCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "SAR_CANCELLATION_REASON_TERMINATED",
+          "quantity": {
+            "value": "5000"
+          },
+          "terminationDatetime": {
+            "value": "2025-05-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1SarCancellationReason",
+            "description": "The reason for the cancellation. See `SarCancellationReason` for all supported values."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of units affected by the cancellation."
+          },
+          "terminationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the holder's relationship with the issuer was terminated. Only present for TERMINATED cancellation events."
+          },
+          "forfeitureDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time unvested units were forfeited. Only present for TERMINATION_FORFEITED cancellation events."
+          }
+        },
+        "description": "A cancellation or termination transaction for a SAR."
+      },
+      "v1alpha1SarExerciseTransaction": {
+        "type": "object",
+        "example": {
+          "sharesAcquiredDatetime": {
+            "value": "2025-03-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "1000"
+          },
+          "withheldQuantity": {
+            "value": "0"
+          },
+          "settledQuantity": {
+            "value": "1000"
+          },
+          "resultingSecurityId": "3051",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-55"
+        },
+        "properties": {
+          "sharesAcquiredDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the shares were acquired (stock-settled) or cash was received (cash-settled)."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of SAR units exercised."
+          },
+          "withheldQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares withheld by the issuer to cover tax or other obligations. Only applicable to stock-settled exercises."
+          },
+          "settledQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares actually delivered to the holder. Only applicable to stock-settled exercises."
+          },
+          "resultingSecurityId": {
+            "type": "string",
+            "description": "The identifier of the security produced as a result of a stock-settled exercise. Empty for cash-settled exercises.",
+            "maxLength": 50
+          },
+          "resultingSecurityType": {
+            "type": "string",
+            "description": "The type of the security produced as a result of a stock-settled exercise (e.g. \"certificate\"). Empty for cash-settled exercises.",
+            "maxLength": 50
+          },
+          "resultingSecurityLabel": {
+            "type": "string",
+            "description": "The human-readable label of the security produced as a result of a stock-settled exercise (e.g. \"CS-55\"). Empty for cash-settled exercises.",
+            "maxLength": 50
+          },
+          "cashAcquired": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The cash amount received by the holder for a cash-settled exercise. Empty for stock-settled exercises."
+          }
+        },
+        "description": "An exercise transaction for a SAR. Supports both stock-settled (resulting in shares) and cash-settled (resulting in a cash payment) outcomes."
+      },
+      "v1alpha1SarIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "10000"
+          },
+          "exercisePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "2.00"
+            }
+          },
+          "equityPlanId": "42",
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7",
+          "expirationDatetime": {
+            "value": "2034-01-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the SAR was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of units issued."
+          },
+          "exercisePrice": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The per-share exercise price."
+          },
+          "equityPlanId": {
+            "type": "string",
+            "description": "The identifier of the equity plan under which the SAR was issued.",
+            "maxLength": 50
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class associated with the SAR.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template.",
+            "maxLength": 50
+          },
+          "expirationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the SAR expires."
+          }
+        },
+        "description": "The issuance transaction for a SAR. Represents the initial issuance of the stock appreciation right."
+      },
+      "v1alpha1SarTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "7001",
+          "stakeholderId": "4923",
+          "securityLabel": "SAR-3",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "10000"
+            },
+            "exercisePrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "2.00"
+              }
+            },
+            "equityPlanId": "42",
+            "shareClassId": "10"
+          },
+          "exercises": [],
+          "cancellations": []
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the SAR.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the SAR.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the SAR (e.g. \"SAR-3\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1SarIssuanceTransaction",
+            "description": "The issuance transaction for the SAR."
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1SarExerciseTransaction"
+            },
+            "description": "All exercise transactions for the SAR. Each exercise may be stock-settled (with resulting security) or cash-settled (with cash acquired)."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1SarCancellationTransaction"
+            },
+            "description": "All cancellation and termination transactions for the SAR, in chronological order."
+          }
+        },
+        "description": "A SAR (Stock Appreciation Right) with its full transaction history. Groups all lifecycle events (issuance, exercises, cancellation) for a single SAR."
       },
       "v1alpha1ShareClass": {
         "type": "object",
@@ -9033,14 +10887,114 @@
         "description": "Vesting details of the option grant",
         "title": "Vesting details of the option grant"
       },
+      "v1alpha1VestingMethod": {
+        "type": "string",
+        "enum": [
+          "DAILY",
+          "WEEKLY",
+          "MONTHLY",
+          "BI_MONTHLY",
+          "QUARTERLY",
+          "SEMI_ANNUALLY",
+          "ANNUALLY"
+        ],
+        "description": "Frequency at which shares vest."
+      },
+      "v1alpha1VestingOccurs": {
+        "type": "string",
+        "enum": [
+          "SAME_DAY_AS_START_DATE",
+          "FIRST_DAY_OF_MONTH",
+          "LAST_DAY_OF_MONTH",
+          "SAME_DAY_AS_START_DATE_MINUS_ONE"
+        ],
+        "description": "When vesting occurs within each period."
+      },
+      "v1alpha1VestingPeriod": {
+        "type": "object",
+        "example": {
+          "order": 1,
+          "percentage": "25",
+          "vestingMethod": "MONTHLY",
+          "vestingOccurs": "SAME_DAY_AS_START_DATE",
+          "length": 12,
+          "lengthUnit": "MONTH"
+        },
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The order of this period in the vesting schedule."
+          },
+          "percentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The percentage of shares that vest in this period."
+          },
+          "vestingMethod": {
+            "$ref": "#/components/schemas/v1alpha1VestingMethod",
+            "description": "The frequency at which shares vest."
+          },
+          "vestingOccurs": {
+            "$ref": "#/components/schemas/v1alpha1VestingOccurs",
+            "description": "When vesting occurs within each period (e.g., same day as start date, first of month, last of month)."
+          },
+          "length": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The duration of the vesting period."
+          },
+          "lengthUnit": {
+            "$ref": "#/components/schemas/v1alpha1PeriodUnit",
+            "description": "The unit of the duration (days, months, years)."
+          },
+          "immediatePercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The percentage of shares that vest immediately on the vesting start date."
+          },
+          "cliffPercentage": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The percentage of shares that vest at the cliff."
+          },
+          "cliffLength": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The duration until the cliff."
+          },
+          "cliffLengthUnit": {
+            "$ref": "#/components/schemas/v1alpha1PeriodUnit",
+            "description": "The unit of the cliff duration (days, months, years)."
+          },
+          "milestoneName": {
+            "type": "string",
+            "description": "The name of the milestone for milestone-based periods.",
+            "maxLength": 500
+          },
+          "performanceCondition": {
+            "$ref": "#/components/schemas/v1alpha1PerformanceCondition",
+            "description": "The performance condition associated with this period."
+          }
+        },
+        "description": "A vesting period defines a portion of shares that vest."
+      },
       "v1alpha1VestingScheduleTemplate": {
         "type": "object",
         "example": {
           "id": "1",
+          "uuid": "550e8400-e29b-41d4-a716-446655440000",
           "issuerId": "7",
           "name": "1/24, No Cliff",
           "description": "Shares vest monthly for the next 24 months on the same day as the start date.",
-          "vestingScheduleType": "DATE"
+          "vestingScheduleType": "DATE",
+          "periods": [
+            {
+              "order": 1,
+              "percentage": "100",
+              "vestingMethod": "MONTHLY",
+              "vestingOccurs": "SAME_DAY_AS_START_DATE",
+              "length": 24,
+              "lengthUnit": "MONTH"
+            }
+          ]
         },
         "properties": {
           "id": {
@@ -9066,6 +11020,20 @@
           "vestingScheduleType": {
             "$ref": "#/components/schemas/v1alpha1VestingScheduleType",
             "description": "The type of vesting schedule found within this template."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The UUID of the vesting schedule template.",
+            "maxLength": 36,
+            "minLength": 36
+          },
+          "periods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1VestingPeriod"
+            },
+            "description": "The vesting periods that define how shares vest."
           }
         },
         "description": "Details of a vesting schedule template."
@@ -9133,6 +11101,269 @@
           "outstandingWarrants",
           "cashRaised"
         ]
+      },
+      "v1alpha1WarrantCancellationReason": {
+        "type": "string",
+        "enum": [
+          "WARRANT_CANCELLATION_REASON_CANCELED",
+          "WARRANT_CANCELLATION_REASON_LIFETIME_ENDED",
+          "WARRANT_CANCELLATION_REASON_TRANSFERRED"
+        ],
+        "description": "The reason the warrant was canceled or terminated.\n\n - WARRANT_CANCELLATION_REASON_CANCELED: The warrant was explicitly canceled.\n - WARRANT_CANCELLATION_REASON_LIFETIME_ENDED: The warrant expired at the end of its lifetime.\n - WARRANT_CANCELLATION_REASON_TRANSFERRED: The warrant was transferred to another holder."
+      },
+      "v1alpha1WarrantCancellationTransaction": {
+        "type": "object",
+        "example": {
+          "effectiveDatetime": {
+            "value": "2025-06-01T00:00:00Z"
+          },
+          "reason": "WARRANT_CANCELLATION_REASON_LIFETIME_ENDED",
+          "quantity": {
+            "value": "40000"
+          }
+        },
+        "properties": {
+          "effectiveDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The effective date and time of the cancellation."
+          },
+          "reason": {
+            "$ref": "#/components/schemas/v1alpha1WarrantCancellationReason",
+            "description": "The reason for the cancellation. See `WarrantCancellationReason` for all supported values."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of warrant shares affected by the cancellation."
+          }
+        },
+        "description": "A cancellation transaction for a warrant."
+      },
+      "v1alpha1WarrantExerciseTransaction": {
+        "type": "object",
+        "example": {
+          "sharesAcquiredDatetime": {
+            "value": "2025-03-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "10000"
+          },
+          "withheldQuantity": {
+            "value": "0"
+          },
+          "settledQuantity": {
+            "value": "10000"
+          },
+          "resultingSecurityId": "3051",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-55"
+        },
+        "properties": {
+          "sharesAcquiredDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the shares were acquired by the holder."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of warrant shares exercised."
+          },
+          "withheldQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares withheld by the issuer to cover tax or other obligations."
+          },
+          "settledQuantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares actually delivered to the holder, net of withheld shares."
+          },
+          "resultingSecurityId": {
+            "type": "string",
+            "description": "The identifier of the security produced as a result of the exercise.",
+            "maxLength": 50
+          },
+          "resultingSecurityType": {
+            "type": "string",
+            "description": "The type of the security produced as a result of the exercise (e.g. \"certificate\").",
+            "maxLength": 50
+          },
+          "resultingSecurityLabel": {
+            "type": "string",
+            "description": "The human-readable label of the security produced as a result of the exercise (e.g. \"CS-55\").",
+            "maxLength": 50
+          }
+        },
+        "description": "An exercise transaction for a warrant. Represents the conversion of warrant rights into shares."
+      },
+      "v1alpha1WarrantIssuanceTransaction": {
+        "type": "object",
+        "example": {
+          "issueDatetime": {
+            "value": "2024-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "50000"
+          },
+          "exercisePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "2.00"
+            }
+          },
+          "purchasePrice": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "0.25"
+            }
+          },
+          "shareClassId": "10",
+          "vestingScheduleTemplateId": "7",
+          "expirationDatetime": {
+            "value": "2034-01-15T00:00:00Z"
+          }
+        },
+        "properties": {
+          "issueDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the warrant was issued."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of shares the warrant entitles the holder to purchase."
+          },
+          "exercisePrice": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The per-share price at which the holder can purchase the underlying shares upon exercise."
+          },
+          "purchasePrice": {
+            "$ref": "#/components/schemas/v1alpha1Money",
+            "description": "The upfront cost paid by the holder to acquire the warrant itself. May be absent if no purchase price was paid."
+          },
+          "shareClassId": {
+            "type": "string",
+            "description": "The identifier of the share class associated with the warrant.",
+            "maxLength": 50
+          },
+          "vestingScheduleTemplateId": {
+            "type": "string",
+            "description": "The identifier of the vesting schedule template. May be absent if the warrant has no vesting schedule.",
+            "maxLength": 50
+          },
+          "expirationDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the warrant expires. May be absent if the warrant has no expiration."
+          }
+        },
+        "description": "The issuance transaction for a warrant. Represents the initial issuance of a warrant."
+      },
+      "v1alpha1WarrantTransactionItem": {
+        "type": "object",
+        "example": {
+          "securityId": "5001",
+          "stakeholderId": "4923",
+          "securityLabel": "W-3",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "50000"
+            },
+            "exercisePrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "2.00"
+              }
+            },
+            "shareClassId": "10"
+          },
+          "exercises": [],
+          "transfers": [],
+          "cancellations": []
+        },
+        "properties": {
+          "securityId": {
+            "type": "string",
+            "description": "The identifier of the warrant.",
+            "maxLength": 50
+          },
+          "stakeholderId": {
+            "type": "string",
+            "description": "The identifier of the current holder of the warrant.",
+            "maxLength": 50
+          },
+          "securityLabel": {
+            "type": "string",
+            "description": "The human-readable label for the warrant (e.g. \"W-3\").",
+            "maxLength": 50
+          },
+          "issuance": {
+            "$ref": "#/components/schemas/v1alpha1WarrantIssuanceTransaction",
+            "description": "The issuance transaction for the warrant."
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1WarrantExerciseTransaction"
+            },
+            "description": "All exercise transactions for the warrant."
+          },
+          "transfers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1WarrantTransferTransaction"
+            },
+            "description": "All transfer transactions for the warrant, in chronological order."
+          },
+          "cancellations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/v1alpha1WarrantCancellationTransaction"
+            },
+            "description": "All cancellation transactions for the warrant, in chronological order."
+          }
+        },
+        "description": "A warrant with its full transaction history. Groups all lifecycle events (issuance, exercises, transfers, cancellation) for a single warrant."
+      },
+      "v1alpha1WarrantTransferTransaction": {
+        "type": "object",
+        "example": {
+          "transferredDatetime": {
+            "value": "2025-02-01T00:00:00Z"
+          },
+          "quantity": {
+            "value": "5000"
+          },
+          "resultingSecurityId": "5102",
+          "resultingSecurityLabel": "W-8"
+        },
+        "properties": {
+          "transferredDatetime": {
+            "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+            "description": "The date and time the transfer was executed."
+          },
+          "quantity": {
+            "$ref": "#/components/schemas/v1alpha1Decimal",
+            "description": "The number of warrant shares transferred."
+          },
+          "resultingSecurityId": {
+            "type": "string",
+            "description": "The identifier of the new warrant created as a result of the transfer.",
+            "maxLength": 50
+          },
+          "resultingSecurityLabel": {
+            "type": "string",
+            "description": "The human-readable label of the new warrant created as a result of the transfer (e.g. \"W-8\").",
+            "maxLength": 50
+          }
+        },
+        "description": "A transfer transaction for a warrant. Represents the transfer of warrant shares to a new warrant."
       }
     }
   }

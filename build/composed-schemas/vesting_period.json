@@ -1,0 +1,83 @@
+{
+  "name": "v1alpha1VestingPeriod",
+  "sanitized_name": "vesting_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "order": 1,
+      "percentage": "25",
+      "vestingMethod": "MONTHLY",
+      "vestingOccurs": "SAME_DAY_AS_START_DATE",
+      "length": 12,
+      "lengthUnit": "MONTH"
+    },
+    "properties": {
+      "order": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The order of this period in the vesting schedule."
+      },
+      "percentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The percentage of shares that vest in this period."
+      },
+      "vestingMethod": {
+        "$ref": "#/components/schemas/v1alpha1VestingMethod",
+        "description": "The frequency at which shares vest."
+      },
+      "vestingOccurs": {
+        "$ref": "#/components/schemas/v1alpha1VestingOccurs",
+        "description": "When vesting occurs within each period (e.g., same day as start date, first of month, last of month)."
+      },
+      "length": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The duration of the vesting period."
+      },
+      "lengthUnit": {
+        "$ref": "#/components/schemas/v1alpha1PeriodUnit",
+        "description": "The unit of the duration (days, months, years)."
+      },
+      "immediatePercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The percentage of shares that vest immediately on the vesting start date."
+      },
+      "cliffPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The percentage of shares that vest at the cliff."
+      },
+      "cliffLength": {
+        "type": "integer",
+        "format": "int32",
+        "description": "The duration until the cliff."
+      },
+      "cliffLengthUnit": {
+        "$ref": "#/components/schemas/v1alpha1PeriodUnit",
+        "description": "The unit of the cliff duration (days, months, years)."
+      },
+      "milestoneName": {
+        "type": "string",
+        "description": "The name of the milestone for milestone-based periods.",
+        "maxLength": 500
+      },
+      "performanceCondition": {
+        "$ref": "#/components/schemas/v1alpha1PerformanceCondition",
+        "description": "The performance condition associated with this period."
+      }
+    },
+    "description": "A vesting period defines a portion of shares that vest."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingScheduleTemplate"
+  ],
+  "references": [
+    "v1alpha1Decimal",
+    "v1alpha1VestingMethod",
+    "v1alpha1VestingOccurs",
+    "v1alpha1PeriodUnit",
+    "v1alpha1PerformanceCondition"
+  ],
+  "output_path": "docs/types/vesting_period.md"
+}

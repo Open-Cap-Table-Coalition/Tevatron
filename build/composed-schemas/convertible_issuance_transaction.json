@@ -1,0 +1,116 @@
+{
+  "name": "v1alpha1ConvertibleIssuanceTransaction",
+  "sanitized_name": "convertible_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "principal": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "500000"
+        }
+      },
+      "valuationCap": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "10000000"
+        }
+      },
+      "discountPercentage": {
+        "value": "20"
+      },
+      "conversionTrigger": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "1000000"
+        }
+      },
+      "maturityDatetime": {
+        "value": "2026-01-15T00:00:00Z"
+      },
+      "noteBlockId": "42",
+      "interestRate": {
+        "value": "5.0"
+      },
+      "interestAccrualPeriod": "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+      "interestCompoundingPeriod": "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+      "dayCountBasis": "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the convertible note was issued."
+      },
+      "principal": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The principal amount of the convertible note."
+      },
+      "valuationCap": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The valuation cap for conversion. May be absent if no cap was set."
+      },
+      "discountPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The discount percentage applied at conversion, expressed as a percentage (e.g., `20` for a 20% discount). May be absent if no discount was set."
+      },
+      "conversionTrigger": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The qualifying financing threshold that triggers automatic conversion. May be absent if no conversion trigger was set."
+      },
+      "maturityDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The maturity date and time of the convertible note. May be absent if no maturity date was set."
+      },
+      "noteBlockId": {
+        "type": "string",
+        "description": "The identifier of the note block from which the convertible note was issued.",
+        "maxLength": 50
+      },
+      "precededBySecurityId": {
+        "type": "string",
+        "description": "The identifier of the security that preceded this convertible note (e.g. the note that was transferred). May be absent if the note was issued directly.",
+        "maxLength": 50
+      },
+      "interestRate": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The annual interest rate that the convertible note accrues, expressed as a percentage (e.g., `5` for 5%). May be absent if no interest rate was set."
+      },
+      "interestAccrualPeriod": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleInterestAccrualPeriod",
+        "description": "The length of time over which the interest due to the lender is calculated."
+      },
+      "interestCompoundingPeriod": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleInterestCompoundingPeriod",
+        "description": "The interest compounding period of the convertible note."
+      },
+      "dayCountBasis": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleDayCountBasis",
+        "description": "The standardized way of counting the number of days between two dates."
+      }
+    },
+    "description": "The issuance transaction for a convertible note. Represents the initial issuance of the note."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Money",
+    "v1alpha1Decimal",
+    "v1alpha1ConvertibleInterestAccrualPeriod",
+    "v1alpha1ConvertibleInterestCompoundingPeriod",
+    "v1alpha1ConvertibleDayCountBasis"
+  ],
+  "output_path": "docs/types/convertible_issuance_transaction.md"
+}

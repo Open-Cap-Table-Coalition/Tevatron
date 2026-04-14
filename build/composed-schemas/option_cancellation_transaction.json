@@ -1,0 +1,56 @@
+{
+  "name": "v1alpha1OptionCancellationTransaction",
+  "sanitized_name": "option_cancellation_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "effectiveDatetime": {
+        "value": "2025-06-01T00:00:00Z"
+      },
+      "reason": "OPTION_CANCELLATION_REASON_TERMINATED",
+      "quantity": {
+        "value": "800"
+      },
+      "terminationDatetime": {
+        "value": "2025-05-15T00:00:00Z"
+      },
+      "forfeitureDatetime": {
+        "value": "2025-05-15T00:00:00Z"
+      }
+    },
+    "properties": {
+      "effectiveDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The effective date and time of the cancellation."
+      },
+      "reason": {
+        "$ref": "#/components/schemas/v1alpha1OptionCancellationReason",
+        "description": "The reason for the cancellation."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares affected by the cancellation."
+      },
+      "terminationDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the holder's relationship with the issuer was terminated."
+      },
+      "forfeitureDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time unvested shares were forfeited."
+      }
+    },
+    "description": "A cancellation or termination transaction for an option grant."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1OptionCancellationReason",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/option_cancellation_transaction.md"
+}

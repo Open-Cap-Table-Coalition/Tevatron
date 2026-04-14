@@ -14,7 +14,9 @@
  - INTERNATIONAL_EMPLOYEE: Stakeholder is an international employee
  - INVESTOR: Stakeholder is an investor
  - OFFICER: Stakeholder is an officer
- - OTHER: Stakeholder has some other type of relationship_
+ - OTHER: Stakeholder has some other type of relationship
+ - EX_BOARD_MEMBER: Stakeholder is an ex-board member
+ - EX_INTERNATIONAL_EMPLOYEE: Stakeholder is an ex-international employee_
 
 **Referenced By (1):**
 - [Publicapiissuers Stakeholder](../objects/publicapiissuers_stakeholder.md)
@@ -35,3 +37,5 @@
 - `INVESTOR`
 - `OFFICER`
 - `OTHER`
+- `EX_BOARD_MEMBER`
+- `EX_INTERNATIONAL_EMPLOYEE`

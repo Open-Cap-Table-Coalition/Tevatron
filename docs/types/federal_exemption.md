@@ -17,7 +17,10 @@
  - SECTION_756: Section 756 - GBR
  - SCHEDULE_11A: Schedule 11A - GBR
  - NON_US: Non-U.S.
- - OTHER: Other_
+ - OTHER: Other
+ - SMALL_SCALE: Small scale
+ - SOPHISTICATED: Sophisticated
+ - SENIOR_MANAGEMENT: Senior management_
 
 **Referenced By (1):**
 - [Compliance](compliance.md)
@@ -43,3 +46,6 @@
 - `SCHEDULE_11A`
 - `NON_US`
 - `OTHER`
+- `SMALL_SCALE`
+- `SOPHISTICATED`
+- `SENIOR_MANAGEMENT`

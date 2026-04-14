@@ -1,0 +1,80 @@
+{
+  "name": "v1alpha1WarrantIssuanceTransaction",
+  "sanitized_name": "warrant_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "50000"
+      },
+      "exercisePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "2.00"
+        }
+      },
+      "purchasePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.25"
+        }
+      },
+      "shareClassId": "10",
+      "vestingScheduleTemplateId": "7",
+      "expirationDatetime": {
+        "value": "2034-01-15T00:00:00Z"
+      }
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the warrant was issued."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares the warrant entitles the holder to purchase."
+      },
+      "exercisePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The per-share price at which the holder can purchase the underlying shares upon exercise."
+      },
+      "purchasePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The upfront cost paid by the holder to acquire the warrant itself. May be absent if no purchase price was paid."
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class associated with the warrant.",
+        "maxLength": 50
+      },
+      "vestingScheduleTemplateId": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template. May be absent if the warrant has no vesting schedule.",
+        "maxLength": 50
+      },
+      "expirationDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the warrant expires. May be absent if the warrant has no expiration."
+      }
+    },
+    "description": "The issuance transaction for a warrant. Represents the initial issuance of a warrant."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1WarrantTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/warrant_issuance_transaction.md"
+}

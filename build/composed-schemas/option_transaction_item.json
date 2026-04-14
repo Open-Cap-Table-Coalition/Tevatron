@@ -1,0 +1,103 @@
+{
+  "name": "v1alpha1OptionTransactionItem",
+  "sanitized_name": "option_transaction_item",
+  "schema_type": "object",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "2513",
+      "stakeholderId": "4923",
+      "securityLabel": "ES-12",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "10000"
+        },
+        "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+        "exercisePrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1.50"
+          }
+        },
+        "equityPlanId": "42",
+        "expirationDatetime": {
+          "value": "2034-01-15T00:00:00Z"
+        }
+      },
+      "exercises": [
+        {
+          "id": "23HcT4iVfrgYUaJF9txHTaH",
+          "sharesAcquiredDatetime": {
+            "value": "2025-01-15T00:00:00Z"
+          },
+          "quantity": {
+            "value": "200"
+          },
+          "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+          "recordType": "STOCK_OPTION_TYPE_ISO",
+          "resultingSecurityId": "2951",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-42"
+        }
+      ]
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the option grant.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the option grant.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the option grant (e.g. \"ES-12\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1OptionIssuanceTransaction",
+        "description": "The issuance transaction for the option grant."
+      },
+      "exercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionExerciseTransaction"
+        },
+        "description": "All exercise transactions for the option grant."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the option grant, in chronological order. An option can accrue multiple cancellation events (e.g. TERMINATED followed by PTEP_ENDED)."
+      }
+    },
+    "description": "An option grant with its full transaction history. Groups all lifecycle events (issuance, exercises, cancellation) for a single option grant."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1alpha1/issuers/{issuerId}/transactions"
+    }
+  ],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1OptionIssuanceTransaction",
+    "v1alpha1OptionExerciseTransaction",
+    "v1alpha1OptionCancellationTransaction"
+  ],
+  "output_path": "docs/objects/option_transaction_item.md"
+}

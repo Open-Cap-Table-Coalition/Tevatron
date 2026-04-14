@@ -22,9 +22,12 @@
       "SECTION_756",
       "SCHEDULE_11A",
       "NON_US",
-      "OTHER"
+      "OTHER",
+      "SMALL_SCALE",
+      "SOPHISTICATED",
+      "SENIOR_MANAGEMENT"
     ],
-    "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other",
+    "description": "- RULE_701: Rule 701 - USA\n - SECTION_4_A_2: Section 4(a)(2) - USA\n - SECTION_4_1_1_2: Section 4(a)(1-1/2) - USA\n - SECTION_4_A_7: Section 4(a)(7) - USA\n - RULE_144: Rule 144 - USA\n - REG_D_506_B: Reg D - 506(b) - USA\n - REG_D_506_C: Reg D - 506(c) - USA\n - REG_D_506: Reg D - 506 - USA\n - REG_D_505: Reg D - 505 - USA\n - REG_D_504: Reg D - 504 - USA\n - REG_S: Reg S - USA\n - REG_A_TIER_1: Reg A (Tier 1) - USA\n - REG_A_TIER_2: Reg A (Tier 2) - USA\n - REG_CF: Reg CF - USA\n - SECTION_756: Section 756 - GBR\n - SCHEDULE_11A: Schedule 11A - GBR\n - NON_US: Non-U.S.\n - OTHER: Other\n - SMALL_SCALE: Small scale\n - SOPHISTICATED: Sophisticated\n - SENIOR_MANAGEMENT: Senior management",
     "title": "Federal Exemption types supported"
   },
   "endpoints": [],

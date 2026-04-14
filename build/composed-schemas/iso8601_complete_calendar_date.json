@@ -29,6 +29,7 @@
     "v1alpha1ListInterestsResponse",
     "v1alpha1OptionGrant",
     "v1alpha1OptionGrantVestingEvent",
+    "v1alpha1PerformanceCondition",
     "v1alpha1RestrictedStockAward",
     "v1alpha1RestrictedStockAwardVestingEvent",
     "v1alpha1RestrictedStockUnit",

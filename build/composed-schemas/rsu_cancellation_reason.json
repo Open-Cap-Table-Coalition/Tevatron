@@ -1,0 +1,22 @@
+{
+  "name": "v1alpha1RsuCancellationReason",
+  "sanitized_name": "rsu_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "RSU_CANCELLATION_REASON_TERMINATED",
+      "RSU_CANCELLATION_REASON_CANCELED",
+      "RSU_CANCELLATION_REASON_TERMINATION_FORFEITED",
+      "RSU_CANCELLATION_REASON_LIFETIME_ENDED",
+      "RSU_CANCELLATION_REASON_SETTLEMENT_WINDOW_ENDED"
+    ],
+    "description": "The reason the RSU award was canceled or terminated.\n\n - RSU_CANCELLATION_REASON_TERMINATED: The RSU award was terminated due to the holder's relationship ending.\n - RSU_CANCELLATION_REASON_CANCELED: The RSU award was explicitly canceled.\n - RSU_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - RSU_CANCELLATION_REASON_LIFETIME_ENDED: The RSU award expired at the end of its lifetime.\n - RSU_CANCELLATION_REASON_SETTLEMENT_WINDOW_ENDED: The RSU award expired at the end of the post-termination settlement window."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1RsuCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/rsu_cancellation_reason.md"
+}

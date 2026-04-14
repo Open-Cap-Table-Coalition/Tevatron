@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1WarrantCancellationReason",
+  "sanitized_name": "warrant_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "WARRANT_CANCELLATION_REASON_CANCELED",
+      "WARRANT_CANCELLATION_REASON_LIFETIME_ENDED",
+      "WARRANT_CANCELLATION_REASON_TRANSFERRED"
+    ],
+    "description": "The reason the warrant was canceled or terminated.\n\n - WARRANT_CANCELLATION_REASON_CANCELED: The warrant was explicitly canceled.\n - WARRANT_CANCELLATION_REASON_LIFETIME_ENDED: The warrant expired at the end of its lifetime.\n - WARRANT_CANCELLATION_REASON_TRANSFERRED: The warrant was transferred to another holder."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1WarrantCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/warrant_cancellation_reason.md"
+}

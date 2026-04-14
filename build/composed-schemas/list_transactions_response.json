@@ -1,0 +1,147 @@
+{
+  "name": "v1alpha1ListTransactionsResponse",
+  "sanitized_name": "list_transactions_response",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "optionTransactions": [
+        {
+          "securityId": "2513",
+          "stakeholderId": "4923",
+          "securityLabel": "ES-12",
+          "issuance": {
+            "issueDatetime": {
+              "value": "2024-01-15T00:00:00Z"
+            },
+            "quantity": {
+              "value": "10000"
+            },
+            "stockOptionType": "STOCK_OPTION_TYPE_ISO",
+            "exercisePrice": {
+              "currencyCode": {
+                "value": "USD"
+              },
+              "amount": {
+                "value": "1.50"
+              }
+            },
+            "equityPlanId": "42",
+            "expirationDatetime": {
+              "value": "2034-01-15T00:00:00Z"
+            }
+          },
+          "exercises": [
+            {
+              "id": "23HcT4iVfrgYUaJF9txHTaH",
+              "sharesAcquiredDatetime": {
+                "value": "2025-01-15T00:00:00Z"
+              },
+              "quantity": {
+                "value": "200"
+              },
+              "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+              "recordType": "STOCK_OPTION_TYPE_ISO",
+              "resultingSecurityId": "2951",
+              "resultingSecurityType": "certificate",
+              "resultingSecurityLabel": "CS-42"
+            }
+          ]
+        }
+      ],
+      "rsuTransactions": [],
+      "rsaTransactions": [],
+      "certificateTransactions": [],
+      "warrantTransactions": [],
+      "convertibleTransactions": [],
+      "piuTransactions": [],
+      "sarTransactions": [],
+      "nextPageToken": "NTA6NTA6YTFiMmMzZDQtZTVmNi00..."
+    },
+    "properties": {
+      "optionTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1OptionTransactionItem"
+        },
+        "description": "The option grants with their transaction history. Each item contains all transactions (issuance, exercises, cancellation) for a single option grant. Populated when `type=option`."
+      },
+      "rsuTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RsuTransactionItem"
+        },
+        "description": "The RSU awards with their transaction history. Each item contains all transactions (issuance, settlements, cancellation) for a single RSU award. Populated when `type=rsu`."
+      },
+      "rsaTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RsaTransactionItem"
+        },
+        "description": "The RSA grants with their transaction history. Each item contains all transactions (issuance, cancellation) for a single RSA. Populated when `type=rsa`."
+      },
+      "certificateTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1CertificateTransactionItem"
+        },
+        "description": "The certificates with their transaction history. Each item contains all transactions (issuance, cancellation) for a single certificate. Populated when `type=certificate`."
+      },
+      "warrantTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1WarrantTransactionItem"
+        },
+        "description": "The warrants with their transaction history. Each item contains all transactions (issuance, exercises, transfers, cancellation) for a single warrant. Populated when `type=warrant`."
+      },
+      "convertibleTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1ConvertibleTransactionItem"
+        },
+        "description": "The convertible notes with their transaction history. Each item contains the issuance and cancellations (if applicable) for a single convertible note. A conversion appears as a cancellation with `reason=CONVERTIBLE_CANCELLATION_REASON_CONVERTED`. A transferred note includes a `precededBySecurityId` on its issuance. Populated when `type=convertible`."
+      },
+      "piuTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1PiuTransactionItem"
+        },
+        "description": "The PIUs (Profits Interest Units) with their transaction history. Each item contains all transactions (issuance, cancellation) for a single PIU. Populated when `type=piu`."
+      },
+      "sarTransactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1SarTransactionItem"
+        },
+        "description": "The SARs (Stock Appreciation Rights) with their transaction history. Each item contains all transactions (issuance, exercises, cancellation) for a single SAR. Exercises may be stock-settled or cash-settled. Populated when `type=sar`."
+      },
+      "nextPageToken": {
+        "type": "string",
+        "example": "NTA6NTA6YTFiMmMzZDQtZTVmNi00...",
+        "description": "Submit the `nextPageToken` string as `pageToken` in a subsequent request to retrieve the next page.\n\nIf the response omits `nextPageToken`, then there are no subsequent pages."
+      }
+    },
+    "description": "The response from the List Transactions endpoint.\n\nExactly one transaction array is populated per request, determined by the `type` query parameter. For example, `type=option` populates `optionTransactions` only; the other arrays will be empty."
+  },
+  "endpoints": [],
+  "referenced_by": [],
+  "references": [
+    "v1alpha1OptionTransactionItem",
+    "v1alpha1RsuTransactionItem",
+    "v1alpha1RsaTransactionItem",
+    "v1alpha1CertificateTransactionItem",
+    "v1alpha1WarrantTransactionItem",
+    "v1alpha1ConvertibleTransactionItem",
+    "v1alpha1PiuTransactionItem",
+    "v1alpha1SarTransactionItem"
+  ],
+  "output_path": "docs/types/list_transactions_response.md"
+}

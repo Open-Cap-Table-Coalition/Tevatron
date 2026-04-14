@@ -1,0 +1,68 @@
+{
+  "name": "v1alpha1WarrantExerciseTransaction",
+  "sanitized_name": "warrant_exercise_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "sharesAcquiredDatetime": {
+        "value": "2025-03-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "10000"
+      },
+      "withheldQuantity": {
+        "value": "0"
+      },
+      "settledQuantity": {
+        "value": "10000"
+      },
+      "resultingSecurityId": "3051",
+      "resultingSecurityType": "certificate",
+      "resultingSecurityLabel": "CS-55"
+    },
+    "properties": {
+      "sharesAcquiredDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the shares were acquired by the holder."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of warrant shares exercised."
+      },
+      "withheldQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares withheld by the issuer to cover tax or other obligations."
+      },
+      "settledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares actually delivered to the holder, net of withheld shares."
+      },
+      "resultingSecurityId": {
+        "type": "string",
+        "description": "The identifier of the security produced as a result of the exercise.",
+        "maxLength": 50
+      },
+      "resultingSecurityType": {
+        "type": "string",
+        "description": "The type of the security produced as a result of the exercise (e.g. \"certificate\").",
+        "maxLength": 50
+      },
+      "resultingSecurityLabel": {
+        "type": "string",
+        "description": "The human-readable label of the security produced as a result of the exercise (e.g. \"CS-55\").",
+        "maxLength": 50
+      }
+    },
+    "description": "An exercise transaction for a warrant. Represents the conversion of warrant rights into shares."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1WarrantTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/warrant_exercise_transaction.md"
+}

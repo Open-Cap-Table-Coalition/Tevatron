@@ -6,10 +6,21 @@
     "type": "object",
     "example": {
       "id": "1",
+      "uuid": "550e8400-e29b-41d4-a716-446655440000",
       "issuerId": "7",
       "name": "1/24, No Cliff",
       "description": "Shares vest monthly for the next 24 months on the same day as the start date.",
-      "vestingScheduleType": "DATE"
+      "vestingScheduleType": "DATE",
+      "periods": [
+        {
+          "order": 1,
+          "percentage": "100",
+          "vestingMethod": "MONTHLY",
+          "vestingOccurs": "SAME_DAY_AS_START_DATE",
+          "length": 24,
+          "lengthUnit": "MONTH"
+        }
+      ]
     },
     "properties": {
       "id": {
@@ -35,6 +46,20 @@
       "vestingScheduleType": {
         "$ref": "#/components/schemas/v1alpha1VestingScheduleType",
         "description": "The type of vesting schedule found within this template."
+      },
+      "uuid": {
+        "type": "string",
+        "description": "The UUID of the vesting schedule template.",
+        "maxLength": 36,
+        "minLength": 36
+      },
+      "periods": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1VestingPeriod"
+        },
+        "description": "The vesting periods that define how shares vest."
       }
     },
     "description": "Details of a vesting schedule template."
@@ -49,7 +74,8 @@
     "v1alpha1ListVestingScheduleTemplatesResponse"
   ],
   "references": [
-    "v1alpha1VestingScheduleType"
+    "v1alpha1VestingScheduleType",
+    "v1alpha1VestingPeriod"
   ],
   "output_path": "docs/objects/vesting_schedule_template.md"
 }

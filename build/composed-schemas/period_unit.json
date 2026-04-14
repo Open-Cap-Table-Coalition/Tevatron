@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1PeriodUnit",
+  "sanitized_name": "period_unit",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "DAY",
+      "MONTH",
+      "YEAR"
+    ],
+    "description": "Period unit for duration calculations."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingPeriod"
+  ],
+  "references": [],
+  "output_path": "docs/types/period_unit.md"
+}

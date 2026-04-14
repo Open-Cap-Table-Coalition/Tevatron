@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1VestingOccurs",
+  "sanitized_name": "vesting_occurs",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "SAME_DAY_AS_START_DATE",
+      "FIRST_DAY_OF_MONTH",
+      "LAST_DAY_OF_MONTH",
+      "SAME_DAY_AS_START_DATE_MINUS_ONE"
+    ],
+    "description": "When vesting occurs within each period."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingPeriod"
+  ],
+  "references": [],
+  "output_path": "docs/types/vesting_occurs.md"
+}

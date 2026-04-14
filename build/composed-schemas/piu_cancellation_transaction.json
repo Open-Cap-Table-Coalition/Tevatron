@@ -1,0 +1,49 @@
+{
+  "name": "v1alpha1PiuCancellationTransaction",
+  "sanitized_name": "piu_cancellation_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "effectiveDatetime": {
+        "value": "2025-06-01T00:00:00Z"
+      },
+      "reason": "PIU_CANCELLATION_REASON_TERMINATED",
+      "quantity": {
+        "value": "5000"
+      },
+      "terminationDatetime": {
+        "value": "2025-05-15T00:00:00Z"
+      }
+    },
+    "properties": {
+      "effectiveDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The effective date and time of the cancellation."
+      },
+      "reason": {
+        "$ref": "#/components/schemas/v1alpha1PiuCancellationReason",
+        "description": "The reason for the cancellation. See `PiuCancellationReason` for all supported values."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of units affected by the cancellation."
+      },
+      "terminationDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the holder's relationship with the issuer was terminated. Only present for TERMINATED cancellation events."
+      }
+    },
+    "description": "A cancellation or termination transaction for a PIU."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PiuTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1PiuCancellationReason",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/piu_cancellation_transaction.md"
+}

@@ -1,0 +1,74 @@
+{
+  "name": "v1alpha1SarIssuanceTransaction",
+  "sanitized_name": "sar_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "10000"
+      },
+      "exercisePrice": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "2.00"
+        }
+      },
+      "equityPlanId": "42",
+      "shareClassId": "10",
+      "vestingScheduleTemplateId": "7",
+      "expirationDatetime": {
+        "value": "2034-01-15T00:00:00Z"
+      }
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the SAR was issued."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of units issued."
+      },
+      "exercisePrice": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The per-share exercise price."
+      },
+      "equityPlanId": {
+        "type": "string",
+        "description": "The identifier of the equity plan under which the SAR was issued.",
+        "maxLength": 50
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class associated with the SAR.",
+        "maxLength": 50
+      },
+      "vestingScheduleTemplateId": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template.",
+        "maxLength": 50
+      },
+      "expirationDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the SAR expires."
+      }
+    },
+    "description": "The issuance transaction for a SAR. Represents the initial issuance of the stock appreciation right."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1SarTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/sar_issuance_transaction.md"
+}

@@ -1,0 +1,110 @@
+{
+  "name": "v1alpha1ConvertibleTransactionItem",
+  "sanitized_name": "convertible_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "4501",
+      "stakeholderId": "4923",
+      "securityLabel": "CN-3",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "principal": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "500000"
+          }
+        },
+        "valuationCap": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "10000000"
+          }
+        },
+        "discountPercentage": {
+          "value": "20"
+        },
+        "conversionTrigger": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "1000000"
+          }
+        },
+        "maturityDatetime": {
+          "value": "2026-01-15T00:00:00Z"
+        },
+        "noteBlockId": "42",
+        "interestRate": {
+          "value": "5.0"
+        },
+        "interestAccrualPeriod": "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+        "interestCompoundingPeriod": "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+        "dayCountBasis": "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+      },
+      "cancellations": [
+        {
+          "effectiveDatetime": {
+            "value": "2025-10-02T00:00:00Z"
+          },
+          "reason": "CONVERTIBLE_CANCELLATION_REASON_CONVERTED",
+          "principal": {
+            "currencyCode": {
+              "value": "USD"
+            },
+            "amount": {
+              "value": "500000"
+            }
+          }
+        }
+      ]
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the convertible note.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the convertible note.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the convertible note (e.g. \"CN-3\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleIssuanceTransaction",
+        "description": "The issuance transaction for the convertible note."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1ConvertibleCancellationTransaction"
+        },
+        "description": "All cancellation transactions for the convertible note, in chronological order."
+      }
+    },
+    "description": "A convertible note with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single convertible note."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1ConvertibleIssuanceTransaction",
+    "v1alpha1ConvertibleCancellationTransaction"
+  ],
+  "output_path": "docs/types/convertible_transaction_item.md"
+}

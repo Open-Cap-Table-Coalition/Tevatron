@@ -1,0 +1,72 @@
+{
+  "name": "v1alpha1OptionExerciseTransaction",
+  "sanitized_name": "option_exercise_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "id": "23HcT4iVfrgYUaJF9txHTaH",
+      "sharesAcquiredDatetime": {
+        "value": "2025-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "200"
+      },
+      "exerciseMethod": "OPTION_EXERCISE_METHOD_CASH",
+      "recordType": "STOCK_OPTION_TYPE_ISO",
+      "resultingSecurityId": "2951",
+      "resultingSecurityType": "certificate",
+      "resultingSecurityLabel": "CS-42"
+    },
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the exercise request that initiated the exercise.",
+        "maxLength": 50
+      },
+      "sharesAcquiredDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the shares were acquired by the beneficial owner."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares converted as part of exercising the option."
+      },
+      "exerciseMethod": {
+        "$ref": "#/components/schemas/v1alpha1OptionExerciseMethod",
+        "description": "How the exercise cost was funded. May be absent if the exercise method could not be determined. See `OptionExerciseMethod` for all supported values."
+      },
+      "recordType": {
+        "$ref": "#/components/schemas/issuerstransactionsv1alpha1StockOptionType",
+        "description": "The tax classification of the exercise. May differ from the grant's stock option type (e.g., an ISO grant may have an NSO exercise due to a disqualifying disposition). See `StockOptionType` for all supported values."
+      },
+      "resultingSecurityId": {
+        "type": "string",
+        "description": "The identifier of the security produced as a result of the exercise.",
+        "maxLength": 50
+      },
+      "resultingSecurityType": {
+        "type": "string",
+        "description": "The type of the security produced as a result of the exercise (e.g. \"certificate\").",
+        "maxLength": 50
+      },
+      "resultingSecurityLabel": {
+        "type": "string",
+        "description": "The human-readable label of the security produced as a result of the exercise (e.g. \"CS-42\").",
+        "maxLength": 50
+      }
+    },
+    "description": "An exercise transaction for an option grant. Represents the conversion of options into shares."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1OptionExerciseMethod",
+    "issuerstransactionsv1alpha1StockOptionType"
+  ],
+  "output_path": "docs/types/option_exercise_transaction.md"
+}

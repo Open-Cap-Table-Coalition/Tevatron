@@ -1,0 +1,78 @@
+{
+  "name": "v1alpha1PiuIssuanceTransaction",
+  "sanitized_name": "piu_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "10000"
+      },
+      "acquisitionCost": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.001"
+        }
+      },
+      "equityPlanId": "42",
+      "shareClassId": "10",
+      "vestingScheduleTemplateId": "7",
+      "issuanceReason": "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE"
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the PIU was issued."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of units issued."
+      },
+      "acquisitionCost": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The acquisition cost of the PIU. May be absent if no cost was paid."
+      },
+      "equityPlanId": {
+        "type": "string",
+        "description": "The identifier of the equity plan under which the PIU was issued. May be absent if not plan-associated.",
+        "maxLength": 50
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class associated with the PIU.",
+        "maxLength": 50
+      },
+      "vestingScheduleTemplateId": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template. May be absent if the PIU has no vesting schedule.",
+        "maxLength": 50
+      },
+      "issuanceReason": {
+        "$ref": "#/components/schemas/v1alpha1PiuIssuanceReason",
+        "description": "The reason the PIU was created. See `PiuIssuanceReason` for all supported values."
+      },
+      "precededBySecurityId": {
+        "type": "string",
+        "description": "The identifier of the security that preceded this PIU (e.g. the certificate that was transferred). May be absent if the PIU was issued directly from the share reserve.",
+        "maxLength": 50
+      }
+    },
+    "description": "The issuance transaction for a PIU. Represents the initial issuance of the profits interest unit."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PiuTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1Money",
+    "v1alpha1PiuIssuanceReason"
+  ],
+  "output_path": "docs/types/piu_issuance_transaction.md"
+}

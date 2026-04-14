@@ -1,0 +1,23 @@
+{
+  "name": "v1alpha1PiuCancellationReason",
+  "sanitized_name": "piu_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "PIU_CANCELLATION_REASON_CANCELED",
+      "PIU_CANCELLATION_REASON_TERMINATED",
+      "PIU_CANCELLATION_REASON_TERMINATION_FORFEITED",
+      "PIU_CANCELLATION_REASON_REPURCHASED",
+      "PIU_CANCELLATION_REASON_TRANSFERRED",
+      "PIU_CANCELLATION_REASON_SHARE_CLASS_CONVERTED"
+    ],
+    "description": "The reason the PIU was canceled or terminated.\n\n - PIU_CANCELLATION_REASON_CANCELED: The PIU was explicitly canceled.\n - PIU_CANCELLATION_REASON_TERMINATED: The PIU was terminated due to the holder's relationship ending.\n - PIU_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - PIU_CANCELLATION_REASON_REPURCHASED: The PIU shares were repurchased by the issuer.\n - PIU_CANCELLATION_REASON_TRANSFERRED: The PIU was transferred to another holder.\n - PIU_CANCELLATION_REASON_SHARE_CLASS_CONVERTED: The PIU's share class was converted."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PiuCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/piu_cancellation_reason.md"
+}

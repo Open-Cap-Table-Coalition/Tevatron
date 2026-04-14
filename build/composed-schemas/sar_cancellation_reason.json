@@ -1,0 +1,22 @@
+{
+  "name": "v1alpha1SarCancellationReason",
+  "sanitized_name": "sar_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "SAR_CANCELLATION_REASON_CANCELED",
+      "SAR_CANCELLATION_REASON_TERMINATED",
+      "SAR_CANCELLATION_REASON_TERMINATION_FORFEITED",
+      "SAR_CANCELLATION_REASON_LIFETIME_ENDED",
+      "SAR_CANCELLATION_REASON_PTEP_ENDED"
+    ],
+    "description": "The reason the SAR was canceled or terminated.\n\n - SAR_CANCELLATION_REASON_CANCELED: The SAR was explicitly canceled.\n - SAR_CANCELLATION_REASON_TERMINATED: The SAR was terminated due to the holder's relationship ending.\n - SAR_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested units were forfeited following termination.\n - SAR_CANCELLATION_REASON_LIFETIME_ENDED: The SAR expired at the end of its lifetime.\n - SAR_CANCELLATION_REASON_PTEP_ENDED: The SAR expired at the end of the post-termination exercise period."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1SarCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/sar_cancellation_reason.md"
+}

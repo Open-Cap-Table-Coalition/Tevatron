@@ -1,0 +1,23 @@
+{
+  "name": "v1alpha1ConvertibleInterestCompoundingPeriod",
+  "sanitized_name": "convertible_interest_compounding_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE",
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_DAILY",
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_MONTHLY",
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SEMI_ANNUALLY",
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_ANNUALLY",
+      "CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_QUARTERLY_CALENDAR"
+    ],
+    "description": "The interest compounding period. Simple interest is calculated only on the principal amount,\nwhile compound interest is calculated on the principal and accumulated interest.\n\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SIMPLE: Simple interest (no compounding).\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_DAILY: Interest compounds daily.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_MONTHLY: Interest compounds monthly.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_SEMI_ANNUALLY: Interest compounds semi-annually.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_ANNUALLY: Interest compounds annually.\n - CONVERTIBLE_INTEREST_COMPOUNDING_PERIOD_QUARTERLY_CALENDAR: Interest compounds on a quarterly calendar basis."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/convertible_interest_compounding_period.md"
+}

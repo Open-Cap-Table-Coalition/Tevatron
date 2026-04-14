@@ -26,15 +26,23 @@
   "referenced_by": [
     "v1alpha1CapitalizationTableSummary",
     "v1alpha1Certificate",
+    "v1alpha1CertificateIssuanceTransaction",
+    "v1alpha1ConvertibleCancellationTransaction",
+    "v1alpha1ConvertibleIssuanceTransaction",
     "v1alpha1ConvertibleNote",
     "v1alpha1DraftOptionGrant",
     "v1alpha1Interest",
     "v1alpha1NoteBlockSummary",
     "v1alpha1OptionExerciseTaxWithholdingLineItem",
     "v1alpha1OptionGrant",
+    "v1alpha1OptionIssuanceTransaction",
+    "v1alpha1PiuIssuanceTransaction",
     "v1alpha1RestrictedStockAward",
     "v1alpha1RestrictedStockUnit",
     "v1alpha1RestrictedStockUnitSettlement",
+    "v1alpha1RsaIssuanceTransaction",
+    "v1alpha1SarExerciseTransaction",
+    "v1alpha1SarIssuanceTransaction",
     "v1alpha1ShareClass",
     "v1alpha1ShareClassRightsAndPreferences",
     "v1alpha1ShareClassSummary",
@@ -43,7 +51,8 @@
     "v1alpha1StakeholderNoteBlockSummary",
     "v1alpha1StakeholderShareClassSummary",
     "v1alpha1StakeholderWarrantBlockSummary",
-    "v1alpha1WarrantBlockSummary"
+    "v1alpha1WarrantBlockSummary",
+    "v1alpha1WarrantIssuanceTransaction"
   ],
   "references": [
     "v1alpha1Iso4217CurrencyAlphaCode",

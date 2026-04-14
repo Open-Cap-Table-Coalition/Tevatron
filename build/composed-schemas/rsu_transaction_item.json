@@ -1,0 +1,87 @@
+{
+  "name": "v1alpha1RsuTransactionItem",
+  "sanitized_name": "rsu_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "3201",
+      "stakeholderId": "4923",
+      "securityLabel": "RSU-7",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "5000"
+        },
+        "equityPlanId": "42"
+      },
+      "settlements": [
+        {
+          "id": "34JdU5jWgsrhZbKG0uyIUbI",
+          "settlementDatetime": {
+            "value": "2025-01-15T00:00:00Z"
+          },
+          "settledQuantity": {
+            "value": "700"
+          },
+          "withheldQuantity": {
+            "value": "300"
+          },
+          "resultingSecurityId": "3051",
+          "resultingSecurityType": "certificate",
+          "resultingSecurityLabel": "CS-55"
+        }
+      ]
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the RSU award.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the RSU award.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the RSU award (e.g. \"RSU-7\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1RsuIssuanceTransaction",
+        "description": "The issuance transaction for the RSU award."
+      },
+      "settlements": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RsuSettlementTransaction"
+        },
+        "description": "All settlement transactions for the RSU award."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RsuCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the RSU award, in chronological order. An award can accrue multiple cancellation events (e.g. TERMINATED followed by SETTLEMENT_WINDOW_ENDED)."
+      }
+    },
+    "description": "An RSU award with its full transaction history. Groups all lifecycle events (issuance, settlements, cancellation) for a single RSU award."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1RsuIssuanceTransaction",
+    "v1alpha1RsuSettlementTransaction",
+    "v1alpha1RsuCancellationTransaction"
+  ],
+  "output_path": "docs/types/rsu_transaction_item.md"
+}

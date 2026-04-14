@@ -1,0 +1,19 @@
+{
+  "name": "v1alpha1ConvertibleCancellationReason",
+  "sanitized_name": "convertible_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CONVERTIBLE_CANCELLATION_REASON_CANCELED",
+      "CONVERTIBLE_CANCELLATION_REASON_CONVERTED"
+    ],
+    "description": "The reason the convertible note was canceled.\n\n - CONVERTIBLE_CANCELLATION_REASON_CANCELED: The convertible note was explicitly canceled.\n - CONVERTIBLE_CANCELLATION_REASON_CONVERTED: The convertible note was converted into equity."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/convertible_cancellation_reason.md"
+}

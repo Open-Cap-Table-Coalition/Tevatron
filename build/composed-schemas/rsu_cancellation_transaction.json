@@ -1,0 +1,53 @@
+{
+  "name": "v1alpha1RsuCancellationTransaction",
+  "sanitized_name": "rsu_cancellation_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "effectiveDatetime": {
+        "value": "2025-06-01T00:00:00Z"
+      },
+      "reason": "RSU_CANCELLATION_REASON_TERMINATED",
+      "quantity": {
+        "value": "2000"
+      },
+      "terminationDatetime": {
+        "value": "2025-05-15"
+      }
+    },
+    "properties": {
+      "effectiveDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The effective date and time of the cancellation."
+      },
+      "reason": {
+        "$ref": "#/components/schemas/v1alpha1RsuCancellationReason",
+        "description": "The reason for the cancellation."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of units affected by the cancellation."
+      },
+      "terminationDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the holder's relationship with the issuer was terminated."
+      },
+      "forfeitureDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time unvested units were forfeited."
+      }
+    },
+    "description": "A cancellation or termination transaction for an RSU award."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1RsuTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1RsuCancellationReason",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/rsu_cancellation_transaction.md"
+}

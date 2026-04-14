@@ -1,0 +1,24 @@
+{
+  "name": "v1alpha1VestingMethod",
+  "sanitized_name": "vesting_method",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "DAILY",
+      "WEEKLY",
+      "MONTHLY",
+      "BI_MONTHLY",
+      "QUARTERLY",
+      "SEMI_ANNUALLY",
+      "ANNUALLY"
+    ],
+    "description": "Frequency at which shares vest."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingPeriod"
+  ],
+  "references": [],
+  "output_path": "docs/types/vesting_method.md"
+}

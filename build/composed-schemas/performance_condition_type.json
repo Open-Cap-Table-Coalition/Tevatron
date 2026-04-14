@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1PerformanceConditionType",
+  "sanitized_name": "performance_condition_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "PERFORMANCE_CONDITION_TYPE_PERFORMANCE_NON_MARKET",
+      "PERFORMANCE_CONDITION_TYPE_MARKET",
+      "PERFORMANCE_CONDITION_TYPE_EVENT_NON_MARKET"
+    ],
+    "description": "Type of performance condition."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PerformanceCondition"
+  ],
+  "references": [],
+  "output_path": "docs/types/performance_condition_type.md"
+}

@@ -1,0 +1,81 @@
+{
+  "name": "v1alpha1SarTransactionItem",
+  "sanitized_name": "sar_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "7001",
+      "stakeholderId": "4923",
+      "securityLabel": "SAR-3",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "10000"
+        },
+        "exercisePrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "2.00"
+          }
+        },
+        "equityPlanId": "42",
+        "shareClassId": "10"
+      },
+      "exercises": [],
+      "cancellations": []
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the SAR.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the SAR.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the SAR (e.g. \"SAR-3\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1SarIssuanceTransaction",
+        "description": "The issuance transaction for the SAR."
+      },
+      "exercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1SarExerciseTransaction"
+        },
+        "description": "All exercise transactions for the SAR. Each exercise may be stock-settled (with resulting security) or cash-settled (with cash acquired)."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1SarCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the SAR, in chronological order."
+      }
+    },
+    "description": "A SAR (Stock Appreciation Right) with its full transaction history. Groups all lifecycle events (issuance, exercises, cancellation) for a single SAR."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1SarIssuanceTransaction",
+    "v1alpha1SarExerciseTransaction",
+    "v1alpha1SarCancellationTransaction"
+  ],
+  "output_path": "docs/types/sar_transaction_item.md"
+}

@@ -1,0 +1,73 @@
+{
+  "name": "v1alpha1SarExerciseTransaction",
+  "sanitized_name": "sar_exercise_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "sharesAcquiredDatetime": {
+        "value": "2025-03-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "1000"
+      },
+      "withheldQuantity": {
+        "value": "0"
+      },
+      "settledQuantity": {
+        "value": "1000"
+      },
+      "resultingSecurityId": "3051",
+      "resultingSecurityType": "certificate",
+      "resultingSecurityLabel": "CS-55"
+    },
+    "properties": {
+      "sharesAcquiredDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the shares were acquired (stock-settled) or cash was received (cash-settled)."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of SAR units exercised."
+      },
+      "withheldQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares withheld by the issuer to cover tax or other obligations. Only applicable to stock-settled exercises."
+      },
+      "settledQuantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of shares actually delivered to the holder. Only applicable to stock-settled exercises."
+      },
+      "resultingSecurityId": {
+        "type": "string",
+        "description": "The identifier of the security produced as a result of a stock-settled exercise. Empty for cash-settled exercises.",
+        "maxLength": 50
+      },
+      "resultingSecurityType": {
+        "type": "string",
+        "description": "The type of the security produced as a result of a stock-settled exercise (e.g. \"certificate\"). Empty for cash-settled exercises.",
+        "maxLength": 50
+      },
+      "resultingSecurityLabel": {
+        "type": "string",
+        "description": "The human-readable label of the security produced as a result of a stock-settled exercise (e.g. \"CS-55\"). Empty for cash-settled exercises.",
+        "maxLength": 50
+      },
+      "cashAcquired": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The cash amount received by the holder for a cash-settled exercise. Empty for stock-settled exercises."
+      }
+    },
+    "description": "An exercise transaction for a SAR. Supports both stock-settled (resulting in shares) and cash-settled (resulting in a cash payment) outcomes."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1SarTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/sar_exercise_transaction.md"
+}

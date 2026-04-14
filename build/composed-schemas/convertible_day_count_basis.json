@@ -1,0 +1,21 @@
+{
+  "name": "v1alpha1ConvertibleDayCountBasis",
+  "sanitized_name": "convertible_day_count_basis",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_30_360",
+      "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_360",
+      "CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365"
+    ],
+    "description": "- CONVERTIBLE_DAY_COUNT_BASIS_COUNT_30_360: 30/360 day count convention.\n - CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_360: Actual/360 day count convention.\n - CONVERTIBLE_DAY_COUNT_BASIS_COUNT_ACTUAL_365: Actual/365 day count convention.",
+    "title": "The standardized way of counting the number of days between two dates.\nSee more at https://support.carta.com/s/article/day-count-basis"
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/convertible_day_count_basis.md"
+}

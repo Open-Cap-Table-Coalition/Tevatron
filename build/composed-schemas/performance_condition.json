@@ -1,0 +1,68 @@
+{
+  "name": "v1alpha1PerformanceCondition",
+  "sanitized_name": "performance_condition",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "name": "IPO Condition",
+      "type": "PERFORMANCE_CONDITION_TYPE_EVENT_NON_MARKET",
+      "minPayoutPercentage": "0",
+      "maxPayoutPercentage": "100",
+      "vestsPostTermination": true,
+      "status": "PERFORMANCE_CONDITION_STATUS_NOT_EVALUATED"
+    },
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The name of the performance condition.",
+        "maxLength": 500
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the performance condition.",
+        "maxLength": 2000
+      },
+      "type": {
+        "$ref": "#/components/schemas/v1alpha1PerformanceConditionType",
+        "description": "The type of performance condition."
+      },
+      "minPayoutPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The minimum payout percentage."
+      },
+      "maxPayoutPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The maximum payout percentage."
+      },
+      "vestsPostTermination": {
+        "type": "boolean",
+        "description": "Whether shares vest after termination if the condition is met."
+      },
+      "evaluationDate": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDate",
+        "description": "The date when the condition was evaluated (ISO 8601 format)."
+      },
+      "payoutPercentage": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The actual payout percentage after evaluation."
+      },
+      "status": {
+        "$ref": "#/components/schemas/v1alpha1PerformanceConditionStatus",
+        "description": "The evaluation status of the performance condition."
+      }
+    },
+    "description": "Details of a performance condition."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1VestingPeriod"
+  ],
+  "references": [
+    "v1alpha1PerformanceConditionType",
+    "v1alpha1Decimal",
+    "v1alpha1Iso8601CompleteCalendarDate",
+    "v1alpha1PerformanceConditionStatus"
+  ],
+  "output_path": "docs/types/performance_condition.md"
+}

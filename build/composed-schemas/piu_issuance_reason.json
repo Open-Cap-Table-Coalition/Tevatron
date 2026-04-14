@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1PiuIssuanceReason",
+  "sanitized_name": "piu_issuance_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE",
+      "PIU_ISSUANCE_REASON_SHARE_CLASS_CONVERTED",
+      "PIU_ISSUANCE_REASON_TRANSFERRED"
+    ],
+    "description": "The reason a PIU was created. Indicates what originated the PIU.\n\n - PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE: PIU was issued directly from the share reserve.\n - PIU_ISSUANCE_REASON_SHARE_CLASS_CONVERTED: PIU was created as a result of a share class conversion.\n - PIU_ISSUANCE_REASON_TRANSFERRED: PIU was created as a result of a transfer."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PiuIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/piu_issuance_reason.md"
+}

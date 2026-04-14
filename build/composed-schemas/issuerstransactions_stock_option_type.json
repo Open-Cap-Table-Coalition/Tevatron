@@ -1,0 +1,37 @@
+{
+  "name": "issuerstransactionsv1alpha1StockOptionType",
+  "sanitized_name": "issuerstransactions_stock_option_type",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "STOCK_OPTION_TYPE_ISO",
+      "STOCK_OPTION_TYPE_NSO",
+      "STOCK_OPTION_TYPE_INTL",
+      "STOCK_OPTION_TYPE_EMI",
+      "STOCK_OPTION_TYPE_CSOP",
+      "STOCK_OPTION_TYPE_SPR",
+      "STOCK_OPTION_TYPE_CAPITAL_GAINS_TRACK_102",
+      "STOCK_OPTION_TYPE_ORDINARY_INCOME_TRACK_102",
+      "STOCK_OPTION_TYPE_NON_TRUSTEE",
+      "STOCK_OPTION_TYPE_THREE_I",
+      "STOCK_OPTION_TYPE_UNAPPROVED",
+      "STOCK_OPTION_TYPE_BSPCE",
+      "STOCK_OPTION_TYPE_OSA",
+      "STOCK_OPTION_TYPE_AGA",
+      "STOCK_OPTION_TYPE_BSA",
+      "STOCK_OPTION_TYPE_STARTUP_CONCESSIONS",
+      "STOCK_OPTION_TYPE_NON_CONCESSIONAL",
+      "STOCK_OPTION_TYPE_EU_WARRANT",
+      "STOCK_OPTION_TYPE_ZEPO"
+    ],
+    "description": "The tax classification assigned to an option grant at issuance.\nDetermines the tax treatment of the grant based on the jurisdiction and plan type.\n\n - STOCK_OPTION_TYPE_ISO: US \u2014 Incentive Stock Option (IRC \u00a7422). Eligible for favorable capital gains tax treatment if holding period requirements are met.\n - STOCK_OPTION_TYPE_NSO: US \u2014 Non-Qualified Stock Option. Taxed as ordinary income at exercise.\n - STOCK_OPTION_TYPE_INTL: International \u2014 General classification for stock options in non-US jurisdictions without a more specific type.\n - STOCK_OPTION_TYPE_EMI: UK \u2014 Enterprise Management Incentive. Tax-advantaged options for employees of qualifying small companies.\n - STOCK_OPTION_TYPE_CSOP: UK \u2014 Company Share Option Plan. HMRC-approved tax-advantaged scheme with a \u00a330,000 individual limit.\n - STOCK_OPTION_TYPE_SPR: UK \u2014 Share Purchase Rights. Rights to purchase shares under a share purchase arrangement.\n - STOCK_OPTION_TYPE_CAPITAL_GAINS_TRACK_102: Israel \u2014 Section 102 Capital Gains Track. Options held in trust with favorable capital gains tax treatment.\n - STOCK_OPTION_TYPE_ORDINARY_INCOME_TRACK_102: Israel \u2014 Section 102 Ordinary Income Track. Options held in trust taxed as ordinary income.\n - STOCK_OPTION_TYPE_NON_TRUSTEE: Israel \u2014 Section 102 Non-Trustee arrangement. Options not held in trust.\n - STOCK_OPTION_TYPE_THREE_I: Israel \u2014 Section 3(i) grant. Options granted to non-employees or under Section 3(i) of the Income Tax Ordinance.\n - STOCK_OPTION_TYPE_UNAPPROVED: UK \u2014 Unapproved option scheme. Options not under an HMRC-approved plan.\n - STOCK_OPTION_TYPE_BSPCE: France \u2014 Bons de Souscription de Parts de Cr\u00e9ateur d'Entreprise. Tax-advantaged startup equity instrument.\n - STOCK_OPTION_TYPE_OSA: Canada \u2014 Option Stock Award. Stock options under Canadian tax rules.\n - STOCK_OPTION_TYPE_AGA: France \u2014 Attribution Gratuite d'Actions. Free share allocation under French tax-favored regime.\n - STOCK_OPTION_TYPE_BSA: France \u2014 Bon de Souscription d'Actions. Stock subscription warrants under French law.\n - STOCK_OPTION_TYPE_STARTUP_CONCESSIONS: Australia \u2014 Employee Share Scheme with startup concessions (Division 83A, Subdivision 83A-E).\n - STOCK_OPTION_TYPE_NON_CONCESSIONAL: Australia \u2014 Employee Share Scheme without concessional tax treatment.\n - STOCK_OPTION_TYPE_EU_WARRANT: EU \u2014 European Union warrant or option instrument.\n - STOCK_OPTION_TYPE_ZEPO: Zero Exercise Price Option. Options with a $0 exercise price, commonly used in some international jurisdictions."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1OptionExerciseTransaction",
+    "v1alpha1OptionIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/issuerstransactions_stock_option_type.md"
+}

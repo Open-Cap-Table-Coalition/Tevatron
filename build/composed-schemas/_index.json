@@ -1,7 +1,7 @@
 {
-  "total_schemas": 132,
-  "objects": 19,
-  "types": 113,
+  "total_schemas": 184,
+  "objects": 20,
+  "types": 164,
   "schemas": [
     {
       "name": "DraftSecuritiesServiceCreateDraftOptionGrantBody",
@@ -100,6 +100,12 @@
       "output_path": "docs/types/issuerssecurities_vesting_schedule.md"
     },
     {
+      "name": "issuerstransactionsv1alpha1StockOptionType",
+      "sanitized_name": "issuerstransactions_stock_option_type",
+      "type": "type",
+      "output_path": "docs/types/issuerstransactions_stock_option_type.md"
+    },
+    {
       "name": "protobufAny",
       "sanitized_name": "protobuf_any",
       "type": "type",
@@ -190,16 +196,88 @@
       "output_path": "docs/objects/certificate.md"
     },
     {
+      "name": "v1alpha1CertificateCancellationReason",
+      "sanitized_name": "certificate_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/certificate_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1CertificateCancellationTransaction",
+      "sanitized_name": "certificate_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/certificate_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1CertificateIssuanceReason",
+      "sanitized_name": "certificate_issuance_reason",
+      "type": "type",
+      "output_path": "docs/types/certificate_issuance_reason.md"
+    },
+    {
+      "name": "v1alpha1CertificateIssuanceTransaction",
+      "sanitized_name": "certificate_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/certificate_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1CertificateTransactionItem",
+      "sanitized_name": "certificate_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/certificate_transaction_item.md"
+    },
+    {
       "name": "v1alpha1Compliance",
       "sanitized_name": "compliance",
       "type": "type",
       "output_path": "docs/types/compliance.md"
     },
     {
+      "name": "v1alpha1ConvertibleCancellationReason",
+      "sanitized_name": "convertible_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/convertible_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleCancellationTransaction",
+      "sanitized_name": "convertible_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/convertible_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleDayCountBasis",
+      "sanitized_name": "convertible_day_count_basis",
+      "type": "type",
+      "output_path": "docs/types/convertible_day_count_basis.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleInterestAccrualPeriod",
+      "sanitized_name": "convertible_interest_accrual_period",
+      "type": "type",
+      "output_path": "docs/types/convertible_interest_accrual_period.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleInterestCompoundingPeriod",
+      "sanitized_name": "convertible_interest_compounding_period",
+      "type": "type",
+      "output_path": "docs/types/convertible_interest_compounding_period.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleIssuanceTransaction",
+      "sanitized_name": "convertible_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/convertible_issuance_transaction.md"
+    },
+    {
       "name": "v1alpha1ConvertibleNote",
       "sanitized_name": "convertible_note",
       "type": "object",
       "output_path": "docs/objects/convertible_note.md"
+    },
+    {
+      "name": "v1alpha1ConvertibleTransactionItem",
+      "sanitized_name": "convertible_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/convertible_transaction_item.md"
     },
     {
       "name": "v1alpha1Corporation",
@@ -526,6 +604,12 @@
       "output_path": "docs/types/list_stakeholders_response.md"
     },
     {
+      "name": "v1alpha1ListTransactionsResponse",
+      "sanitized_name": "list_transactions_response",
+      "type": "type",
+      "output_path": "docs/types/list_transactions_response.md"
+    },
+    {
       "name": "v1alpha1ListVestingScheduleTemplatesResponse",
       "sanitized_name": "list_vesting_schedule_templates_response",
       "type": "type",
@@ -562,10 +646,28 @@
       "output_path": "docs/types/note_type.md"
     },
     {
+      "name": "v1alpha1OptionCancellationReason",
+      "sanitized_name": "option_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/option_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1OptionCancellationTransaction",
+      "sanitized_name": "option_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/option_cancellation_transaction.md"
+    },
+    {
       "name": "v1alpha1OptionExercise",
       "sanitized_name": "option_exercise",
       "type": "object",
       "output_path": "docs/objects/option_exercise.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseMethod",
+      "sanitized_name": "option_exercise_method",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_method.md"
     },
     {
       "name": "v1alpha1OptionExerciseMoneyMovement",
@@ -584,6 +686,12 @@
       "sanitized_name": "option_exercise_tax_withholding_line_item",
       "type": "type",
       "output_path": "docs/types/option_exercise_tax_withholding_line_item.md"
+    },
+    {
+      "name": "v1alpha1OptionExerciseTransaction",
+      "sanitized_name": "option_exercise_transaction",
+      "type": "type",
+      "output_path": "docs/types/option_exercise_transaction.md"
     },
     {
       "name": "v1alpha1OptionExerciseType",
@@ -610,10 +718,76 @@
       "output_path": "docs/types/option_grant_vesting_event.md"
     },
     {
+      "name": "v1alpha1OptionIssuanceTransaction",
+      "sanitized_name": "option_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/option_issuance_transaction.md"
+    },
+    {
       "name": "v1alpha1OptionPoolSummary",
       "sanitized_name": "option_pool_summary",
       "type": "type",
       "output_path": "docs/types/option_pool_summary.md"
+    },
+    {
+      "name": "v1alpha1OptionTransactionItem",
+      "sanitized_name": "option_transaction_item",
+      "type": "object",
+      "output_path": "docs/objects/option_transaction_item.md"
+    },
+    {
+      "name": "v1alpha1PerformanceCondition",
+      "sanitized_name": "performance_condition",
+      "type": "type",
+      "output_path": "docs/types/performance_condition.md"
+    },
+    {
+      "name": "v1alpha1PerformanceConditionStatus",
+      "sanitized_name": "performance_condition_status",
+      "type": "type",
+      "output_path": "docs/types/performance_condition_status.md"
+    },
+    {
+      "name": "v1alpha1PerformanceConditionType",
+      "sanitized_name": "performance_condition_type",
+      "type": "type",
+      "output_path": "docs/types/performance_condition_type.md"
+    },
+    {
+      "name": "v1alpha1PeriodUnit",
+      "sanitized_name": "period_unit",
+      "type": "type",
+      "output_path": "docs/types/period_unit.md"
+    },
+    {
+      "name": "v1alpha1PiuCancellationReason",
+      "sanitized_name": "piu_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/piu_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1PiuCancellationTransaction",
+      "sanitized_name": "piu_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/piu_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1PiuIssuanceReason",
+      "sanitized_name": "piu_issuance_reason",
+      "type": "type",
+      "output_path": "docs/types/piu_issuance_reason.md"
+    },
+    {
+      "name": "v1alpha1PiuIssuanceTransaction",
+      "sanitized_name": "piu_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/piu_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1PiuTransactionItem",
+      "sanitized_name": "piu_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/piu_transaction_item.md"
     },
     {
       "name": "v1alpha1PointOfContact",
@@ -662,6 +836,90 @@
       "sanitized_name": "restricted_stock_unit_vesting_event",
       "type": "type",
       "output_path": "docs/types/restricted_stock_unit_vesting_event.md"
+    },
+    {
+      "name": "v1alpha1RsaCancellationReason",
+      "sanitized_name": "rsa_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/rsa_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1RsaCancellationTransaction",
+      "sanitized_name": "rsa_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/rsa_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1RsaIssuanceTransaction",
+      "sanitized_name": "rsa_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/rsa_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1RsaTransactionItem",
+      "sanitized_name": "rsa_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/rsa_transaction_item.md"
+    },
+    {
+      "name": "v1alpha1RsuCancellationReason",
+      "sanitized_name": "rsu_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/rsu_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1RsuCancellationTransaction",
+      "sanitized_name": "rsu_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/rsu_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1RsuIssuanceTransaction",
+      "sanitized_name": "rsu_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/rsu_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1RsuSettlementTransaction",
+      "sanitized_name": "rsu_settlement_transaction",
+      "type": "type",
+      "output_path": "docs/types/rsu_settlement_transaction.md"
+    },
+    {
+      "name": "v1alpha1RsuTransactionItem",
+      "sanitized_name": "rsu_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/rsu_transaction_item.md"
+    },
+    {
+      "name": "v1alpha1SarCancellationReason",
+      "sanitized_name": "sar_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/sar_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1SarCancellationTransaction",
+      "sanitized_name": "sar_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/sar_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1SarExerciseTransaction",
+      "sanitized_name": "sar_exercise_transaction",
+      "type": "type",
+      "output_path": "docs/types/sar_exercise_transaction.md"
+    },
+    {
+      "name": "v1alpha1SarIssuanceTransaction",
+      "sanitized_name": "sar_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/sar_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1SarTransactionItem",
+      "sanitized_name": "sar_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/sar_transaction_item.md"
     },
     {
       "name": "v1alpha1ShareClass",
@@ -778,6 +1036,24 @@
       "output_path": "docs/types/vesting.md"
     },
     {
+      "name": "v1alpha1VestingMethod",
+      "sanitized_name": "vesting_method",
+      "type": "type",
+      "output_path": "docs/types/vesting_method.md"
+    },
+    {
+      "name": "v1alpha1VestingOccurs",
+      "sanitized_name": "vesting_occurs",
+      "type": "type",
+      "output_path": "docs/types/vesting_occurs.md"
+    },
+    {
+      "name": "v1alpha1VestingPeriod",
+      "sanitized_name": "vesting_period",
+      "type": "type",
+      "output_path": "docs/types/vesting_period.md"
+    },
+    {
       "name": "v1alpha1VestingScheduleTemplate",
       "sanitized_name": "vesting_schedule_template",
       "type": "object",
@@ -794,6 +1070,42 @@
       "sanitized_name": "warrant_block_summary",
       "type": "type",
       "output_path": "docs/types/warrant_block_summary.md"
+    },
+    {
+      "name": "v1alpha1WarrantCancellationReason",
+      "sanitized_name": "warrant_cancellation_reason",
+      "type": "type",
+      "output_path": "docs/types/warrant_cancellation_reason.md"
+    },
+    {
+      "name": "v1alpha1WarrantCancellationTransaction",
+      "sanitized_name": "warrant_cancellation_transaction",
+      "type": "type",
+      "output_path": "docs/types/warrant_cancellation_transaction.md"
+    },
+    {
+      "name": "v1alpha1WarrantExerciseTransaction",
+      "sanitized_name": "warrant_exercise_transaction",
+      "type": "type",
+      "output_path": "docs/types/warrant_exercise_transaction.md"
+    },
+    {
+      "name": "v1alpha1WarrantIssuanceTransaction",
+      "sanitized_name": "warrant_issuance_transaction",
+      "type": "type",
+      "output_path": "docs/types/warrant_issuance_transaction.md"
+    },
+    {
+      "name": "v1alpha1WarrantTransactionItem",
+      "sanitized_name": "warrant_transaction_item",
+      "type": "type",
+      "output_path": "docs/types/warrant_transaction_item.md"
+    },
+    {
+      "name": "v1alpha1WarrantTransferTransaction",
+      "sanitized_name": "warrant_transfer_transaction",
+      "type": "type",
+      "output_path": "docs/types/warrant_transfer_transaction.md"
     }
   ]
 }

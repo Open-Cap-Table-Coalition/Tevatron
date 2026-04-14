@@ -1,0 +1,47 @@
+{
+  "name": "v1alpha1ConvertibleCancellationTransaction",
+  "sanitized_name": "convertible_cancellation_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "effectiveDatetime": {
+        "value": "2025-10-02T00:00:00Z"
+      },
+      "reason": "CONVERTIBLE_CANCELLATION_REASON_CONVERTED",
+      "principal": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "500000"
+        }
+      }
+    },
+    "properties": {
+      "effectiveDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The effective date and time of the cancellation."
+      },
+      "reason": {
+        "$ref": "#/components/schemas/v1alpha1ConvertibleCancellationReason",
+        "description": "The reason for the cancellation."
+      },
+      "principal": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The principal amount cancelled. May be less than the original note principal if this is a partial cancellation."
+      }
+    },
+    "description": "A cancellation transaction for a convertible note."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1ConvertibleCancellationReason",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/convertible_cancellation_transaction.md"
+}

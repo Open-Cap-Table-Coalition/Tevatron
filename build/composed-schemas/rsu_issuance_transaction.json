@@ -1,0 +1,54 @@
+{
+  "name": "v1alpha1RsuIssuanceTransaction",
+  "sanitized_name": "rsu_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "5000"
+      },
+      "equityPlanId": "42",
+      "shareClassId": "10",
+      "vestingScheduleTemplateId": "7"
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the RSU award was issued."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of restricted stock units granted."
+      },
+      "equityPlanId": {
+        "type": "string",
+        "description": "The identifier of the equity plan from which the RSU award was issued.",
+        "maxLength": 50
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+        "maxLength": 50
+      },
+      "vestingScheduleTemplateId": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template. May be absent if the award has no vesting schedule.",
+        "maxLength": 50
+      }
+    },
+    "description": "The issuance transaction for an RSU award. Represents the initial grant of restricted stock units."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1RsuTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal"
+  ],
+  "output_path": "docs/types/rsu_issuance_transaction.md"
+}

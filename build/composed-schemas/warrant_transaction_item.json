@@ -1,0 +1,90 @@
+{
+  "name": "v1alpha1WarrantTransactionItem",
+  "sanitized_name": "warrant_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "5001",
+      "stakeholderId": "4923",
+      "securityLabel": "W-3",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "50000"
+        },
+        "exercisePrice": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "2.00"
+          }
+        },
+        "shareClassId": "10"
+      },
+      "exercises": [],
+      "transfers": [],
+      "cancellations": []
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the warrant.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the warrant.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the warrant (e.g. \"W-3\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1WarrantIssuanceTransaction",
+        "description": "The issuance transaction for the warrant."
+      },
+      "exercises": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1WarrantExerciseTransaction"
+        },
+        "description": "All exercise transactions for the warrant."
+      },
+      "transfers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1WarrantTransferTransaction"
+        },
+        "description": "All transfer transactions for the warrant, in chronological order."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1WarrantCancellationTransaction"
+        },
+        "description": "All cancellation transactions for the warrant, in chronological order."
+      }
+    },
+    "description": "A warrant with its full transaction history. Groups all lifecycle events (issuance, exercises, transfers, cancellation) for a single warrant."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1WarrantIssuanceTransaction",
+    "v1alpha1WarrantExerciseTransaction",
+    "v1alpha1WarrantTransferTransaction",
+    "v1alpha1WarrantCancellationTransaction"
+  ],
+  "output_path": "docs/types/warrant_transaction_item.md"
+}

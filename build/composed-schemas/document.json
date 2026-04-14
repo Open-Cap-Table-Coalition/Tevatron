@@ -19,7 +19,7 @@
         "type": "string",
         "description": "The URL of the document.\n\nThis is an output-only field and values provided by clients will be ignored when creating.",
         "readOnly": true,
-        "maxLength": 1000
+        "maxLength": 2048
       },
       "fileId": {
         "type": "string",

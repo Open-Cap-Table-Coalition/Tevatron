@@ -1,0 +1,26 @@
+{
+  "name": "v1alpha1ConvertibleInterestAccrualPeriod",
+  "sanitized_name": "convertible_interest_accrual_period",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_DAILY",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_WEEKLY",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_QUARTERLY_CALENDAR",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY_CALENDAR",
+      "CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY_CALENDAR"
+    ],
+    "description": "The length of time over which the interest due to the lender is calculated.\n\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_DAILY: Interest accrues daily.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_WEEKLY: Interest accrues weekly.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY: Interest accrues monthly.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_MONTHLY_FIRST_OF_MONTH: Interest accrues monthly on the first of each month.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY: Interest accrues semi-annually.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY: Interest accrues annually.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_QUARTERLY_CALENDAR: Interest accrues on a quarterly calendar basis.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_SEMI_ANNUALLY_CALENDAR: Interest accrues on a semi-annual calendar basis.\n - CONVERTIBLE_INTEREST_ACCRUAL_PERIOD_ANNUALLY_CALENDAR: Interest accrues on an annual calendar basis."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ConvertibleIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/convertible_interest_accrual_period.md"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "v1alpha1PerformanceConditionStatus",
+  "sanitized_name": "performance_condition_status",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "PERFORMANCE_CONDITION_STATUS_ACHIEVED",
+      "PERFORMANCE_CONDITION_STATUS_NOT_ACHIEVED",
+      "PERFORMANCE_CONDITION_STATUS_NOT_EVALUATED"
+    ],
+    "description": "Status of a performance condition evaluation."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1PerformanceCondition"
+  ],
+  "references": [],
+  "output_path": "docs/types/performance_condition_status.md"
+}

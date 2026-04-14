@@ -1,0 +1,69 @@
+{
+  "name": "v1alpha1RsaTransactionItem",
+  "sanitized_name": "rsa_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "4101",
+      "stakeholderId": "4923",
+      "securityLabel": "RSA-3",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "5000"
+        },
+        "acquisitionCost": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "0.001"
+          }
+        },
+        "equityPlanId": "42"
+      }
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the RSA.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the RSA.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the RSA (e.g. \"RSA-3\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1RsaIssuanceTransaction",
+        "description": "The issuance transaction for the RSA."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1RsaCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the RSA, in chronological order."
+      }
+    },
+    "description": "An RSA with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single RSA."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1RsaIssuanceTransaction",
+    "v1alpha1RsaCancellationTransaction"
+  ],
+  "output_path": "docs/types/rsa_transaction_item.md"
+}

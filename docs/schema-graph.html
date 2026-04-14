@@ -382,6 +382,15 @@
       "description": "Restricted stock award vesting event information."
     },
     {
+      "id": "issuerstransactions_stock_option_type",
+      "name": "Issuerstransactions Stock Option Type",
+      "type": "type",
+      "url": "types/issuerstransactions_stock_option_type/",
+      "references_count": 0,
+      "referenced_by_count": 2,
+      "description": "The tax classification assigned to an option grant at issuance.\nDetermines the tax treatment of the "
+    },
+    {
       "id": "protobuf_any",
       "name": "Protobuf Any",
       "type": "type",
@@ -541,6 +550,51 @@
       ]
     },
     {
+      "id": "certificate_cancellation_reason",
+      "name": "Certificate Cancellation Reason",
+      "type": "type",
+      "url": "types/certificate_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the certificate was canceled or terminated.\n\n - CERTIFICATE_CANCELLATION_REASON_CANCELED:"
+    },
+    {
+      "id": "certificate_cancellation_transaction",
+      "name": "Certificate Cancellation Transaction",
+      "type": "type",
+      "url": "types/certificate_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for a certificate."
+    },
+    {
+      "id": "certificate_issuance_reason",
+      "name": "Certificate Issuance Reason",
+      "type": "type",
+      "url": "types/certificate_issuance_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason a certificate was created. Indicates what originated the certificate.\n\n - CERTIFICATE_ISS"
+    },
+    {
+      "id": "certificate_issuance_transaction",
+      "name": "Certificate Issuance Transaction",
+      "type": "type",
+      "url": "types/certificate_issuance_transaction/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for a certificate. Represents the initial issuance of stock."
+    },
+    {
+      "id": "certificate_transaction_item",
+      "name": "Certificate Transaction Item",
+      "type": "type",
+      "url": "types/certificate_transaction_item/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A certificate with its full transaction history. Groups all lifecycle events (issuance, cancellation"
+    },
+    {
       "id": "compliance",
       "name": "Compliance",
       "type": "type",
@@ -548,6 +602,60 @@
       "references_count": 3,
       "referenced_by_count": 1,
       "description": "Compliance details of a stakeholder"
+    },
+    {
+      "id": "convertible_cancellation_reason",
+      "name": "Convertible Cancellation Reason",
+      "type": "type",
+      "url": "types/convertible_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the convertible note was canceled.\n\n - CONVERTIBLE_CANCELLATION_REASON_CANCELED: The conv"
+    },
+    {
+      "id": "convertible_cancellation_transaction",
+      "name": "Convertible Cancellation Transaction",
+      "type": "type",
+      "url": "types/convertible_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation transaction for a convertible note."
+    },
+    {
+      "id": "convertible_day_count_basis",
+      "name": "Convertible Day Count Basis",
+      "type": "type",
+      "url": "types/convertible_day_count_basis/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "- CONVERTIBLE_DAY_COUNT_BASIS_COUNT_30_360: 30/360 day count convention.\n - CONVERTIBLE_DAY_COUNT_BA"
+    },
+    {
+      "id": "convertible_interest_accrual_period",
+      "name": "Convertible Interest Accrual Period",
+      "type": "type",
+      "url": "types/convertible_interest_accrual_period/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The length of time over which the interest due to the lender is calculated.\n\n - CONVERTIBLE_INTEREST"
+    },
+    {
+      "id": "convertible_interest_compounding_period",
+      "name": "Convertible Interest Compounding Period",
+      "type": "type",
+      "url": "types/convertible_interest_compounding_period/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The interest compounding period. Simple interest is calculated only on the principal amount,\nwhile c"
+    },
+    {
+      "id": "convertible_issuance_transaction",
+      "name": "Convertible Issuance Transaction",
+      "type": "type",
+      "url": "types/convertible_issuance_transaction/",
+      "references_count": 6,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for a convertible note. Represents the initial issuance of the note."
     },
     {
       "id": "convertible_note",
@@ -563,6 +671,15 @@
           "path": "/v1alpha1/issuers/{issuerId}/convertibleNotes"
         }
       ]
+    },
+    {
+      "id": "convertible_transaction_item",
+      "name": "Convertible Transaction Item",
+      "type": "type",
+      "url": "types/convertible_transaction_item/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A convertible note with its full transaction history. Groups all lifecycle events (issuance, cancell"
     },
     {
       "id": "corporation",
@@ -612,7 +729,7 @@
       "type": "type",
       "url": "types/decimal/",
       "references_count": 0,
-      "referenced_by_count": 28,
+      "referenced_by_count": 50,
       "description": "A string-based representation of the decimal type."
     },
     {
@@ -921,7 +1038,7 @@
       "type": "type",
       "url": "types/iso8601_complete_calendar_date/",
       "references_count": 0,
-      "referenced_by_count": 16,
+      "referenced_by_count": 17,
       "description": "A complete calendar date defined as per the ISO 8601 standard."
     },
     {
@@ -930,7 +1047,7 @@
       "type": "type",
       "url": "types/iso8601_complete_calendar_date_time/",
       "references_count": 0,
-      "referenced_by_count": 11,
+      "referenced_by_count": 32,
       "description": "A complete calendar UTC date and time defined as per the ISO 8601 standard."
     },
     {
@@ -1075,6 +1192,15 @@
       "description": "The response from the List Stakeholders endpoint."
     },
     {
+      "id": "list_transactions_response",
+      "name": "List Transactions Response",
+      "type": "type",
+      "url": "types/list_transactions_response/",
+      "references_count": 8,
+      "referenced_by_count": 0,
+      "description": "The response from the List Transactions endpoint.\n\nExactly one transaction array is populated per re"
+    },
+    {
       "id": "list_vesting_schedule_templates_response",
       "name": "List Vesting Schedule Templates Response",
       "type": "type",
@@ -1089,7 +1215,7 @@
       "type": "type",
       "url": "types/money/",
       "references_count": 2,
-      "referenced_by_count": 20,
+      "referenced_by_count": 29,
       "description": "Represents an amount of money with its currency type."
     },
     {
@@ -1129,6 +1255,24 @@
       "description": "The type of the note related to the note block."
     },
     {
+      "id": "option_cancellation_reason",
+      "name": "Option Cancellation Reason",
+      "type": "type",
+      "url": "types/option_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the option grant was canceled or terminated.\n\n - OPTION_CANCELLATION_REASON_TERMINATED: T"
+    },
+    {
+      "id": "option_cancellation_transaction",
+      "name": "Option Cancellation Transaction",
+      "type": "type",
+      "url": "types/option_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for an option grant."
+    },
+    {
       "id": "option_exercise",
       "name": "Option Exercise",
       "type": "object",
@@ -1142,6 +1286,15 @@
           "path": "/v1alpha1/issuers/{issuerId}/optionExercises"
         }
       ]
+    },
+    {
+      "id": "option_exercise_method",
+      "name": "Option Exercise Method",
+      "type": "type",
+      "url": "types/option_exercise_method/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The method used to exercise options.\nDescribes how the exercise cost was funded.\n\n - OPTION_EXERCISE"
     },
     {
       "id": "option_exercise_money_movement",
@@ -1169,6 +1322,15 @@
       "references_count": 3,
       "referenced_by_count": 3,
       "description": "Tax withholding information for an option exercise, calculated for a specific jurisdiction for a giv"
+    },
+    {
+      "id": "option_exercise_transaction",
+      "name": "Option Exercise Transaction",
+      "type": "type",
+      "url": "types/option_exercise_transaction/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "An exercise transaction for an option grant. Represents the conversion of options into shares."
     },
     {
       "id": "option_exercise_type",
@@ -1213,6 +1375,15 @@
       "description": "An option grant vesting event."
     },
     {
+      "id": "option_issuance_transaction",
+      "name": "Option Issuance Transaction",
+      "type": "type",
+      "url": "types/option_issuance_transaction/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for an option grant. Represents the initial grant of options."
+    },
+    {
       "id": "option_pool_summary",
       "name": "Option Pool Summary",
       "type": "type",
@@ -1220,6 +1391,102 @@
       "references_count": 2,
       "referenced_by_count": 1,
       "description": "Option pool summary."
+    },
+    {
+      "id": "option_transaction_item",
+      "name": "Option Transaction Item",
+      "type": "object",
+      "url": "objects/option_transaction_item/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "An option grant with its full transaction history. Groups all lifecycle events (issuance, exercises,",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/v1alpha1/issuers/{issuerId}/transactions"
+        }
+      ]
+    },
+    {
+      "id": "performance_condition",
+      "name": "Performance Condition",
+      "type": "type",
+      "url": "types/performance_condition/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "Details of a performance condition."
+    },
+    {
+      "id": "performance_condition_status",
+      "name": "Performance Condition Status",
+      "type": "type",
+      "url": "types/performance_condition_status/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Status of a performance condition evaluation."
+    },
+    {
+      "id": "performance_condition_type",
+      "name": "Performance Condition Type",
+      "type": "type",
+      "url": "types/performance_condition_type/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Type of performance condition."
+    },
+    {
+      "id": "period_unit",
+      "name": "Period Unit",
+      "type": "type",
+      "url": "types/period_unit/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Period unit for duration calculations."
+    },
+    {
+      "id": "piu_cancellation_reason",
+      "name": "Piu Cancellation Reason",
+      "type": "type",
+      "url": "types/piu_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the PIU was canceled or terminated.\n\n - PIU_CANCELLATION_REASON_CANCELED: The PIU was exp"
+    },
+    {
+      "id": "piu_cancellation_transaction",
+      "name": "Piu Cancellation Transaction",
+      "type": "type",
+      "url": "types/piu_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for a PIU."
+    },
+    {
+      "id": "piu_issuance_reason",
+      "name": "Piu Issuance Reason",
+      "type": "type",
+      "url": "types/piu_issuance_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason a PIU was created. Indicates what originated the PIU.\n\n - PIU_ISSUANCE_REASON_ISSUED_FROM"
+    },
+    {
+      "id": "piu_issuance_transaction",
+      "name": "Piu Issuance Transaction",
+      "type": "type",
+      "url": "types/piu_issuance_transaction/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for a PIU. Represents the initial issuance of the profits interest unit."
+    },
+    {
+      "id": "piu_transaction_item",
+      "name": "Piu Transaction Item",
+      "type": "type",
+      "url": "types/piu_transaction_item/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A PIU (Profits Interest Unit) with its full transaction history. Groups all lifecycle events (issuan"
     },
     {
       "id": "point_of_contact",
@@ -1310,6 +1577,132 @@
       "references_count": 2,
       "referenced_by_count": 1,
       "description": "Restricted stock unit vesting event information."
+    },
+    {
+      "id": "rsa_cancellation_reason",
+      "name": "Rsa Cancellation Reason",
+      "type": "type",
+      "url": "types/rsa_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the RSA was canceled or terminated.\n\n - RSA_CANCELLATION_REASON_CANCELED: The RSA was exp"
+    },
+    {
+      "id": "rsa_cancellation_transaction",
+      "name": "Rsa Cancellation Transaction",
+      "type": "type",
+      "url": "types/rsa_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for an RSA."
+    },
+    {
+      "id": "rsa_issuance_transaction",
+      "name": "Rsa Issuance Transaction",
+      "type": "type",
+      "url": "types/rsa_issuance_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for an RSA. Represents the initial grant of restricted stock."
+    },
+    {
+      "id": "rsa_transaction_item",
+      "name": "Rsa Transaction Item",
+      "type": "type",
+      "url": "types/rsa_transaction_item/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "An RSA with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a"
+    },
+    {
+      "id": "rsu_cancellation_reason",
+      "name": "Rsu Cancellation Reason",
+      "type": "type",
+      "url": "types/rsu_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the RSU award was canceled or terminated.\n\n - RSU_CANCELLATION_REASON_TERMINATED: The RSU"
+    },
+    {
+      "id": "rsu_cancellation_transaction",
+      "name": "Rsu Cancellation Transaction",
+      "type": "type",
+      "url": "types/rsu_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for an RSU award."
+    },
+    {
+      "id": "rsu_issuance_transaction",
+      "name": "Rsu Issuance Transaction",
+      "type": "type",
+      "url": "types/rsu_issuance_transaction/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for an RSU award. Represents the initial grant of restricted stock units."
+    },
+    {
+      "id": "rsu_settlement_transaction",
+      "name": "Rsu Settlement Transaction",
+      "type": "type",
+      "url": "types/rsu_settlement_transaction/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A settlement transaction for an RSU award. Represents the conversion of vested units into shares."
+    },
+    {
+      "id": "rsu_transaction_item",
+      "name": "Rsu Transaction Item",
+      "type": "type",
+      "url": "types/rsu_transaction_item/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "An RSU award with its full transaction history. Groups all lifecycle events (issuance, settlements, "
+    },
+    {
+      "id": "sar_cancellation_reason",
+      "name": "Sar Cancellation Reason",
+      "type": "type",
+      "url": "types/sar_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the SAR was canceled or terminated.\n\n - SAR_CANCELLATION_REASON_CANCELED: The SAR was exp"
+    },
+    {
+      "id": "sar_cancellation_transaction",
+      "name": "Sar Cancellation Transaction",
+      "type": "type",
+      "url": "types/sar_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation or termination transaction for a SAR."
+    },
+    {
+      "id": "sar_exercise_transaction",
+      "name": "Sar Exercise Transaction",
+      "type": "type",
+      "url": "types/sar_exercise_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "An exercise transaction for a SAR. Supports both stock-settled (resulting in shares) and cash-settle"
+    },
+    {
+      "id": "sar_issuance_transaction",
+      "name": "Sar Issuance Transaction",
+      "type": "type",
+      "url": "types/sar_issuance_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for a SAR. Represents the initial issuance of the stock appreciation right."
+    },
+    {
+      "id": "sar_transaction_item",
+      "name": "Sar Transaction Item",
+      "type": "type",
+      "url": "types/sar_transaction_item/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A SAR (Stock Appreciation Right) with its full transaction history. Groups all lifecycle events (iss"
     },
     {
       "id": "share_class",
@@ -1489,11 +1882,38 @@
       "description": "Vesting details of the option grant"
     },
     {
+      "id": "vesting_method",
+      "name": "Vesting Method",
+      "type": "type",
+      "url": "types/vesting_method/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "Frequency at which shares vest."
+    },
+    {
+      "id": "vesting_occurs",
+      "name": "Vesting Occurs",
+      "type": "type",
+      "url": "types/vesting_occurs/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "When vesting occurs within each period."
+    },
+    {
+      "id": "vesting_period",
+      "name": "Vesting Period",
+      "type": "type",
+      "url": "types/vesting_period/",
+      "references_count": 5,
+      "referenced_by_count": 1,
+      "description": "A vesting period defines a portion of shares that vest."
+    },
+    {
       "id": "vesting_schedule_template",
       "name": "Vesting Schedule Template",
       "type": "object",
       "url": "objects/vesting_schedule_template/",
-      "references_count": 1,
+      "references_count": 2,
       "referenced_by_count": 1,
       "description": "Details of a vesting schedule template.",
       "endpoints": [
@@ -1520,6 +1940,60 @@
       "references_count": 2,
       "referenced_by_count": 1,
       "description": "Warrant block summary."
+    },
+    {
+      "id": "warrant_cancellation_reason",
+      "name": "Warrant Cancellation Reason",
+      "type": "type",
+      "url": "types/warrant_cancellation_reason/",
+      "references_count": 0,
+      "referenced_by_count": 1,
+      "description": "The reason the warrant was canceled or terminated.\n\n - WARRANT_CANCELLATION_REASON_CANCELED: The war"
+    },
+    {
+      "id": "warrant_cancellation_transaction",
+      "name": "Warrant Cancellation Transaction",
+      "type": "type",
+      "url": "types/warrant_cancellation_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "A cancellation transaction for a warrant."
+    },
+    {
+      "id": "warrant_exercise_transaction",
+      "name": "Warrant Exercise Transaction",
+      "type": "type",
+      "url": "types/warrant_exercise_transaction/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "An exercise transaction for a warrant. Represents the conversion of warrant rights into shares."
+    },
+    {
+      "id": "warrant_issuance_transaction",
+      "name": "Warrant Issuance Transaction",
+      "type": "type",
+      "url": "types/warrant_issuance_transaction/",
+      "references_count": 3,
+      "referenced_by_count": 1,
+      "description": "The issuance transaction for a warrant. Represents the initial issuance of a warrant."
+    },
+    {
+      "id": "warrant_transaction_item",
+      "name": "Warrant Transaction Item",
+      "type": "type",
+      "url": "types/warrant_transaction_item/",
+      "references_count": 4,
+      "referenced_by_count": 1,
+      "description": "A warrant with its full transaction history. Groups all lifecycle events (issuance, exercises, trans"
+    },
+    {
+      "id": "warrant_transfer_transaction",
+      "name": "Warrant Transfer Transaction",
+      "type": "type",
+      "url": "types/warrant_transfer_transaction/",
+      "references_count": 2,
+      "referenced_by_count": 1,
+      "description": "A transfer transaction for a warrant. Represents the transfer of warrant shares to a new warrant."
     }
   ],
   "links": [
@@ -1656,6 +2130,42 @@
       "target": "iso8601_complete_calendar_date_time"
     },
     {
+      "source": "certificate_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "certificate_cancellation_transaction",
+      "target": "certificate_cancellation_reason"
+    },
+    {
+      "source": "certificate_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "certificate_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "certificate_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "certificate_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "certificate_issuance_transaction",
+      "target": "certificate_issuance_reason"
+    },
+    {
+      "source": "certificate_transaction_item",
+      "target": "certificate_issuance_transaction"
+    },
+    {
+      "source": "certificate_transaction_item",
+      "target": "certificate_cancellation_transaction"
+    },
+    {
       "source": "compliance",
       "target": "iso3166_set1_alpha3_code"
     },
@@ -1666,6 +2176,42 @@
     {
       "source": "compliance",
       "target": "federal_exemption"
+    },
+    {
+      "source": "convertible_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "convertible_cancellation_transaction",
+      "target": "convertible_cancellation_reason"
+    },
+    {
+      "source": "convertible_cancellation_transaction",
+      "target": "money"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "convertible_interest_accrual_period"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "convertible_interest_compounding_period"
+    },
+    {
+      "source": "convertible_issuance_transaction",
+      "target": "convertible_day_count_basis"
     },
     {
       "source": "convertible_note",
@@ -1694,6 +2240,14 @@
     {
       "source": "convertible_note",
       "target": "day_count_basis"
+    },
+    {
+      "source": "convertible_transaction_item",
+      "target": "convertible_issuance_transaction"
+    },
+    {
+      "source": "convertible_transaction_item",
+      "target": "convertible_cancellation_transaction"
     },
     {
       "source": "create_draft_option_grant_response",
@@ -1940,6 +2494,38 @@
       "target": "publicapiissuers_stakeholder"
     },
     {
+      "source": "list_transactions_response",
+      "target": "option_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "rsu_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "rsa_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "certificate_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "warrant_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "convertible_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "piu_transaction_item"
+    },
+    {
+      "source": "list_transactions_response",
+      "target": "sar_transaction_item"
+    },
+    {
       "source": "list_vesting_schedule_templates_response",
       "target": "vesting_schedule_template"
     },
@@ -1962,6 +2548,18 @@
     {
       "source": "note_block_summary",
       "target": "money"
+    },
+    {
+      "source": "option_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_cancellation_transaction",
+      "target": "option_cancellation_reason"
+    },
+    {
+      "source": "option_cancellation_transaction",
+      "target": "decimal"
     },
     {
       "source": "option_exercise",
@@ -2006,6 +2604,22 @@
     {
       "source": "option_exercise_tax_withholding_line_item",
       "target": "jurisdiction"
+    },
+    {
+      "source": "option_exercise_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_exercise_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "option_exercise_transaction",
+      "target": "option_exercise_method"
+    },
+    {
+      "source": "option_exercise_transaction",
+      "target": "issuerstransactions_stock_option_type"
     },
     {
       "source": "option_grant",
@@ -2056,12 +2670,92 @@
       "target": "decimal"
     },
     {
+      "source": "option_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "option_issuance_transaction",
+      "target": "issuerstransactions_stock_option_type"
+    },
+    {
+      "source": "option_issuance_transaction",
+      "target": "money"
+    },
+    {
       "source": "option_pool_summary",
       "target": "decimal"
     },
     {
       "source": "option_pool_summary",
       "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "option_transaction_item",
+      "target": "option_issuance_transaction"
+    },
+    {
+      "source": "option_transaction_item",
+      "target": "option_exercise_transaction"
+    },
+    {
+      "source": "option_transaction_item",
+      "target": "option_cancellation_transaction"
+    },
+    {
+      "source": "performance_condition",
+      "target": "performance_condition_type"
+    },
+    {
+      "source": "performance_condition",
+      "target": "decimal"
+    },
+    {
+      "source": "performance_condition",
+      "target": "iso8601_complete_calendar_date"
+    },
+    {
+      "source": "performance_condition",
+      "target": "performance_condition_status"
+    },
+    {
+      "source": "piu_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "piu_cancellation_transaction",
+      "target": "piu_cancellation_reason"
+    },
+    {
+      "source": "piu_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "piu_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "piu_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "piu_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "piu_issuance_transaction",
+      "target": "piu_issuance_reason"
+    },
+    {
+      "source": "piu_transaction_item",
+      "target": "piu_issuance_transaction"
+    },
+    {
+      "source": "piu_transaction_item",
+      "target": "piu_cancellation_transaction"
     },
     {
       "source": "point_of_contact",
@@ -2154,6 +2848,126 @@
     {
       "source": "restricted_stock_unit_vesting_event",
       "target": "decimal"
+    },
+    {
+      "source": "rsa_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "rsa_cancellation_transaction",
+      "target": "rsa_cancellation_reason"
+    },
+    {
+      "source": "rsa_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "rsa_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "rsa_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "rsa_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "rsa_transaction_item",
+      "target": "rsa_issuance_transaction"
+    },
+    {
+      "source": "rsa_transaction_item",
+      "target": "rsa_cancellation_transaction"
+    },
+    {
+      "source": "rsu_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "rsu_cancellation_transaction",
+      "target": "rsu_cancellation_reason"
+    },
+    {
+      "source": "rsu_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "rsu_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "rsu_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "rsu_settlement_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "rsu_settlement_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "rsu_transaction_item",
+      "target": "rsu_issuance_transaction"
+    },
+    {
+      "source": "rsu_transaction_item",
+      "target": "rsu_settlement_transaction"
+    },
+    {
+      "source": "rsu_transaction_item",
+      "target": "rsu_cancellation_transaction"
+    },
+    {
+      "source": "sar_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "sar_cancellation_transaction",
+      "target": "sar_cancellation_reason"
+    },
+    {
+      "source": "sar_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "sar_exercise_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "sar_exercise_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "sar_exercise_transaction",
+      "target": "money"
+    },
+    {
+      "source": "sar_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "sar_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "sar_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "sar_transaction_item",
+      "target": "sar_issuance_transaction"
+    },
+    {
+      "source": "sar_transaction_item",
+      "target": "sar_exercise_transaction"
+    },
+    {
+      "source": "sar_transaction_item",
+      "target": "sar_cancellation_transaction"
     },
     {
       "source": "share_class",
@@ -2288,8 +3102,32 @@
       "target": "acceleration"
     },
     {
+      "source": "vesting_period",
+      "target": "decimal"
+    },
+    {
+      "source": "vesting_period",
+      "target": "vesting_method"
+    },
+    {
+      "source": "vesting_period",
+      "target": "vesting_occurs"
+    },
+    {
+      "source": "vesting_period",
+      "target": "period_unit"
+    },
+    {
+      "source": "vesting_period",
+      "target": "performance_condition"
+    },
+    {
       "source": "vesting_schedule_template",
       "target": "vesting_schedule_type"
+    },
+    {
+      "source": "vesting_schedule_template",
+      "target": "vesting_period"
     },
     {
       "source": "warrant_block_summary",
@@ -2298,13 +3136,69 @@
     {
       "source": "warrant_block_summary",
       "target": "money"
+    },
+    {
+      "source": "warrant_cancellation_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "warrant_cancellation_transaction",
+      "target": "warrant_cancellation_reason"
+    },
+    {
+      "source": "warrant_cancellation_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "warrant_exercise_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "warrant_exercise_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "warrant_issuance_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "warrant_issuance_transaction",
+      "target": "decimal"
+    },
+    {
+      "source": "warrant_issuance_transaction",
+      "target": "money"
+    },
+    {
+      "source": "warrant_transaction_item",
+      "target": "warrant_issuance_transaction"
+    },
+    {
+      "source": "warrant_transaction_item",
+      "target": "warrant_exercise_transaction"
+    },
+    {
+      "source": "warrant_transaction_item",
+      "target": "warrant_transfer_transaction"
+    },
+    {
+      "source": "warrant_transaction_item",
+      "target": "warrant_cancellation_transaction"
+    },
+    {
+      "source": "warrant_transfer_transaction",
+      "target": "iso8601_complete_calendar_date_time"
+    },
+    {
+      "source": "warrant_transfer_transaction",
+      "target": "decimal"
     }
   ],
   "stats": {
-    "total_schemas": 132,
-    "total_objects": 19,
-    "total_types": 113,
-    "total_relationships": 194
+    "total_schemas": 184,
+    "total_objects": 20,
+    "total_types": 164,
+    "total_relationships": 299
   }
 };
 

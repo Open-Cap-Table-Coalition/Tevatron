@@ -1,0 +1,24 @@
+{
+  "name": "v1alpha1CertificateIssuanceReason",
+  "sanitized_name": "certificate_issuance_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CERTIFICATE_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE",
+      "CERTIFICATE_ISSUANCE_REASON_OPTION_EXERCISED",
+      "CERTIFICATE_ISSUANCE_REASON_RSU_SETTLED",
+      "CERTIFICATE_ISSUANCE_REASON_DEBT_CONVERTED",
+      "CERTIFICATE_ISSUANCE_REASON_WARRANT_EXERCISED",
+      "CERTIFICATE_ISSUANCE_REASON_SHARE_CLASS_CONVERTED",
+      "CERTIFICATE_ISSUANCE_REASON_TRANSFERRED"
+    ],
+    "description": "The reason a certificate was created. Indicates what originated the certificate.\n\n - CERTIFICATE_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE: Certificate was issued directly from the share reserve.\n - CERTIFICATE_ISSUANCE_REASON_OPTION_EXERCISED: Certificate was created as a result of an option exercise.\n - CERTIFICATE_ISSUANCE_REASON_RSU_SETTLED: Certificate was created as a result of an RSU settlement.\n - CERTIFICATE_ISSUANCE_REASON_DEBT_CONVERTED: Certificate was created as a result of a convertible note conversion.\n - CERTIFICATE_ISSUANCE_REASON_WARRANT_EXERCISED: Certificate was created as a result of a warrant exercise.\n - CERTIFICATE_ISSUANCE_REASON_SHARE_CLASS_CONVERTED: Certificate was created as a result of a share class conversion.\n - CERTIFICATE_ISSUANCE_REASON_TRANSFERRED: Certificate was created as a result of a transfer."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CertificateIssuanceTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/certificate_issuance_reason.md"
+}

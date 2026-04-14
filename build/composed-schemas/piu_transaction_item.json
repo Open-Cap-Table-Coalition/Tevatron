@@ -1,0 +1,71 @@
+{
+  "name": "v1alpha1PiuTransactionItem",
+  "sanitized_name": "piu_transaction_item",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "securityId": "6001",
+      "stakeholderId": "4923",
+      "securityLabel": "PIU-3",
+      "issuance": {
+        "issueDatetime": {
+          "value": "2024-01-15T00:00:00Z"
+        },
+        "quantity": {
+          "value": "10000"
+        },
+        "acquisitionCost": {
+          "currencyCode": {
+            "value": "USD"
+          },
+          "amount": {
+            "value": "0.001"
+          }
+        },
+        "equityPlanId": "42",
+        "issuanceReason": "PIU_ISSUANCE_REASON_ISSUED_FROM_SHARE_RESERVE"
+      },
+      "cancellations": []
+    },
+    "properties": {
+      "securityId": {
+        "type": "string",
+        "description": "The identifier of the PIU.",
+        "maxLength": 50
+      },
+      "stakeholderId": {
+        "type": "string",
+        "description": "The identifier of the current holder of the PIU.",
+        "maxLength": 50
+      },
+      "securityLabel": {
+        "type": "string",
+        "description": "The human-readable label for the PIU (e.g. \"PIU-3\").",
+        "maxLength": 50
+      },
+      "issuance": {
+        "$ref": "#/components/schemas/v1alpha1PiuIssuanceTransaction",
+        "description": "The issuance transaction for the PIU."
+      },
+      "cancellations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "$ref": "#/components/schemas/v1alpha1PiuCancellationTransaction"
+        },
+        "description": "All cancellation and termination transactions for the PIU, in chronological order."
+      }
+    },
+    "description": "A PIU (Profits Interest Unit) with its full transaction history. Groups all lifecycle events (issuance, cancellation) for a single PIU."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1ListTransactionsResponse"
+  ],
+  "references": [
+    "v1alpha1PiuIssuanceTransaction",
+    "v1alpha1PiuCancellationTransaction"
+  ],
+  "output_path": "docs/types/piu_transaction_item.md"
+}

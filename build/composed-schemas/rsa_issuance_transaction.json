@@ -1,0 +1,67 @@
+{
+  "name": "v1alpha1RsaIssuanceTransaction",
+  "sanitized_name": "rsa_issuance_transaction",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "object",
+    "example": {
+      "issueDatetime": {
+        "value": "2024-01-15T00:00:00Z"
+      },
+      "quantity": {
+        "value": "5000"
+      },
+      "acquisitionCost": {
+        "currencyCode": {
+          "value": "USD"
+        },
+        "amount": {
+          "value": "0.001"
+        }
+      },
+      "equityPlanId": "42",
+      "shareClassId": "10",
+      "vestingScheduleTemplateId": "7"
+    },
+    "properties": {
+      "issueDatetime": {
+        "$ref": "#/components/schemas/v1alpha1Iso8601CompleteCalendarDateTime",
+        "description": "The date and time the RSA was issued."
+      },
+      "quantity": {
+        "$ref": "#/components/schemas/v1alpha1Decimal",
+        "description": "The number of restricted shares granted."
+      },
+      "acquisitionCost": {
+        "$ref": "#/components/schemas/v1alpha1Money",
+        "description": "The total acquisition cost paid by the holder for the restricted shares."
+      },
+      "equityPlanId": {
+        "type": "string",
+        "description": "The identifier of the equity plan from which the RSA was issued.",
+        "maxLength": 50
+      },
+      "shareClassId": {
+        "type": "string",
+        "description": "The identifier of the share class. May be absent if the plan has no associated share class.",
+        "maxLength": 50
+      },
+      "vestingScheduleTemplateId": {
+        "type": "string",
+        "description": "The identifier of the vesting schedule template. May be absent if the RSA has no vesting schedule.",
+        "maxLength": 50
+      }
+    },
+    "description": "The issuance transaction for an RSA. Represents the initial grant of restricted stock."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1RsaTransactionItem"
+  ],
+  "references": [
+    "v1alpha1Iso8601CompleteCalendarDateTime",
+    "v1alpha1Decimal",
+    "v1alpha1Money"
+  ],
+  "output_path": "docs/types/rsa_issuance_transaction.md"
+}

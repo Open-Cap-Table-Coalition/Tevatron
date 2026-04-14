@@ -1,0 +1,23 @@
+{
+  "name": "v1alpha1CertificateCancellationReason",
+  "sanitized_name": "certificate_cancellation_reason",
+  "schema_type": "type",
+  "schema_def": {
+    "type": "string",
+    "enum": [
+      "CERTIFICATE_CANCELLATION_REASON_CANCELED",
+      "CERTIFICATE_CANCELLATION_REASON_TERMINATED",
+      "CERTIFICATE_CANCELLATION_REASON_TERMINATION_FORFEITED",
+      "CERTIFICATE_CANCELLATION_REASON_REPURCHASED",
+      "CERTIFICATE_CANCELLATION_REASON_TRANSFERRED",
+      "CERTIFICATE_CANCELLATION_REASON_SHARE_CLASS_CONVERTED"
+    ],
+    "description": "The reason the certificate was canceled or terminated.\n\n - CERTIFICATE_CANCELLATION_REASON_CANCELED: The certificate was explicitly canceled.\n - CERTIFICATE_CANCELLATION_REASON_TERMINATED: The certificate was terminated due to the holder's relationship ending.\n - CERTIFICATE_CANCELLATION_REASON_TERMINATION_FORFEITED: Unvested shares were forfeited following termination.\n - CERTIFICATE_CANCELLATION_REASON_REPURCHASED: The certificate shares were repurchased by the issuer.\n - CERTIFICATE_CANCELLATION_REASON_TRANSFERRED: The certificate was transferred to another holder.\n - CERTIFICATE_CANCELLATION_REASON_SHARE_CLASS_CONVERTED: The certificate's share class was converted."
+  },
+  "endpoints": [],
+  "referenced_by": [
+    "v1alpha1CertificateCancellationTransaction"
+  ],
+  "references": [],
+  "output_path": "docs/types/certificate_cancellation_reason.md"
+}
