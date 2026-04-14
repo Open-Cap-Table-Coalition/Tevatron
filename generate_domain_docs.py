@@ -17,12 +17,19 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+try:
+    import yaml  # type: ignore
+except ImportError:  # pragma: no cover
+    yaml = None  # type: ignore
+
 ROOT = Path(__file__).parent
 SPEC_PATH = ROOT / "carta-issuer-api.openapi.json"
 DOCS_DIR = ROOT / "docs"
 DOMAIN_DIR = DOCS_DIR / "domain"
 OBJECTS_DIR = DOCS_DIR / "objects"
 TYPES_DIR = DOCS_DIR / "types"
+OCF_MAPPING_PATH = ROOT / "ocf_mapping.yaml"
+OCF_DOCS_BASE = "https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF"
 
 REF_RE = re.compile(r"^#/components/schemas/(.+)$")
 METHODS = ("get", "post", "put", "patch", "delete")
@@ -263,6 +270,85 @@ def format_description(raw: str | None) -> str:
     return cleaned.replace("|", "\\|")
 
 
+# ---------------------------------------------------------------------------
+# OCF mapping — loaded from ocf_mapping.yaml
+# ---------------------------------------------------------------------------
+
+
+def load_ocf_mapping() -> dict[str, dict]:
+    if not OCF_MAPPING_PATH.exists():
+        print(f"  note: {OCF_MAPPING_PATH.name} not found, skipping OCF sections")
+        return {}
+    if yaml is None:
+        print("  note: PyYAML not installed, skipping OCF sections")
+        return {}
+    data = yaml.safe_load(OCF_MAPPING_PATH.read_text()) or {}
+    if not isinstance(data, dict):
+        print(f"  warn: {OCF_MAPPING_PATH.name} did not parse to a dict, ignoring")
+        return {}
+    return data
+
+
+def ocf_url(entry: dict) -> str:
+    """Build a doc-site URL for an OCF schema entry."""
+    name = entry.get("name", "")
+    kind = entry.get("kind", "object")
+    if kind == "transaction":
+        category = entry.get("category", "")
+        return f"{OCF_DOCS_BASE}/schema_markdown/schema/objects/transactions/{category}/{name}/"
+    return f"{OCF_DOCS_BASE}/schema_markdown/schema/objects/{name}/"
+
+
+def render_ocf_section(mapping: dict[str, dict], key: str) -> str:
+    """Render the 'OCF Equivalent' markdown section for a given mapping key.
+
+    Returns an empty string if there's no entry for this key at all (caller can
+    decide whether to omit or to show a "not mapped" stub).
+    """
+    entry = mapping.get(key)
+    if entry is None:
+        return ""
+    summary = (entry.get("summary") or "").strip()
+    ocf_list = entry.get("ocf") or []
+
+    parts: list[str] = ["## OCF Equivalent\n"]
+    if summary:
+        parts.append(f"{summary}\n")
+
+    if not ocf_list:
+        parts.append(
+            "_No direct Open Cap Format equivalent — see the summary above for why._\n"
+        )
+        return "\n".join(parts)
+
+    # Split into primary and "also" bullets so the closest match is visually distinct.
+    primary = [e for e in ocf_list if e.get("role", "primary") == "primary"]
+    also = [e for e in ocf_list if e.get("role") == "also"]
+
+    def render_bullet(e: dict) -> str:
+        name = e.get("name", "?")
+        url = ocf_url(e)
+        kind = e.get("kind", "object")
+        tag = f"_{e.get('category','')}_ tx" if kind == "transaction" else "object"
+        note = e.get("note", "")
+        line = f"- [`{name}`]({url}) — {tag}"
+        if note:
+            line += f". {note.strip()}"
+        return line
+
+    parts.append("")  # blank line before list
+    for e in primary:
+        parts.append(render_bullet(e))
+    if also:
+        parts.append("")
+        parts.append("**Related:**")
+        parts.append("")
+        for e in also:
+            parts.append(render_bullet(e))
+    parts.append("")
+    return "\n".join(parts)
+
+
 def render_properties_table(schema: dict) -> str:
     props = schema.get("properties") or {}
     if not props:
@@ -388,7 +474,7 @@ def render_referenced_by_section(
 
 
 def render_entity_page(
-    entity: DomainEntity, schema: dict
+    entity: DomainEntity, schema: dict, ocf_mapping: dict[str, dict]
 ) -> str:
     title = title_case(entity.sanitized)
     description = format_description(
@@ -397,6 +483,9 @@ def render_entity_page(
     parts: list[str] = [f"# {title}\n"]
     if description:
         parts.append(f"{description}\n")
+    ocf_section = render_ocf_section(ocf_mapping, entity.schema_name)
+    if ocf_section:
+        parts.append(ocf_section)
     parts.append("## Endpoints\n")
     parts.append(render_endpoints_section(entity.endpoints))
     parts.append("\n## Properties\n")
@@ -409,7 +498,7 @@ def render_entity_page(
     return "\n".join(parts)
 
 
-def render_transaction_hub() -> str:
+def render_transaction_hub(ocf_mapping: dict[str, dict]) -> str:
     parts: list[str] = [
         "# Transaction\n",
         (
@@ -419,6 +508,11 @@ def render_transaction_hub() -> str:
             "variants of the same `Transaction` domain concept; the spec models "
             "them as sibling fields rather than as a discriminated union.\n"
         ),
+    ]
+    ocf_section = render_ocf_section(ocf_mapping, "__transaction_hub__")
+    if ocf_section:
+        parts.append(ocf_section)
+    parts += [
         "## Endpoints\n",
         "- `GET /v1alpha1/issuers/{issuerId}/transactions` — returns all variants in one response\n",
         "\n## Variants\n",
@@ -451,7 +545,7 @@ def render_transaction_hub() -> str:
     return "\n".join(parts)
 
 
-def render_stakeholder_hub() -> str:
+def render_stakeholder_hub(ocf_mapping: dict[str, dict]) -> str:
     parts: list[str] = [
         "# Stakeholder\n",
         (
@@ -462,6 +556,11 @@ def render_stakeholder_hub() -> str:
             "`Stakeholder` aggregate root and you will typically want to merge "
             "them in any client-side model.\n"
         ),
+    ]
+    ocf_section = render_ocf_section(ocf_mapping, "__stakeholder_hub__")
+    if ocf_section:
+        parts.append(ocf_section)
+    parts += [
         "## Endpoints (canonical stakeholder view)\n",
         "- `GET /v1alpha1/issuers/{issuerId}/stakeholders` — list",
         "- `GET /v1alpha1/issuers/{issuerId}/stakeholders/{id}` — single",
@@ -482,7 +581,7 @@ def render_stakeholder_hub() -> str:
     return "\n".join(parts)
 
 
-def render_benchmarks_hub() -> str:
+def render_benchmarks_hub(ocf_mapping: dict[str, dict]) -> str:
     parts: list[str] = [
         "# Compensation Benchmarks\n",
         (
@@ -491,6 +590,11 @@ def render_benchmarks_hub() -> str:
             "together describe benchmark datasets, the jobs inside them, the "
             "metadata describing them, and the caller's access level.\n"
         ),
+    ]
+    ocf_section = render_ocf_section(ocf_mapping, "__compensation_benchmarks_hub__")
+    if ocf_section:
+        parts.append(ocf_section)
+    parts += [
         "## Endpoints\n",
         "- `GET /v1alpha1/corporations/{corporationId}/compensationBenchmarks` "
         "— benchmark data + access + metadata",
@@ -562,6 +666,7 @@ def main() -> None:
     schemas = spec["components"]["schemas"]
     DOMAIN_DIR.mkdir(parents=True, exist_ok=True)
 
+    ocf_mapping = load_ocf_mapping()
     domain_endpoints = build_domain_endpoints(spec, schemas)
     referenced_by = build_referenced_by(schemas)
 
@@ -594,8 +699,11 @@ def main() -> None:
 
     # Write per-entity pages
     print(f"Writing {len(entities)} per-entity pages…")
+    missing_ocf: list[str] = []
     for schema_name, entity in entities.items():
-        page = render_entity_page(entity, schemas[schema_name])
+        if ocf_mapping and schema_name not in ocf_mapping:
+            missing_ocf.append(schema_name)
+        page = render_entity_page(entity, schemas[schema_name], ocf_mapping)
         out = DOMAIN_DIR / f"{entity.sanitized}.md"
         out.write_text(page)
         print(f"  {out.relative_to(ROOT)}")
@@ -607,8 +715,13 @@ def main() -> None:
         ("compensation_benchmarks", render_benchmarks_hub),
     ):
         out = DOMAIN_DIR / f"{hub_name}.md"
-        out.write_text(renderer())
+        out.write_text(renderer(ocf_mapping))
         print(f"  {out.relative_to(ROOT)}")
+
+    if missing_ocf:
+        print("\nNo OCF mapping entry for:")
+        for n in missing_ocf:
+            print(f"  - {n}")
 
     # Write index
     index_out = DOMAIN_DIR / "index.md"

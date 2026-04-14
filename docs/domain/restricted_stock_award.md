@@ -2,6 +2,19 @@
 
 A restricted stock award is a grant of company shares.
 
+## OCF Equivalent
+
+OCF does not distinguish RSAs from regular stock issuances at the transaction level —
+an RSA is modeled as a `StockIssuance` with vesting terms attached, and subsequent
+events use the stock-transaction family.
+
+
+- [`StockIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/StockIssuance/) — _issuance_ tx. RSAs in OCF are stock issuances with vesting terms attached.
+
+**Related:**
+
+- [`VestingTerms`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/VestingTerms/) — object
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/restrictedStockAwards` — list

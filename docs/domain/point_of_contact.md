@@ -2,6 +2,13 @@
 
 A point of contact for an issuer. Examples include a Legal Admin or an Option Signatory.
 
+## OCF Equivalent
+
+**No OCF equivalent.** OCF's `Stakeholder` has basic `contact_info`, but there is no
+notion of issuer-level roles like "Legal Admin" or "Option Signatory".
+
+_No direct Open Cap Format equivalent — see the summary above for why._
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/pointsOfContact` — list

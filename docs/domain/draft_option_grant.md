@@ -2,6 +2,14 @@
 
 A draft option grant is an object that is the precursor of an option grant before it is approved, signed, and issued. The "draft" prefix is used to differentiate it from the final option grant object.
 
+## OCF Equivalent
+
+OCF has no "draft" state for equity grants — it only models finalized transactions.
+A Carta draft maps to a pending `EquityCompensationIssuance` that hasn't been committed.
+
+
+- [`EquityCompensationIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/EquityCompensationIssuance/) — _issuance_ tx. OCF models only finalized grants; there is no "draft" equivalent.
+
 ## Endpoints
 
 - `POST /v1alpha1/issuers/{issuerId}/draftOptionGrantSets/{draftOptionGrantSetId}/draftOptionGrants` — single _(request body)_

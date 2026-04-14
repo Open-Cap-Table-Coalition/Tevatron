@@ -2,6 +2,13 @@
 
 Compensation Benchmarks is a small subsystem bolted onto the corporations surface. Two endpoints serve four related types that together describe benchmark datasets, the jobs inside them, the metadata describing them, and the caller's access level.
 
+## OCF Equivalent
+
+**No OCF equivalent.** Compensation benchmarking is out of scope for OCF — the
+format covers ownership and equity events, not market-rate compensation data.
+
+_No direct Open Cap Format equivalent — see the summary above for why._
+
 ## Endpoints
 
 - `GET /v1alpha1/corporations/{corporationId}/compensationBenchmarks` — benchmark data + access + metadata

@@ -2,6 +2,13 @@
 
 The top-level object that encapsulates an issuer's stakeholder capitalization information.
 
+## OCF Equivalent
+
+**No direct OCF equivalent.** Same rationale as `CapitalizationTable` — OCF derives
+per-stakeholder positions from the transaction log rather than exposing a snapshot.
+
+_No direct Open Cap Format equivalent — see the summary above for why._
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/stakeholderCapitalizationTable` — single

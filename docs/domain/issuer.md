@@ -2,6 +2,13 @@
 
 An issuer.
 
+## OCF Equivalent
+
+Direct equivalent — both represent the issuing company.
+
+
+- [`Issuer`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Issuer/) — object
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers` — list

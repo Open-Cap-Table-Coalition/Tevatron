@@ -2,6 +2,21 @@
 
 A certificate is a record of ownership of a company's shares.
 
+## OCF Equivalent
+
+Carta's `Certificate` is a stock certificate (current state). OCF models the
+creation of a stock position as a `StockIssuance` transaction; the "certificate"
+as a concept is the issuance plus any subsequent cancellation/transfer/repurchase.
+
+
+- [`StockIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/StockIssuance/) — _issuance_ tx. Creates the position.
+
+**Related:**
+
+- [`StockCancellation`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/cancellation/StockCancellation/) — _cancellation_ tx
+- [`StockTransfer`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/transfer/StockTransfer/) — _transfer_ tx
+- [`StockRepurchase`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/repurchase/StockRepurchase/) — _repurchase_ tx
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/certificates` — list

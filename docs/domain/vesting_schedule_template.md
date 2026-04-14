@@ -2,6 +2,14 @@
 
 Details of a vesting schedule template.
 
+## OCF Equivalent
+
+Closest match is OCF's `VestingTerms`. Both define reusable vesting policies, though
+OCF's VestingTerms model is finer-grained (explicit conditions/triggers graph).
+
+
+- [`VestingTerms`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/VestingTerms/) — object
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/vestingScheduleTemplates` — list

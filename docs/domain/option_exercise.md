@@ -2,6 +2,17 @@
 
 An option exercise is an event representing a stakeholder exercising their right to purchase shares of an issuer at a set price, the strike price, defined in the option grant being exercised. The result of a successfully completed exercise is the issuance of a certificate.
 
+## OCF Equivalent
+
+Maps to OCF's `EquityCompensationExercise` (or legacy `PlanSecurityExercise`).
+
+
+- [`EquityCompensationExercise`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/exercise/EquityCompensationExercise/) — _exercise_ tx
+
+**Related:**
+
+- [`PlanSecurityExercise`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/exercise/PlanSecurityExercise/) — _exercise_ tx. Predecessor schema retained for backward compatibility.
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/optionExercises` — list

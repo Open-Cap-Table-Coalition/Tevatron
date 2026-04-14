@@ -2,6 +2,14 @@
 
 The top-level capitalization table object.
 
+## OCF Equivalent
+
+**No direct OCF equivalent.** OCF does not model a standing "cap table" object;
+the cap table is derived state produced by folding the transaction log together
+with the primary objects (Issuer, Stakeholders, StockClasses, StockPlans, Valuations).
+
+_No direct Open Cap Format equivalent — see the summary above for why._
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/capitalizationTable` — single

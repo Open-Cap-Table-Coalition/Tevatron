@@ -2,6 +2,15 @@
 
 The spec defines **five** separate `Stakeholder`-related schemas — different projections of the same conceptual entity depending on where it appears. The table below maps each view to its usage context. From a domain-modeling standpoint these are all the same `Stakeholder` aggregate root and you will typically want to merge them in any client-side model.
 
+## OCF Equivalent
+
+All five Carta `Stakeholder` views collapse to OCF's single `Stakeholder` object.
+OCF does not split stakeholders by service context — relationships, contact info,
+and tax identity all live on one object.
+
+
+- [`Stakeholder`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Stakeholder/) — object
+
 ## Endpoints (canonical stakeholder view)
 
 - `GET /v1alpha1/issuers/{issuerId}/stakeholders` — list

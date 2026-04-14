@@ -2,6 +2,18 @@
 
 A convertible note.
 
+## OCF Equivalent
+
+Maps to OCF's `ConvertibleIssuance`, plus cancellation/transfer events.
+
+
+- [`ConvertibleIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/ConvertibleIssuance/) — _issuance_ tx
+
+**Related:**
+
+- [`ConvertibleCancellation`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/cancellation/ConvertibleCancellation/) — _cancellation_ tx
+- [`ConvertibleTransfer`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/transfer/ConvertibleTransfer/) — _transfer_ tx
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/convertibleNotes` — list

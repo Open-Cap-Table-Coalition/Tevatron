@@ -2,6 +2,19 @@
 
 A restricted stock unit is a grant of company shares.
 
+## OCF Equivalent
+
+RSUs in OCF are modeled as equity compensation issuances (the same family as options),
+distinguished by the compensation type on the issuance transaction itself. Settlement
+(the moment shares transfer to the holder) is captured by `EquityCompensationRelease`.
+
+
+- [`EquityCompensationIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/EquityCompensationIssuance/) — _issuance_ tx. RSUs are issued via the equity-compensation family.
+
+**Related:**
+
+- [`EquityCompensationRelease`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/release/EquityCompensationRelease/) — _release_ tx. Carta's "settlement" ≈ OCF's release.
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/restrictedStockUnits` — list

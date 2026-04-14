@@ -2,6 +2,15 @@
 
 The fair market value contains the accepted values of an issuer's stock, specified on a per-share class basis. These values come from the 409A reports that Carta has for the issuer.
 
+## OCF Equivalent
+
+Maps to OCF's `Valuation` — specifically valuations with `valuation_type = "409A"`
+(or similar). OCF's Valuation is broader: it also covers post-money/pre-money
+financing valuations, not just FMVs.
+
+
+- [`Valuation`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Valuation/) — object. OCF's Valuation covers both 409A FMVs and financing-round valuations.
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/fairMarketValues` — list

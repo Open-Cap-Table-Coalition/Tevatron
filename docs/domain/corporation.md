@@ -2,6 +2,14 @@
 
 A corporation.
 
+## OCF Equivalent
+
+Carta's `Corporation` is the legal-entity parent of one or more issuers.
+OCF has no separate corporation concept — in OCF the legal entity **is** the `Issuer`.
+
+
+- [`Issuer`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Issuer/) — object. OCF collapses corporation and issuer into a single `Issuer` object.
+
 ## Endpoints
 
 - `GET /v1alpha1/corporations` — list

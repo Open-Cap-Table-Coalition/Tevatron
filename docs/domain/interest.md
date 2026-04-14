@@ -2,6 +2,13 @@
 
 Interest information.
 
+## OCF Equivalent
+
+**No OCF equivalent.** Carta's `Interest` appears to represent an API-access grant
+or entitlement scoped to an issuer; OCF does not model access control at all.
+
+_No direct Open Cap Format equivalent — see the summary above for why._
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/interests` — list

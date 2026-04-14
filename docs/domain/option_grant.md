@@ -2,6 +2,20 @@
 
 An option grant is a contract that gives an employee the right to purchase a company's stock at a set price.
 
+## OCF Equivalent
+
+Maps to OCF's `EquityCompensationIssuance` (the successor to `PlanSecurityIssuance`
+in newer OCF versions). Both represent issuing options from a stock plan to a holder.
+
+
+- [`EquityCompensationIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/EquityCompensationIssuance/) — _issuance_ tx
+
+**Related:**
+
+- [`PlanSecurityIssuance`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/transactions/issuance/PlanSecurityIssuance/) — _issuance_ tx. Predecessor schema retained for backward compatibility.
+- [`StockPlan`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/StockPlan/) — object. The plan the grant draws from.
+- [`VestingTerms`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/VestingTerms/) — object. Carta's grant carries its vesting schedule inline; OCF links to shared `VestingTerms`.
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/optionGrants` — list

@@ -2,6 +2,13 @@
 
 A class of stock issued by an issuer.
 
+## OCF Equivalent
+
+Maps to OCF's `StockClass` — same concept (common, preferred series, etc.).
+
+
+- [`StockClass`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/StockClass/) — object
+
 ## Endpoints
 
 - `GET /v1alpha1/issuers/{issuerId}/shareClasses` — list

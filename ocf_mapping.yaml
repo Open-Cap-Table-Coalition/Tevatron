@@ -1,0 +1,297 @@
+# Mapping from Carta Issuer API domain objects to their closest Open Cap Format (OCF) equivalents.
+#
+# Consumed by generate_domain_docs.py to render an "OCF Equivalent" section on each
+# docs/domain/*.md page. Edit this file to refine a mapping; re-run the generator to publish.
+#
+# OCF reference:
+#   Spec repo:  https://github.com/Open-Cap-Table-Coalition/Open-Cap-Format-OCF
+#   Doc site:   https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/
+#
+# Schema keys use Carta's raw schema name (e.g. "v1alpha1OptionGrant"), matching the
+# schemas in carta-issuer-api.openapi.json so the generator can index them directly.
+#
+# Entry shape:
+#   <CartaSchemaName>:
+#     summary: short one-line description of the mapping (markdown OK)
+#     ocf:
+#       - name: <OCF schema name, e.g. "StockClass" or "StockIssuance">
+#         kind: object | transaction      # controls the URL prefix
+#         category: <tx-category>         # required when kind=transaction (issuance, cancellation, exercise, …)
+#         role: primary | also             # "primary" = closest single match; "also" = related/secondary
+#         note: optional freeform note explaining the correspondence
+#
+# Hub entries (prefixed with "__") correspond to the hub pages:
+#   __stakeholder_hub__, __transaction_hub__, __compensation_benchmarks_hub__
+#
+# A reserved key "_unmapped" is used for Carta domain objects with no OCF equivalent.
+# The generator still renders the section so the gap is visible; set ocf: [] and
+# summary: to explain why.
+
+# ---------------------------------------------------------------------------
+# Organization
+# ---------------------------------------------------------------------------
+
+v1alpha1Corporation:
+  summary: |
+    Carta's `Corporation` is the legal-entity parent of one or more issuers.
+    OCF has no separate corporation concept — in OCF the legal entity **is** the `Issuer`.
+  ocf:
+    - name: Issuer
+      kind: object
+      role: primary
+      note: OCF collapses corporation and issuer into a single `Issuer` object.
+
+v1alpha1Issuer:
+  summary: Direct equivalent — both represent the issuing company.
+  ocf:
+    - name: Issuer
+      kind: object
+      role: primary
+
+# ---------------------------------------------------------------------------
+# Cap Table (derived state in OCF — no direct equivalent)
+# ---------------------------------------------------------------------------
+
+v1alpha1CapitalizationTable:
+  summary: |
+    **No direct OCF equivalent.** OCF does not model a standing "cap table" object;
+    the cap table is derived state produced by folding the transaction log together
+    with the primary objects (Issuer, Stakeholders, StockClasses, StockPlans, Valuations).
+  ocf: []
+
+v1alpha1StakeholderCapitalizationTable:
+  summary: |
+    **No direct OCF equivalent.** Same rationale as `CapitalizationTable` — OCF derives
+    per-stakeholder positions from the transaction log rather than exposing a snapshot.
+  ocf: []
+
+v1alpha1ShareClass:
+  summary: Maps to OCF's `StockClass` — same concept (common, preferred series, etc.).
+  ocf:
+    - name: StockClass
+      kind: object
+      role: primary
+
+# ---------------------------------------------------------------------------
+# Securities — Carta exposes current-state records; OCF models the issuance event.
+# ---------------------------------------------------------------------------
+
+v1alpha1Certificate:
+  summary: |
+    Carta's `Certificate` is a stock certificate (current state). OCF models the
+    creation of a stock position as a `StockIssuance` transaction; the "certificate"
+    as a concept is the issuance plus any subsequent cancellation/transfer/repurchase.
+  ocf:
+    - name: StockIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: Creates the position.
+    - name: StockCancellation
+      kind: transaction
+      category: cancellation
+      role: also
+    - name: StockTransfer
+      kind: transaction
+      category: transfer
+      role: also
+    - name: StockRepurchase
+      kind: transaction
+      category: repurchase
+      role: also
+
+v1alpha1ConvertibleNote:
+  summary: Maps to OCF's `ConvertibleIssuance`, plus cancellation/transfer events.
+  ocf:
+    - name: ConvertibleIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+    - name: ConvertibleCancellation
+      kind: transaction
+      category: cancellation
+      role: also
+    - name: ConvertibleTransfer
+      kind: transaction
+      category: transfer
+      role: also
+
+v1alpha1OptionGrant:
+  summary: |
+    Maps to OCF's `EquityCompensationIssuance` (the successor to `PlanSecurityIssuance`
+    in newer OCF versions). Both represent issuing options from a stock plan to a holder.
+  ocf:
+    - name: EquityCompensationIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+    - name: PlanSecurityIssuance
+      kind: transaction
+      category: issuance
+      role: also
+      note: Predecessor schema retained for backward compatibility.
+    - name: StockPlan
+      kind: object
+      role: also
+      note: The plan the grant draws from.
+    - name: VestingTerms
+      kind: object
+      role: also
+      note: Carta's grant carries its vesting schedule inline; OCF links to shared `VestingTerms`.
+
+v1alpha1OptionExercise:
+  summary: Maps to OCF's `EquityCompensationExercise` (or legacy `PlanSecurityExercise`).
+  ocf:
+    - name: EquityCompensationExercise
+      kind: transaction
+      category: exercise
+      role: primary
+    - name: PlanSecurityExercise
+      kind: transaction
+      category: exercise
+      role: also
+      note: Predecessor schema retained for backward compatibility.
+
+v1alpha1RestrictedStockAward:
+  summary: |
+    OCF does not distinguish RSAs from regular stock issuances at the transaction level —
+    an RSA is modeled as a `StockIssuance` with vesting terms attached, and subsequent
+    events use the stock-transaction family.
+  ocf:
+    - name: StockIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: RSAs in OCF are stock issuances with vesting terms attached.
+    - name: VestingTerms
+      kind: object
+      role: also
+
+v1alpha1RestrictedStockUnit:
+  summary: |
+    RSUs in OCF are modeled as equity compensation issuances (the same family as options),
+    distinguished by the compensation type on the issuance transaction itself. Settlement
+    (the moment shares transfer to the holder) is captured by `EquityCompensationRelease`.
+  ocf:
+    - name: EquityCompensationIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: RSUs are issued via the equity-compensation family.
+    - name: EquityCompensationRelease
+      kind: transaction
+      category: release
+      role: also
+      note: Carta's "settlement" ≈ OCF's release.
+
+v1alpha1DraftOptionGrant:
+  summary: |
+    OCF has no "draft" state for equity grants — it only models finalized transactions.
+    A Carta draft maps to a pending `EquityCompensationIssuance` that hasn't been committed.
+  ocf:
+    - name: EquityCompensationIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: OCF models only finalized grants; there is no "draft" equivalent.
+
+# ---------------------------------------------------------------------------
+# Reference Data
+# ---------------------------------------------------------------------------
+
+v1alpha1Interest:
+  summary: |
+    **No OCF equivalent.** Carta's `Interest` appears to represent an API-access grant
+    or entitlement scoped to an issuer; OCF does not model access control at all.
+  ocf: []
+
+v1alpha1FairMarketValue:
+  summary: |
+    Maps to OCF's `Valuation` — specifically valuations with `valuation_type = "409A"`
+    (or similar). OCF's Valuation is broader: it also covers post-money/pre-money
+    financing valuations, not just FMVs.
+  ocf:
+    - name: Valuation
+      kind: object
+      role: primary
+      note: OCF's Valuation covers both 409A FMVs and financing-round valuations.
+
+v1alpha1PointOfContact:
+  summary: |
+    **No OCF equivalent.** OCF's `Stakeholder` has basic `contact_info`, but there is no
+    notion of issuer-level roles like "Legal Admin" or "Option Signatory".
+  ocf: []
+
+v1alpha1VestingScheduleTemplate:
+  summary: |
+    Closest match is OCF's `VestingTerms`. Both define reusable vesting policies, though
+    OCF's VestingTerms model is finer-grained (explicit conditions/triggers graph).
+  ocf:
+    - name: VestingTerms
+      kind: object
+      role: primary
+
+# ---------------------------------------------------------------------------
+# Hub pages
+# ---------------------------------------------------------------------------
+
+__stakeholder_hub__:
+  summary: |
+    All five Carta `Stakeholder` views collapse to OCF's single `Stakeholder` object.
+    OCF does not split stakeholders by service context — relationships, contact info,
+    and tax identity all live on one object.
+  ocf:
+    - name: Stakeholder
+      kind: object
+      role: primary
+
+__transaction_hub__:
+  summary: |
+    Carta's `ListTransactions` returns eight sibling arrays (one per security type),
+    where each array holds a discriminated union of events for that security. OCF
+    models each event type as its own transaction schema under
+    `schema/objects/transactions/<category>/`. The mapping below lists the
+    security-family → OCF transaction-category correspondences.
+  ocf:
+    - name: StockIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: Carta `CertificateTransactionItem` family.
+    - name: ConvertibleIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: Carta `ConvertibleTransactionItem` family.
+    - name: EquityCompensationIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: |
+        Carta `OptionTransactionItem`, `RsuTransactionItem`, `RsaTransactionItem`,
+        `PiuTransactionItem`, and `SarTransactionItem` families all fold into OCF's
+        single `EquityCompensationIssuance` family (distinguished by compensation type).
+    - name: WarrantIssuance
+      kind: transaction
+      category: issuance
+      role: primary
+      note: Carta `WarrantTransactionItem` family.
+    - name: EquityCompensationExercise
+      kind: transaction
+      category: exercise
+      role: also
+      note: Carta exercise events within the option/RSU/RSA families.
+    - name: StockCancellation
+      kind: transaction
+      category: cancellation
+      role: also
+    - name: EquityCompensationCancellation
+      kind: transaction
+      category: cancellation
+      role: also
+
+__compensation_benchmarks_hub__:
+  summary: |
+    **No OCF equivalent.** Compensation benchmarking is out of scope for OCF — the
+    format covers ownership and equity events, not market-rate compensation data.
+  ocf: []
