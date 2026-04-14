@@ -60,6 +60,8 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Interactive Graph: schema-graph.html
+  - Domain Objects:
+    - domain/index.md
   - API Objects:
     - objects/index.md
   - Supporting Types:
