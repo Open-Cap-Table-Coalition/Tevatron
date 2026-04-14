@@ -1,4 +1,4 @@
-# Cartevatron
+# Tevatron
 
 Documentation generator for the Carta Issuer API OpenAPI specification.
 

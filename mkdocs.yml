@@ -1,8 +1,8 @@
 site_name: Carta Issuer API Documentation
 site_description: Auto-generated documentation for the Carta Issuer API schemas
 site_author: Carta
-repo_url: https://github.com/Open-Cap-Table-Coalition/Cartevatron
-repo_name: Open-Cap-Table-Coalition/Cartevatron
+repo_url: https://github.com/Open-Cap-Table-Coalition/Tevatron
+repo_name: Open-Cap-Table-Coalition/Tevatron
 
 theme:
   name: material
@@ -68,7 +68,7 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Open-Cap-Table-Coalition/Cartevatron
+      link: https://github.com/Open-Cap-Table-Coalition/Tevatron
 
 docs_dir: docs
 site_dir: site
