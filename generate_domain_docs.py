@@ -435,8 +435,38 @@ class OcfView:
     properties_table: str  # multi-line markdown table (header + body rows)
 
 
+def _split_md_row(row: str) -> list[str]:
+    """Split a markdown table row on `|`, trimming the outer pipes."""
+    inner = row.strip()
+    if inner.startswith("|"):
+        inner = inner[1:]
+    if inner.endswith("|"):
+        inner = inner[:-1]
+    return [cell.strip() for cell in inner.split("|")]
+
+
+def _join_md_row(cells: list[str]) -> str:
+    return "| " + " | ".join(cells) + " |"
+
+
+def _slice_ocf_table(lines: list[str], keep: list[int]) -> list[str]:
+    """Return the given markdown table (header + separator + body) with only
+    the specified column indices retained, in order."""
+    out: list[str] = []
+    for line in lines:
+        cells = _split_md_row(line)
+        sliced = [cells[i] if i < len(cells) else "" for i in keep]
+        out.append(_join_md_row(sliced))
+    return out
+
+
 def parse_ocf_markdown(md: str, entry: dict) -> OcfView | None:
     """Extract description and Properties table from an OCF markdown doc.
+
+    OCF's generated table has columns: Property | Type | Description | Required.
+    We drop the Description column here so the side-by-side view has room for
+    the more useful Type + Required columns in a narrow layout. The full OCF
+    page (linked from the header) remains the source of truth for descriptions.
 
     Returns None if the expected structure isn't present.
     """
@@ -467,6 +497,9 @@ def parse_ocf_markdown(md: str, entry: dict) -> OcfView | None:
 
     if len(table_lines) < 2:
         return None  # no header+separator+rows
+
+    # Drop the Description column (index 2) to match the compact Carta view.
+    table_lines = _slice_ocf_table(table_lines, keep=[0, 1, 3])
 
     source_rel = _ocf_source_rel_path(entry)
     rewritten = "\n".join(
@@ -525,6 +558,8 @@ def render_side_by_side(
 
 
 def render_properties_table(schema: dict) -> str:
+    """Full Carta properties table with Type, Required, Description — used
+    in the full-width `## Properties` section below the side-by-side view."""
     props = schema.get("properties") or {}
     if not props:
         return "_(no properties defined)_\n"
@@ -538,6 +573,25 @@ def render_properties_table(schema: dict) -> str:
         desc = format_description(prop_def.get("description") if isinstance(prop_def, dict) else None)
         req = "✓" if name in required else ""
         lines.append(f"| `{name}` | {ts} | {req} | {desc} |")
+    return "\n".join(lines) + "\n"
+
+
+def render_properties_table_compact(schema: dict) -> str:
+    """Three-column Carta properties table (Property | Type | Required) for
+    the narrow side-by-side view. Descriptions live in the full table below.
+    """
+    props = schema.get("properties") or {}
+    if not props:
+        return "_(no properties defined)_\n"
+    required = set(schema.get("required", []))
+    lines = [
+        "| Property | Type | Req |",
+        "|---|---|---|",
+    ]
+    for name, prop_def in props.items():
+        ts = type_string(prop_def) if isinstance(prop_def, dict) else "?"
+        req = "✓" if name in required else ""
+        lines.append(f"| `{name}` | {ts} | {req} |")
     return "\n".join(lines) + "\n"
 
 
@@ -669,22 +723,29 @@ def render_entity_page(
     parts.append("## Endpoints\n")
     parts.append(render_endpoints_section(entity.endpoints))
 
-    # Properties: side-by-side if we have a primary OCF view, otherwise the
-    # familiar single-table layout.
+    # Side-by-side shape comparison (compact: Property | Type | Req) when
+    # we have a primary OCF view. Full descriptions live in the full-width
+    # Properties section below.
     ocf_view = get_ocf_primary_view(ocf_mapping, entity.schema_name)
     if ocf_view is not None:
-        parts.append("\n## Properties side-by-side\n")
+        parts.append("\n## Shape at a glance\n")
+        parts.append(
+            "_Quick comparison of field names, types, and required-ness. See "
+            "the full Carta properties below, or follow the OCF link for full "
+            "OCF field documentation._\n"
+        )
         parts.append(
             render_side_by_side(
                 carta_title=description or title,
                 carta_link=cross_link(entity.schema_name),
-                carta_table_md=render_properties_table(schema),
+                carta_table_md=render_properties_table_compact(schema),
                 ocf_view=ocf_view,
             )
         )
-    else:
-        parts.append("\n## Properties\n")
-        parts.append(render_properties_table(schema))
+
+    # Always emit the full Carta properties table.
+    parts.append("\n## Properties\n")
+    parts.append(render_properties_table(schema))
 
     parts.append("\n## Referenced by\n")
     parts.append(render_referenced_by_section(entity.referenced_by, entity.schema_name))

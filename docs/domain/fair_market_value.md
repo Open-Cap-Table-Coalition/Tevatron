@@ -16,13 +16,47 @@ financing valuations, not just FMVs.
 - `GET /v1alpha1/issuers/{issuerId}/fairMarketValues` — list
 
 
-## Properties side-by-side
+## Shape at a glance
+
+_Quick comparison of field names, types, and required-ness. See the full Carta properties below, or follow the OCF link for full OCF field documentation._
 
 <div class="domain-compare" markdown="1">
 <div class="domain-compare__col" markdown="1">
 **Carta** — [`v1alpha1FairMarketValue`](../objects/fair_market_value.md)
 
 _The fair market value contains the accepted values of an issuer's stock, specified on a per-share class basis. These values come from the 409A reports that Carta has for the issuer._
+
+| Property | Type | Req |
+|---|---|---|
+| `id` | string |  |
+| `effectiveDate` | [`v1alpha1Iso8601CompleteCalendarDate`](../types/iso8601_complete_calendar_date.md) |  |
+| `expirationDate` | [`v1alpha1Iso8601CompleteCalendarDate`](../types/iso8601_complete_calendar_date.md) |  |
+| `staleDate` | [`v1alpha1Iso8601CompleteCalendarDate`](../types/iso8601_complete_calendar_date.md) |  |
+| `shareClassValuations` | [`v1alpha1ShareClassValuation`](../types/share_class_valuation.md)[] |  |
+
+</div>
+<div class="domain-compare__col" markdown="1">
+**OCF** — [`Valuation`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Valuation/)
+
+_Object describing a valuation used in the cap table_
+
+| Property | Type | Required |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------- |
+| id | `STRING` | `REQUIRED` |
+| comments | [`STRING`] | - |
+| object_type | **Constant:** `VALUATION`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_ | `REQUIRED` |
+| provider | `STRING` | - |
+| board_approval_date | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/) | - |
+| stockholder_approval_date | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/) | - |
+| price_per_share | [schema/types/Monetary](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Monetary/) | `REQUIRED` |
+| effective_date | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/) | `REQUIRED` |
+| stock_class_id | `STRING` | `REQUIRED` |
+| valuation_type | `Enum - Valuation Type`</br></br>_Description:_ Enumeration of valuation types</br></br>**ONE OF:** </br>&bull; 409A | `REQUIRED` |
+</div>
+</div>
+
+
+## Properties
 
 | Property | Type | Required | Description |
 |---|---|---|---|
@@ -31,27 +65,6 @@ _The fair market value contains the accepted values of an issuer's stock, specif
 | `expirationDate` | [`v1alpha1Iso8601CompleteCalendarDate`](../types/iso8601_complete_calendar_date.md) |  | The date that this fair market valuation will expire. |
 | `staleDate` | [`v1alpha1Iso8601CompleteCalendarDate`](../types/iso8601_complete_calendar_date.md) |  | The date that this fair market valuation becomes stale. |
 | `shareClassValuations` | [`v1alpha1ShareClassValuation`](../types/share_class_valuation.md)[] |  | A list of fair market values for each share class. |
-
-</div>
-<div class="domain-compare__col" markdown="1">
-**OCF** — [`Valuation`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/Valuation/)
-
-_Object describing a valuation used in the cap table_
-
-| Property                  | Type                                                                                                                 | Description                                                                                                                                         | Required   |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| id                        | `STRING`                                                                                                             | Identifier for the object                                                                                                                           | `REQUIRED` |
-| comments                  | [`STRING`]                                                                                                           | Unstructured text comments related to and stored for the object                                                                                     | -          |
-| object_type               | **Constant:** `VALUATION`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_                         | Object type field                                                                                                                                   | `REQUIRED` |
-| provider                  | `STRING`                                                                                                             | Entity which provided the valuation                                                                                                                 | -          |
-| board_approval_date       | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/)                                                                                | Date on which board approved the valuation. This is essential for 409A valuations, in particular, which require the Board to approve the valuation. | -          |
-| stockholder_approval_date | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/)                                                                                | This optional field tracks when the stockholders approved the valuation.                                                                            | -          |
-| price_per_share           | [schema/types/Monetary](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Monetary/)                                                                        | Valued price per share                                                                                                                              | `REQUIRED` |
-| effective_date            | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/)                                                                                | Date on which this valuation is first valid                                                                                                         | `REQUIRED` |
-| stock_class_id            | `STRING`                                                                                                             | Identifier of the stock class for this valuation                                                                                                    | `REQUIRED` |
-| valuation_type            | `Enum - Valuation Type`</br></br>_Description:_ Enumeration of valuation types</br></br>**ONE OF:** </br>&bull; 409A | Seam for supporting different types of valuations in future versions                                                                                | `REQUIRED` |
-</div>
-</div>
 
 
 ## Referenced by

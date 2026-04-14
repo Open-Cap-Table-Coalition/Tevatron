@@ -1,37 +1,62 @@
+/* -------------------------------------------------------------------------
+   Domain page styling
+   -------------------------------------------------------------------------
+
+   1. Widen the Material content area site-wide.  The default ~60rem is too
+      narrow for the property tables on any of the generated pages
+      (objects/, types/, and especially domain/).
+   2. Lay out the Carta / OCF comparison as a two-column grid, stacking
+      vertically below ~1100px where the tables can no longer fit.
+   3. Drop `table-layout: fixed` — let the browser auto-size columns so the
+      Property / Type / Required headers never get clipped. */
+
+.md-grid {
+  max-width: 95rem;
+}
+
 /* Side-by-side Carta ↔ OCF property-table layout on domain pages.
-   The .domain-compare container is emitted by generate_domain_docs.py; this
-   rule gives it a two-column grid on wide screens and stacks on narrow ones. */
+   The `.domain-compare` container is emitted by generate_domain_docs.py. */
 
 .domain-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
   margin: 0.5rem 0 1.5rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .domain-compare {
     grid-template-columns: 1fr;
   }
 }
 
 .domain-compare__col {
-  min-width: 0;               /* prevent grid children from expanding past column */
-  overflow-x: auto;           /* let wide tables scroll within their own column */
+  min-width: 0;
   background: var(--md-code-bg-color, rgba(0, 0, 0, 0.03));
   border-radius: 0.4rem;
   padding: 0.75rem 1rem;
 }
 
+.domain-compare__col > p:first-child {
+  margin-top: 0;
+}
+
 .domain-compare__col table {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   width: 100%;
-  table-layout: fixed;
-  word-break: break-word;
+  margin: 0.5rem 0 0;
 }
 
 .domain-compare__col th,
 .domain-compare__col td {
-  padding: 0.35rem 0.5rem;
+  padding: 0.3rem 0.4rem;
   vertical-align: top;
+  word-break: break-word;
+}
+
+/* OCF cells frequently contain nested lists rendered via `</br>` + `&bull;`.
+   Give them a tighter line height so the cells don't tower over Carta's
+   single-line rows. */
+.domain-compare__col td {
+  line-height: 1.35;
 }

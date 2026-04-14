@@ -15,7 +15,9 @@ Direct equivalent — both represent the issuing company.
 - `GET /v1alpha1/issuers/{id}` — single
 
 
-## Properties side-by-side
+## Shape at a glance
+
+_Quick comparison of field names, types, and required-ness. See the full Carta properties below, or follow the OCF link for full OCF field documentation._
 
 <div class="domain-compare" markdown="1">
 <div class="domain-compare__col" markdown="1">
@@ -23,12 +25,12 @@ Direct equivalent — both represent the issuing company.
 
 _An issuer._
 
-| Property | Type | Required | Description |
-|---|---|---|---|
-| `id` | string |  | The identifier of the issuer. |
-| `legalName` | string |  | The legal name of the issuer. |
-| `doingBusinessAsName` | string |  | The operating, or doing business as (DBA), name of the issuer. |
-| `website` | string |  | The URL of the issuer’s website. |
+| Property | Type | Req |
+|---|---|---|
+| `id` | string |  |
+| `legalName` | string |  |
+| `doingBusinessAsName` | string |  |
+| `website` | string |  |
 
 </div>
 <div class="domain-compare__col" markdown="1">
@@ -36,24 +38,34 @@ _An issuer._
 
 _Object describing the issuer of the cap table (the company whose cap table this is)_
 
-| Property                              | Type                                                                                                                                                                                                                                                                         | Description                                                                                                               | Required   |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| id                                    | `STRING`                                                                                                                                                                                                                                                                     | Identifier for the object                                                                                                 | `REQUIRED` |
-| comments                              | [`STRING`]                                                                                                                                                                                                                                                                   | Unstructured text comments related to and stored for the object                                                           | -          |
-| object_type                           | **Constant:** `ISSUER`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_                                                                                                                                                                                    | Object type field                                                                                                         | `REQUIRED` |
-| legal_name                            | `STRING`                                                                                                                                                                                                                                                                     | Legal name of the issuer                                                                                                  | `REQUIRED` |
-| dba                                   | `STRING`                                                                                                                                                                                                                                                                     | Doing Business As name                                                                                                    | -          |
-| formation_date                        | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/)                                                                                                                                                                                                                                        | Date of formation                                                                                                         | `REQUIRED` |
-| country_of_formation                  | [schema/types/CountryCode](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/CountryCode/)                                                                                                                                                                                                                          | The country where the issuer company was legally formed (ISO 3166-1 alpha-2)                                              | `REQUIRED` |
-| country_subdivision_of_formation      | [schema/types/CountrySubdivisionCode](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/CountrySubdivisionCode/)                                                                                                                                                                                                    | The code for the state, province, or subdivision where the issuer company was legally formed                              | -          |
-| country_subdivision_name_of_formation | `STRING`                                                                                                                                                                                                                                                                     | The text name of state, province, or subdivision where the issuer company was legally formed if the code is not available | -          |
-| tax_ids                               | [ [schema/types/TaxID](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/TaxID/) ]                                                                                                                                                                                                                                  | The tax ids for this issuer company                                                                                       | -          |
-| email                                 | [schema/types/Email](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Email/)                                                                                                                                                                                                                                      | A work email that the issuer company can be reached at                                                                    | -          |
-| phone                                 | [schema/types/Phone](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Phone/)                                                                                                                                                                                                                                      | A phone number that the issuer company can be reached at                                                                  | -          |
-| address                               | [schema/types/Address](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Address/)                                                                                                                                                                                                                                  | The headquarters address of the issuing company                                                                           | -          |
-| initial_shares_authorized             | **ONE OF the Following Types/Objs:**</br>&bull; `Enum - Authorized Shares Types`</br></br>_Description:_ Enumeration of authorized shares types</br></br>**ONE OF:** </br>&bull; NOT APPLICABLE </br>&bull; UNLIMITED</br>&bull; [schema/types/Numeric](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Numeric/) | The initial number of shares authorized for this issuer                                                                   | -          |
+| Property | Type | Required |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| id | `STRING` | `REQUIRED` |
+| comments | [`STRING`] | - |
+| object_type | **Constant:** `ISSUER`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_ | `REQUIRED` |
+| legal_name | `STRING` | `REQUIRED` |
+| dba | `STRING` | - |
+| formation_date | [schema/types/Date](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Date/) | `REQUIRED` |
+| country_of_formation | [schema/types/CountryCode](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/CountryCode/) | `REQUIRED` |
+| country_subdivision_of_formation | [schema/types/CountrySubdivisionCode](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/CountrySubdivisionCode/) | - |
+| country_subdivision_name_of_formation | `STRING` | - |
+| tax_ids | [ [schema/types/TaxID](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/TaxID/) ] | - |
+| email | [schema/types/Email](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Email/) | - |
+| phone | [schema/types/Phone](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Phone/) | - |
+| address | [schema/types/Address](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Address/) | - |
+| initial_shares_authorized | **ONE OF the Following Types/Objs:**</br>&bull; `Enum - Authorized Shares Types`</br></br>_Description:_ Enumeration of authorized shares types</br></br>**ONE OF:** </br>&bull; NOT APPLICABLE </br>&bull; UNLIMITED</br>&bull; [schema/types/Numeric](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/Numeric/) | - |
 </div>
 </div>
+
+
+## Properties
+
+| Property | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | The identifier of the issuer. |
+| `legalName` | string |  | The legal name of the issuer. |
+| `doingBusinessAsName` | string |  | The operating, or doing business as (DBA), name of the issuer. |
+| `website` | string |  | The URL of the issuer’s website. |
 
 
 ## Referenced by

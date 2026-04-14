@@ -15,13 +15,46 @@ OCF's VestingTerms model is finer-grained (explicit conditions/triggers graph).
 - `GET /v1alpha1/issuers/{issuerId}/vestingScheduleTemplates` — list
 
 
-## Properties side-by-side
+## Shape at a glance
+
+_Quick comparison of field names, types, and required-ness. See the full Carta properties below, or follow the OCF link for full OCF field documentation._
 
 <div class="domain-compare" markdown="1">
 <div class="domain-compare__col" markdown="1">
 **Carta** — [`v1alpha1VestingScheduleTemplate`](../objects/vesting_schedule_template.md)
 
 _Details of a vesting schedule template._
+
+| Property | Type | Req |
+|---|---|---|
+| `id` | string |  |
+| `issuerId` | string |  |
+| `name` | string |  |
+| `description` | string |  |
+| `vestingScheduleType` | [`v1alpha1VestingScheduleType`](../types/vesting_schedule_type.md) |  |
+| `uuid` | string |  |
+| `periods` | [`v1alpha1VestingPeriod`](../types/vesting_period.md)[] |  |
+
+</div>
+<div class="domain-compare__col" markdown="1">
+**OCF** — [`VestingTerms`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/VestingTerms/)
+
+_Object describing the terms under which a security vests_
+
+| Property | Type | Required |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| id | `STRING` | `REQUIRED` |
+| comments | [`STRING`] | - |
+| object_type | **Constant:** `VESTING_TERMS`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_ | `REQUIRED` |
+| name | `STRING` | `REQUIRED` |
+| description | `STRING` | `REQUIRED` |
+| allocation_type | `Enum - Allocation Type`</br></br>_Description:_ Enumeration of allocation types for vesting terms. Using an example of 18 shares split across 4 tranches, each allocation type results in a different schedule as follows: </br>  1.  Cumulative Rounding (5 - 4 - 5 - 4)</br>  2.  Cumulative Round Down (4 - 5 - 4 - 5)</br>  3.  Front Loaded (5 - 5 - 4 - 4)</br>  4.  Back Loaded (4 - 4 - 5 - 5)</br>  5.  Front Loaded to Single Tranche (6 - 4 - 4 - 4)</br>  6.  Back Loaded to Single Tranche (4 - 4 - 4 - 6)</br>  7.  Fractional (4.5 - 4.5 - 4.5 - 4.5)</br></br>**ONE OF:** </br>&bull; CUMULATIVE_ROUNDING </br>&bull; CUMULATIVE_ROUND_DOWN </br>&bull; FRONT_LOADED </br>&bull; BACK_LOADED </br>&bull; FRONT_LOADED_TO_SINGLE_TRANCHE </br>&bull; BACK_LOADED_TO_SINGLE_TRANCHE </br>&bull; FRACTIONAL | `REQUIRED` |
+| vesting_conditions | [ [schema/types/vesting/VestingCondition](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/vesting/VestingCondition/) ] | `REQUIRED` |
+</div>
+</div>
+
+
+## Properties
 
 | Property | Type | Required | Description |
 |---|---|---|---|
@@ -32,24 +65,6 @@ _Details of a vesting schedule template._
 | `vestingScheduleType` | [`v1alpha1VestingScheduleType`](../types/vesting_schedule_type.md) |  | The type of vesting schedule found within this template. |
 | `uuid` | string |  | The UUID of the vesting schedule template. |
 | `periods` | [`v1alpha1VestingPeriod`](../types/vesting_period.md)[] |  | The vesting periods that define how shares vest. |
-
-</div>
-<div class="domain-compare__col" markdown="1">
-**OCF** — [`VestingTerms`](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/objects/VestingTerms/)
-
-_Object describing the terms under which a security vests_
-
-| Property           | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Description                                                                     | Required   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------- |
-| id                 | `STRING`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Identifier for the object                                                       | `REQUIRED` |
-| comments           | [`STRING`]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Unstructured text comments related to and stored for the object                 | -          |
-| object_type        | **Constant:** `VESTING_TERMS`</br>_Defined in [schema/enums/ObjectType](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/enums/ObjectType/)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Object type field                                                               | `REQUIRED` |
-| name               | `STRING`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Concise name for the vesting schedule                                           | `REQUIRED` |
-| description        | `STRING`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Detailed description of the vesting schedule                                    | `REQUIRED` |
-| allocation_type    | `Enum - Allocation Type`</br></br>_Description:_ Enumeration of allocation types for vesting terms. Using an example of 18 shares split across 4 tranches, each allocation type results in a different schedule as follows: </br>  1.  Cumulative Rounding (5 - 4 - 5 - 4)</br>  2.  Cumulative Round Down (4 - 5 - 4 - 5)</br>  3.  Front Loaded (5 - 5 - 4 - 4)</br>  4.  Back Loaded (4 - 4 - 5 - 5)</br>  5.  Front Loaded to Single Tranche (6 - 4 - 4 - 4)</br>  6.  Back Loaded to Single Tranche (4 - 4 - 4 - 6)</br>  7.  Fractional (4.5 - 4.5 - 4.5 - 4.5)</br></br>**ONE OF:** </br>&bull; CUMULATIVE_ROUNDING </br>&bull; CUMULATIVE_ROUND_DOWN </br>&bull; FRONT_LOADED </br>&bull; BACK_LOADED </br>&bull; FRONT_LOADED_TO_SINGLE_TRANCHE </br>&bull; BACK_LOADED_TO_SINGLE_TRANCHE </br>&bull; FRACTIONAL | Allocation/rounding type for the vesting schedule                               | `REQUIRED` |
-| vesting_conditions | [ [schema/types/vesting/VestingCondition](https://open-cap-table-coalition.github.io/Open-Cap-Format-OCF/schema_markdown/schema/types/vesting/VestingCondition/) ]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Conditions and triggers that describe the graph of vesting schedules and events | `REQUIRED` |
-</div>
-</div>
 
 
 ## Referenced by
