@@ -234,3 +234,9 @@ The API uses OAuth 2.0 for authentication. Required scopes are listed in the `se
 - API schemas follow the pattern: `v1alpha1<ResourceName>`
 - Generated markdown files use snake_case: `v1alpha1_resource_name.md`
 - Primary objects (with endpoints) are separated from supporting types
+
+## Commit and PR Conventions
+
+- Do **not** add `Co-Authored-By: Claude ...` trailers to commits
+- Do **not** add "Generated with Claude Code" footers to PR descriptions
+- Write commit messages and PR bodies as if authored solely by the user
